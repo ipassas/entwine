@@ -27,8 +27,7 @@ python3 -m http.server 8000
 - **Colours / fonts / spacing** — edit the CSS variables in `:root` at the top of `styles.css`
   (e.g. `--gold: #b8a86a`, `--ink: #0a0a0a`).
 - **Copy** — edit directly in `index.html`; sections are commented (`<!-- HERO -->`, etc.).
-- **Fonts** — Outfit + JetBrains Mono (Google Fonts) and Switzer (Fontshare), loaded at
-  the top of `styles.css`.
+- **Fonts** — Outfit only, self-hosted from `assets/` via `@font-face` (no external font CDNs).
 
 ## Images / assets ⚠️
 

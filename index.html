@@ -31,7 +31,18 @@
       <a href="#">Invest</a>
       <a href="#" class="signin">Sign in</a>
     </nav>
-    <a href="#" class="btn btn--white">Download&nbsp; <span class="arrow">→</span></a>
+    <a href="#" class="btn btn--white nav-cta">Download&nbsp; <span class="arrow">→</span></a>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span class="bars"><span></span><span></span><span></span></span>
+    </button>
+    <div class="mobile-menu" id="mobileMenu">
+      <a href="#">About</a>
+      <a href="#">For Restaurants</a>
+      <a href="#">Free Tools</a>
+      <a href="#">Pricing</a>
+      <a href="#">Invest</a>
+      <a href="#">Sign in</a>
+    </div>
   </header>
 
   <!-- ============ HERO ============ -->
@@ -368,6 +379,20 @@
       var main = kind === 'apple' ? 'App Store' : 'Google Play';
       b.innerHTML = icon + '<span><span class="badge-top">' + top + '</span><br><span class="badge-main">' + main + '</span></span>';
     });
+  })();
+</script>
+
+<!-- mobile menu toggle -->
+<script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+    if (!t || !m) return;
+    function close() { m.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); t.setAttribute('aria-label', 'Open menu'); }
+    function toggle() { var open = m.classList.toggle('open'); t.setAttribute('aria-expanded', open ? 'true' : 'false'); t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); }
+    t.addEventListener('click', toggle);
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 820) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   })();
 </script>
 

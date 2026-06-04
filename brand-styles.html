@@ -7,7 +7,6 @@
   <meta name="description" content="The Entwine web style guide: logo, colour, type, components, grid, elevation, an open-source line-icon library, motion and voice. The single source of truth for building Entwine pages." />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <style>
-    @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500&display=swap");
     @font-face{font-family:"Outfit";font-weight:100;font-display:swap;src:url("assets/Outfit-Thin.ttf") format("truetype")}
     @font-face{font-family:"Outfit";font-weight:200;font-display:swap;src:url("assets/Outfit-ExtraLight.ttf") format("truetype")}
     @font-face{font-family:"Outfit";font-weight:300;font-display:swap;src:url("assets/Outfit-Light.ttf") format("truetype")}
@@ -25,7 +24,7 @@
       --purple:#7e54f1; --yellow:#ffc101; --green:#46ba64; --red:#c90e0a;
       --line-light:rgba(0,0,0,.12); --line-dark:rgba(255,255,255,.14); --line-dash:rgba(255,255,255,.12);
       --content:1180px; --r-card:12px; --r-pill:999px; --r-sm:8px; --r-lg:24px;
-      --sans:"Outfit",system-ui,-apple-system,sans-serif; --display:"Outfit",system-ui,sans-serif; --mono:"JetBrains Mono",monospace;
+      --sans:"Outfit",system-ui,-apple-system,sans-serif; --display:"Outfit",system-ui,sans-serif; --mono:"Outfit",system-ui,sans-serif;
       --sh-card:23px 27px 49px rgba(0,0,0,.22); --sh-callout:16px 16px 33px rgba(0,0,0,.12);
       --sh-tile:15px 17px 22px rgba(0,0,0,.18); --sh-zaar:0 20px 30px rgba(120,60,20,.05);
       --sh-soft:0 18px 50px rgba(20,16,10,.08);
@@ -116,6 +115,14 @@
     .btn--gold{background:var(--gold);color:#fff} .btn--white{background:var(--ink);color:#fff}
     .btn--outline{background:transparent;color:var(--ink);border-color:var(--line-light)}
     .btn--upper{text-transform:uppercase;font-size:11.5px;letter-spacing:.14em}
+    .btn{transition:transform .2s cubic-bezier(.16,.84,.44,1),box-shadow .25s ease,background .2s ease,color .2s ease,border-color .2s ease}
+    .btn:hover{transform:translateY(-2px)} .btn:active{transform:translateY(0) scale(.98)}
+    .btn--gold:hover{background:#c6b77c;box-shadow:0 10px 24px rgba(184,168,106,.35)}
+    .btn--white:hover{background:#23211d;box-shadow:0 10px 24px rgba(0,0,0,.2)}
+    .btn--outline:hover{background:var(--ink);color:#fff;border-color:var(--ink)}
+    .btn:focus-visible,a:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+    .badge{transition:transform .2s ease,box-shadow .25s ease,background .2s ease}
+    .badge:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(0,0,0,.25)}
     .badge{display:inline-flex;align-items:center;gap:12px;padding:0 20px;height:58px;border-radius:var(--r-pill);background:var(--gold);color:#fff;border:1px solid rgba(255,255,255,.22)}
     .badge.dark{background:var(--black)}
     .badge iconify-icon{font-size:24px}
@@ -272,7 +279,7 @@
 
   <!-- 03 TYPE -->
   <section class="block" id="type"><div class="wrap">
-    <div class="shead"><div class="idx">03</div><div><p class="kick">Typography</p><h2>Type system</h2><p><strong>Outfit</strong> is the entire system, self-hosted from <code>/assets</code>. ExtraLight/Light for display, Regular/Medium for body and UI, Bold for tile labels. <strong>JetBrains Mono</strong> 500 appears only in footer step labels. All sizes are fluid via <code>clamp()</code>.</p></div></div>
+    <div class="shead"><div class="idx">03</div><div><p class="kick">Typography</p><h2>Type system</h2><p><strong>Outfit</strong> is the entire system, self-hosted from <code>/assets</code>. ExtraLight/Light for display, Regular/Medium for body and UI, Bold for tile labels. <strong>Outfit is the only typeface</strong> — no secondary font. All sizes are fluid via <code>clamp()</code>.</p></div></div>
     <h3 class="sub">Weights — Outfit</h3>
     <div class="weights">
       <span style="font-weight:100">100 Thin</span><span style="font-weight:200">200 ExtraLight</span><span style="font-weight:300">300 Light</span>
@@ -286,7 +293,7 @@
     <div class="type-row"><div class="label">Lead · 400<br>22 / lh 1.5</div><div class="t-lead">Wine recommendations built around your meal, not just your mood.</div></div>
     <div class="type-row"><div class="label">Body · 400<br>16 / lh 1.7</div><div class="t-body">Entwine connects to your restaurant's actual menu and matches every dish to a wine worth ordering. 8,000 wines. Your table. Your perfect pairing.</div></div>
     <div class="type-row"><div class="label">Eyebrow · 500<br>11 / 0.2em / upper</div><div class="t-eyebrow">For Wine Lovers</div></div>
-    <div class="type-row"><div class="label">Mono · JetBrains 500<br>11 / 0.16em / upper</div><div class="t-mono">I.&nbsp;&nbsp;&nbsp;TAKE IT TO DINNER</div></div>
+    <div class="type-row"><div class="label">Caption · Outfit 500<br>11 / 0.16em / upper</div><div class="t-mono">I.&nbsp;&nbsp;&nbsp;TAKE IT TO DINNER</div></div>
   </div></section>
 
   <!-- 04 BUTTONS -->
@@ -303,6 +310,16 @@
       <a class="badge"><iconify-icon icon="tabler:brand-apple"></iconify-icon><span><span class="bt">Download on the</span><br><span class="bm">App Store</span></span></a>
       <a class="badge dark"><iconify-icon icon="tabler:brand-google-play"></iconify-icon><span><span class="bt">Get it on</span><br><span class="bm">Google Play</span></span></a>
     </div></div>
+    <h3 class="sub">States</h3>
+    <div class="specs">
+      <div class="spec"><div class="k">Default</div><div class="d">Base fill or outline.</div></div>
+      <div class="spec"><div class="k">Hover</div><div class="d">Lift 2px + soft shadow; gold lightens, outline fills ink, badge lifts. Arrow → slides 4px.</div></div>
+      <div class="spec"><div class="k">Active</div><div class="d">Press — translateY(0) scale .98.</div></div>
+      <div class="spec"><div class="k">Focus</div><div class="d">2px gold ring, 3px offset (keyboard).</div></div>
+      <div class="spec"><div class="k">Disabled</div><div class="d">45% opacity, pointer-events off.</div></div>
+      <div class="spec"><div class="k">Cards &amp; links</div><div class="d">Cards lift 4px; nav links grow a gold underline; mobile burger morphs to a gold X.</div></div>
+    </div>
+    <p class="cap" style="margin-top:14px">Hover the buttons &amp; badges above to preview these states live.</p>
   </div></section>
 
   <!-- 05 COMPONENTS -->
