@@ -18,6 +18,194 @@
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
   </style>
+  <style id="rs-style">
+
+  /* ============================================================
+     RESTAURANTS — page-scoped "wow" layer (rs-*)
+     Reuses brand tokens; no external image dependency.
+     ============================================================ */
+  .rs-gold{color:var(--gold)}
+  .rs-eyebrow{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:var(--gold);display:inline-block}
+  .rs-head{max-width:880px;margin:0 auto clamp(40px,5vw,64px);text-align:center}
+  .rs-head h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.4vw,58px);line-height:1.03;letter-spacing:-.03em;text-wrap:balance}
+  .rs-head h2 .rs-gold{color:var(--gold)}
+  .rs-head p{margin:16px auto 0;max-width:700px;font-size:17px;line-height:1.6;color:var(--gray-2)}
+
+  /* reveal stagger (only when JS adds .reveal; safe for no-JS) */
+  .reveal .rs-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .7s ease,transform .7s ease}
+  .reveal.in .rs-stagger>*{opacity:1;transform:none}
+  .reveal.in .rs-stagger>*:nth-child(2){transition-delay:.08s}
+  .reveal.in .rs-stagger>*:nth-child(3){transition-delay:.16s}
+  .reveal.in .rs-stagger>*:nth-child(4){transition-delay:.24s}
+  .reveal.in .rs-stagger>*:nth-child(5){transition-delay:.32s}
+  .reveal.in .rs-stagger>*:nth-child(6){transition-delay:.40s}
+  @media(prefers-reduced-motion:reduce){.reveal .rs-stagger>*{opacity:1!important;transform:none!important}}
+  @keyframes rsFade{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+
+  /* ---- HERO : full-bleed image, centred ---- */
+  .rs-hero{position:relative;isolation:isolate;background:#070707;color:#fff;overflow:hidden;text-align:center;
+    margin-top:calc(-1*var(--nav-h));padding:calc(var(--nav-h) + clamp(86px,11vw,168px)) var(--gutter) clamp(86px,11vw,168px)}
+  .rs-hero__bg{position:absolute;inset:0;z-index:-3}
+  .rs-hero__bg img{width:100%;height:100%;object-fit:cover}
+  .rs-hero__bg::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(7,7,7,.56) 0%,rgba(7,7,7,.72) 58%,rgba(7,7,7,.82) 100%)}
+  .rs-hero__amb{position:absolute;inset:0;z-index:-2;background:radial-gradient(72% 60% at 82% -10%,rgba(184,168,106,.24),transparent 56%)}
+  .rs-hero__lines{position:absolute;inset:0;z-index:-1;opacity:.4;
+    background-image:linear-gradient(rgba(255,255,255,.045) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.045) 1px,transparent 1px);
+    background-size:66px 66px;
+    -webkit-mask-image:radial-gradient(120% 90% at 50% 0,#000,transparent 72%);mask-image:radial-gradient(120% 90% at 50% 0,#000,transparent 72%)}
+  .rs-hero__inner{max-width:940px;margin:0 auto}
+  .rs-hero__kick{display:inline-flex;align-items:center;gap:14px;color:var(--gold);font-size:11px;letter-spacing:.24em;text-transform:uppercase;font-weight:500}
+  .rs-hero__kick::before,.rs-hero__kick::after{content:"";width:34px;height:1px;background:var(--gold)}
+  .rs-hero h1{margin:22px 0 0;font-family:var(--display);font-weight:200;font-size:clamp(36px,4.6vw,72px);line-height:1.02;letter-spacing:-.035em;text-wrap:balance}
+  .rs-hero h1 .rs-gold{color:var(--gold)}
+  .rs-hero__sub{margin:26px auto 0;max-width:680px;font-size:clamp(16px,1.2vw,20px);line-height:1.6;color:rgba(255,255,255,.82)}
+  .rs-hero__cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap;justify-content:center}
+
+  /* ---- PAIN : sticky lead + refined accordion ---- */
+  .rs-pain{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .rs-pain__inner{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:.82fr 1.18fr;gap:clamp(30px,5vw,80px);align-items:start}
+  .rs-pain__lead{position:sticky;top:calc(var(--nav-h) + 30px)}
+  .rs-pain__lead h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(40px,4.6vw,78px);line-height:.98;letter-spacing:-.035em;color:var(--ink)}
+  .rs-pain__lead h2 .rs-gold{color:var(--gold)}
+  .rs-pain__close{margin:28px 0 0;font-family:var(--display);font-weight:300;font-size:clamp(19px,1.7vw,26px);line-height:1.25;letter-spacing:-.02em;color:var(--ink);max-width:380px}
+  .rs-pain__close .rs-gold{color:var(--gold)}
+  .rs-acc{border-top:1px solid var(--line-light)}
+  .rs-acc details{border-bottom:1px solid var(--line-light)}
+  .rs-acc summary{list-style:none;cursor:pointer;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:20px;
+    padding:26px 4px;font-family:var(--display);font-weight:300;font-size:clamp(18px,1.6vw,26px);letter-spacing:-.015em;color:var(--ink);transition:color .2s}
+  .rs-acc summary::-webkit-details-marker{display:none}
+  .rs-acc summary:hover{color:var(--gold)}
+  .rs-acc__n{font-family:var(--display);font-weight:400;font-size:13px;letter-spacing:.12em;color:var(--gold)}
+  .rs-acc__chev{width:22px;height:22px;position:relative;transition:transform .3s}
+  .rs-acc__chev::before,.rs-acc__chev::after{content:"";position:absolute;top:10px;width:11px;height:2px;background:var(--gold)}
+  .rs-acc__chev::before{left:1px;transform:rotate(45deg)}.rs-acc__chev::after{right:1px;transform:rotate(-45deg)}
+  .rs-acc details[open] .rs-acc__chev{transform:rotate(180deg)}
+  .rs-acc__a{padding:0 4px 26px 47px;max-width:640px;color:var(--gray-3);font-size:16px;line-height:1.65}
+  .rs-acc details[open] .rs-acc__a{animation:rsFade .35s ease}
+
+  /* ---- BENTO : asymmetric feature grid on dark ---- */
+  .rs-bento-sec{position:relative;isolation:isolate;background:#0a0a0a;color:#fff;overflow:hidden;padding:var(--sec-y) var(--gutter)}
+  .rs-bento-sec__amb{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 60% at 85% 0,rgba(184,168,106,.16),transparent 60%),#0a0a0a}
+  .rs-bento-sec .rs-head p{color:rgba(255,255,255,.66)}
+  .rs-bento{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1.35fr 1fr 1fr;grid-auto-rows:minmax(208px,auto);gap:18px}
+  .rs-cell{position:relative;border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:32px;background:rgba(255,255,255,.02);
+    -webkit-backdrop-filter:blur(6px);backdrop-filter:blur(6px);display:flex;flex-direction:column;
+    transition:transform .4s cubic-bezier(.16,.84,.44,1),border-color .3s,background .3s}
+  .rs-cell:hover{transform:translateY(-4px);border-color:rgba(184,168,106,.5);background:rgba(184,168,106,.05)}
+  .rs-cell__ic{width:54px;height:54px;border-radius:12px;border:1px solid rgba(184,168,106,.4);color:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:auto}
+  .rs-cell__ic iconify-icon{font-size:30px}
+  .rs-cell h3{margin:24px 0 0;font-family:var(--display);font-weight:300;font-size:clamp(20px,1.6vw,26px);letter-spacing:-.015em}
+  .rs-cell p{margin:12px 0 0;font-size:15px;line-height:1.6;color:rgba(255,255,255,.68)}
+  .rs-cell--feature{grid-row:span 2;background:linear-gradient(165deg,rgba(184,168,106,.16),rgba(255,255,255,.02));border-color:rgba(184,168,106,.4)}
+  .rs-cell--feature h3{font-size:clamp(26px,2.2vw,38px);font-weight:200}
+  .rs-cell--feature p{color:rgba(255,255,255,.8)}
+  .rs-cell--wide{grid-column:span 2}
+
+  /* ---- STEPS : connected timeline on light ---- */
+  .rs-steps-sec{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .rs-steps{max-width:var(--content);margin:0 auto;position:relative;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(28px,4vw,56px)}
+  .rs-steps::before{content:"";position:absolute;top:34px;left:12%;right:12%;height:1px;
+    background:linear-gradient(90deg,transparent,rgba(184,168,106,.6) 16%,rgba(184,168,106,.6) 84%,transparent)}
+  .rs-step{position:relative;text-align:center;padding:0 8px}
+  .rs-step__node{position:relative;z-index:1;width:68px;height:68px;margin:0 auto 22px;border-radius:50%;background:var(--bg-eco);border:1px solid var(--gold);color:var(--gold);display:flex;align-items:center;justify-content:center;transition:transform .3s,background .3s,box-shadow .3s}
+  .rs-step:hover .rs-step__node{transform:translateY(-3px);background:#fff;box-shadow:0 12px 26px rgba(184,168,106,.22)}
+  .rs-step__node iconify-icon{font-size:30px}
+  .rs-step__lbl{display:block;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px}
+  .rs-step h3{margin:0 0 12px;font-family:var(--display);font-weight:300;font-size:26px;letter-spacing:-.01em;color:var(--ink)}
+  .rs-step p{margin:0 auto;max-width:320px;color:var(--gray-3);font-size:15px;line-height:1.6}
+  .rs-steps__foot{max-width:var(--content);margin:clamp(44px,5vw,60px) auto 0;text-align:center;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .rs-steps__foot p{margin:0;font-family:var(--display);font-weight:300;font-size:clamp(20px,2.1vw,32px);letter-spacing:-.02em;max-width:700px;color:var(--ink)}
+  .rs-steps__foot .rs-gold{color:var(--gold)}
+
+  /* ---- CLUB : members wall on dark ---- */
+  .rs-club{position:relative;isolation:isolate;background:#0a0a0a;color:#fff;overflow:hidden;padding:var(--sec-y) var(--gutter)}
+  .rs-club__amb{position:absolute;inset:0;z-index:-1;background:radial-gradient(70% 70% at 50% -12%,rgba(184,168,106,.14),transparent 60%),#0a0a0a}
+  .rs-club .rs-head h2{color:#fff}
+  .rs-club .rs-head h2 .rs-gold{color:var(--gold)}
+  .rs-club .rs-head p{color:rgba(255,255,255,.66)}
+  .rs-wall{max-width:1040px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr)}
+  .rs-plate{text-align:center;padding:38px 24px;border:1px solid rgba(255,255,255,.1);position:relative;transition:background .3s}
+  .rs-plate + .rs-plate{border-left:0}
+  .rs-plate:first-child{border-radius:14px 0 0 14px}
+  .rs-plate:last-child{border-radius:0 14px 14px 0}
+  .rs-plate:hover{background:rgba(184,168,106,.06)}
+  .rs-plate__mk{width:24px;height:30px;color:var(--gold);opacity:.7;margin:0 auto 18px}
+  .rs-plate__nm{font-family:var(--display);font-weight:200;font-size:clamp(28px,2.6vw,40px);letter-spacing:-.02em}
+  .rs-plate__loc{margin-top:12px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold)}
+  .rs-club__cta{text-align:center;margin-top:clamp(36px,4vw,48px)}
+
+  /* ---- TOOLS : product cards on white ---- */
+  .rs-tools-sec{background:#fff;padding:var(--sec-y) var(--gutter)}
+  .rs-tools{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .rs-tool{position:relative;background:#fff;border:1px solid var(--line-light);border-radius:14px;padding:34px 30px 30px;display:flex;flex-direction:column;overflow:hidden;
+    box-shadow:0 18px 50px rgba(20,16,10,.06);transition:transform .4s cubic-bezier(.16,.84,.44,1),box-shadow .4s}
+  .rs-tool::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .4s cubic-bezier(.16,.84,.44,1)}
+  .rs-tool:hover{transform:translateY(-5px);box-shadow:16px 22px 50px rgba(0,0,0,.13)}
+  .rs-tool:hover::before{transform:scaleX(1)}
+  .rs-tool__idx{position:absolute;top:24px;right:28px;font-family:var(--display);font-weight:200;font-size:38px;line-height:1;color:rgba(10,10,10,.13);letter-spacing:-.04em}
+  .rs-tool__tag{align-self:flex-start;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,168,106,.45);border-radius:999px;padding:5px 12px;margin:0 0 20px}
+  .rs-tool h3{margin:0 0 12px;font-family:var(--display);font-weight:300;font-size:24px;letter-spacing:-.01em;color:var(--ink);max-width:88%}
+  .rs-tool p{margin:0 0 22px;color:var(--gray-3);font-size:15px;line-height:1.6}
+  .rs-tool__more{margin-top:auto;color:var(--gold);font-weight:500;display:inline-flex;gap:8px;align-items:center}
+  .rs-tool__more span{transition:transform .25s cubic-bezier(.16,.84,.44,1)}
+  .rs-tool:hover .rs-tool__more span{transform:translateX(4px)}
+  .rs-tools__all{text-align:center;margin-top:clamp(36px,4vw,48px)}
+
+  /* ---- PATHS : split fork on ink ---- */
+  .rs-paths{background:var(--ink);padding:var(--sec-y) var(--gutter)}
+  .rs-paths__grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;border:1px solid rgba(255,255,255,.12);border-radius:16px;overflow:hidden}
+  .rs-path{padding:clamp(36px,4vw,58px);display:flex;flex-direction:column;color:#fff}
+  .rs-path + .rs-path{border-left:1px solid rgba(255,255,255,.12)}
+  .rs-path--gold{background:linear-gradient(165deg,rgba(184,168,106,.15),transparent 70%)}
+  .rs-path .rs-eyebrow{margin-bottom:16px}
+  .rs-path h3{margin:0 0 16px;font-family:var(--display);font-weight:300;font-size:clamp(24px,2.2vw,34px);letter-spacing:-.02em}
+  .rs-path p{margin:0 0 30px;color:rgba(255,255,255,.7);font-size:16px;line-height:1.6}
+  .rs-path .btn{align-self:flex-start;margin-top:auto}
+
+  /* ---- FINAL : gold finale ---- */
+  .rs-final{position:relative;isolation:isolate;background:var(--gold);color:var(--black);padding:var(--sec-y) var(--gutter);text-align:center;overflow:hidden}
+  .rs-final__mk{position:absolute;right:-3%;bottom:-18%;width:min(46vw,420px);height:auto;color:rgba(0,0,0,.06);z-index:-1}
+  .rs-final__inner{max-width:var(--content);margin:0 auto;position:relative}
+  .rs-final h2{margin:0 auto;max-width:920px;font-family:var(--display);font-weight:300;font-size:clamp(30px,3.4vw,56px);line-height:1.05;letter-spacing:-.03em;text-wrap:balance}
+  .rs-final p{margin:20px auto 0;max-width:700px;color:rgba(0,0,0,.72);font-size:17px;line-height:1.6}
+  .rs-final__cta{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .rs-final__btn{background:var(--ink);color:#fff}
+  .rs-final__btn:hover{background:#000}
+  .rs-final__links{display:inline-flex;align-items:center;gap:28px;flex-wrap:wrap;justify-content:center}
+  .rs-final__links a{color:rgba(0,0,0,.72);font-weight:500;font-size:15px;display:inline-flex;gap:8px;align-items:center;border-bottom:1px solid rgba(0,0,0,.28);padding-bottom:3px;transition:color .2s,border-color .2s}
+  .rs-final__links a span{transition:transform .25s cubic-bezier(.16,.84,.44,1)}
+  .rs-final__links a:hover{color:var(--ink);border-color:var(--ink)}
+  .rs-final__links a:hover span{transform:translateX(4px)}
+  .rs-final__links .dot{width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,.3)}
+
+  /* ---- responsive ---- */
+  @media(max-width:1024px){
+    .rs-hero__inner{grid-template-columns:1fr;gap:36px}
+    .rs-hero__visual{order:-1;aspect-ratio:16/10;max-height:360px}
+    .rs-pain__inner{grid-template-columns:1fr;gap:30px}
+    .rs-pain__lead{position:static}
+    .rs-pain__close{max-width:none}
+    .rs-bento{grid-template-columns:1fr 1fr}
+    .rs-cell--feature{grid-row:auto;grid-column:span 2}
+    .rs-cell--wide{grid-column:span 2}
+    .rs-steps{grid-template-columns:1fr;gap:34px}
+    .rs-steps::before{display:none}
+    .rs-wall{grid-template-columns:1fr}
+    .rs-plate{border-radius:0!important;border-left:1px solid rgba(255,255,255,.1)!important}
+    .rs-plate:first-child{border-radius:14px 14px 0 0!important}
+    .rs-plate:last-child{border-radius:0 0 14px 14px!important}
+    .rs-tools{grid-template-columns:1fr}
+    .rs-paths__grid{grid-template-columns:1fr}
+    .rs-path+.rs-path{border-left:0;border-top:1px solid rgba(255,255,255,.12)}
+  }
+  @media(max-width:640px){
+    .rs-bento{grid-template-columns:1fr}
+    .rs-cell--feature,.rs-cell--wide{grid-column:auto}
+    .rs-acc summary{font-size:18px;gap:14px}
+    .rs-acc__a{padding-left:4px}
+  }
+
+  </style>
 </head>
 <body>
 
@@ -91,155 +279,187 @@
     </div>
   </header>
 
-  <!-- ============ HERO (image background, centred text) ============ -->
-  <section class="hero hero--page">
-    <div class="hero__bg hero__bg--cover">
-      <img class="imgph" alt="" data-img="restaurants-hero" data-kw="restaurant,wine,fine-dining,interior,dark" data-w="1920" data-h="1080">
-    </div>
-    <div class="hero__inner">
-      <span class="eyebrow">For Restaurants</span>
-      <h1>Your wine programme has more potential than you think.<br><span class="gold">Entwine helps you realise it</span> — a sommelier at every table.</h1>
-      <p class="hero__sub">From inventory management and fast wine ordering to restaurant-specific pairings that delight your guests — Entwine is the wine intelligence platform built for the way restaurants actually work.</p>
-      <div class="hero__badges">
+  <!-- ============ HERO : full-bleed image, centred ============ -->
+  <section class="rs-hero">
+    <div class="rs-hero__bg"><img class="imgph" alt="" data-img="restaurants-hero" data-kw="restaurant,wine,fine-dining,interior,dark" data-w="1920" data-h="1080"></div>
+    <div class="rs-hero__amb"></div>
+    <div class="rs-hero__lines"></div>
+    <div class="rs-hero__inner">
+      <span class="rs-hero__kick">For Restaurants</span>
+      <h1>Your wine programme has more potential than you think. <span class="rs-gold">Entwine helps you realise it</span> — a sommelier at every table.</h1>
+      <p class="rs-hero__sub">From inventory management and fast wine ordering to restaurant-specific pairings that delight your guests — Entwine is the wine intelligence platform built for the way restaurants actually work.</p>
+      <div class="rs-hero__cta">
         <a class="btn btn--gold" href="#platform">See the Platform <span class="arrow">→</span></a>
         <a class="btn btn--outline-light" href="#demo">Book a Demo</a>
       </div>
     </div>
   </section>
 
-  <!-- ============ SOUND FAMILIAR ============ -->
-  <section class="r-sec tint js-reveal">
-    <div class="r-head"><h2>Sound familiar?</h2></div>
-    <div class="faq">
-      <details>
-        <summary>Wine ordering takes too long<span class="chev"></span></summary>
-        <div class="ans">Chasing suppliers, checking stock levels, reconciling deliveries against what was ordered — all manual, all time-consuming.</div>
-      </details>
-      <details>
-        <summary>No visibility on what's actually working<span class="chev"></span></summary>
-        <div class="ans">You have a wine list. You have sales data somewhere. But turning that into actionable intelligence about your programme? That's a spreadsheet nightmare.</div>
-      </details>
-      <details>
-        <summary>Guests are choosing wine by price, not pairing<span class="chev"></span></summary>
-        <div class="ans">Without guidance, most diners default to the second-cheapest bottle. The right pairing recommendation changes that — and changes the bill.</div>
-      </details>
-      <details>
-        <summary>Your team knows the menu — but not the wine<span class="chev"></span></summary>
-        <div class="ans">Front-of-house staff can describe every dish. Ask them about the wine list and confidence drops. Training takes time you don't have.</div>
-      </details>
-      <details>
-        <summary>Your wine list isn't earning its keep<span class="chev"></span></summary>
-        <div class="ans">You know certain bottles aren't moving. You're not sure which pairings are driving covers or which gaps are costing you revenue.</div>
-      </details>
-      <details>
-        <summary>Every sommelier costs what they cost<span class="chev"></span></summary>
-        <div class="ans">A full-time sommelier is a luxury many restaurants can't justify. But the experience they create — for guests and the team — is one every restaurant wants.</div>
-      </details>
-    </div>
-    <p class="faq__close">Entwine was built to solve all of this. <span class="gold">Minimal investment. Maximum impact.</span></p>
-  </section>
-
-  <!-- ============ WHAT CHANGES (dark, image bg, editorial list) ============ -->
-  <section class="r-sec dark has-bg js-reveal" id="platform">
-    <div class="r-bg"><img class="imgph" alt="" data-img="restaurants-cellar" data-kw="wine,cellar,bottles,dark" data-w="1920" data-h="1200"></div>
-    <div class="r-inner">
-      <div class="r-head"><h2>Here's what changes <span class="gold">when you join Entwine.</span></h2></div>
-      <div class="feat-list">
-        <div class="feat-row">
-          <div class="fic"><iconify-icon icon="ph:lightning-thin"></iconify-icon></div>
-          <h3>Lightning-fast wine ordering</h3>
-          <p>Order wine directly through the IMS — no more chasing suppliers or cross-referencing spreadsheets. Your order history, par levels, and supplier contacts in one place.</p>
-        </div>
-        <div class="feat-row">
-          <div class="fic"><iconify-icon icon="ph:chart-line-up-thin"></iconify-icon></div>
-          <h3>Wine list optimisation</h3>
-          <p>Great wine lists aren't built on instinct. Entwine gives you the data to see what's selling, what's being paired, and what's missing — so you can build a list your guests actually want.</p>
-        </div>
-        <div class="feat-row">
-          <div class="fic"><iconify-icon icon="ph:package-thin"></iconify-icon></div>
-          <h3>Inventory management</h3>
-          <p>Track your inventory with complete confidence. Real-time stock levels, automatic low-stock alerts, and full visibility over what's moving and what isn't — all in one place.</p>
-        </div>
-        <div class="feat-row">
-          <div class="fic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div>
-          <h3>Your guests' sommelier — at every table</h3>
-          <p>When your restaurant goes live on Entwine, every diner can discover the perfect pairing for their dish — from your wine list, matched by our algorithm. Not generic. Yours.</p>
-        </div>
+  <!-- ============ SOUND FAMILIAR : sticky lead + accordion ============ -->
+  <section class="rs-pain js-reveal">
+    <div class="rs-pain__inner">
+      <aside class="rs-pain__lead">
+        <h2>Sound <span class="rs-gold">familiar?</span></h2>
+        <p class="rs-pain__close">Entwine was built to solve all of this. <span class="rs-gold">Minimal investment. Maximum impact.</span></p>
+      </aside>
+      <div class="rs-acc">
+        <details>
+          <summary><span class="rs-acc__n">01</span><span class="rs-acc__q">Wine ordering takes too long</span><span class="rs-acc__chev"></span></summary>
+          <div class="rs-acc__a">Chasing suppliers, checking stock levels, reconciling deliveries against what was ordered — all manual, all time-consuming.</div>
+        </details>
+        <details>
+          <summary><span class="rs-acc__n">02</span><span class="rs-acc__q">No visibility on what's actually working</span><span class="rs-acc__chev"></span></summary>
+          <div class="rs-acc__a">You have a wine list. You have sales data somewhere. But turning that into actionable intelligence about your programme? That's a spreadsheet nightmare.</div>
+        </details>
+        <details>
+          <summary><span class="rs-acc__n">03</span><span class="rs-acc__q">Guests are choosing wine by price, not pairing</span><span class="rs-acc__chev"></span></summary>
+          <div class="rs-acc__a">Without guidance, most diners default to the second-cheapest bottle. The right pairing recommendation changes that — and changes the bill.</div>
+        </details>
+        <details>
+          <summary><span class="rs-acc__n">04</span><span class="rs-acc__q">Your team knows the menu — but not the wine</span><span class="rs-acc__chev"></span></summary>
+          <div class="rs-acc__a">Front-of-house staff can describe every dish. Ask them about the wine list and confidence drops. Training takes time you don't have.</div>
+        </details>
+        <details>
+          <summary><span class="rs-acc__n">05</span><span class="rs-acc__q">Your wine list isn't earning its keep</span><span class="rs-acc__chev"></span></summary>
+          <div class="rs-acc__a">You know certain bottles aren't moving. You're not sure which pairings are driving covers or which gaps are costing you revenue.</div>
+        </details>
+        <details>
+          <summary><span class="rs-acc__n">06</span><span class="rs-acc__q">Every sommelier costs what they cost</span><span class="rs-acc__chev"></span></summary>
+          <div class="rs-acc__a">A full-time sommelier is a luxury many restaurants can't justify. But the experience they create — for guests and the team — is one every restaurant wants.</div>
+        </details>
       </div>
     </div>
   </section>
 
-  <!-- ============ HOW IT WORKS (dark, image bg) ============ -->
-  <section class="r-sec dark has-bg js-reveal">
-    <div class="r-bg"><img class="imgph" alt="" data-img="restaurants-pour" data-kw="wine,pouring,glass,restaurant,dark" data-w="1920" data-h="1200"></div>
-    <div class="r-inner">
-      <div class="r-head"><h2>How it works</h2></div>
-      <div class="steps">
-        <div class="step">
-          <div class="step__node"><iconify-icon icon="ph:upload-simple-thin"></iconify-icon></div>
-          <span class="step__num">Step 01</span>
-          <h3>Onboarding</h3>
-          <p>We onboard your restaurant together — loading your menu and wine list into your dedicated Entwine environment, cross-referencing every wine against our 8,000+ bottle database. Anything missing, we add with full producer data.</p>
-        </div>
-        <div class="step">
-          <div class="step__node"><iconify-icon icon="ph:link-simple-thin"></iconify-icon></div>
-          <span class="step__num">Step 02</span>
-          <h3>Pairing</h3>
-          <p>Our ML algorithm pairs every wine to every dish — accounting for cooking method, sauces, and preparation. Pairings unique to your menu, never generic.</p>
-        </div>
-        <div class="step">
-          <div class="step__node"><iconify-icon icon="ph:rocket-launch-thin"></iconify-icon></div>
-          <span class="step__num">Step 03</span>
-          <h3>Launch</h3>
-          <p>Your restaurant goes live on the Entwine app. Guests explore pairings at the table. You manage, order, and optimise from the IMS.</p>
-        </div>
-      </div>
-      <div class="steps__foot">
-        <p>Your restaurant could be live on Entwine in <span class="gold">days</span>. Let's talk.</p>
-        <a class="btn btn--gold" href="#demo">Book a Demo <span class="arrow">→</span></a>
-      </div>
+  <!-- ============ PLATFORM : asymmetric bento ============ -->
+  <section class="rs-bento-sec js-reveal" id="platform">
+    <div class="rs-bento-sec__amb"></div>
+    <div class="rs-head">
+      <h2>Here's what changes <span class="rs-gold">when you join Entwine.</span></h2>
+    </div>
+    <div class="rs-bento rs-stagger">
+      <article class="rs-cell rs-cell--feature">
+        <div class="rs-cell__ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div>
+        <h3>Your guests' sommelier — at every table</h3>
+        <p>When your restaurant goes live on Entwine, every diner can discover the perfect pairing for their dish — from your wine list, matched by our algorithm. Not generic. Yours.</p>
+      </article>
+      <article class="rs-cell">
+        <div class="rs-cell__ic"><iconify-icon icon="ph:lightning-thin"></iconify-icon></div>
+        <h3>Lightning-fast wine ordering</h3>
+        <p>Order wine directly through the IMS — no more chasing suppliers or cross-referencing spreadsheets. Your order history, par levels, and supplier contacts in one place.</p>
+      </article>
+      <article class="rs-cell">
+        <div class="rs-cell__ic"><iconify-icon icon="ph:chart-line-up-thin"></iconify-icon></div>
+        <h3>Wine list optimisation</h3>
+        <p>Great wine lists aren't built on instinct. Entwine gives you the data to see what's selling, what's being paired, and what's missing — so you can build a list your guests actually want.</p>
+      </article>
+      <article class="rs-cell rs-cell--wide">
+        <div class="rs-cell__ic"><iconify-icon icon="ph:package-thin"></iconify-icon></div>
+        <h3>Inventory management</h3>
+        <p>Track your inventory with complete confidence. Real-time stock levels, automatic low-stock alerts, and full visibility over what's moving and what isn't — all in one place.</p>
+      </article>
     </div>
   </section>
 
-  <!-- ============ CLUB ============ -->
-  <section class="r-sec tint js-reveal">
-    <div class="r-head">
-      <h2>You're invited. <span class="gold">Welcome to the Entwine club.</span></h2>
+  <!-- ============ HOW IT WORKS : connected timeline ============ -->
+  <section class="rs-steps-sec js-reveal">
+    <div class="rs-head"><h2>How it works</h2></div>
+    <div class="rs-steps rs-stagger">
+      <div class="rs-step">
+        <div class="rs-step__node"><iconify-icon icon="ph:upload-simple-thin"></iconify-icon></div>
+        <span class="rs-step__lbl">Step 01</span>
+        <h3>Onboarding</h3>
+        <p>We onboard your restaurant together — loading your menu and wine list into your dedicated Entwine environment, cross-referencing every wine against our 8,000+ bottle database. Anything missing, we add with full producer data.</p>
+      </div>
+      <div class="rs-step">
+        <div class="rs-step__node"><iconify-icon icon="ph:link-simple-thin"></iconify-icon></div>
+        <span class="rs-step__lbl">Step 02</span>
+        <h3>Pairing</h3>
+        <p>Our ML algorithm pairs every wine to every dish — accounting for cooking method, sauces, and preparation. Pairings unique to your menu, never generic.</p>
+      </div>
+      <div class="rs-step">
+        <div class="rs-step__node"><iconify-icon icon="ph:rocket-launch-thin"></iconify-icon></div>
+        <span class="rs-step__lbl">Step 03</span>
+        <h3>Launch</h3>
+        <p>Your restaurant goes live on the Entwine app. Guests explore pairings at the table. You manage, order, and optimise from the IMS.</p>
+      </div>
+    </div>
+    <div class="rs-steps__foot">
+      <p>Your restaurant could be live on Entwine in <span class="rs-gold">days</span>. Let's talk.</p>
+      <a class="btn btn--gold" href="#demo">Book a Demo <span class="arrow">→</span></a>
+    </div>
+  </section>
+
+  <!-- ============ CLUB : members wall ============ -->
+  <section class="rs-club js-reveal">
+    <div class="rs-club__amb"></div>
+    <div class="rs-head">
+      <h2>You're invited. <span class="rs-gold">Welcome to the Entwine club.</span></h2>
       <p>Entwine's founding club members helped shape the platform. Their feedback is in every feature. Their restaurants are better for it.</p>
     </div>
-    <div class="club">
-      <div class="member"><div class="nm">La Vela</div><div class="loc">Entwine Club Member · Malta</div></div>
-      <div class="member"><div class="nm">Scala</div><div class="loc">Entwine Club Member · Malta</div></div>
-      <div class="member"><div class="nm">Bottega Frawli</div><div class="loc">Entwine Club Member · Malta</div></div>
+    <div class="rs-wall rs-stagger">
+      <div class="rs-plate">
+        <svg class="rs-plate__mk" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+        <div class="rs-plate__nm">La Vela</div>
+        <div class="rs-plate__loc">Entwine Club Member · Malta</div>
+      </div>
+      <div class="rs-plate">
+        <svg class="rs-plate__mk" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+        <div class="rs-plate__nm">Scala</div>
+        <div class="rs-plate__loc">Entwine Club Member · Malta</div>
+      </div>
+      <div class="rs-plate">
+        <svg class="rs-plate__mk" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+        <div class="rs-plate__nm">Bottega Frawli</div>
+        <div class="rs-plate__loc">Entwine Club Member · Malta</div>
+      </div>
     </div>
-    <div class="club__cta"><a class="btn btn--outline-dark" href="#demo">Become a club member <span class="arrow">→</span></a></div>
+    <div class="rs-club__cta"><a class="btn btn--gold" href="#demo">Become a club member <span class="arrow">→</span></a></div>
   </section>
 
-  <!-- ============ TOOLS ============ -->
-  <section class="r-sec js-reveal">
-    <div class="r-head">
-      <h2>Meet your lucky 7 — <span class="gold">wine professional tools that ease your day.</span></h2>
+  <!-- ============ TOOLS : product cards ============ -->
+  <section class="rs-tools-sec js-reveal">
+    <div class="rs-head">
+      <h2>Meet your lucky 7 — <span class="rs-gold">wine professional tools that ease your day.</span></h2>
       <p>From stress-testing your wine list to training your team — seven tools built for the way wine professionals actually work. Most are free. All are worth your time.</p>
     </div>
-    <div class="tools">
-      <div class="tool"><span class="tag">Free Tool</span><h3>Wine List Stress Test</h3><p>Upload your wine list and get a scored audit in minutes — gaps, imbalances, margin opportunities, and pairing blind spots. No filters pulled.</p><a class="more" href="tools.html#audit">Try it <span>→</span></a></div>
-      <div class="tool"><span class="tag">Free Tool</span><h3>By-The-Glass Optimiser</h3><p>Analyse your by-the-glass selection for margin, variety, and pairing value. See which pours are working and which are holding your programme back.</p><a class="more" href="tools.html#btg">Try it <span>→</span></a></div>
-      <div class="tool"><span class="tag">Free · Upgrades available</span><h3>Wine List Gap Finder</h3><p>Identify the style, region, and price-point gaps in your current wine list. Know exactly what's missing before your next buying decision.</p><a class="more" href="tools.html#gap-finder">Try it <span>→</span></a></div>
+    <div class="rs-tools rs-stagger">
+      <article class="rs-tool">
+        <span class="rs-tool__idx">01</span>
+        <span class="rs-tool__tag">Free Tool</span>
+        <h3>Wine List Stress Test</h3>
+        <p>Upload your wine list and get a scored audit in minutes — gaps, imbalances, margin opportunities, and pairing blind spots. No filters pulled.</p>
+        <a class="rs-tool__more" href="tools.html#audit">Try it <span>→</span></a>
+      </article>
+      <article class="rs-tool">
+        <span class="rs-tool__idx">02</span>
+        <span class="rs-tool__tag">Free Tool</span>
+        <h3>By-The-Glass Optimiser</h3>
+        <p>Analyse your by-the-glass selection for margin, variety, and pairing value. See which pours are working and which are holding your programme back.</p>
+        <a class="rs-tool__more" href="tools.html#btg">Try it <span>→</span></a>
+      </article>
+      <article class="rs-tool">
+        <span class="rs-tool__idx">03</span>
+        <span class="rs-tool__tag">Free · Upgrades available</span>
+        <h3>Wine List Gap Finder</h3>
+        <p>Identify the style, region, and price-point gaps in your current wine list. Know exactly what's missing before your next buying decision.</p>
+        <a class="rs-tool__more" href="tools.html#gap-finder">Try it <span>→</span></a>
+      </article>
     </div>
-    <div class="tools__all"><a class="btn btn--outline-dark" href="tools.html">View all Tools <span class="arrow">→</span></a></div>
+    <div class="rs-tools__all"><a class="btn btn--outline-dark" href="tools.html">View all Tools <span class="arrow">→</span></a></div>
   </section>
 
-  <!-- ============ TWO PATHS ============ -->
-  <section class="r-sec tint js-reveal">
-    <div class="paths">
-      <div class="path">
-        <p class="eyebrow">Free tools path</p>
+  <!-- ============ TWO PATHS : split fork ============ -->
+  <section class="rs-paths js-reveal">
+    <div class="rs-paths__grid">
+      <div class="rs-path rs-path--gold">
+        <p class="rs-eyebrow">Free tools path</p>
         <h3>Seven professional tools. Yours to try first.</h3>
         <p>Stress-test your wine list, find the gaps, optimise your margins, and build a digital menu — all before you sign up for anything. Seven tools that show you exactly what your wine programme is capable of.</p>
         <a class="btn btn--gold" href="tools.html">Explore Free Tools <span class="arrow">→</span></a>
       </div>
-      <div class="path">
-        <p class="eyebrow">IMS platform path</p>
+      <div class="rs-path">
+        <p class="rs-eyebrow">IMS platform path</p>
         <h3>Curious what Entwine can do for your restaurant?</h3>
         <p>Smarter inventory. A wine list that earns its place. Guests who leave with the right bottle. Explore the full IMS platform — or get in touch and let's build something great together.</p>
         <a class="btn btn--outline-light" href="#platform">See the full platform <span class="arrow">→</span></a>
@@ -247,16 +467,19 @@
     </div>
   </section>
 
-  <!-- ============ FINAL CTA ============ -->
-  <section class="rcta js-reveal" id="demo">
-    <h2>The Entwine club is growing. Your restaurant belongs in it.</h2>
-    <p>The restaurants already in the Entwine club are ordering faster, optimising smarter, and delighting their guests every night. Your restaurant could be next. Let's make it happen.</p>
-    <div class="rcta__cta">
-      <a class="btn btn--dark" href="#">Let's Talk <span class="arrow">→</span></a>
-      <div class="rcta__links">
-        <a href="tools.html">Explore free tools <span>→</span></a>
-        <span class="dot"></span>
-        <a href="#platform">See the platform <span>→</span></a>
+  <!-- ============ FINAL CTA : gold finale ============ -->
+  <section class="rs-final js-reveal" id="demo">
+    <svg class="rs-final__mk" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+    <div class="rs-final__inner">
+      <h2>The Entwine club is growing. Your restaurant belongs in it.</h2>
+      <p>The restaurants already in the Entwine club are ordering faster, optimising smarter, and delighting their guests every night. Your restaurant could be next. Let's make it happen.</p>
+      <div class="rs-final__cta">
+        <a class="btn rs-final__btn" href="#">Let's Talk <span class="arrow">→</span></a>
+        <div class="rs-final__links">
+          <a href="tools.html">Explore free tools <span>→</span></a>
+          <span class="dot"></span>
+          <a href="#platform">See the platform <span>→</span></a>
+        </div>
       </div>
     </div>
   </section>
