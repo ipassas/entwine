@@ -49,3 +49,24 @@ This is a self-contained static page, so options are:
 
 Editing then happens in code (this repo), which is the trade-off chosen for
 pixel-fidelity to the Figma.
+
+## Pages
+
+- `index.html` — Home
+- `restaurants.html` — For Restaurants (built from the wireframe; brand-styled)
+- `brand-styles.html` — Web style guide / bible
+
+Navigation is a shared **mega menu** (categorised: Tools mega-panel + Company dropdown), with a mobile burger that opens an accordion. It lives in each page's `<header class="nav">`.
+
+## Images (named assets + Unsplash fallback)
+
+Images use a small helper: each `<img data-img="NAME" data-kw="keywords" data-w data-h>` first tries `assets/NAME.jpg`; if that's missing it falls back to a relevant **Unsplash** image (then LoremFlickr). **To use your own, drop a file at `assets/NAME.jpg`** — no code change needed.
+
+Current named images:
+
+| File to add | Used on | Suggested shot |
+|-------------|---------|----------------|
+| `assets/restaurants-hero.jpg` | /restaurants hero | Sommelier presenting wine at a table |
+| `assets/restaurants-platform.jpg` | /restaurants "what changes" | Wine cellar / tablet in a restaurant |
+
+(Home's hero/why/phone/partners images still use temporary Figma URLs — to be migrated to this same named-asset system.)
