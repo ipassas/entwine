@@ -48,6 +48,7 @@
 
   --r-card: 12px;
   --r-pill: 999px;
+  --nav-h: 80px;
 }
 
 /* ---- Reset ---- */
@@ -166,7 +167,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   position: sticky;
   top: 0;
   z-index: 60;
-  height: 80px;
+  height: var(--nav-h);
   display: flex;
   align-items: center;
   gap: 24px;
@@ -253,7 +254,9 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   background: var(--black);
   color: var(--white);
   overflow: hidden;
-  padding: 120px var(--pad-wide) 80px;
+  /* pull the hero up so its image sits at the very top, behind the overlaid nav */
+  margin-top: calc(-1 * var(--nav-h));
+  padding: calc(var(--nav-h) + 72px) var(--pad-wide) 80px;
 }
 .hero__bg {
   position: absolute;
@@ -892,12 +895,11 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 }
 /* phones — landscape / large */
 @media (max-width: 820px) {
-  /* logo left · Download centred · burger right */
-  .nav { display: grid; grid-template-columns: 1fr auto 1fr; gap: 0; }
-  .brand { justify-self: start; }
+  /* logo left · compact Download + burger together on the right */
+  .nav { gap: 12px; }
   .nav-links { display: none; }
-  .nav-cta { justify-self: center; }
-  .nav-toggle { display: inline-flex; justify-self: end; }
+  .nav-cta { margin-left: auto; padding: 9px 15px; font-size: 12.5px; gap: 6px; }
+  .nav-toggle { display: inline-flex; }
   .eco-card, .fcard, .callout, .tile { min-height: auto; }
   .eco-card { padding-bottom: 40px; }
   .eco-card__cta { position: static; margin-top: 28px; }
@@ -911,10 +913,9 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 }
 /* phones */
 @media (max-width: 560px) {
-  :root { --sec-y: clamp(56px, 13vw, 88px); }
-  .nav { height: 64px; }
+  :root { --sec-y: clamp(56px, 13vw, 88px); --nav-h: 64px; }
   .tiles { grid-template-columns: 1fr; }
-  .hero { padding: 88px var(--gutter) 52px; }
+  .hero { padding: calc(var(--nav-h) + 40px) var(--gutter) 52px; }
   .hero__badges, .app__badges { gap: 12px; }
   .why { padding-inline: var(--gutter); }
   .why-row { grid-template-columns: 1fr; gap: 14px; padding: 36px 0; }
