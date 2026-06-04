@@ -1075,7 +1075,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 .mega--tools { width: min(760px, 90vw); left: 50%; transform: translateX(-50%) translateY(8px); }
 .navitem:hover .mega--tools, .navitem:focus-within .mega--tools { transform: translateX(-50%); }
 .mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
-.mega-item { display: flex; gap: 14px; padding: 13px; border-radius: 10px; transition: background .2s ease; }
+.mega-item { display: flex; align-items: center; gap: 14px; padding: 13px; border-radius: 10px; transition: background .2s ease; }
 .mega-item:hover { background: rgba(255,255,255,.05); }
 .mega-item .mi-ic { width: 40px; height: 40px; flex: none; border-radius: 10px; background: rgba(184,168,106,.14); color: var(--gold); display: flex; align-items: center; justify-content: center; }
 .mega-item .mi-ic iconify-icon { font-size: 22px; }
@@ -1120,3 +1120,52 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 .changes-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; max-width: 1100px; margin: 0 auto; }
 .changes-grid .figure { aspect-ratio: 3/4; }
 @media (max-width: 1024px) { .changes-grid { grid-template-columns: 1fr; } .changes-grid .figure { aspect-ratio: 16/10; } }
+
+/* ============================================================
+   HERO variants — image ALWAYS background, text ALWAYS centred
+   ============================================================ */
+.hero--page { text-align: center; }
+.hero--page .hero__inner { max-width: 940px; }
+.hero--page h1 { font-size: clamp(30px, 3.8vw, 58px); line-height: 1.05; }
+.hero--page .eyebrow { display: block; margin-bottom: 18px; }
+/* full-cover background image + legibility overlay */
+.hero__bg--cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; }
+.hero__bg--cover::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(8,8,8,.62) 0%, rgba(8,8,8,.74) 100%); }
+
+/* ============================================================
+   Section background image (editorial, like Home)
+   ============================================================ */
+.r-sec.has-bg { position: relative; overflow: hidden; }
+.r-bg { position: absolute; inset: 0; pointer-events: none; }
+.r-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .26; }
+.r-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,.72), rgba(10,10,10,.88)); }
+.r-sec.has-bg .r-inner { position: relative; }
+
+/* ============================================================
+   Editorial feature list (matches Home's bordered rows)
+   ============================================================ */
+.feat-list { max-width: 1100px; margin: 0 auto; border-bottom: 1px solid var(--line-dark); }
+.feat-row { display: grid; grid-template-columns: 70px minmax(0,.8fr) minmax(0,1fr); gap: 32px; padding: 44px 0; border-top: 1px solid var(--line-dark); align-items: start; }
+.feat-row .fic { color: var(--gold); line-height: 0; }
+.feat-row .fic iconify-icon { font-size: 44px; }
+.feat-row h3 { margin: 0; font-family: var(--display); font-weight: 200; font-size: clamp(22px,2vw,32px); letter-spacing: -.02em; }
+.feat-row p { margin: 0; color: rgba(255,255,255,.72); font-size: 16px; line-height: 1.6; border-left: 1px solid var(--line-dark); padding-left: 28px; }
+@media (max-width: 860px) {
+  .feat-row { grid-template-columns: 48px 1fr; gap: 18px; padding: 32px 0; }
+  .feat-row .fic iconify-icon { font-size: 34px; }
+  .feat-row p { grid-column: 1 / -1; border-left: 0; padding-left: 0; border-top: 1px solid var(--line-dark); padding-top: 16px; }
+}
+
+/* ============================================================
+   PRELOADER — Entwine monogram, plays on every page load
+   ============================================================ */
+#preloader {
+  position: fixed; inset: 0; z-index: 99999; background: #0a0a0a;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .6s ease;
+}
+#preloader .pl-mark { width: 86px; height: 86px; color: var(--gold); animation: pl-pulse 1.5s ease-in-out infinite; }
+@keyframes pl-pulse { 0%,100% { opacity: .32; transform: scale(.9); } 50% { opacity: 1; transform: scale(1); } }
+#preloader.done { opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { #preloader .pl-mark { animation: none; } }
