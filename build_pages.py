@@ -22,7 +22,38 @@ CRIT = """  <style>
     #preloader.done{opacity:0;pointer-events:none}
   </style>"""
 
+_UNSAFE = ('class="plan', 'class="faq', 'class="job', 'class="newsletter', 'class="blogcard',
+           'class="tier', 'class="ptable', 'class="pills', 'class="billing', 'class="statgrid', 'class="timeline')
+
+def vary(main):
+    """Alternate section skins (linen/cream/ink/noir) so no two read the same.
+    Keeps image (has-bg) and authored-dark sections; only darkens 'safe' simple sections."""
+    parts = re.split(r'(<section class="r-sec[^"]*"[^>]*>)', main)
+    out = [parts[0]]; prev = 'dark'; lc = 0; dc = [0]
+    WM = '\n    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor"><use href="#ew-mark"/></svg>'
+    def darksec(tag, body):
+        skin = ['ink', 'noir'][dc[0] % 2]; dc[0] += 1
+        return re.sub(r'class="[^"]*"', f'class="r-sec {skin} wm js-reveal"', tag), WM + body
+    i = 1
+    while i < len(parts):
+        tag = parts[i]; body = parts[i + 1] if i + 1 < len(parts) else ''
+        cls = re.search(r'class="([^"]*)"', tag).group(1)
+        if 'has-bg' in cls:
+            prev = 'dark'; out += [tag, body]
+        elif ' dark' in (' ' + cls):
+            t, b = darksec(tag, body); prev = 'dark'; out += [t, b]
+        else:
+            safe = not any(u in body for u in _UNSAFE)
+            if prev == 'light' and safe:
+                t, b = darksec(tag, body); prev = 'dark'; out += [t, b]
+            else:
+                skin = ['tint', 'cream'][lc % 2]; lc += 1; prev = 'light'
+                out += [re.sub(r'class="[^"]*"', f'class="r-sec {skin} js-reveal"', tag), body]
+        i += 2
+    return ''.join(out)
+
 def page(slug, title, desc, main):
+    main = vary(main)
     html = f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,6 +113,7 @@ def cta(h2, sub, primary, links):
     lk = '<span class="dot"></span>'.join(
         f'<a href="{href}">{t} <span>→</span></a>' for t, href in links)
     return f"""  <section class="rcta js-reveal">
+    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor" style="color:#0a0a0a"><use href="#ew-mark"/></svg>
     <h2>{h2}</h2>
     <p>{sub}</p>
     <div class="rcta__cta">

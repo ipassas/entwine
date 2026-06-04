@@ -1312,3 +1312,48 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   .newsletter form { flex-direction:column; }
   .newsletter input { border-radius:14px; }
 }
+
+/* ============================================================
+   SECTION VARIETY + WOW  (skins, watermark, accents)
+   ============================================================ */
+.r-sec { position: relative; overflow: clip; }
+.r-sec.tint  { background: #f3eee4; }                                   /* warm linen */
+.r-sec.cream { background: #ece1cf; }                                   /* deeper cream */
+.r-sec.ink   { background: var(--ink); color: #fff; }
+.r-sec.noir  { background: radial-gradient(120% 130% at 80% -12%, #1d1812 0%, #0a0a0a 62%); color: #fff; }
+
+/* light/dark heading + sub adapt */
+.r-sec.ink .r-head h2, .r-sec.noir .r-head h2 { color: #fff; }
+.r-sec.ink .r-sub, .r-sec.noir .r-sub, .r-sec.dark .r-sub { color: rgba(255,255,255,.7); }
+
+/* gold tick above every section heading */
+.r-head::before { content: ""; display: block; width: 42px; height: 2px; background: var(--gold); border-radius: 2px; margin: 0 auto 22px; }
+
+/* faint Entwine watermark (dark/light) */
+.wmark { position: absolute; top: -46px; right: -36px; width: clamp(170px, 20vw, 320px); height: auto; color: var(--gold); opacity: .07; pointer-events: none; z-index: 0; }
+.r-sec.wm > *:not(.wmark) { position: relative; z-index: 1; }
+
+/* card gold top-accent on hover */
+.card { position: relative; }
+.card::after { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 0; background: var(--gold); border-radius: var(--r-card) var(--r-card) 0 0; transition: width .4s cubic-bezier(.16,.84,.44,1); }
+.card:hover::after { width: 100%; }
+
+/* component variants on ink / noir (in addition to .dark) */
+.r-sec.ink .card, .r-sec.noir .card { background: rgba(255,255,255,.03); border-color: var(--line-dark); box-shadow: none; }
+.r-sec.ink .card:hover, .r-sec.noir .card:hover { border-color: var(--gold); }
+.r-sec.ink .card h3, .r-sec.noir .card h3 { color: #fff; }
+.r-sec.ink .card p, .r-sec.noir .card p { color: rgba(255,255,255,.7); }
+.r-sec.ink .teammate .nm, .r-sec.noir .teammate .nm { color: #fff; }
+.r-sec.ink .teammate .bio, .r-sec.noir .teammate .bio { color: rgba(255,255,255,.62); }
+.r-sec.ink .prose p, .r-sec.noir .prose p { color: rgba(255,255,255,.78); }
+
+/* steps adapt to light OR dark sections */
+.step p { color: var(--gray-3); }
+.step h3 { color: var(--ink); }
+.r-sec.dark .step p, .r-sec.ink .step p, .r-sec.noir .step p { color: rgba(255,255,255,.72); }
+.r-sec.dark .step h3, .r-sec.ink .step h3, .r-sec.noir .step h3 { color: #fff; }
+
+/* CTA band drama */
+.rcta { position: relative; overflow: clip; }
+.rcta > *:not(.wmark) { position: relative; z-index: 1; }
+.rcta .wmark { opacity: .07; top: -50px; right: -30px; }
