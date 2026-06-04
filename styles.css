@@ -357,7 +357,7 @@ p { margin: 0; }
   background: #0c0b0a;
   color: var(--white);
   overflow: hidden;
-  padding: var(--sec-y) var(--pad-wide);
+  padding: var(--sec-y) var(--pad-wide) clamp(220px, 24vw, 400px);
 }
 .why__bg {
   position: absolute;
@@ -426,7 +426,7 @@ p { margin: 0; }
 .cards {
   background: var(--white);
   padding: 0 var(--pad-wide) 100px;
-  margin-top: -70px;
+  margin-top: clamp(-320px, -17vw, -170px);
   padding-bottom: var(--sec-y);
   position: relative;
   z-index: 2;
@@ -793,10 +793,8 @@ p { margin: 0; }
   display: flex; align-items: center; justify-content: center;
   align-self: stretch;
   border-inline: 1px solid rgba(255,255,255,0.08);
-  color: var(--gold);
-  font-family: var(--display);
-  font-size: 26px;
 }
+.footbar__center svg { height: 46px; width: auto; display: block; }
 .footbar .btn--gold { color: var(--ink); }
 
 /* ============================================================
@@ -811,6 +809,7 @@ p { margin: 0; }
   .tiles { grid-template-columns: repeat(2, 1fr); gap: 18px; }
   .eco__grid, .partners__grid, .zaar__grid, .cards__grid, .callouts__grid { grid-template-columns: 1fr; }
   .cards { margin-top: 0; }
+  .why { padding-bottom: var(--sec-y); }
   .app__grid { grid-template-columns: 1fr; }
   .app__visual { min-height: 420px; order: -1; }
   .why-row { grid-template-columns: 90px minmax(0, 1fr); }
