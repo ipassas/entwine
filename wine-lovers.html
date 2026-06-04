@@ -86,23 +86,25 @@
   .wl-float--b{bottom:16%;right:-3%}
   @media(max-width:560px){.wl-float{display:none}}
 
-  /* ---- PERSONAS ---- */
+  /* ---- PERSONAS : sticky stacked cards ---- */
   .wl-personas{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
-  .wl-cards{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
-  .wl-card{position:relative;background:#fff;border:1px solid var(--line-light);border-left:5px solid var(--gold);border-radius:var(--r-card);
-    padding:36px 32px;box-shadow:0 18px 50px rgba(20,16,10,.06);display:flex;flex-direction:column;
-    transition:transform .4s cubic-bezier(.16,.84,.44,1),box-shadow .4s}
-  .wl-card:nth-child(1){border-left-color:var(--gold)}
-  .wl-card:nth-child(2){border-left-color:#7e54f1}
-  .wl-card:nth-child(3){border-left-color:var(--ink)}
-  .wl-card:hover{transform:translateY(-5px);box-shadow:16px 22px 50px rgba(0,0,0,.12)}
-  .wl-card__rn{font-family:var(--display);font-weight:200;font-size:13px;letter-spacing:.18em;color:var(--gray-1)}
-  .wl-card__ic{width:52px;height:52px;border-radius:12px;background:rgba(184,168,106,.12);color:var(--gold);display:flex;align-items:center;justify-content:center;margin:14px 0 0}
-  .wl-card:nth-child(2) .wl-card__ic{background:rgba(126,84,241,.12);color:#7e54f1}
-  .wl-card:nth-child(3) .wl-card__ic{background:rgba(10,10,10,.06);color:var(--ink)}
-  .wl-card__ic iconify-icon{font-size:28px}
-  .wl-card h3{margin:20px 0 0;font-family:var(--display);font-weight:300;font-size:26px;letter-spacing:-.015em;color:var(--ink)}
-  .wl-card p{margin:12px 0 0;color:var(--gray-3);font-size:15px;line-height:1.62}
+  .wl-stack{max-width:900px;margin:0 auto;display:flex;flex-direction:column;gap:24px}
+  .wl-scard{position:sticky;border-radius:18px;background:#fff;border:1px solid var(--line-light);overflow:hidden;
+    padding:clamp(30px,3.4vw,46px) clamp(28px,4vw,52px);box-shadow:0 30px 70px rgba(20,16,10,.13);
+    min-height:clamp(290px,40vh,360px);display:flex;flex-direction:column}
+  .wl-scard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:5px;background:var(--gold)}
+  .wl-scard--purple::before{background:#7e54f1}
+  .wl-scard--ink::before{background:var(--ink)}
+  .wl-scard:nth-child(1){top:calc(var(--nav-h) + 26px)}
+  .wl-scard:nth-child(2){top:calc(var(--nav-h) + 102px)}
+  .wl-scard:nth-child(3){top:calc(var(--nav-h) + 178px)}
+  .wl-scard__bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+  .wl-scard h3{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(28px,3.4vw,50px);letter-spacing:-.03em;line-height:1;color:var(--ink)}
+  .wl-scard__tag{font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+  .wl-scard--purple .wl-scard__tag{color:#7e54f1}
+  .wl-scard--ink .wl-scard__tag{color:var(--ink)}
+  .wl-scard__rule{height:1px;background:var(--line-light);margin:clamp(20px,2.4vw,30px) 0}
+  .wl-scard p{margin:0;color:var(--gray-3);font-size:clamp(16px,1.25vw,19px);line-height:1.66;max-width:640px}
 
   /* ---- TAPS (app screens) ---- */
   .wl-taps-sec{position:relative;isolation:isolate;background:#0a0a0a;color:#fff;overflow:hidden;padding:var(--sec-y) var(--gutter)}
@@ -169,7 +171,7 @@
   .wl-final__links .dot{width:4px;height:4px;border-radius:50%;background:rgba(255,255,255,.3)}
 
   @media(max-width:1024px){
-    .wl-cards{grid-template-columns:1fr}
+    .wl-scard{position:static;min-height:auto;box-shadow:0 18px 50px rgba(20,16,10,.08)}
     .wl-taps{grid-template-columns:1fr;gap:40px;max-width:380px}
     .wl-feat{grid-template-columns:1fr}
     .wl-club-trio{grid-template-columns:1fr}
@@ -323,26 +325,23 @@
     </div>
   </section>
 
-  <!-- ============ PERSONAS ============ -->
-  <section class="wl-personas js-reveal">
+  <!-- ============ PERSONAS : sticky stacked ============ -->
+  <section class="wl-personas">
     <div class="wl-head"><h2>Every level of wine lover deserves a great pairing. <span class="wl-gold">Entwine finds yours.</span></h2></div>
-    <div class="wl-cards wl-stagger">
-      <article class="wl-card">
-        <span class="wl-card__rn">I</span>
-        <div class="wl-card__ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div>
-        <h3>The Wine Lover</h3>
+    <div class="wl-stack">
+      <article class="wl-scard wl-scard--gold">
+        <div class="wl-scard__bar"><h3>The Wine Lover</h3><span class="wl-scard__tag">For the confident</span></div>
+        <div class="wl-scard__rule"></div>
         <p>You know your Burgundy from your Barolo. You just want the best match for what you're eating — from this restaurant's actual list. Entwine surfaces the right bottle every time, filtered by style, region, grape, or price.</p>
       </article>
-      <article class="wl-card">
-        <span class="wl-card__rn">II</span>
-        <div class="wl-card__ic"><iconify-icon icon="ph:smiley-thin"></iconify-icon></div>
-        <h3>The Wine-Curious</h3>
+      <article class="wl-scard wl-scard--purple">
+        <div class="wl-scard__bar"><h3>The Wine-Curious</h3><span class="wl-scard__tag">For the explorer</span></div>
+        <div class="wl-scard__rule"></div>
         <p>You enjoy wine but the list is overwhelming. You usually point at something mid-range and hope for the best. Entwine takes the guesswork out — just pick your dish and let it do the rest.</p>
       </article>
-      <article class="wl-card">
-        <span class="wl-card__rn">III</span>
-        <div class="wl-card__ic"><iconify-icon icon="ph:question-thin"></iconify-icon></div>
-        <h3>The Curious Diner</h3>
+      <article class="wl-scard wl-scard--ink">
+        <div class="wl-scard__bar"><h3>The Curious Diner</h3><span class="wl-scard__tag">For the newcomer</span></div>
+        <div class="wl-scard__rule"></div>
         <p>You're just getting into wine and want to learn as you go. Every Entwine pairing comes with the story behind it — so every meal teaches you a little more.</p>
       </article>
     </div>
