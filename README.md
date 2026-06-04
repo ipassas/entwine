@@ -8,9 +8,10 @@ no framework — so it stays easy to edit and deploys anywhere.
 
 | File | Purpose |
 |------|---------|
-| `index.html` | Page markup + real copy from the Figma comp |
+| `index.html` | Home page markup + real copy from the Figma comp |
 | `styles.css` | All styling. Design tokens (colours, fonts, spacing) live in `:root` at the top |
-| `assets/` | Drop replacement images here (see note below) |
+| `brand-styles.html` | Living style guide — logo, colour, type scale, components, grid, motion. Reference when building new pages |
+| `assets/` | Drop replacement images / fonts here (see note below) |
 
 ## Preview locally
 
