@@ -497,7 +497,6 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
    FEATURE CARDS (Yours / Free Tools / Primary Source)
    ============================================================ */
 .cards {
-  background: var(--white);
   padding: 0 var(--pad-wide) 100px;
   margin-top: clamp(-420px, -24vw, -230px);
   padding-bottom: var(--sec-y);
@@ -509,6 +508,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   grid-template-columns: 1fr 1.12fr 1fr;
   gap: 28px;
   align-items: end;
+  padding-top: 70px;
 }
 .fcard {
   position: relative;
