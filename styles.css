@@ -127,11 +127,11 @@ p { margin: 0; }
   border-bottom: 1px solid rgba(0, 0, 0, 0.07);
 }
 .brand {
-  font-size: 22px;
-  font-weight: 600;
-  letter-spacing: 0.34em;
+  display: inline-flex;
+  align-items: center;
   color: var(--white);
 }
+.brand .logo { height: 24px; width: auto; display: block; }
 .nav-links {
   display: flex;
   align-items: center;
@@ -714,7 +714,8 @@ p { margin: 0; }
   padding-bottom: 36px;
   border-bottom: 1px solid var(--line-light);
 }
-.footer__brand .brand { color: var(--ink); letter-spacing: 0.3em; }
+.footer__brand .brand { color: var(--ink); }
+.footer__brand .brand .logo { height: 30px; }
 .footer__brand p { margin-top: 22px; max-width: 387px; font-size: 16px; line-height: 1.45; color: var(--gray-3); }
 .footer__brand .badges-row { margin-top: 26px; display: flex; gap: 16px; flex-wrap: wrap; }
 .footer h4 {
