@@ -10,11 +10,172 @@
   <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
   <link rel="stylesheet" href="styles.css" />
   <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <script src="image-slot.js"></script>
   <style>
     #preloader{position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
+  </style>
+  <style id="ab-style">
+
+  /* ===== ABOUT — page-scoped (ab-*) ===== */
+  .ab-gold{color:var(--gold)}
+  .ab-head{max-width:840px;margin:0 auto clamp(40px,5vw,60px);text-align:center}
+  .ab-head h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.3vw,56px);line-height:1.04;letter-spacing:-.03em;text-wrap:balance}
+  .ab-head h2 .ab-gold{color:var(--gold)}
+  .ab-head p{margin:14px auto 0;max-width:620px;font-size:16px;line-height:1.6;color:var(--gray-2)}
+  .reveal .ab-stagger>*{opacity:0;transform:translateY(18px);transition:opacity .6s ease,transform .6s ease}
+  .reveal.in .ab-stagger>*{opacity:1;transform:none}
+  .reveal.in .ab-stagger>*:nth-child(2){transition-delay:.08s}.reveal.in .ab-stagger>*:nth-child(3){transition-delay:.16s}
+  .reveal.in .ab-stagger>*:nth-child(4){transition-delay:.24s}.reveal.in .ab-stagger>*:nth-child(5){transition-delay:.32s}
+  @media(prefers-reduced-motion:reduce){.reveal .ab-stagger>*{opacity:1!important;transform:none!important}}
+
+  /* ---- HERO (cinematic, full-bleed) ---- */
+  .ab-hero{position:relative;isolation:isolate;background:#070707;color:#fff;overflow:hidden;min-height:100svh;
+    display:flex;flex-direction:column;justify-content:flex-end;padding:clamp(48px,7vw,96px) var(--gutter) clamp(32px,4vw,52px)}
+  .ab-hero__bg{position:absolute;inset:0;z-index:-3;overflow:hidden}
+  .ab-hero__bg img{width:100%;height:100%;object-fit:cover;opacity:.6;transform:scale(1.06);animation:ab-kb 28s ease-in-out infinite alternate}
+  @keyframes ab-kb{from{transform:scale(1.06) translate3d(0,0,0)}to{transform:scale(1.16) translate3d(-1.5%,-2%,0)}}
+  @media(prefers-reduced-motion:reduce){.ab-hero__bg img{animation:none}}
+  .ab-hero__amb{position:absolute;inset:0;z-index:-2;background:
+    radial-gradient(82% 70% at 70% 6%,rgba(184,168,106,.26),transparent 60%),
+    linear-gradient(180deg,rgba(7,7,7,.5) 0%,rgba(7,7,7,.34) 38%,rgba(7,7,7,.82) 84%,#070707 100%)}
+  .ab-hero__mk{position:absolute;z-index:-1;right:-3%;top:5%;width:min(44vw,500px);height:auto;color:rgba(184,168,106,.07)}
+  .ab-hero__inner{position:relative;max-width:var(--content);width:100%;margin:0 auto}
+  .ab-hero__kick{display:flex;align-items:center;gap:14px;color:var(--gold);font-size:11px;letter-spacing:.28em;text-transform:uppercase;font-weight:500}
+  .ab-hero__kick::before{content:"";width:46px;height:1px;background:var(--gold)}
+  .ab-hero h1{margin:24px 0 0;font-family:var(--display);font-weight:200;font-size:clamp(44px,7.2vw,118px);line-height:.92;letter-spacing:-.04em}
+  .ab-hero h1 .ab-gold{color:var(--gold)}
+  .ab-hero__sub{margin:28px 0 0;max-width:600px;font-size:clamp(16px,1.2vw,19px);line-height:1.65;color:rgba(255,255,255,.78)}
+  .ab-hero__cta{margin-top:34px;display:flex;gap:14px;flex-wrap:wrap}
+  /* headline word-rise + fade-in */
+  .ab-rise{display:block;overflow:hidden;padding-bottom:.04em}
+  .ab-rise>span{display:inline-block;transform:translateY(110%);opacity:0;transition:transform 1s cubic-bezier(.16,.84,.44,1),opacity 1s}
+  .ab-hero.in .ab-rise>span{transform:none;opacity:1}
+  .ab-hero h1 .ab-rise:nth-child(2)>span{transition-delay:.09s}
+  .ab-hero h1 .ab-rise:nth-child(3)>span{transition-delay:.18s}
+  .ab-fade{opacity:0;transform:translateY(16px);transition:opacity .9s ease,transform .9s ease}
+  .ab-hero.in .ab-fade{opacity:1;transform:none}
+  .ab-hero.in .ab-hero__sub{transition-delay:.42s}
+  .ab-hero.in .ab-hero__cta{transition-delay:.52s}
+  .ab-hero.in .ab-hero__stats{transition-delay:.62s}
+  @media(prefers-reduced-motion:reduce){.ab-rise>span,.ab-fade{opacity:1!important;transform:none!important}}
+  /* stat strip */
+  .ab-hero__stats{position:relative;max-width:var(--content);width:100%;margin:clamp(46px,6vw,76px) auto 0;
+    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.1);border-radius:14px;overflow:hidden}
+  .ab-stat{background:rgba(10,9,8,.5);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px);padding:clamp(20px,2vw,28px)}
+  .ab-stat .n{font-family:var(--display);font-weight:200;font-size:clamp(30px,3.4vw,52px);line-height:1;letter-spacing:-.03em;color:#fff}
+  .ab-stat .n .ab-gold{color:var(--gold)}
+  .ab-stat .l{margin-top:11px;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.55)}
+  .ab-scroll{position:absolute;left:50%;bottom:18px;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;color:rgba(255,255,255,.5);font-size:10px;letter-spacing:.2em;text-transform:uppercase;z-index:2}
+  .ab-scroll i{width:1px;height:34px;background:linear-gradient(180deg,var(--gold),transparent);animation:ab-scroll 2s ease-in-out infinite}
+  @keyframes ab-scroll{0%,100%{opacity:.3;transform:scaleY(.6)}50%{opacity:1;transform:scaleY(1)}}
+  @media(max-width:760px){.ab-hero__stats{grid-template-columns:1fr 1fr}.ab-scroll{display:none}}
+  @media(max-width:1024px){.ab-hero__mk{display:none}}
+
+  /* ---- BELIEFS ---- */
+  .ab-beliefs{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .ab-bgrid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+  .ab-belief{position:relative;background:#fff;border:1px solid var(--line-light);border-radius:var(--r-card);padding:38px 32px;overflow:hidden;
+    box-shadow:0 18px 50px rgba(20,16,10,.05);transition:transform .4s cubic-bezier(.16,.84,.44,1),box-shadow .4s}
+  .ab-belief::before{content:"";position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+  .ab-belief:hover{transform:translateY(-5px);box-shadow:16px 22px 50px rgba(0,0,0,.1)}
+  .ab-belief__ic{width:54px;height:54px;border-radius:12px;background:rgba(184,168,106,.12);color:var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:22px}
+  .ab-belief__ic iconify-icon{font-size:30px}
+  .ab-belief__n{position:absolute;top:22px;right:28px;font-family:var(--display);font-weight:200;font-size:56px;line-height:1;letter-spacing:-.03em;color:rgba(184,168,106,.16)}
+  .ab-belief h3{margin:0 0 12px;font-family:var(--display);font-weight:300;font-size:21px;line-height:1.2;letter-spacing:-.01em;color:var(--ink)}
+  .ab-belief p{margin:0;color:var(--gray-3);font-size:15px;line-height:1.62}
+
+  /* ---- STORY (dark reading block) ---- */
+  .ab-story{position:relative;isolation:isolate;background:#0a0a0a;color:#fff;overflow:hidden;padding:var(--sec-y) var(--gutter)}
+  .ab-story__mk{position:absolute;right:-3%;top:-8%;width:min(38vw,340px);height:auto;color:rgba(184,168,106,.05);z-index:-1}
+  .ab-story .ab-head h2{color:#fff}
+  .ab-story__grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:.92fr 1.08fr;gap:clamp(36px,5vw,72px);align-items:center}
+  .ab-story__fig{position:relative;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.1);aspect-ratio:4/5;box-shadow:0 40px 90px rgba(0,0,0,.5)}
+  .ab-story__fig img{width:100%;height:100%;object-fit:cover}
+  .ab-story__fig::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 38%,rgba(7,6,6,.82) 100%)}
+  .ab-story__fig figcaption{position:absolute;left:28px;right:28px;bottom:26px;z-index:1;font-family:var(--display);font-weight:200;font-size:clamp(24px,2.4vw,38px);line-height:1.08;letter-spacing:-.025em;color:#fff}
+  .ab-story__fig figcaption .ab-gold{color:var(--gold)}
+  .ab-story__prose{padding-left:28px;border-left:1px solid rgba(184,168,106,.4)}
+  .ab-story__prose p{margin:0 0 22px;font-size:18px;line-height:1.75;color:rgba(255,255,255,.78)}
+  .ab-story__prose p:first-child{font-size:clamp(20px,1.9vw,26px);line-height:1.5;color:#fff;font-weight:300}
+  .ab-story__prose p:last-child{margin-bottom:0}
+  .ab-story__prose .ab-gold{color:var(--gold);font-weight:400}
+  @media(max-width:960px){.ab-story__grid{grid-template-columns:1fr}.ab-story__fig{aspect-ratio:16/10}}
+
+  /* ---- JOURNEY (vertical timeline) ---- */
+  .ab-journey{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .ab-tl{position:relative;max-width:880px;margin:0 auto}
+  .ab-tl::before{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:1px;transform:translateX(-50%);background:rgba(20,16,10,.12)}
+  .ab-tl__line{content:"";position:absolute;left:50%;top:6px;bottom:6px;width:1px;transform:translateX(-50%) scaleY(1);transform-origin:top;
+    background:linear-gradient(180deg,rgba(184,168,106,.7),rgba(184,168,106,.7));transition:transform 1.5s cubic-bezier(.16,.84,.44,1)}
+  .reveal .ab-tl__line{transform:translateX(-50%) scaleY(0)}
+  .reveal.in .ab-tl__line{transform:translateX(-50%) scaleY(1)}
+  .ab-mile{position:relative;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:13px 0}
+  .reveal .ab-mile{opacity:0;transition:opacity .7s ease,transform .7s ease}
+  .reveal .ab-mile:nth-child(odd){transform:translateX(-26px)}
+  .reveal .ab-mile:nth-child(even){transform:translateX(26px)}
+  .reveal.in .ab-mile{opacity:1;transform:none}
+  .reveal.in .ab-mile:nth-child(2){transition-delay:.1s}.reveal.in .ab-mile:nth-child(3){transition-delay:.2s}
+  .reveal.in .ab-mile:nth-child(4){transition-delay:.3s}.reveal.in .ab-mile:nth-child(5){transition-delay:.4s}
+  .reveal.in .ab-mile:nth-child(6){transition-delay:.5s}.reveal.in .ab-mile:nth-child(7){transition-delay:.6s}
+  .reveal.in .ab-mile:nth-child(8){transition-delay:.7s}
+  .ab-mile__dot{position:absolute;left:50%;top:50%;width:14px;height:14px;border-radius:50%;background:var(--gold);transform:translate(-50%,-50%);box-shadow:0 0 0 5px rgba(184,168,106,.16);z-index:1}
+  .reveal .ab-mile__dot{transform:translate(-50%,-50%) scale(0);transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+  .reveal.in .ab-mile__dot{transform:translate(-50%,-50%) scale(1)}
+  .ab-mile__card{background:#fff;border:1px solid var(--line-light);border-radius:12px;padding:18px 22px;box-shadow:0 12px 30px rgba(20,16,10,.05);transition:transform .35s,border-color .3s}
+  .ab-mile__card:hover{transform:translateY(-3px);border-color:var(--gold)}
+  .ab-mile:nth-child(odd) .ab-mile__card{grid-column:1;margin-right:46px;text-align:right}
+  .ab-mile:nth-child(even) .ab-mile__card{grid-column:2;margin-left:46px}
+  .ab-mile .date{font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold);font-weight:500}
+  .ab-mile h4{margin:6px 0 0;font-family:var(--display);font-weight:300;font-size:18px;letter-spacing:-.01em;color:var(--ink);line-height:1.25}
+  @media(max-width:680px){
+    .ab-tl::before{left:7px}
+    .ab-mile{grid-template-columns:1fr}
+    .ab-mile__dot{left:7px}
+    .ab-mile:nth-child(odd) .ab-mile__card,.ab-mile:nth-child(even) .ab-mile__card{grid-column:1;margin:0 0 0 32px;text-align:left}
+  }
+
+  /* ---- TEAM (dark) ---- */
+  .ab-team-sec{position:relative;isolation:isolate;background:var(--ink);color:#fff;overflow:hidden;padding:var(--sec-y) var(--gutter)}
+  .ab-team-sec__amb{position:absolute;inset:0;z-index:-1;background:radial-gradient(60% 60% at 50% -10%,rgba(184,168,106,.13),transparent 60%),var(--ink)}
+  .ab-team-sec .ab-head h2{color:#fff}
+  .ab-team{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .ab-mate{background:rgba(255,255,255,.02);border:1px solid rgba(255,255,255,.1);border-radius:14px;padding:32px 28px;
+    transition:transform .4s cubic-bezier(.16,.84,.44,1),border-color .3s,background .3s}
+  .ab-mate:hover{transform:translateY(-4px);border-color:rgba(184,168,106,.45);background:rgba(184,168,106,.04)}
+  .ab-mate__av{width:78px;height:78px;border-radius:50%;border:1px solid rgba(184,168,106,.55);color:var(--gold);background:rgba(184,168,106,.07);
+    display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:200;font-size:27px;letter-spacing:.04em;margin-bottom:20px}
+  /* photo slot avatar */
+  .ab-photo{margin-bottom:20px;vertical-align:top;color:rgba(199,179,120,.85)!important;font-family:var(--display)!important}
+  .ab-photo::part(frame){background:rgba(184,168,106,.08)}
+  .ab-photo::part(ring){border:1px solid rgba(184,168,106,.5)}
+  .ab-mate__nm{font-family:var(--display);font-weight:300;font-size:22px;letter-spacing:-.01em}
+  .ab-mate__ro{margin-top:6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
+  .ab-mate__bio{margin-top:16px;font-size:14px;line-height:1.6;color:rgba(255,255,255,.66)}
+
+  /* ---- FINAL (light close) ---- */
+  .ab-final{position:relative;isolation:isolate;background:var(--bg-eco);color:var(--ink);overflow:hidden;padding:var(--sec-y) var(--gutter);text-align:center}
+  .ab-final__mk{position:absolute;left:50%;bottom:-30%;transform:translateX(-50%);width:min(50vw,440px);height:auto;color:rgba(184,168,106,.08);z-index:0}
+  .ab-final__inner{position:relative;z-index:1;max-width:var(--content);margin:0 auto}
+  .ab-final h2{margin:0 auto;max-width:840px;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.4vw,56px);line-height:1.04;letter-spacing:-.03em;text-wrap:balance}
+  .ab-final h2 .ab-gold{color:var(--gold)}
+  .ab-final p{margin:20px auto 0;max-width:600px;font-size:17px;line-height:1.6;color:var(--gray-2)}
+  .ab-final__cta{margin-top:34px;display:flex;flex-direction:column;align-items:center;gap:22px}
+  .ab-final__btn{background:var(--ink);color:#fff}
+  .ab-final__btn:hover{background:#000}
+  .ab-final__links{display:inline-flex;align-items:center;gap:22px;flex-wrap:wrap;justify-content:center}
+  .ab-final__links a{color:var(--gray-2);font-weight:500;font-size:15px;display:inline-flex;gap:8px;align-items:center;border-bottom:1px solid var(--line-light);padding-bottom:3px;transition:color .2s,border-color .2s}
+  .ab-final__links a:hover{color:var(--ink);border-color:var(--ink)}
+  .ab-final__links .dot{width:4px;height:4px;border-radius:50%;background:rgba(0,0,0,.25)}
+
+  @media(max-width:1024px){
+    .ab-bgrid{grid-template-columns:1fr}
+    .ab-team{grid-template-columns:1fr 1fr}
+  }
+  @media(max-width:560px){.ab-team{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body>
@@ -88,67 +249,137 @@
     </div>
   </header>
 
-  <section class="hero hero--page">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-img="about-hero" data-kw="restaurant,wine,table,people,dark" data-w="1920" data-h="1080"></div>
-    <div class="hero__inner">
-      <span class="eyebrow">About</span>
-      <h1>Technology in service of <span class="gold">the table.</span></h1>
-      <p class="hero__sub">Entwine is a wine technology company built by people who sit on both sides of the table — diners frustrated by the gap between wine lists and cellars, and operators who understand the pressure of running a great restaurant. So we built both. The platform we wished existed.</p>
-      <div class="hero__badges"><a class="btn btn--gold" href="#story">Our story <span class="arrow">→</span></a><a class="btn btn--outline-light" href="#team">Meet the team</a></div>
-    </div>
-  </section>
-  <section class="r-sec tint js-reveal">
-    <div class="r-head"><h2>Three things we believe in. <span class="gold">Everything else follows.</span></h2></div>
-    <div class="cardgrid cardgrid--3">
-      <div class="card"><div class="ic"><iconify-icon icon="ph:hand-heart-thin"></iconify-icon></div><h3>Technology should serve the experience, not replace it</h3><p>Entwine doesn't put a screen between a guest and a great meal. It makes the meal better — quietly, intelligently, in the background.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:globe-hemisphere-west-thin"></iconify-icon></div><h3>Local expertise, global ambition</h3><p>We started in Malta. We think in Europe. We operate through people who know their markets — because the best wine culture is always local first.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:users-three-thin"></iconify-icon></div><h3>Built by people who sit at both sides of the table</h3><p>As diners, we've been frustrated by the gap between wine lists and cellars. As operators, we know the pressure of running a great restaurant. Entwine was built from both.</p></div>
-    </div>
-  </section>
-  <section class="r-sec dark has-bg js-reveal" id="story">
-    <div class="r-bg"><img class="imgph" alt="" data-img="about-story" data-kw="wine,cellar,bottles,dark" data-w="1920" data-h="1200"></div>
-    <div class="r-inner">
-      <div class="r-head"><h2>The founding story</h2></div>
-      <div class="prose">
-        <p>It started at dinner. Daniel and I were at a newly opened Michelin-starred restaurant. They gave us a digital wine list. We selected a wine — out of stock. We selected another — out of stock again. We settled for our third choice.</p>
-        <p>Even at that level, the digital wine list had no connection to the actual cellar. If it was happening there, it was happening everywhere.</p>
-        <p>The next morning Daniel arrived with the idea fully formed: wine pairing built specifically for what a restaurant actually has. I stress-tested it from every angle. It held up. That moment became a wine app — and a surreal shower moment a few weeks later gave it its name. <span class="gold">Entwine.</span></p>
+  <!-- ============ HERO ============ -->
+  <section class="ab-hero" id="abHero">
+    <div class="ab-hero__bg"><img data-img="ab-hero" data-kw="restaurant,wine,fine-dining,table,dark" data-w="2200" data-h="1400" alt="" /></div>
+    <div class="ab-hero__amb"></div>
+    <svg class="ab-hero__mk" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+    <div class="ab-hero__inner">
+      <span class="ab-hero__kick ab-fade">About</span>
+      <h1>
+        <span class="ab-rise"><span>Technology in</span></span>
+        <span class="ab-rise"><span>service of</span></span>
+        <span class="ab-rise"><span class="ab-gold">the table.</span></span>
+      </h1>
+      <p class="ab-hero__sub ab-fade">Entwine is a wine technology company built by people who sit on both sides of the table — diners frustrated by the gap between wine lists and cellars, and operators who understand the pressure of running a great restaurant. So we built both. The platform we wished existed.</p>
+      <div class="ab-hero__cta ab-fade">
+        <a class="btn btn--gold" href="#story">Our story <span class="arrow">→</span></a>
+        <a class="btn btn--outline-light" href="#team">Meet the team</a>
       </div>
     </div>
   </section>
-  <section class="r-sec ink wm js-reveal">
-    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor"><use href="#ew-mark"/></svg>
-    <div class="r-head"><h2>Our journey</h2></div><p class="r-sub">From a frustrating dinner to a live platform — here’s how Entwine was built.</p>
-    <div class="timeline">
-      <div class="tl"><div class="date">Jan 2023</div><h4>Concept formed</h4></div>
-      <div class="tl"><div class="date">Apr 2023</div><h4>Research complete</h4></div>
-      <div class="tl"><div class="date">Oct 2023</div><h4>Initial IMS + first app iteration</h4></div>
-      <div class="tl"><div class="date">Jan 2024</div><h4>Second software & app iterations</h4></div>
-      <div class="tl"><div class="date">Apr 2024</div><h4>Focus group feedback</h4></div>
-      <div class="tl"><div class="date">Jul 2024</div><h4>First test restaurant launched</h4></div>
-      <div class="tl"><div class="date">Sep 2024</div><h4>2 more restaurants + 3rd app iteration</h4></div>
-      <div class="tl"><div class="date">Oct 2024</div><h4>Official public launch — Tech Expo</h4></div>
+
+  <!-- ============ BELIEFS ============ -->
+  <section class="ab-beliefs js-reveal">
+    <div class="ab-head"><h2>Three things we believe in. <span class="ab-gold">Everything else follows.</span></h2></div>
+    <div class="ab-bgrid ab-stagger">
+      <article class="ab-belief">
+        <div class="ab-belief__ic"><iconify-icon icon="ph:hand-heart-thin"></iconify-icon></div>
+        <h3>Technology should serve the experience, not replace it</h3>
+        <p>Entwine doesn't put a screen between a guest and a great meal. It makes the meal better — quietly, intelligently, in the background.</p>
+      </article>
+      <article class="ab-belief">
+        <div class="ab-belief__ic"><iconify-icon icon="ph:globe-hemisphere-west-thin"></iconify-icon></div>
+        <h3>Local expertise, global ambition</h3>
+        <p>We started in Malta. We think in Europe. We operate through people who know their markets — because the best wine culture is always local first.</p>
+      </article>
+      <article class="ab-belief">
+        <div class="ab-belief__ic"><iconify-icon icon="ph:users-three-thin"></iconify-icon></div>
+        <h3>Built by people who sit at both sides of the table</h3>
+        <p>As diners, we've been frustrated by the gap between wine lists and cellars. As operators, we know the pressure of running a great restaurant. Entwine was built from both.</p>
+      </article>
     </div>
   </section>
-  <section class="r-sec cream js-reveal" id="team">
-    <div class="r-head"><h2>The people behind Entwine.</h2></div>
-    <div class="team">
-      <div class="teammate"><div class="ph2"><img class="imgph" alt="Daniel Abela" data-img="team-daniel" data-kw="portrait,man,professional" data-w="600" data-h="600"></div><div class="nm">Daniel Abela</div><div class="ro">Co-founder · Vision &amp; Strategy</div><div class="bio">30+ years in brand strategy. Founder of Redorange, co-founder of Moving Ads, Cowfish, D4n6 and Rani — one of Entwine's founding club restaurants.</div></div>
-      <div class="teammate"><div class="ph2"><img class="imgph" alt="Claire Cassar" data-img="team-claire" data-kw="portrait,woman,professional" data-w="600" data-h="600"></div><div class="nm">Claire Cassar-Bonello</div><div class="ro">Co-founder · Revenue &amp; Growth</div><div class="bio">Tech lawyer, former CEO of HAUD, serial entrepreneur. A decade at Vodafone across Malta and Qatar. LL.D and Master's in Competition Law. Board member of MICAS.</div></div>
-      <div class="teammate"><div class="ph2"><img class="imgph" alt="Andrew Cachia" data-img="team-andrew" data-kw="portrait,man,developer" data-w="600" data-h="600"></div><div class="nm">Andrew Cachia</div><div class="ro">Co-founder · Technology</div><div class="bio">MSc in AI, Microsoft Accelerator alumni. Previously built an AI trading platform shown at the Davos World Economic Forum. The intelligence behind the pairing engine.</div></div>
-      <div class="teammate"><div class="ph2"><img class="imgph" alt="Krisztina Osman" data-img="team-krisztina" data-kw="portrait,woman,sommelier" data-w="600" data-h="600"></div><div class="nm">Krisztina Osman</div><div class="ro">Business Development &amp; Sommelier</div><div class="bio">WSET Level 2, 10+ years in hospitality across Malta and Hungary. Fluent in five languages. Leads onboarding and relationships across the club network.</div></div>
-      <div class="teammate"><div class="ph2"><img class="imgph" alt="Will Rizzo" data-img="team-will" data-kw="portrait,sommelier,wine" data-w="600" data-h="600"></div><div class="nm">Will Rizzo</div><div class="ro">Chief Sommelier · DipWSET</div><div class="bio">DipWSET-qualified sommelier who guided the development of Entwine's pairing algorithm. Every recommendation the platform makes carries his expertise.</div></div>
+
+  <!-- ============ FOUNDING STORY ============ -->
+  <section class="ab-story js-reveal" id="story">
+    <svg class="ab-story__mk" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+    <div class="ab-head"><h2>The founding story</h2></div>
+    <div class="ab-story__grid">
+      <figure class="ab-story__fig">
+        <img data-img="ab-story" data-kw="wine,cellar,bottles,restaurant,dark" data-w="900" data-h="1100" alt="" />
+      </figure>
+      <div class="ab-story__prose">
+        <p>It started at dinner. Daniel and I were at a newly opened Michelin-starred restaurant. They gave us a digital wine list. We selected a wine — out of stock. We selected another — out of stock again. We settled for our third choice.</p>
+        <p>Even at that level, the digital wine list had no connection to the actual cellar. If it was happening there, it was happening everywhere.</p>
+        <p>The next morning Daniel arrived with the idea fully formed: wine pairing built specifically for what a restaurant actually has. I stress-tested it from every angle. It held up. That moment became a wine app — and a surreal shower moment a few weeks later gave it its name. <span class="ab-gold">Entwine.</span></p>
+      </div>
     </div>
   </section>
-  <section class="rcta js-reveal">
-    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor" style="color:#0a0a0a"><use href="#ew-mark"/></svg>
-    <h2>We’re just getting started. <span class="gold">Come be part of it.</span></h2>
-    <p>Entwine is a product of Cork &amp; Code Limited, a Malta-based technology company building global wine technology from the Mediterranean.</p>
-    <div class="rcta__cta">
-      <a class="btn btn--dark" href="invest.html">Invest in Entwine <span class="arrow">→</span></a>
-      <div class="rcta__links"><a href="restaurants.html">See the platform <span>→</span></a><span class="dot"></span><a href="partners.html">Become a partner <span>→</span></a><span class="dot"></span><a href="careers.html">Join the team <span>→</span></a></div>
+
+  <!-- ============ JOURNEY (timeline) ============ -->
+  <section class="ab-journey js-reveal">
+    <div class="ab-head"><h2>Our journey</h2><p>From a frustrating dinner to a live platform — here's how Entwine was built.</p></div>
+    <div class="ab-tl">
+      <span class="ab-tl__line"></span>
+      <div class="ab-mile"><div class="ab-mile__dot"></div><div class="ab-mile__card"><div class="date">Jan 2023</div><h4>Concept formed</h4></div></div>
+      <div class="ab-mile"><div class="ab-mile__dot"></div><div class="ab-mile__card"><div class="date">Apr 2023</div><h4>Research complete</h4></div></div>
+      <div class="ab-mile"><div class="ab-mile__dot"></div><div class="ab-mile__card"><div class="date">Oct 2023</div><h4>Initial IMS + first app iteration</h4></div></div>
+      <div class="ab-mile"><div class="ab-mile__dot"></div><div class="ab-mile__card"><div class="date">Jan 2024</div><h4>Second software &amp; app iterations</h4></div></div>
+      <div class="ab-mile"><div class="ab-mile__dot"></div><div class="ab-mile__card"><div class="date">Apr 2024</div><h4>Focus group feedback</h4></div></div>
+      <div class="ab-mile"><div class="ab-mile__dot"></div><div class="ab-mile__card"><div class="date">Jul 2024</div><h4>First test restaurant launched</h4></div></div>
+      <div class="ab-mile"><div class="ab-mile__dot"></div><div class="ab-mile__card"><div class="date">Sep 2024</div><h4>2 more restaurants + 3rd app iteration</h4></div></div>
+      <div class="ab-mile"><div class="ab-mile__dot"></div><div class="ab-mile__card"><div class="date">Oct 2024</div><h4>Official public launch — Tech Expo</h4></div></div>
     </div>
   </section>
+
+  <!-- ============ TEAM ============ -->
+  <section class="ab-team-sec js-reveal" id="team">
+    <div class="ab-team-sec__amb"></div>
+    <div class="ab-head"><h2>The people behind Entwine.</h2></div>
+    <div class="ab-team ab-stagger">
+      <article class="ab-mate">
+        <image-slot class="ab-photo" id="team-daniel" shape="circle" style="width:104px;height:104px" placeholder="DA"></image-slot>
+        <div class="ab-mate__nm">Daniel Abela</div>
+        <div class="ab-mate__ro">Co-founder · Vision &amp; Strategy</div>
+        <p class="ab-mate__bio">30+ years in brand strategy. Founder of Redorange, co-founder of Moving Ads, Cowfish, D4n6 and Rani — one of Entwine's founding club restaurants.</p>
+      </article>
+      <article class="ab-mate">
+        <image-slot class="ab-photo" id="team-claire" shape="circle" style="width:104px;height:104px" placeholder="CC"></image-slot>
+        <div class="ab-mate__nm">Claire Cassar-Bonello</div>
+        <div class="ab-mate__ro">Co-founder · Revenue &amp; Growth</div>
+        <p class="ab-mate__bio">Tech lawyer, former CEO of HAUD, serial entrepreneur. A decade at Vodafone across Malta and Qatar. LL.D and Master's in Competition Law. Board member of MICAS.</p>
+      </article>
+      <article class="ab-mate">
+        <image-slot class="ab-photo" id="team-andrew" shape="circle" style="width:104px;height:104px" placeholder="AC"></image-slot>
+        <div class="ab-mate__nm">Andrew Cachia</div>
+        <div class="ab-mate__ro">Co-founder · Technology</div>
+        <p class="ab-mate__bio">MSc in AI, Microsoft Accelerator alumni. Previously built an AI trading platform shown at the Davos World Economic Forum. The intelligence behind the pairing engine.</p>
+      </article>
+      <article class="ab-mate">
+        <image-slot class="ab-photo" id="team-krisztina" shape="circle" style="width:104px;height:104px" placeholder="KO"></image-slot>
+        <div class="ab-mate__nm">Krisztina Osman</div>
+        <div class="ab-mate__ro">Business Development &amp; Sommelier</div>
+        <p class="ab-mate__bio">WSET Level 2, 10+ years in hospitality across Malta and Hungary. Fluent in five languages. Leads onboarding and relationships across the club network.</p>
+      </article>
+      <article class="ab-mate">
+        <image-slot class="ab-photo" id="team-will" shape="circle" style="width:104px;height:104px" placeholder="WR"></image-slot>
+        <div class="ab-mate__nm">Will Rizzo</div>
+        <div class="ab-mate__ro">Chief Sommelier · DipWSET</div>
+        <p class="ab-mate__bio">DipWSET-qualified sommelier who guided the development of Entwine's pairing algorithm. Every recommendation the platform makes carries his expertise.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ============ FINAL ============ -->
+  <section class="ab-final js-reveal">
+    <svg class="ab-final__mk" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+    <div class="ab-final__inner">
+      <h2>We're just getting started. <span class="ab-gold">Come be part of it.</span></h2>
+      <p>Entwine is a product of Cork &amp; Code Limited, a Malta-based technology company building global wine technology from the Mediterranean.</p>
+      <div class="ab-final__cta">
+        <a class="btn ab-final__btn" href="invest.html">Invest in Entwine <span class="arrow">→</span></a>
+        <div class="ab-final__links">
+          <a href="restaurants.html">See the platform <span>→</span></a>
+          <span class="dot"></span>
+          <a href="partners.html">Become a partner <span>→</span></a>
+          <span class="dot"></span>
+          <a href="careers.html">Join the team <span>→</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+
 
 <footer class="footer">
     <div class="footer__top">
@@ -280,6 +511,24 @@
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
     blocks.forEach(function (el) { io.observe(el); });
+  })();
+</script>
+
+<!-- hero entrance + stat counters -->
+<script>
+  (function () {
+    var hero = document.getElementById('abHero');
+    if (hero) { requestAnimationFrame(function () { requestAnimationFrame(function () { hero.classList.add('in'); }); }); }
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    function fmt(n) { return n.toLocaleString('en-US'); }
+    document.querySelectorAll('.ab-stat .n[data-count]').forEach(function (el) {
+      var target = parseInt(el.getAttribute('data-count'), 10), suf = el.getAttribute('data-suffix') || '';
+      if (reduce) { el.textContent = fmt(target) + suf; return; }
+      var dur = 1400, t0 = null;
+      function tick(ts) { if (t0 === null) t0 = ts; var p = Math.min(1, (ts - t0) / dur); var e = 1 - Math.pow(1 - p, 3); el.textContent = fmt(Math.round(e * target)) + suf; if (p < 1) requestAnimationFrame(tick); }
+      setTimeout(function () { requestAnimationFrame(tick); }, 700);
+      setTimeout(function () { el.textContent = fmt(target) + suf; }, 700 + dur + 400);
+    });
   })();
 </script>
 
