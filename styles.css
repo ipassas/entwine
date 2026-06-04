@@ -25,9 +25,12 @@
   --bg-zaar: #e9eaec;
   --bg-footer: #f1f2f4;
 
-  /* horizontal margins from the comp (relative to the 1920 stage) */
-  --pad-wide: 8.59%;   /* 165 / 1920 */
-  --pad: 18.54%;       /* 356 / 1920 */
+  /* Full-bleed section backgrounds + centred content.
+     The calc keeps content at the comp widths (1590 / 1208) and matches the
+     original 165 / 356 side margins exactly at 1920, while letting the
+     background fill the whole viewport on any screen size. */
+  --pad-wide: max(24px, calc((100% - 1590px) / 2));  /* ~165 margins @1920 */
+  --pad: max(24px, calc((100% - 1208px) / 2));       /* ~356 margins @1920 */
 
   --display: "Switzer", "Outfit", system-ui, sans-serif;
   --sans: "Outfit", system-ui, -apple-system, sans-serif;
@@ -54,8 +57,9 @@ img { display: block; max-width: 100%; }
 a { color: inherit; text-decoration: none; }
 p { margin: 0; }
 
-/* page stage — caps the design at its native 1920 width and centres it */
-.stage { max-width: 1920px; margin: 0 auto; position: relative; overflow-x: clip; }
+/* page stage — full width so every section background is full-bleed;
+   content inside each section is centred via the --pad / --pad-wide calc above */
+.stage { width: 100%; margin: 0; position: relative; overflow-x: clip; }
 
 /* ---- Shared bits ---- */
 .eyebrow {
@@ -151,7 +155,7 @@ p { margin: 0; }
   background: var(--black);
   color: var(--white);
   overflow: hidden;
-  padding: 120px var(--pad) 80px;
+  padding: 120px var(--pad-wide) 80px;
 }
 .hero__bg {
   position: absolute;
