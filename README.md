@@ -57,7 +57,20 @@ expire ~7 days after export** — migrate them to the named-asset system above.
 Every image sits on a solid fallback colour, so the layout never breaks if an
 image fails to load.
 
-## Deploying to Wix
+## Current hosting (temporary)
+
+Every merge to the main branch auto-builds and publishes the site to the
+`gh-pages` branch (GitHub Pages → `https://ipassas.github.io/entwine/`).
+A full-viewport iframe embed on the **entwine** Wix Studio site
+(Custom Embed `d6e62675-8ee7-44a2-ada0-ce05073897eb`) shows it at
+`https://ipassasdesign.wixstudio.com/entwine`.
+
+> One-time setup: GitHub repo → **Settings → Pages** → Source:
+> *Deploy from a branch* → Branch: `gh-pages` / `/ (root)` → Save.
+
+This is the "for now" setup — the proper long-term path is Wix Headless below.
+
+## Deploying to Wix (proper / long-term)
 
 Follow `HEADLESS.md` — short version:
 
