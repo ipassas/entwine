@@ -8,17 +8,17 @@
   <meta property="og:title" content="Entwine for Restaurants — A sommelier at every table" />
   <meta property="og:description" content="The wine intelligence platform built for the way restaurants actually work." />
   <meta property="og:type" content="website" />
-  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg" />
-  <link rel="stylesheet" href="styles.css" />
-  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
-  <style>
+  <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
+  <link rel="stylesheet" href="/styles.css" />
+  <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+  <style is:inline>
     /* critical preloader styles so there's no white flash before styles.css loads */
     #preloader{position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
   </style>
-  <style id="rs-style">
+  <style is:inline id="rs-style">
 
   /* ============================================================
      RESTAURANTS — page-scoped "wow" layer (rs-*)
@@ -217,64 +217,64 @@
 
   <!-- ============ NAV (mega) ============ -->
   <header class="nav">
-    <a href="index.html" class="brand" aria-label="Entwine — home">
+    <a href="/" class="brand" aria-label="Entwine — home">
       <svg class="logo" viewBox="0 0 842 142" fill="currentColor" role="img" aria-label="Entwine"><use href="#ew-word"/></svg>
     </a>
     <nav class="nav-mega">
-      <div class="navitem"><a class="navlink" href="wine-lovers.html">For Wine Lovers</a></div>
-      <div class="navitem"><a class="navlink" href="restaurants.html">For Restaurants</a></div>
+      <div class="navitem"><a class="navlink" href="/wine-lovers">For Wine Lovers</a></div>
+      <div class="navitem"><a class="navlink" href="/restaurants">For Restaurants</a></div>
       <div class="navitem">
         <button class="navlink" aria-haspopup="true">Tools <span class="car"></span></button>
         <div class="mega mega--tools" role="menu">
           <div class="mega-grid">
-            <a class="mega-item" href="tools.html#gap-finder"><span class="mi-ic"><iconify-icon icon="ph:magnifying-glass-thin"></iconify-icon></span><span><span class="mi-t">Wine List Gap Finder <span class="mega-tag">Free</span></span><span class="mi-d">Spot style, region &amp; price gaps.</span></span></a>
-            <a class="mega-item" href="tools.html#audit"><span class="mi-ic"><iconify-icon icon="ph:clipboard-text-thin"></iconify-icon></span><span><span class="mi-t">Wine List Audit <span class="mega-tag">Free</span></span><span class="mi-d">A scored audit in minutes.</span></span></a>
-            <a class="mega-item" href="tools.html#menu-builder"><span class="mi-ic"><iconify-icon icon="ph:fork-knife-thin"></iconify-icon></span><span><span class="mi-t">Digital Menu Builder <span class="mega-tag">Free</span></span><span class="mi-d">Build a digital menu.</span></span></a>
-            <a class="mega-item" href="tools.html#btg"><span class="mi-ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></span><span><span class="mi-t">BTG Optimiser <span class="mega-tag">Free</span></span><span class="mi-d">Optimise by-the-glass.</span></span></a>
-            <a class="mega-item" href="tools.html#list-creator"><span class="mi-ic"><iconify-icon icon="ph:scroll-thin"></iconify-icon></span><span><span class="mi-t">Wine List Creator <span class="mega-tag">Freemium</span></span><span class="mi-d">Build a balanced list.</span></span></a>
-            <a class="mega-item" href="tools.html#trainer"><span class="mi-ic"><iconify-icon icon="ph:graduation-cap-thin"></iconify-icon></span><span><span class="mi-t">Team Wine Trainer <span class="mega-tag">Freemium</span></span><span class="mi-d">Train your team.</span></span></a>
-            <a class="mega-item" href="tools.html#pairing"><span class="mi-ic"><iconify-icon icon="ph:sparkle-thin"></iconify-icon></span><span><span class="mi-t">Sommelier Pairing <span class="mega-tag">One-time</span></span><span class="mi-d">Expert pairing on demand.</span></span></a>
-            <a class="mega-item" href="tools.html"><span class="mi-ic"><iconify-icon icon="ph:squares-four-thin"></iconify-icon></span><span><span class="mi-t">All Tools</span><span class="mi-d">Browse the full toolkit.</span></span></a>
+            <a class="mega-item" href="/tools#gap-finder"><span class="mi-ic"><iconify-icon icon="ph:magnifying-glass-thin"></iconify-icon></span><span><span class="mi-t">Wine List Gap Finder <span class="mega-tag">Free</span></span><span class="mi-d">Spot style, region &amp; price gaps.</span></span></a>
+            <a class="mega-item" href="/tools#audit"><span class="mi-ic"><iconify-icon icon="ph:clipboard-text-thin"></iconify-icon></span><span><span class="mi-t">Wine List Audit <span class="mega-tag">Free</span></span><span class="mi-d">A scored audit in minutes.</span></span></a>
+            <a class="mega-item" href="/tools#menu-builder"><span class="mi-ic"><iconify-icon icon="ph:fork-knife-thin"></iconify-icon></span><span><span class="mi-t">Digital Menu Builder <span class="mega-tag">Free</span></span><span class="mi-d">Build a digital menu.</span></span></a>
+            <a class="mega-item" href="/tools#btg"><span class="mi-ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></span><span><span class="mi-t">BTG Optimiser <span class="mega-tag">Free</span></span><span class="mi-d">Optimise by-the-glass.</span></span></a>
+            <a class="mega-item" href="/tools#list-creator"><span class="mi-ic"><iconify-icon icon="ph:scroll-thin"></iconify-icon></span><span><span class="mi-t">Wine List Creator <span class="mega-tag">Freemium</span></span><span class="mi-d">Build a balanced list.</span></span></a>
+            <a class="mega-item" href="/tools#trainer"><span class="mi-ic"><iconify-icon icon="ph:graduation-cap-thin"></iconify-icon></span><span><span class="mi-t">Team Wine Trainer <span class="mega-tag">Freemium</span></span><span class="mi-d">Train your team.</span></span></a>
+            <a class="mega-item" href="/tools#pairing"><span class="mi-ic"><iconify-icon icon="ph:sparkle-thin"></iconify-icon></span><span><span class="mi-t">Sommelier Pairing <span class="mega-tag">One-time</span></span><span class="mi-d">Expert pairing on demand.</span></span></a>
+            <a class="mega-item" href="/tools"><span class="mi-ic"><iconify-icon icon="ph:squares-four-thin"></iconify-icon></span><span><span class="mi-t">All Tools</span><span class="mi-d">Browse the full toolkit.</span></span></a>
           </div>
-          <div class="mega-foot"><a href="tools.html">View all tools <span>→</span></a><span class="muted">Most are free. All worth your time.</span></div>
+          <div class="mega-foot"><a href="/tools">View all tools <span>→</span></a><span class="muted">Most are free. All worth your time.</span></div>
         </div>
       </div>
       <div class="navitem">
         <button class="navlink" aria-haspopup="true">Company <span class="car"></span></button>
         <div class="dropdown" role="menu">
-          <a href="about.html">About</a>
-          <a href="partners.html">Partners</a>
-          <a href="invest.html">Invest</a>
-          <a href="insights.html">Insights</a>
-          <a href="careers.html">Careers</a>
+          <a href="/about">About</a>
+          <a href="/partners">Partners</a>
+          <a href="/invest">Invest</a>
+          <a href="/insights">Insights</a>
+          <a href="/careers">Careers</a>
         </div>
       </div>
-      <div class="navitem"><a class="navlink" href="pricing.html">Pricing</a></div>
+      <div class="navitem"><a class="navlink" href="/pricing">Pricing</a></div>
       <div class="navitem"><a class="navlink" href="#">Sign in</a></div>
     </nav>
-    <a href="download.html" class="btn btn--white nav-cta">Download&nbsp; <span class="arrow">→</span></a>
+    <a href="/download" class="btn btn--white nav-cta">Download&nbsp; <span class="arrow">→</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span class="bars"><span></span><span></span><span></span></span></button>
     <div class="mobile-menu" id="mobileMenu">
-      <a href="wine-lovers.html">For Wine Lovers</a>
-      <a href="restaurants.html">For Restaurants</a>
+      <a href="/wine-lovers">For Wine Lovers</a>
+      <a href="/restaurants">For Restaurants</a>
       <details class="m-acc"><summary>Tools <span class="chev"></span></summary>
         <div class="m-sub">
-          <a href="tools.html#gap-finder">Wine List Gap Finder</a>
-          <a href="tools.html#audit">Wine List Audit</a>
-          <a href="tools.html#menu-builder">Digital Menu Builder</a>
-          <a href="tools.html#btg">BTG Optimiser</a>
-          <a href="tools.html#list-creator">Wine List Creator</a>
-          <a href="tools.html#trainer">Team Wine Trainer</a>
-          <a href="tools.html#pairing">Sommelier Pairing</a>
-          <a href="tools.html">View all tools →</a>
+          <a href="/tools#gap-finder">Wine List Gap Finder</a>
+          <a href="/tools#audit">Wine List Audit</a>
+          <a href="/tools#menu-builder">Digital Menu Builder</a>
+          <a href="/tools#btg">BTG Optimiser</a>
+          <a href="/tools#list-creator">Wine List Creator</a>
+          <a href="/tools#trainer">Team Wine Trainer</a>
+          <a href="/tools#pairing">Sommelier Pairing</a>
+          <a href="/tools">View all tools →</a>
         </div>
       </details>
       <details class="m-acc"><summary>Company <span class="chev"></span></summary>
         <div class="m-sub">
-          <a href="about.html">About</a><a href="partners.html">Partners</a><a href="invest.html">Invest</a><a href="insights.html">Insights</a><a href="careers.html">Careers</a>
+          <a href="/about">About</a><a href="/partners">Partners</a><a href="/invest">Invest</a><a href="/insights">Insights</a><a href="/careers">Careers</a>
         </div>
       </details>
-      <a href="pricing.html">Pricing</a>
+      <a href="/pricing">Pricing</a>
       <a href="#">Sign in</a>
     </div>
   </header>
@@ -429,24 +429,24 @@
         <span class="rs-tool__tag">Free Tool</span>
         <h3>Wine List Stress Test</h3>
         <p>Upload your wine list and get a scored audit in minutes — gaps, imbalances, margin opportunities, and pairing blind spots. No filters pulled.</p>
-        <a class="rs-tool__more" href="tools.html#audit">Try it <span>→</span></a>
+        <a class="rs-tool__more" href="/tools#audit">Try it <span>→</span></a>
       </article>
       <article class="rs-tool">
         <span class="rs-tool__idx">02</span>
         <span class="rs-tool__tag">Free Tool</span>
         <h3>By-The-Glass Optimiser</h3>
         <p>Analyse your by-the-glass selection for margin, variety, and pairing value. See which pours are working and which are holding your programme back.</p>
-        <a class="rs-tool__more" href="tools.html#btg">Try it <span>→</span></a>
+        <a class="rs-tool__more" href="/tools#btg">Try it <span>→</span></a>
       </article>
       <article class="rs-tool">
         <span class="rs-tool__idx">03</span>
         <span class="rs-tool__tag">Free · Upgrades available</span>
         <h3>Wine List Gap Finder</h3>
         <p>Identify the style, region, and price-point gaps in your current wine list. Know exactly what's missing before your next buying decision.</p>
-        <a class="rs-tool__more" href="tools.html#gap-finder">Try it <span>→</span></a>
+        <a class="rs-tool__more" href="/tools#gap-finder">Try it <span>→</span></a>
       </article>
     </div>
-    <div class="rs-tools__all"><a class="btn btn--outline-dark" href="tools.html">View all Tools <span class="arrow">→</span></a></div>
+    <div class="rs-tools__all"><a class="btn btn--outline-dark" href="/tools">View all Tools <span class="arrow">→</span></a></div>
   </section>
 
   <!-- ============ TWO PATHS : split fork ============ -->
@@ -456,7 +456,7 @@
         <p class="rs-eyebrow">Free tools path</p>
         <h3>Seven professional tools. Yours to try first.</h3>
         <p>Stress-test your wine list, find the gaps, optimise your margins, and build a digital menu — all before you sign up for anything. Seven tools that show you exactly what your wine programme is capable of.</p>
-        <a class="btn btn--gold" href="tools.html">Explore Free Tools <span class="arrow">→</span></a>
+        <a class="btn btn--gold" href="/tools">Explore Free Tools <span class="arrow">→</span></a>
       </div>
       <div class="rs-path">
         <p class="rs-eyebrow">IMS platform path</p>
@@ -476,7 +476,7 @@
       <div class="rs-final__cta">
         <a class="btn rs-final__btn" href="#">Let's Talk <span class="arrow">→</span></a>
         <div class="rs-final__links">
-          <a href="tools.html">Explore free tools <span>→</span></a>
+          <a href="/tools">Explore free tools <span>→</span></a>
           <span class="dot"></span>
           <a href="#platform">See the platform <span>→</span></a>
         </div>
@@ -491,8 +491,8 @@
         <div class="brand"><svg class="logo" viewBox="0 0 842 142" fill="currentColor" role="img" aria-label="Entwine"><use href="#ew-word"/></svg></div>
         <p>Connecting consumers with local favourites, and empowering restaurants with the tools they need to thrive in the digital age.</p>
         <div class="badges-row" style="display:flex;gap:16px;flex-wrap:nowrap;margin-top:26px;">
-          <a href="download.html" class="badge" data-icon="apple"></a>
-          <a href="download.html" class="badge" data-icon="google"></a>
+          <a href="/download" class="badge" data-icon="apple"></a>
+          <a href="/download" class="badge" data-icon="google"></a>
         </div>
         <div class="footer__social">
           <a href="#" aria-label="Instagram"><iconify-icon icon="ph:instagram-logo-thin"></iconify-icon></a>
@@ -504,29 +504,29 @@
       <div class="footer__col">
         <h4>Product</h4>
         <ul>
-          <li><a href="wine-lovers.html">For Wine Lovers</a></li>
-          <li><a href="restaurants.html">For Restaurants</a></li>
-          <li><a href="pricing.html">Pricing</a></li>
-          <li><a href="download.html">Download App</a></li>
+          <li><a href="/wine-lovers">For Wine Lovers</a></li>
+          <li><a href="/restaurants">For Restaurants</a></li>
+          <li><a href="/pricing">Pricing</a></li>
+          <li><a href="/download">Download App</a></li>
         </ul>
       </div>
       <div class="footer__col">
         <h4>Free Tools</h4>
         <ul>
-          <li><a href="tools.html#gap-finder">Wine List Gap Finder</a></li>
-          <li><a href="tools.html#audit">Wine List Audit</a></li>
-          <li><a href="tools.html#btg">BTG Optimiser</a></li>
-          <li><a href="tools.html">All Tools</a></li>
+          <li><a href="/tools#gap-finder">Wine List Gap Finder</a></li>
+          <li><a href="/tools#audit">Wine List Audit</a></li>
+          <li><a href="/tools#btg">BTG Optimiser</a></li>
+          <li><a href="/tools">All Tools</a></li>
         </ul>
       </div>
       <div class="footer__col">
         <h4>Company</h4>
         <ul>
-          <li><a href="about.html">About Us</a></li>
-          <li><a href="partners.html">Partners</a></li>
-          <li><a href="invest.html">Invest</a></li>
-          <li><a href="insights.html">Insights</a></li>
-          <li><a href="careers.html">Careers</a></li>
+          <li><a href="/about">About Us</a></li>
+          <li><a href="/partners">Partners</a></li>
+          <li><a href="/invest">Invest</a></li>
+          <li><a href="/insights">Insights</a></li>
+          <li><a href="/careers">Careers</a></li>
         </ul>
       </div>
     </div>
@@ -545,7 +545,7 @@
   <div class="footbar">
     <div class="footbar__side footbar__side--left">
       <span class="footbar__step"><b>I.</b><span>&nbsp;&nbsp; Take it to dinner</span></span>
-      <a href="download.html" class="btn btn--gold btn--upper">Download free <span class="arrow">→</span></a>
+      <a href="/download" class="btn btn--gold btn--upper">Download free <span class="arrow">→</span></a>
     </div>
     <div class="footbar__center">
       <svg viewBox="0 0 42 52" fill="#b8a86a" role="img" aria-label="Entwine mark"><use href="#ew-mark"/></svg>
@@ -559,7 +559,7 @@
 </div>
 
 <!-- store badge icons -->
-<script>
+<script is:inline>
   (function () {
     var apple = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.32-.13-2.57.77-3.24.77-.66 0-1.69-.75-2.78-.73-1.43.02-2.75.83-3.49 2.11-1.49 2.58-.38 6.4 1.07 8.49.71 1.02 1.56 2.17 2.67 2.13 1.07-.04 1.48-.69 2.77-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.07.81-1.19 1.15-2.34 1.16-2.4-.03-.01-2.23-.86-2.25-3.41zM14.3 6.6c.59-.72.99-1.71.88-2.7-.85.03-1.88.57-2.49 1.28-.55.63-1.03 1.64-.9 2.61.95.07 1.92-.48 2.51-1.19z"/></svg>';
     var google = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>';
@@ -574,7 +574,7 @@
 </script>
 
 <!-- mobile menu toggle -->
-<script>
+<script is:inline>
   (function () {
     var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
     if (!t || !m) return;
@@ -588,7 +588,7 @@
 </script>
 
 <!-- image placeholders: named assets, with Unsplash → LoremFlickr fallback -->
-<script>
+<script is:inline>
   (function () {
     document.querySelectorAll('img[data-img]').forEach(function (im) {
       var name = im.getAttribute('data-img'), kw = im.getAttribute('data-kw') || 'wine';
@@ -599,13 +599,13 @@
         else if (stage === 2) im.src = 'https://loremflickr.com/' + w + '/' + h + '/' + encodeURIComponent(kw);
         else im.onerror = null;
       };
-      im.src = 'assets/' + name + '.jpg';
+      im.src = '/assets/' + name + '.jpg';
     });
   })();
 </script>
 
 <!-- scroll reveal -->
-<script>
+<script is:inline>
   (function () {
     var blocks = document.querySelectorAll('.js-reveal');
     var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -619,7 +619,7 @@
 </script>
 
 <!-- preloader -->
-<script>
+<script is:inline>
   (function () {
     function done(){ var p=document.getElementById('preloader'); if(p){ p.classList.add('done'); setTimeout(function(){ p.style.display='none'; },650); } }
     if (document.readyState === 'complete') done();

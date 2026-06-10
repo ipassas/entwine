@@ -11,7 +11,7 @@
       var ph = (this.getAttribute('placeholder') || '').trim();
       var radius = this.getAttribute('shape') === 'circle' ? '50%' : '14px';
       var id = this.id || this.getAttribute('name') || '';
-      var src = this.getAttribute('src') || (id ? 'assets/' + id + '.jpg' : '');
+      var src = this.getAttribute('src') || (id ? '/assets/' + id + '.jpg' : '');
       var root = this.attachShadow({ mode: 'open' });
       root.innerHTML =
         '<style>' +
