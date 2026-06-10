@@ -1270,9 +1270,13 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 .plan li { font-size:14px; color:var(--gray-3); display:flex; gap:9px; align-items:flex-start; }
 .plan li iconify-icon { color:var(--gold); font-size:18px; flex:none; margin-top:1px; }
 .plan .btn { margin-top:auto; justify-content:center; }
-.billing { display:inline-flex; gap:6px; background:var(--white); border:1px solid var(--line-light); border-radius:999px; padding:5px; margin:0 auto 36px; }
-.billing span { padding:9px 20px; border-radius:999px; font-size:13px; font-weight:500; color:var(--gray-2); }
-.billing span.on { background:var(--ink); color:#fff; }
+.billing { position:relative; display:inline-flex; gap:6px; background:var(--white); border:1px solid var(--line-light); border-radius:999px; padding:5px; margin:0 auto 36px; }
+.billing button { position:relative; z-index:1; border:0; background:transparent; padding:9px 20px; border-radius:999px; font-family:inherit; font-size:13px; font-weight:500; color:var(--gray-2); cursor:pointer; transition:color .25s ease; }
+.billing button.on { color:#fff; }
+.billing .thumb { position:absolute; top:5px; bottom:5px; left:5px; width:0; border-radius:999px; background:var(--ink); transition:left .35s cubic-bezier(.16,.84,.44,1), width .35s cubic-bezier(.16,.84,.44,1); }
+.plan .pr.flip, .plan .pa.flip { animation:pr-flip .35s ease; }
+@keyframes pr-flip { 0% { opacity:0; transform:translateY(7px); } 100% { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce) { .billing .thumb { transition:none; } .plan .pr.flip, .plan .pa.flip { animation:none; } }
 
 /* filter pills */
 .pills { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:44px; }
