@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careers at Entwine — Wine. Technology. Hospitality.</title>
-  <meta name="description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
-  <meta property="og:title" content="Careers at Entwine — Wine. Technology. Hospitality." />
-  <meta property="og:description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
+  <title>Wine List Audit — Entwine Free Tools</title>
+  <meta name="description" content="Upload your food menu and wine list — our algorithm scores how well your wines pair with your food and gives you a clear initial gauge of how complementary your wine list is to what you're serving." />
+  <meta property="og:title" content="Wine List Audit — Entwine Free Tools" />
+  <meta property="og:description" content="Upload your food menu and wine list — our algorithm scores how well your wines pair with your food and gives you a clear initial gauge of how complementary your wine list is to what you're serving." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <link rel="stylesheet" href="/styles.css" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -15,6 +15,71 @@
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
+  </style>
+  <style is:inline id="wa-style">
+
+  /* ===== WINE LIST AUDIT — page-scoped (wa-*) ===== */
+  .wa-gold{color:var(--gold)}
+  .wa-back{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-2);text-decoration:none;transition:color .2s}
+  .wa-back:hover{color:var(--gold)}
+  .wa-back iconify-icon{font-size:15px}
+  /* light split hero — unique to this page */
+  .wa-hero{background:var(--paper,#faf8f4);border-bottom:1px solid var(--line-light);padding:clamp(110px,12vw,170px) var(--gutter) clamp(56px,7vw,96px)}
+  .wa-hero__grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,80px);align-items:center}
+  .wa-hero .tag{display:inline-flex;margin-top:26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,168,106,.5);border-radius:999px;padding:7px 14px}
+  .wa-hero h1{margin:20px 0 0;font-family:var(--display);font-weight:200;font-size:clamp(40px,5.4vw,84px);line-height:.98;letter-spacing:-.035em;color:var(--ink)}
+  .wa-hero p{margin:22px 0 0;max-width:54ch;font-size:clamp(16px,1.15vw,18px);line-height:1.65;color:var(--gray-2)}
+  .wa-hero__cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px}
+  /* decorative score card */
+  .wa-card{position:relative;background:linear-gradient(165deg,#15140f,#0a0a0a);border:1px solid rgba(255,255,255,.1);border-radius:20px;padding:clamp(28px,3vw,42px);color:#fff;box-shadow:0 40px 80px rgba(0,0,0,.28);overflow:hidden}
+  .wa-card::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 85% -10%,rgba(184,168,106,.2),transparent 60%)}
+  .wa-ring{position:relative;width:140px;height:140px;margin:0 auto}
+  .wa-ring svg{width:100%;height:100%;transform:rotate(-90deg)}
+  .wa-ring circle{fill:none;stroke-width:6}
+  .wa-ring .bg{stroke:rgba(255,255,255,.1)}
+  .wa-ring .fg{stroke:var(--gold);stroke-linecap:round;stroke-dasharray:352;stroke-dashoffset:352;transition:stroke-dashoffset 1.4s cubic-bezier(.16,.84,.44,1)}
+  .js-reveal.in .wa-ring .fg{stroke-dashoffset:95}
+  .wa-ring .mk{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;color:var(--gold)}
+  .wa-ring .mk svg{width:34px;height:auto;transform:none}
+  .wa-bars{position:relative;margin-top:32px;display:grid;gap:18px}
+  .wa-bars i{display:block;height:6px;border-radius:999px;background:rgba(255,255,255,.1);overflow:hidden;position:relative}
+  .wa-bars i::after{content:"";position:absolute;inset:0;width:0;border-radius:999px;background:linear-gradient(90deg,#9a7b2e,var(--gold));transition:width 1.2s cubic-bezier(.16,.84,.44,1)}
+  .js-reveal.in .wa-bars i:nth-child(1)::after{width:84%}
+  .js-reveal.in .wa-bars i:nth-child(2)::after{width:56%;transition-delay:.12s}
+  .js-reveal.in .wa-bars i:nth-child(3)::after{width:71%;transition-delay:.24s}
+  .js-reveal.in .wa-bars i:nth-child(4)::after{width:92%;transition-delay:.36s}
+  /* steps ribbon on ink */
+  .wa-steps{background:var(--ink);color:#fff;padding:var(--sec-y) var(--gutter)}
+  .wa-head{max-width:760px;margin:0 auto clamp(36px,4.5vw,60px);text-align:center}
+  .wa-head h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.3vw,54px);line-height:1.05;letter-spacing:-.03em}
+  .wa-head p{margin:14px auto 0;max-width:560px;font-size:16px;line-height:1.6;color:rgba(255,255,255,.66)}
+  .wa-steps__row{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,48px);position:relative}
+  .wa-steps__row::before{content:"";position:absolute;top:32px;left:12%;right:12%;border-top:1px dashed rgba(184,168,106,.45)}
+  .wa-step{position:relative;text-align:center;padding:0 8px}
+  .wa-step .node{position:relative;width:64px;height:64px;margin:0 auto;border-radius:50%;border:1px solid var(--gold);background:var(--ink);display:flex;align-items:center;justify-content:center}
+  .wa-step .node iconify-icon{font-size:28px;color:var(--gold)}
+  .wa-step h3{margin:22px 0 0;font-family:var(--display);font-weight:300;font-size:22px;letter-spacing:-.01em}
+  .wa-step p{margin:12px auto 0;max-width:34ch;font-size:15px;line-height:1.6;color:rgba(255,255,255,.66)}
+  /* features as report checklist */
+  .wa-feat{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .wa-feat .wa-head h2{color:var(--ink)}
+  .wa-feat .wa-head p{color:var(--gray-2)}
+  .wa-list{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(32px,4vw,72px);border-top:1px solid var(--line-light)}
+  .wa-item{display:grid;grid-template-columns:30px 1fr;gap:16px;padding:26px 4px;border-bottom:1px solid var(--line-light)}
+  .wa-item iconify-icon{font-size:24px;color:var(--gold);margin-top:2px}
+  .wa-item h3{margin:0;font-family:var(--display);font-weight:400;font-size:18px;letter-spacing:-.01em;color:var(--ink)}
+  .wa-item p{margin:8px 0 0;font-size:14.5px;line-height:1.6;color:var(--gray-2)}
+  /* CTA on image */
+  .wa-cta{position:relative;isolation:isolate;background:#070707;color:#fff;text-align:center;overflow:hidden;padding:calc(var(--sec-y) * 1.1) var(--gutter)}
+  .wa-cta__bg{position:absolute;inset:0;z-index:-2}
+  .wa-cta__bg img{width:100%;height:100%;object-fit:cover;opacity:.38}
+  .wa-cta::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(70% 80% at 50% 110%,rgba(184,168,106,.25),transparent 60%),linear-gradient(180deg,rgba(7,7,7,.8),rgba(7,7,7,.55))}
+  .wa-cta h2{margin:0 auto;max-width:18ch;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.6vw,58px);line-height:1.04;letter-spacing:-.03em}
+  .wa-cta p{margin:18px auto 0;max-width:58ch;font-size:16.5px;line-height:1.6;color:rgba(255,255,255,.74)}
+  .wa-cta .btn{margin-top:30px}
+  .wa-cta .micro{display:block;margin-top:16px;font-size:13px;letter-spacing:.04em;color:rgba(255,255,255,.55)}
+  @media(max-width:980px){.wa-hero__grid{grid-template-columns:1fr}.wa-steps__row{grid-template-columns:1fr;gap:36px}.wa-steps__row::before{display:none}.wa-list{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body>
@@ -88,40 +153,61 @@
     </div>
   </header>
 
-  <section class="hero hero--page">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-img="careers-hero" data-kw="team,restaurant,wine,people,dark" data-w="1920" data-h="1080"></div>
-    <div class="hero__inner">
-      <span class="eyebrow">Careers</span>
-      <h1>Small team. Big ambition. <span class="gold">Help us build the future of wine technology.</span></h1>
-      <p class="hero__sub">Entwine is a wine technology company at an exciting stage of growth. We're looking for people who care about wine, hospitality, and technology — and who are eager to help build something genuinely new.</p>
-      <div class="hero__badges"><a class="btn btn--gold" href="#roles">See open roles <span class="arrow">→</span></a></div>
+  <!-- ============ HERO (light split) ============ -->
+  <section class="wa-hero js-reveal">
+    <div class="wa-hero__grid">
+      <div>
+        <a class="wa-back" href="/tools"><iconify-icon icon="ph:caret-left-thin"></iconify-icon> Back to all tools</a>
+        <br /><span class="tag">Free Tool</span>
+        <h1>Wine List <span class="wa-gold">Audit</span></h1>
+        <p>Upload your food menu and wine list — our algorithm scores how well your wines pair with your food and gives you a clear initial gauge of how complementary your wine list is to what you're serving.</p>
+        <div class="wa-hero__cta">
+          <a class="btn btn--gold" href="#">Start Free Now <span class="arrow">→</span></a>
+          <a class="btn btn--outline-dark" href="/tools#audit-preview">View Live Demo</a>
+        </div>
+      </div>
+      <div class="wa-card" aria-hidden="true">
+        <div class="wa-ring">
+          <svg viewBox="0 0 128 128"><circle class="bg" cx="64" cy="64" r="56"></circle><circle class="fg" cx="64" cy="64" r="56"></circle></svg>
+          <span class="mk"><svg viewBox="0 0 42 52" fill="currentColor"><use href="#ew-mark"/></svg></span>
+        </div>
+        <div class="wa-bars"><i></i><i></i><i></i><i></i></div>
+      </div>
     </div>
   </section>
-  <section class="r-sec tint js-reveal">
-    <div class="r-head"><h2>What it's like to be part of the Entwine team.</h2></div>
-    <div class="cardgrid cardgrid--3">
-      <div class="card"><div class="ic"><iconify-icon icon="ph:trend-up-thin"></iconify-icon></div><h3>Growing with the company</h3><p>Early team members grow with the business. The opportunity to shape how we scale — with employee share ownership for the right candidates.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div><h3>Wine + tech + hospitality</h3><p>A rare intersection of three genuinely interesting industries. Work with restaurants, sommeliers, and wine professionals on a product people love.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:users-three-thin"></iconify-icon></div><h3>Small team, big ambition</h3><p>Everyone has real ownership over their work. No layers — direct access to founders. Your contribution is visible from day one.</p></div>
+
+  <!-- ============ STEPS (ink ribbon) ============ -->
+  <section class="wa-steps js-reveal">
+    <div class="wa-head"><h2>Go digital in <span class="wa-gold">three simple steps</span></h2><p>No technical skills required. Have your new digital menu up and running before your next service begins.</p></div>
+    <div class="wa-steps__row">
+      <div class="wa-step"><div class="node"><iconify-icon icon="ph:upload-simple-thin"></iconify-icon></div><h3>1. Upload Menu</h3><p>Simply drag and drop your existing menu in PDF, JPG, or PNG format into our secure upload portal.</p></div>
+      <div class="wa-step"><div class="node"><iconify-icon icon="ph:paint-brush-thin"></iconify-icon></div><h3>2. Customize Design</h3><p>Add your restaurant's logo, choose brand colors, and select a frame style for your QR code.</p></div>
+      <div class="wa-step"><div class="node"><iconify-icon icon="ph:download-simple-thin"></iconify-icon></div><h3>3. Download &amp; Print</h3><p>Instantly download high-resolution files ready to be printed on table tents, stickers, or posters.</p></div>
     </div>
   </section>
-  <section class="r-sec cream js-reveal" id="roles">
-    <div class="r-head"><h2>We're building our team.</h2></div><p class="r-sub">These are the roles we're looking to fill.</p>
-    <div>
-      <div class="job"><div><div class="dept">Restaurant Operations</div><h3>Customer Success Specialist</h3><div class="loc">Malta · Full-time or part-time</div><p>You'll be the first point of contact for Entwine's restaurant clients — supporting onboarding, managing relationships, and making sure every restaurant gets the most out of the platform. Organised, personable, and comfortable with hospitality professionals.</p></div><span class="av open">Open</span></div>
-      <div class="job"><div><div class="dept">Sales &amp; Growth</div><h3>Club Growth Manager</h3><div class="loc">Malta-based · European travel · Full-time</div><p>You'll grow the Entwine club — bringing new restaurants onto the platform across Malta and into European markets. A relationship-led role for someone who knows hospitality and thrives in business development.</p></div><span class="av closed">Filled</span></div>
-      <div class="job"><div><div class="dept">Technology</div><h3>Full-Stack Developer</h3><div class="loc">Remote-friendly · Full-time</div><p>You'll work alongside our CTO to build and improve the full Entwine platform — the consumer app, the restaurant IMS, and our suite of professional wine tools. Comfortable across the full stack; AI/ML experience a bonus.</p></div><span class="av open">Open</span></div>
+
+  <!-- ============ FEATURES (report checklist) ============ -->
+  <section class="wa-feat js-reveal">
+    <div class="wa-head"><h2>Everything you need to <span class="wa-gold">modernize your menu</span></h2><p>While this tool is completely free, we haven't compromised on the features that matter most to running a smooth operation.</p></div>
+    <div class="wa-list">
+      <div class="wa-item"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>Unlimited Scans forever</h3><p>Never worry about scan limits. Whether you serve 10 or 10,000 guests a day, your menu will always load perfectly.</p></div></div>
+      <div class="wa-item"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>High-Resolution Downloads</h3><p>Download your custom QR codes in PNG or vector SVG formats, ensuring crisp printing at any size.</p></div></div>
+      <div class="wa-item"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>Custom Brand Styling</h3><p>Make the QR code your own. Embed your restaurant's logo in the center and match the patterns to your brand colors.</p></div></div>
+      <div class="wa-item"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>Mobile-Optimized Viewer</h3><p>We don't just host your PDF; we present it in a fast-loading, mobile-friendly viewer that guests can easily pinch and zoom.</p></div></div>
+      <div class="wa-item"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>Basic Scan Analytics</h3><p>Track how many times your menu is viewed daily, weekly, or monthly right from your dashboard.</p></div></div>
+      <div class="wa-item"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>24/7 Reliable Hosting</h3><p>Your menu files are hosted securely on our global CDN, ensuring blazing fast load times for hungry guests.</p></div></div>
     </div>
   </section>
-  <section class="rcta js-reveal">
-    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor" style="color:#0a0a0a"><use href="#ew-mark"/></svg>
-    <h2>Don't see your role here? <span class="gold">We'd still love to hear from you.</span></h2>
-    <p>Wine. Technology. Hospitality. If that intersection excites you and you think you have something to contribute — get in touch and tell us about yourself.</p>
-    <div class="rcta__cta">
-      <a class="btn btn--dark" href="mailto:taste@entwine.club">Send us a note <span class="arrow">→</span></a>
-      <div class="rcta__links"><a href="/about">Learn about Entwine <span>→</span></a></div>
-    </div>
+
+  <!-- ============ CTA (image) ============ -->
+  <section class="wa-cta js-reveal">
+    <div class="wa-cta__bg"><img class="imgph" alt="" data-img="tool-audit-cta" data-kw="wine,list,restaurant,dark" data-w="1920" data-h="900" /></div>
+    <h2>Ready to upgrade your <span class="wa-gold">dining experience?</span></h2>
+    <p>Join thousands of modern restaurants already saving on printing costs and providing a superior ordering experience with our free MenuQR tool.</p>
+    <a class="btn btn--gold" href="#">Create your free QR menu <span class="arrow">→</span></a>
+    <span class="micro">No credit card required. Setup takes less than 2 minutes.</span>
   </section>
+
 
 <footer class="footer">
     <div class="footer__top">
@@ -255,6 +341,7 @@
     blocks.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
 
 <!-- preloader -->
 <script is:inline>

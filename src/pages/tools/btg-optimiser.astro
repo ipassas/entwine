@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careers at Entwine — Wine. Technology. Hospitality.</title>
-  <meta name="description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
-  <meta property="og:title" content="Careers at Entwine — Wine. Technology. Hospitality." />
-  <meta property="og:description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
+  <title>BTG Optimiser — Entwine Free Tools</title>
+  <meta name="description" content="Find out which wines from your list should be offered by the glass — based on how well they pair with your food menu and consumption popularity." />
+  <meta property="og:title" content="BTG Optimiser — Entwine Free Tools" />
+  <meta property="og:description" content="Find out which wines from your list should be offered by the glass — based on how well they pair with your food menu and consumption popularity." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <link rel="stylesheet" href="/styles.css" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -15,6 +15,64 @@
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
+  </style>
+  <style is:inline id="bo-style">
+
+  /* ===== BTG OPTIMISER — page-scoped (bo-*) ===== */
+  .bo-gold{color:var(--gold)}
+  .bo-back{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
+  .bo-back:hover{color:var(--gold)}
+  .bo-back iconify-icon{font-size:15px}
+  /* dark split hero w/ browser mock */
+  .bo-hero{position:relative;isolation:isolate;background:#070707;color:#fff;overflow:hidden;padding:clamp(120px,13vw,180px) var(--gutter) clamp(64px,8vw,110px)}
+  .bo-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(50% 60% at 18% 10%,rgba(184,168,106,.16),transparent 60%)}
+  .bo-hero__grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,72px);align-items:center}
+  .bo-hero .tag{display:inline-flex;margin-top:26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,168,106,.5);border-radius:999px;padding:7px 14px}
+  .bo-hero h1{margin:20px 0 0;font-family:var(--display);font-weight:200;font-size:clamp(40px,5.4vw,84px);line-height:.98;letter-spacing:-.035em}
+  .bo-hero p{margin:22px 0 0;max-width:52ch;font-size:clamp(16px,1.15vw,18px);line-height:1.65;color:rgba(255,255,255,.72)}
+  .bo-hero__cta{margin-top:30px;display:flex;align-items:center;flex-wrap:wrap;gap:18px}
+  .bo-hero .micro{font-size:13px;color:rgba(255,255,255,.5)}
+  /* browser frame */
+  .bo-browser{border:1px solid rgba(255,255,255,.14);border-radius:14px;overflow:hidden;background:#101010;box-shadow:0 48px 90px rgba(0,0,0,.5)}
+  .bo-browser__bar{display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1);background:#161616}
+  .bo-browser__dots{display:flex;gap:6px}
+  .bo-browser__dots i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)}
+  .bo-browser__url{flex:1;font-size:12px;letter-spacing:.03em;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border-radius:999px;padding:7px 16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .bo-browser__view{aspect-ratio:16/10;background:#0c0c0c}
+  .bo-browser__view img{width:100%;height:100%;object-fit:cover;display:block}
+  /* vertical timeline */
+  .bo-how{background:var(--paper,#faf8f4);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .bo-head{max-width:760px;margin:0 auto clamp(36px,4.5vw,60px);text-align:center}
+  .bo-head h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.3vw,54px);line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
+  .bo-head p{margin:14px auto 0;max-width:560px;font-size:16px;line-height:1.6;color:var(--gray-2)}
+  .bo-tl{max-width:820px;margin:0 auto;position:relative}
+  .bo-tl::before{content:"";position:absolute;left:39px;top:10px;bottom:10px;border-left:1px dashed rgba(184,168,106,.55)}
+  .bo-tl__row{position:relative;display:grid;grid-template-columns:80px 1fr;gap:clamp(20px,3vw,40px);padding:26px 0}
+  .bo-tl__n{position:relative;width:80px;height:80px;border-radius:50%;background:#fff;border:1px solid var(--gold);display:flex;align-items:center;justify-content:center;font-family:var(--display);font-weight:200;font-size:34px;color:var(--ink)}
+  .bo-tl__row h3{margin:8px 0 0;font-family:var(--display);font-weight:300;font-size:24px;letter-spacing:-.015em;color:var(--ink)}
+  .bo-tl__row p{margin:10px 0 0;max-width:56ch;font-size:15.5px;line-height:1.62;color:var(--gray-2)}
+  /* features noir grid */
+  .bo-feat{background:#0d0c0a;color:#fff;padding:var(--sec-y) var(--gutter)}
+  .bo-feat .bo-head h2{color:#fff}
+  .bo-feat .bo-head p{color:rgba(255,255,255,.66)}
+  .bo-grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .bo-card{border:1px solid rgba(255,255,255,.12);border-top:2px solid var(--gold);border-radius:var(--r-card);padding:30px 26px;background:rgba(255,255,255,.02);transition:transform .35s cubic-bezier(.16,.84,.44,1),border-color .35s,background .35s}
+  .bo-card:hover{transform:translateY(-4px);border-color:rgba(184,168,106,.5);background:rgba(184,168,106,.05)}
+  .bo-card iconify-icon{font-size:30px;color:var(--gold)}
+  .bo-card h3{margin:18px 0 0;font-family:var(--display);font-weight:300;font-size:20px;letter-spacing:-.01em}
+  .bo-card p{margin:10px 0 0;font-size:14.5px;line-height:1.62;color:rgba(255,255,255,.64)}
+  .bo-feat__more{text-align:center;margin-top:40px}
+  /* gold CTA band */
+  .bo-cta{background:var(--gold);color:var(--black);text-align:center;padding:var(--sec-y) var(--gutter);position:relative;overflow:hidden}
+  .bo-cta .mark{position:absolute;right:-2%;bottom:-30%;width:min(34vw,320px);color:rgba(0,0,0,.06)}
+  .bo-cta h2{margin:0 auto;max-width:18ch;font-family:var(--display);font-weight:300;font-size:clamp(30px,3.4vw,54px);line-height:1.05;letter-spacing:-.03em}
+  .bo-cta p{margin:16px auto 0;max-width:54ch;font-size:16.5px;line-height:1.6;color:rgba(0,0,0,.72)}
+  .bo-cta .btn{margin-top:28px;background:var(--ink);color:#fff}
+  .bo-cta .btn:hover{background:#000}
+  .bo-cta .micro{display:block;margin-top:14px;font-size:13px;color:rgba(0,0,0,.6)}
+  @media(max-width:980px){.bo-hero__grid{grid-template-columns:1fr}.bo-grid{grid-template-columns:1fr 1fr}}
+  @media(max-width:640px){.bo-grid{grid-template-columns:1fr}.bo-tl::before{left:31px}.bo-tl__n{width:64px;height:64px;font-size:28px}.bo-tl__row{grid-template-columns:64px 1fr}}
+
   </style>
 </head>
 <body>
@@ -88,40 +146,59 @@
     </div>
   </header>
 
-  <section class="hero hero--page">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-img="careers-hero" data-kw="team,restaurant,wine,people,dark" data-w="1920" data-h="1080"></div>
-    <div class="hero__inner">
-      <span class="eyebrow">Careers</span>
-      <h1>Small team. Big ambition. <span class="gold">Help us build the future of wine technology.</span></h1>
-      <p class="hero__sub">Entwine is a wine technology company at an exciting stage of growth. We're looking for people who care about wine, hospitality, and technology — and who are eager to help build something genuinely new.</p>
-      <div class="hero__badges"><a class="btn btn--gold" href="#roles">See open roles <span class="arrow">→</span></a></div>
+  <!-- ============ HERO (dark + browser mock) ============ -->
+  <section class="bo-hero js-reveal">
+    <div class="bo-hero__grid">
+      <div>
+        <a class="bo-back" href="/tools"><iconify-icon icon="ph:caret-left-thin"></iconify-icon> Back to All Tools</a>
+        <br /><span class="tag">100% Free Tool</span>
+        <h1>BTG <span class="bo-gold">Optimiser</span></h1>
+        <p>Find out which wines from your list should be offered by the glass — based on how well they pair with your food menu and consumption popularity.</p>
+        <div class="bo-hero__cta">
+          <a class="btn btn--gold" href="#">Start Free Now <span class="arrow">→</span></a>
+          <span class="micro">No credit card required.</span>
+        </div>
+      </div>
+      <div class="bo-browser">
+        <div class="bo-browser__bar"><span class="bo-browser__dots"><i></i><i></i><i></i></span><span class="bo-browser__url">dineconnect.com/your-restaurant/menu</span></div>
+        <div class="bo-browser__view"><img class="imgph" alt="" data-img="tool-btg-mock" data-kw="wine,glasses,bar,dark" data-w="1280" data-h="800" /></div>
+      </div>
     </div>
   </section>
-  <section class="r-sec tint js-reveal">
-    <div class="r-head"><h2>What it's like to be part of the Entwine team.</h2></div>
-    <div class="cardgrid cardgrid--3">
-      <div class="card"><div class="ic"><iconify-icon icon="ph:trend-up-thin"></iconify-icon></div><h3>Growing with the company</h3><p>Early team members grow with the business. The opportunity to shape how we scale — with employee share ownership for the right candidates.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div><h3>Wine + tech + hospitality</h3><p>A rare intersection of three genuinely interesting industries. Work with restaurants, sommeliers, and wine professionals on a product people love.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:users-three-thin"></iconify-icon></div><h3>Small team, big ambition</h3><p>Everyone has real ownership over their work. No layers — direct access to founders. Your contribution is visible from day one.</p></div>
+
+  <!-- ============ HOW (vertical timeline) ============ -->
+  <section class="bo-how js-reveal">
+    <div class="bo-head"><h2>How it <span class="bo-gold">works</span></h2><p>Go from a messy spreadsheet to a beautiful digital menu in three simple steps. No technical skills required.</p></div>
+    <div class="bo-tl">
+      <div class="bo-tl__row"><div class="bo-tl__n">1</div><div><h3>Upload or Enter Data</h3><p>Import your existing menu via CSV or quickly type in your items, descriptions, and prices using our fast-entry form.</p></div></div>
+      <div class="bo-tl__row"><div class="bo-tl__n">2</div><div><h3>Customize Design</h3><p>Choose from our library of beautiful, responsive templates. Add your logo, brand colors, and high-quality food photos.</p></div></div>
+      <div class="bo-tl__row"><div class="bo-tl__n">3</div><div><h3>Publish Instantly</h3><p>Generate a custom QR code for tables, or embed the menu directly on your website. Updates sync in real-time.</p></div></div>
     </div>
   </section>
-  <section class="r-sec cream js-reveal" id="roles">
-    <div class="r-head"><h2>We're building our team.</h2></div><p class="r-sub">These are the roles we're looking to fill.</p>
-    <div>
-      <div class="job"><div><div class="dept">Restaurant Operations</div><h3>Customer Success Specialist</h3><div class="loc">Malta · Full-time or part-time</div><p>You'll be the first point of contact for Entwine's restaurant clients — supporting onboarding, managing relationships, and making sure every restaurant gets the most out of the platform. Organised, personable, and comfortable with hospitality professionals.</p></div><span class="av open">Open</span></div>
-      <div class="job"><div><div class="dept">Sales &amp; Growth</div><h3>Club Growth Manager</h3><div class="loc">Malta-based · European travel · Full-time</div><p>You'll grow the Entwine club — bringing new restaurants onto the platform across Malta and into European markets. A relationship-led role for someone who knows hospitality and thrives in business development.</p></div><span class="av closed">Filled</span></div>
-      <div class="job"><div><div class="dept">Technology</div><h3>Full-Stack Developer</h3><div class="loc">Remote-friendly · Full-time</div><p>You'll work alongside our CTO to build and improve the full Entwine platform — the consumer app, the restaurant IMS, and our suite of professional wine tools. Comfortable across the full stack; AI/ML experience a bonus.</p></div><span class="av open">Open</span></div>
+
+  <!-- ============ FEATURES (noir grid) ============ -->
+  <section class="bo-feat js-reveal" id="features">
+    <div class="bo-head"><h2>Everything you need, <span class="bo-gold">nothing you don't.</span></h2><p>MenuBuilder Pro comes packed with powerful features designed specifically for the fast-paced restaurant environment, entirely for free.</p></div>
+    <div class="bo-grid">
+      <div class="bo-card"><iconify-icon icon="ph:device-mobile-thin"></iconify-icon><h3>Mobile-Optimized Viewing</h3><p>Menus automatically format to look stunning on any device, ensuring your customers have a perfect browsing experience whether on a phone or desktop.</p></div>
+      <div class="bo-card"><iconify-icon icon="ph:lightning-thin"></iconify-icon><h3>Real-Time Updates</h3><p>Sold out of a special? Change prices or hide items instantly across all your digital touchpoints with a single click. No more reprints.</p></div>
+      <div class="bo-card"><iconify-icon icon="ph:qr-code-thin"></iconify-icon><h3>Unlimited QR Codes</h3><p>Generate clean, branded QR codes for tables, takeout bags, or windows. Link directly to your entire menu or specific categories.</p></div>
+      <div class="bo-card"><iconify-icon icon="ph:squares-four-thin"></iconify-icon><h3>Category &amp; Label Management</h3><p>Organize seamlessly. Add clear labels for Vegan, Gluten-Free, Spicy, or Popular items to help customers order faster.</p></div>
+      <div class="bo-card"><iconify-icon icon="ph:globe-thin"></iconify-icon><h3>Website Integration</h3><p>Easily embed your fully functioning menu directly into your existing website with a simple copy-paste snippet. Keeps visitors on your site.</p></div>
+      <div class="bo-card"><iconify-icon icon="ph:shield-check-thin"></iconify-icon><h3>Cloud-Backed Reliability</h3><p>Your data is securely stored and backed up daily. Never lose a menu version again, with 99.9% guaranteed uptime.</p></div>
     </div>
+    <div class="bo-feat__more"><a class="btn btn--outline-light" href="/tools">View full feature list <span class="arrow">→</span></a></div>
   </section>
-  <section class="rcta js-reveal">
-    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor" style="color:#0a0a0a"><use href="#ew-mark"/></svg>
-    <h2>Don't see your role here? <span class="gold">We'd still love to hear from you.</span></h2>
-    <p>Wine. Technology. Hospitality. If that intersection excites you and you think you have something to contribute — get in touch and tell us about yourself.</p>
-    <div class="rcta__cta">
-      <a class="btn btn--dark" href="mailto:taste@entwine.club">Send us a note <span class="arrow">→</span></a>
-      <div class="rcta__links"><a href="/about">Learn about Entwine <span>→</span></a></div>
-    </div>
+
+  <!-- ============ CTA (gold band) ============ -->
+  <section class="bo-cta js-reveal">
+    <svg class="mark" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+    <h2>Ready to modernize your menu?</h2>
+    <p>Join thousands of restaurants saving time and increasing sales with DineConnect's free MenuBuilder Pro.</p>
+    <a class="btn" href="#">Start Using For Free <span class="arrow">→</span></a>
+    <span class="micro">Setup takes less than 5 minutes.</span>
   </section>
+
 
 <footer class="footer">
     <div class="footer__top">
@@ -255,6 +332,7 @@
     blocks.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
 
 <!-- preloader -->
 <script is:inline>

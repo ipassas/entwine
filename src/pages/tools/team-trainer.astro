@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careers at Entwine — Wine. Technology. Hospitality.</title>
-  <meta name="description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
-  <meta property="og:title" content="Careers at Entwine — Wine. Technology. Hospitality." />
-  <meta property="og:description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
+  <title>Team Wine Trainer — Entwine Tools</title>
+  <meta name="description" content="Upload your wine list — Entwine generates a set of study cards for your front-of-house team to learn about every wine they're serving." />
+  <meta property="og:title" content="Team Wine Trainer — Entwine Tools" />
+  <meta property="og:description" content="Upload your wine list — Entwine generates a set of study cards for your front-of-house team to learn about every wine they're serving." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <link rel="stylesheet" href="/styles.css" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -15,6 +15,73 @@
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
+  </style>
+  <style is:inline id="tt-style">
+
+  /* ===== TEAM WINE TRAINER — page-scoped (tt-*) — freemium / purple accent ===== */
+  .tt-gold{color:var(--gold)}
+  .tt-back{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
+  .tt-back:hover{color:var(--gold)}
+  .tt-back iconify-icon{font-size:15px}
+  /* ink split hero w/ study cards */
+  .tt-hero{position:relative;isolation:isolate;background:var(--ink);color:#fff;overflow:hidden;padding:clamp(120px,13vw,180px) var(--gutter) clamp(64px,8vw,110px)}
+  .tt-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(46% 56% at 84% 18%,rgba(126,84,241,.16),transparent 62%)}
+  .tt-hero__grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,80px);align-items:center}
+  .tt-hero .tag{display:inline-flex;margin-top:26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a888f5;border:1px solid rgba(126,84,241,.5);border-radius:999px;padding:7px 14px}
+  .tt-hero h1{margin:20px 0 0;font-family:var(--display);font-weight:200;font-size:clamp(40px,5.2vw,82px);line-height:.98;letter-spacing:-.035em}
+  .tt-hero p{margin:22px 0 0;max-width:50ch;font-size:clamp(16px,1.15vw,18px);line-height:1.65;color:rgba(255,255,255,.72)}
+  .tt-hero__cta{margin-top:30px;display:flex;flex-wrap:wrap;gap:14px}
+  .tt-hero__micro{margin-top:22px;display:flex;flex-wrap:wrap;gap:22px}
+  .tt-hero__micro span{display:inline-flex;align-items:center;gap:8px;font-size:13.5px;color:rgba(255,255,255,.6)}
+  .tt-hero__micro iconify-icon{font-size:17px;color:var(--gold)}
+  /* study cards */
+  .tt-cards{position:relative;min-height:380px}
+  .tt-scard{position:absolute;width:72%;aspect-ratio:3/4;border-radius:18px;overflow:hidden;border:1px solid rgba(255,255,255,.16);box-shadow:0 40px 80px rgba(0,0,0,.45);background:#16130e}
+  .tt-scard img{width:100%;height:100%;object-fit:cover;display:block;opacity:.85}
+  .tt-scard--b{right:0;top:0;transform:rotate(5deg)}
+  .tt-scard--a{left:0;bottom:0;transform:rotate(-4deg);z-index:1}
+  .tt-scard .bar{position:absolute;left:0;right:0;bottom:0;height:34%;background:linear-gradient(180deg,transparent,rgba(10,10,10,.92) 58%);display:flex;align-items:flex-end;padding:18px}
+  .tt-scard .bar i{display:block;height:5px;border-radius:999px;background:rgba(184,168,106,.85);width:56%}
+  .tt-scard--b .bar i{width:38%;background:rgba(126,84,241,.8)}
+  /* how */
+  .tt-how{background:#fff;border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .tt-head{max-width:760px;margin:0 auto clamp(36px,4.5vw,60px);text-align:center}
+  .tt-head h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.3vw,54px);line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
+  .tt-head p{margin:14px auto 0;max-width:580px;font-size:16px;line-height:1.6;color:var(--gray-2)}
+  .tt-steps{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,44px)}
+  .tt-step{padding:30px 26px;border-left:2px solid rgba(126,84,241,.45)}
+  .tt-step iconify-icon{font-size:30px;color:var(--purple,#7e54f1)}
+  .tt-step h3{margin:16px 0 0;font-family:var(--display);font-weight:300;font-size:21px;letter-spacing:-.01em;color:var(--ink)}
+  .tt-step p{margin:11px 0 0;font-size:14.5px;line-height:1.62;color:var(--gray-2)}
+  /* features tint grid */
+  .tt-feat{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .tt-grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .tt-card{background:#fff;border:1px solid var(--line-light);border-radius:var(--r-card);padding:30px 28px;transition:transform .35s cubic-bezier(.16,.84,.44,1),box-shadow .35s}
+  .tt-card:hover{transform:translateY(-4px);box-shadow:var(--sh-soft,0 18px 50px rgba(20,16,10,.08))}
+  .tt-card h3{margin:0;font-family:var(--display);font-weight:400;font-size:18.5px;letter-spacing:-.01em;color:var(--ink)}
+  .tt-card h3::before{content:"";display:block;width:34px;height:2px;background:var(--gold);margin-bottom:16px}
+  .tt-card p{margin:10px 0 0;font-size:14.5px;line-height:1.6;color:var(--gray-2)}
+  /* pricing dark */
+  .tt-pricing{background:#0d0c0a;color:#fff;padding:var(--sec-y) var(--gutter)}
+  .tt-pricing .tt-head h2{color:#fff}
+  .tt-pricing .tt-head p{color:rgba(255,255,255,.66)}
+  .tt-plans{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  .tt-plan{position:relative;border:1px solid rgba(255,255,255,.15);border-radius:var(--r-card);padding:38px 34px;background:rgba(255,255,255,.02)}
+  .tt-plan--pro{border-color:rgba(184,168,106,.55);background:linear-gradient(170deg,rgba(184,168,106,.08),rgba(255,255,255,.02))}
+  .tt-plan .rib{position:absolute;top:-13px;right:24px;background:var(--gold);color:var(--ink);font-size:10px;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;padding:6px 14px;font-weight:600}
+  .tt-plan h3{margin:0;font-family:var(--display);font-weight:300;font-size:24px;letter-spacing:-.01em}
+  .tt-plan .pd{margin:8px 0 0;font-size:14px;color:rgba(255,255,255,.6)}
+  .tt-plan .pr{margin:22px 0 0;font-family:var(--display);font-weight:200;font-size:44px;letter-spacing:-.02em}
+  .tt-plan .pr small{font-size:14px;letter-spacing:.02em;color:rgba(255,255,255,.55)}
+  .tt-plan .plus{margin:24px 0 0;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+  .tt-plan ul{list-style:none;margin:16px 0 0;padding:16px 0 0;border-top:1px solid rgba(255,255,255,.14);display:grid;gap:13px}
+  .tt-plan li{display:flex;align-items:flex-start;gap:11px;font-size:14.5px;color:rgba(255,255,255,.78)}
+  .tt-plan li iconify-icon{flex:none;font-size:19px;color:var(--gold);margin-top:1px}
+  .tt-plan .btn{margin-top:28px;width:100%;justify-content:center}
+  .tt-plan--basic .btn{background:transparent;color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.25);pointer-events:none}
+  @media(max-width:980px){.tt-hero__grid{grid-template-columns:1fr}.tt-cards{min-height:320px;max-width:420px}.tt-steps{grid-template-columns:1fr}.tt-grid{grid-template-columns:1fr 1fr}.tt-plans{grid-template-columns:1fr}}
+  @media(max-width:640px){.tt-grid{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body>
@@ -88,40 +155,87 @@
     </div>
   </header>
 
-  <section class="hero hero--page">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-img="careers-hero" data-kw="team,restaurant,wine,people,dark" data-w="1920" data-h="1080"></div>
-    <div class="hero__inner">
-      <span class="eyebrow">Careers</span>
-      <h1>Small team. Big ambition. <span class="gold">Help us build the future of wine technology.</span></h1>
-      <p class="hero__sub">Entwine is a wine technology company at an exciting stage of growth. We're looking for people who care about wine, hospitality, and technology — and who are eager to help build something genuinely new.</p>
-      <div class="hero__badges"><a class="btn btn--gold" href="#roles">See open roles <span class="arrow">→</span></a></div>
+  <!-- ============ HERO (study cards) ============ -->
+  <section class="tt-hero js-reveal">
+    <div class="tt-hero__grid">
+      <div>
+        <a class="tt-back" href="/tools"><iconify-icon icon="ph:caret-left-thin"></iconify-icon> Back to All Tools</a>
+        <br /><span class="tag">Freemium Tool</span>
+        <h1>Team Wine <span class="tt-gold">Trainer</span></h1>
+        <p>Upload your wine list — Entwine generates a set of study cards for your front-of-house team to learn about every wine they're serving.</p>
+        <div class="tt-hero__cta">
+          <a class="btn btn--gold" href="#">Start for Free</a>
+          <a class="btn btn--outline-light" href="#premium">View Premium Features <span class="arrow">→</span></a>
+        </div>
+        <div class="tt-hero__micro">
+          <span><iconify-icon icon="ph:check-circle-thin"></iconify-icon> No credit card required</span>
+          <span><iconify-icon icon="ph:check-circle-thin"></iconify-icon> Setup in 5 minutes</span>
+        </div>
+      </div>
+      <div class="tt-cards" aria-hidden="true">
+        <div class="tt-scard tt-scard--b"><img class="imgph" alt="" data-img="tool-trainer-card2" data-kw="vineyard,wine,grapes" data-w="720" data-h="960" /><span class="bar"><i></i></span></div>
+        <div class="tt-scard tt-scard--a"><img class="imgph" alt="" data-img="tool-trainer-card1" data-kw="wine,bottle,label,dark" data-w="720" data-h="960" /><span class="bar"><i></i></span></div>
+      </div>
     </div>
   </section>
-  <section class="r-sec tint js-reveal">
-    <div class="r-head"><h2>What it's like to be part of the Entwine team.</h2></div>
-    <div class="cardgrid cardgrid--3">
-      <div class="card"><div class="ic"><iconify-icon icon="ph:trend-up-thin"></iconify-icon></div><h3>Growing with the company</h3><p>Early team members grow with the business. The opportunity to shape how we scale — with employee share ownership for the right candidates.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div><h3>Wine + tech + hospitality</h3><p>A rare intersection of three genuinely interesting industries. Work with restaurants, sommeliers, and wine professionals on a product people love.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:users-three-thin"></iconify-icon></div><h3>Small team, big ambition</h3><p>Everyone has real ownership over their work. No layers — direct access to founders. Your contribution is visible from day one.</p></div>
+
+  <!-- ============ HOW ============ -->
+  <section class="tt-how js-reveal">
+    <div class="tt-head"><h2>How DineAnalytics <span class="tt-gold">Works</span></h2><p>A simple three-step process to transform your restaurant's data into your most powerful asset.</p></div>
+    <div class="tt-steps">
+      <div class="tt-step"><iconify-icon icon="ph:lightning-thin"></iconify-icon><h3>1. Connect Your POS</h3><p>Seamlessly integrate DineAnalytics with your existing Point of Sale system in just a few clicks. We support all major providers.</p></div>
+      <div class="tt-step"><iconify-icon icon="ph:chart-bar-thin"></iconify-icon><h3>2. Analyze Trends</h3><p>Watch as your raw data is instantly transformed into intuitive, easy-to-read dashboards highlighting key performance indicators.</p></div>
+      <div class="tt-step"><iconify-icon icon="ph:trend-up-thin"></iconify-icon><h3>3. Grow Revenue</h3><p>Make confident, data-backed decisions to adjust your menu, staffing, and promotions, directly increasing your bottom line.</p></div>
     </div>
   </section>
-  <section class="r-sec cream js-reveal" id="roles">
-    <div class="r-head"><h2>We're building our team.</h2></div><p class="r-sub">These are the roles we're looking to fill.</p>
-    <div>
-      <div class="job"><div><div class="dept">Restaurant Operations</div><h3>Customer Success Specialist</h3><div class="loc">Malta · Full-time or part-time</div><p>You'll be the first point of contact for Entwine's restaurant clients — supporting onboarding, managing relationships, and making sure every restaurant gets the most out of the platform. Organised, personable, and comfortable with hospitality professionals.</p></div><span class="av open">Open</span></div>
-      <div class="job"><div><div class="dept">Sales &amp; Growth</div><h3>Club Growth Manager</h3><div class="loc">Malta-based · European travel · Full-time</div><p>You'll grow the Entwine club — bringing new restaurants onto the platform across Malta and into European markets. A relationship-led role for someone who knows hospitality and thrives in business development.</p></div><span class="av closed">Filled</span></div>
-      <div class="job"><div><div class="dept">Technology</div><h3>Full-Stack Developer</h3><div class="loc">Remote-friendly · Full-time</div><p>You'll work alongside our CTO to build and improve the full Entwine platform — the consumer app, the restaurant IMS, and our suite of professional wine tools. Comfortable across the full stack; AI/ML experience a bonus.</p></div><span class="av open">Open</span></div>
+
+  <!-- ============ FEATURES ============ -->
+  <section class="tt-feat js-reveal">
+    <div class="tt-head"><h2>Everything you need to <span class="tt-gold">run smarter.</span></h2><p>Comprehensive tools designed specifically for the unique challenges of the restaurant industry.</p></div>
+    <div class="tt-grid">
+      <div class="tt-card"><h3>Sales Heatmaps</h3><p>Visualize your busiest hours and days. Optimize staffing levels to ensure excellent service without overspending on labor.</p></div>
+      <div class="tt-card"><h3>Menu Engineering</h3><p>Identify your stars (high profit, high popularity) and dogs. Make data-driven decisions on pricing and menu placement.</p></div>
+      <div class="tt-card"><h3>Customer Retention</h3><p>Track repeat customer rates. Understand which promotions bring diners back and calculate their lifetime value.</p></div>
+      <div class="tt-card"><h3>Real-time Alerts</h3><p>Get notified instantly of unusual activity, such as void spikes, uncharacteristically low sales, or inventory shortages.</p></div>
+      <div class="tt-card"><h3>Loss Prevention</h3><p>Identify suspicious transaction patterns and track individual server performance to minimize shrinkage and errors.</p></div>
+      <div class="tt-card"><h3>Custom Reporting</h3><p>Build and schedule automated reports tailored to your specific needs. Deliver key insights straight to your inbox daily.</p></div>
     </div>
   </section>
-  <section class="rcta js-reveal">
-    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor" style="color:#0a0a0a"><use href="#ew-mark"/></svg>
-    <h2>Don't see your role here? <span class="gold">We'd still love to hear from you.</span></h2>
-    <p>Wine. Technology. Hospitality. If that intersection excites you and you think you have something to contribute — get in touch and tell us about yourself.</p>
-    <div class="rcta__cta">
-      <a class="btn btn--dark" href="mailto:taste@entwine.club">Send us a note <span class="arrow">→</span></a>
-      <div class="rcta__links"><a href="/about">Learn about Entwine <span>→</span></a></div>
+
+  <!-- ============ PRICING (dark) ============ -->
+  <section class="tt-pricing js-reveal" id="premium">
+    <div class="tt-head"><h2>Start free, <span class="tt-gold">upgrade for power.</span></h2><p>DineAnalytics offers a generous free tier to get you started. When you're ready for deeper insights and custom tools, our Premium upgrade is a click away.</p></div>
+    <div class="tt-plans">
+      <div class="tt-plan tt-plan--basic">
+        <h3>Basic Analytics</h3>
+        <p class="pd">Perfect for independent operators getting started with data.</p>
+        <div class="pr">$0 <small>/ forever</small></div>
+        <ul>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Daily sales summaries</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>7-day historical data retention</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Top 10 menu items tracking</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Standard email support</li>
+        </ul>
+        <a class="btn" href="#" aria-disabled="true">Current Plan</a>
+      </div>
+      <div class="tt-plan tt-plan--pro">
+        <span class="rib">Recommended</span>
+        <h3>Pro Analytics</h3>
+        <p class="pd">For growing restaurants needing deep operational insights.</p>
+        <div class="pr">$49 <small>/ month per location</small></div>
+        <div class="plus">Everything in Basic, plus:</div>
+        <ul>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Unlimited historical data retention</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Advanced sales &amp; labor heatmaps</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Full menu engineering metrics</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Custom automated reporting</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Priority 24/7 phone &amp; chat support</li>
+        </ul>
+        <a class="btn btn--gold" href="#">Upgrade to Premium <span class="arrow">→</span></a>
+      </div>
     </div>
   </section>
+
 
 <footer class="footer">
     <div class="footer__top">
@@ -255,6 +369,7 @@
     blocks.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
 
 <!-- preloader -->
 <script is:inline>
