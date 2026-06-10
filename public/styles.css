@@ -825,6 +825,10 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   padding-bottom: 44px;
   border-bottom: 1px solid var(--line-light);
 }
+.footer__contactinfo { margin-top: 24px; display: grid; gap: 5px; font-size: 13.5px; line-height: 1.6; color: var(--gray-2); }
+.footer__contactinfo a { color: var(--gray-3); text-decoration: none; width: fit-content; }
+.footer__contactinfo a:hover { color: var(--gold); }
+.footer__contactinfo span { margin-top: 4px; }
 .footer__social { display: flex; gap: 12px; margin-top: 24px; }
 .footer__social a { width: 38px; height: 38px; border: 1px solid var(--line-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gray-3); transition: color .2s ease, border-color .2s ease, transform .2s ease; }
 .footer__social a:hover { color: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
@@ -938,10 +942,11 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   .zaar-card, .partners__card { padding: 26px 22px; }
   .eco-card, .fcard { padding-left: 26px; padding-right: 26px; }
 }
-/* tiny phones */
+/* tiny phones — keep the "Download on the / Get it on" label visible, just smaller */
 @media (max-width: 430px) {
-  .badge .badge-top { display: none; }
-  .badge { height: 50px; }
+  .badge { height: 52px; gap: 8px; }
+  .badge svg { width: 22px; height: 22px; }
+  .badge .badge-top { font-size: 8.5px; letter-spacing: 0.1em; }
   .badge .badge-main { font-size: 14px; }
 }
 
