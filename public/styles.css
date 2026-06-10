@@ -1258,6 +1258,14 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 
 /* pricing */
 .ptable { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; align-items:stretch; }
+/* below desktop the plans become a swipeable snap slider (next card peeks in) */
+@media (max-width: 1024px) {
+  .ptable { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:16px;
+    margin-inline:calc(-1 * var(--pad)); padding:6px var(--pad) 22px;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .ptable::-webkit-scrollbar { display:none; }
+  .ptable .plan { flex:0 0 min(78vw, 320px); scroll-snap-align:center; }
+}
 .plan { background:var(--white); border:1px solid var(--line-light); border-radius:var(--r-card); padding:30px; display:flex; flex-direction:column; box-shadow:0 18px 50px rgba(20,16,10,.05); }
 .plan--featured { border-color:var(--gold); box-shadow:0 24px 60px rgba(184,168,106,.2); position:relative; }
 .plan--featured::before { content:"Most popular"; position:absolute; top:-11px; left:30px; background:var(--gold); color:#fff; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:4px 12px; border-radius:999px; }
