@@ -1,0 +1,1430 @@
+<!DOCTYPE html><html lang="en"> <head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Entwine — Your own sommelier. At every table.</title><meta name="description" content="Entwine is a single intelligence layer that sits between the menu, the cellar and the diner — pairing what's on the list to what's on the plate, at every table where wine is taken seriously."><link rel="icon" type="image/svg+xml" href="https://ipassas.github.io/entwine/assets/favicon.svg"><style>
+/* ============================================================
+   Entwine — Home
+   Design tokens & styles translated 1:1 from the Figma comp
+   (file: Entwine Website / Home, node 8:1788)
+   ============================================================ */
+
+/* ---- Fonts ----
+   Outfit only, self-hosted from /assets. */
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:100; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-Thin.ttf") format("truetype"); }
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:200; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-ExtraLight.ttf") format("truetype"); }
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:300; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-Light.ttf") format("truetype"); }
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:400; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-Regular.ttf") format("truetype"); }
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:500; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-Medium.ttf") format("truetype"); }
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:600; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-SemiBold.ttf") format("truetype"); }
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:700; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-Bold.ttf") format("truetype"); }
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:800; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-ExtraBold.ttf") format("truetype"); }
+@font-face { font-family:"Outfit"; font-style:normal; font-weight:900; font-display:swap; src:url("https://ipassas.github.io/entwine/assets/Outfit-Black.ttf") format("truetype"); }
+
+/* ---- Design tokens ---- */
+:root {
+  --gold: #b8a86a;
+  --ink: #0a0a0a;
+  --black: #000000;
+  --white: #ffffff;
+  --green: #46ba64;
+  --gray-1: #8a8a8a;
+  --gray-2: #6b6b6b;
+  --gray-3: #4a4a4a;
+  --line-dark: rgba(255, 255, 255, 0.14);
+  --line-light: rgba(0, 0, 0, 0.12);
+
+  --bg-eco: #f8f8f8;
+  --bg-zaar: #e9eaec;
+  --bg-footer: #f1f2f4;
+
+  /* ONE shared grid — every section's content aligns to the same column.
+     Background stays full-bleed; content is capped at --content and centred. */
+  --content: 1400px;
+  --gutter: max(24px, 5vw, calc((100% - var(--content)) / 2));
+  --pad-wide: var(--gutter);
+  --pad: var(--gutter);
+  /* vertical breathing between sections */
+  --sec-y: clamp(84px, 8.5vw, 152px);
+
+  --display: "Outfit", system-ui, sans-serif;
+  --sans: "Outfit", system-ui, -apple-system, sans-serif;
+  --mono: "Outfit", system-ui, sans-serif;
+
+  --r-card: 12px;
+  --r-pill: 999px;
+  --nav-h: 80px;
+}
+
+/* ---- Reset ---- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: var(--sans);
+  color: var(--ink);
+  background: var(--white);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+img { display: block; max-width: 100%; }
+a { color: inherit; text-decoration: none; }
+p { margin: 0; }
+
+/* page stage — full width so every section background is full-bleed;
+   content inside each section is centred via the --pad / --pad-wide calc above */
+.stage { width: 100%; margin: 0; position: relative; overflow-x: clip; }
+
+/* ---- Scroll-reveal (added to sections by JS; no-JS shows everything) ---- */
+.reveal { opacity: 0; transform: translateY(26px); transition: opacity .8s cubic-bezier(.16,.84,.44,1), transform .8s cubic-bezier(.16,.84,.44,1); will-change: opacity, transform; }
+.reveal.in { opacity: 1; transform: none; }
+/* gentle stagger for grid children inside a revealed section */
+.reveal .tiles > *, .reveal .eco__grid > *, .reveal .cards__grid > *, .reveal .callouts__grid > *,
+.reveal .why-row, .reveal .footer__top > * {
+  opacity: 0; transform: translateY(18px);
+  transition: opacity .7s ease, transform .7s ease;
+}
+.reveal.in .tiles > *, .reveal.in .eco__grid > *, .reveal.in .cards__grid > *, .reveal.in .callouts__grid > *,
+.reveal.in .why-row, .reveal.in .footer__top > * { opacity: 1; transform: none; }
+.reveal.in .tiles > *:nth-child(2), .reveal.in .why-row:nth-child(2), .reveal.in .callouts__grid > *:nth-child(2) { transition-delay: .08s; }
+.reveal.in .tiles > *:nth-child(3), .reveal.in .why-row:nth-child(3), .reveal.in .callouts__grid > *:nth-child(3) { transition-delay: .16s; }
+.reveal.in .tiles > *:nth-child(4), .reveal.in .why-row:nth-child(4) { transition-delay: .24s; }
+.reveal.in .eco__grid > *:nth-child(2), .reveal.in .cards__grid > *:nth-child(2) { transition-delay: .1s; }
+.reveal.in .cards__grid > *:nth-child(3) { transition-delay: .2s; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .reveal * { opacity: 1 !important; transform: none !important; transition: none !important; }
+}
+
+/* ---- Shared bits ---- */
+.eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--gold);
+}
+.eyebrow--dark { color: var(--gray-1); }
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 23px;
+  border-radius: var(--r-pill);
+  border: 1px solid transparent;
+  font-family: inherit;
+  font-weight: 500;
+  font-size: 15px;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform .2s cubic-bezier(.16,.84,.44,1), box-shadow .25s ease,
+              background .2s ease, color .2s ease, border-color .2s ease, opacity .2s ease;
+}
+.btn .arrow { font-weight: 400; transition: transform .25s cubic-bezier(.16,.84,.44,1); }
+.btn:hover { transform: translateY(-2px); }
+.btn:hover .arrow { transform: translateX(4px); }
+.btn:active { transform: translateY(0) scale(.98); }
+.btn--gold { background: var(--gold); color: var(--white); }
+.btn--gold:hover { background: #c6b77c; box-shadow: 0 10px 24px rgba(184,168,106,.35); }
+.btn--white { background: var(--white); color: var(--ink); }
+.btn--white:hover { background: #efeae0; box-shadow: 0 10px 24px rgba(0,0,0,.18); }
+.btn--outline-dark { background: transparent; color: var(--ink); border-color: var(--line-light); }
+.btn--outline-dark:hover { background: var(--ink); color: var(--white); border-color: var(--ink); }
+.btn--outline-light { background: transparent; color: var(--white); border-color: rgba(255,255,255,0.4); }
+.btn--outline-light:hover { background: rgba(255,255,255,0.1); border-color: #fff; }
+.btn--upper { text-transform: uppercase; font-size: 11.5px; letter-spacing: 0.14em; padding: 15px 23px; }
+.btn[disabled], .btn.is-disabled { opacity: .45; pointer-events: none; }
+
+/* keyboard focus ring */
+a:focus-visible, button:focus-visible, .btn:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+/* app store / google play badge */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0 20px;
+  height: 61px;
+  border-radius: var(--r-pill);
+  background: var(--gold);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  color: var(--white);
+  text-align: left;
+  transition: transform .2s cubic-bezier(.16,.84,.44,1), box-shadow .25s ease, background .2s ease;
+}
+.badge > span { text-align: left; }
+.badge:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.25); }
+.badge:not(.badge--dark):hover { background: #c6b77c; }
+.badge--dark { background: var(--black); }
+.badge--dark:hover { background: #161616; }
+.badge svg { width: 26px; height: 26px; flex: none; }
+.badge .badge-top { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.85; white-space: nowrap; }
+.badge .badge-main { font-size: 16px; font-weight: 500; line-height: 1.1; white-space: nowrap; }
+
+/* ============================================================
+   NAV
+   ============================================================ */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 60;
+  height: var(--nav-h);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding-inline: var(--pad-wide);
+  background: rgba(0, 0, 0, 0.82);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+.brand {
+  display: inline-flex;
+  align-items: center;
+  color: var(--white);
+}
+.brand .logo { height: 24px; width: auto; display: block; transition: opacity .2s ease; }
+.brand:hover .logo { opacity: .8; }
+/* desktop: links pushed to the right, before the CTA */
+.nav-links {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  gap: 34px;
+}
+.nav-links a {
+  position: relative;
+  color: var(--white);
+  font-size: 16px;
+  opacity: 0.92;
+  transition: color .2s ease, opacity .2s ease;
+}
+.nav-links a::after {
+  content: "";
+  position: absolute; left: 0; right: 100%; bottom: -6px; height: 1px;
+  background: var(--gold); transition: right .28s cubic-bezier(.16,.84,.44,1);
+}
+.nav-links a:hover { opacity: 1; color: var(--gold); }
+.nav-links a:hover::after { right: 0; }
+.nav-links a.signin { font-weight: 600; }
+.nav-cta { color: var(--ink); }
+
+/* burger */
+.nav-toggle {
+  display: none; align-items: center; justify-content: center;
+  width: 44px; height: 44px; padding: 0; border: 0; background: transparent; cursor: pointer;
+}
+.nav-toggle .bars { position: relative; width: 24px; height: 14px; }
+.nav-toggle .bars span {
+  position: absolute; left: 0; width: 24px; height: 2px; border-radius: 2px; background: #fff;
+  transition: transform .3s ease, opacity .2s ease, top .3s ease, background .2s ease;
+}
+.nav-toggle .bars span:nth-child(1) { top: 0; }
+.nav-toggle .bars span:nth-child(2) { top: 6px; }
+.nav-toggle .bars span:nth-child(3) { top: 12px; }
+.nav-toggle[aria-expanded="true"] .bars span:nth-child(1) { top: 6px; transform: rotate(45deg); background: var(--gold); }
+.nav-toggle[aria-expanded="true"] .bars span:nth-child(2) { opacity: 0; }
+.nav-toggle[aria-expanded="true"] .bars span:nth-child(3) { top: 6px; transform: rotate(-45deg); background: var(--gold); }
+
+/* mobile dropdown */
+.mobile-menu {
+  position: absolute; top: 100%; left: 0; right: 0; z-index: 55;
+  background: rgba(8, 8, 8, 0.97); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line-dark);
+  padding: 8px var(--pad-wide) 26px;
+  display: flex; flex-direction: column;
+  opacity: 0; visibility: hidden; transform: translateY(-10px);
+  transition: opacity .25s ease, transform .25s ease, visibility .25s;
+}
+.mobile-menu.open { opacity: 1; visibility: visible; transform: none; }
+.mobile-menu a {
+  color: #fff; font-size: 18px; padding: 16px 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex; justify-content: space-between; align-items: center;
+  transition: color .2s ease;
+}
+.mobile-menu a::after { content: "→"; color: var(--gold); opacity: 0; transform: translateX(-6px); transition: .2s ease; }
+.mobile-menu a:hover, .mobile-menu a:focus-visible { color: var(--gold); }
+.mobile-menu a:hover::after { opacity: 1; transform: none; }
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero {
+  position: relative;
+  background: var(--black);
+  color: var(--white);
+  overflow: hidden;
+  /* pull the hero up so its image sits at the very top, behind the overlaid nav */
+  margin-top: calc(-1 * var(--nav-h));
+  padding: calc(var(--nav-h) + 72px) var(--pad-wide) 80px;
+}
+.hero__bg {
+  position: absolute;
+  inset: 0;
+  background: #050505 center/cover no-repeat;
+  pointer-events: none;
+}
+.hero__bg img {
+  position: absolute;
+  right: -8%;
+  top: 4%;
+  height: 96%;
+  width: auto;
+  object-fit: contain;
+  opacity: 0.95;
+}
+.hero__inner { position: relative; max-width: 920px; margin: 0 auto; text-align: center; }
+.hero h1 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(44px, 5vw, 96px);
+  line-height: 0.98;
+  letter-spacing: -0.01em;
+}
+.hero h1 .gold { color: var(--gold); display: block; }
+.hero__sub {
+  margin: 28px auto 0;
+  max-width: 860px;
+  font-size: clamp(17px, 1.3vw, 22px);
+  line-height: 1.55;
+  letter-spacing: -0.02em;
+  color: rgba(255, 255, 255, 0.92);
+}
+.hero__badges {
+  margin-top: 34px;
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  flex-wrap: nowrap;
+}
+
+/* audience tiles */
+.tiles {
+  position: relative;
+  margin-top: 80px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 21px;
+}
+.tile {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(19px);
+  -webkit-backdrop-filter: blur(19px);
+  border-left: 5px solid var(--gold);
+  border-radius: var(--r-card);
+  box-shadow: 15px 17px 22px rgba(0, 0, 0, 0.18);
+  padding: 35px 30px;
+  min-height: 311px;
+  display: flex;
+  flex-direction: column;
+}
+.tile:nth-child(1) { border-left-color: #7e54f1; }
+.tile:nth-child(2) { border-left-color: var(--gold); }
+.tile:nth-child(3) { border-left-color: #ffc101; }
+.tile:nth-child(4) { border-left-color: var(--green); }
+.tile h3 {
+  margin: 0 0 18px;
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: #f4f4f4;
+}
+.tile p {
+  font-size: 16px;
+  line-height: 1.56;
+  color: var(--white);
+  letter-spacing: -0.0125em;
+}
+.tile a {
+  margin-top: auto;
+  padding-top: 18px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.18);
+  color: var(--white);
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.tile a:hover { color: var(--gold); }
+.tile a span { display: inline-block; transition: transform .25s cubic-bezier(.16,.84,.44,1); }
+.tile a:hover span { transform: translateX(4px); }
+/* card hover states */
+.tile, .callout, .fcard, .eco-card { transition: transform .4s cubic-bezier(.16,.84,.44,1), box-shadow .4s ease; }
+.tile:hover { transform: translateY(-4px); box-shadow: 22px 24px 44px rgba(0,0,0,.32); }
+.callout:hover { transform: translateY(-4px); box-shadow: 16px 20px 40px rgba(0,0,0,.18); }
+.fcard:hover, .eco-card:hover { transform: translateY(-3px); }
+
+/* ============================================================
+   ONE ECOSYSTEM
+   ============================================================ */
+.eco {
+  background: var(--bg-eco);
+  border-bottom: 1px solid var(--line-light);
+  padding: var(--sec-y) var(--pad);
+  text-align: center;
+}
+.eco h2 {
+  margin: 0 auto;
+  max-width: 1000px;
+  font-family: var(--display);
+  font-weight: 300;
+  font-size: clamp(34px, 3.3vw, 64px);
+  line-height: 1.05;
+  color: var(--gold);
+  letter-spacing: -0.005em;
+}
+.eco h2 .ink { color: var(--ink); display: block; }
+.eco__lead {
+  margin: 24px auto 0;
+  max-width: 648px;
+  font-size: clamp(17px, 1.15vw, 22px);
+  line-height: 1.2;
+  color: var(--black);
+}
+.eco__grid {
+  margin-top: 56px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  text-align: left;
+}
+.eco-card {
+  position: relative;
+  border-radius: var(--r-card);
+  padding: 52px 40px 110px;
+  min-height: 495px;
+  border: 1px solid rgba(0, 0, 0, 0.07);
+}
+.eco-card--light { background: var(--white); }
+.eco-card--dark { background: var(--black); color: var(--white); border-color: transparent; }
+.eco-card .eyebrow { font-size: 18px; letter-spacing: 0.135em; }
+.eco-card--light .eyebrow { color: var(--gray-1); }
+.eco-card h3 {
+  margin: 22px 0 0;
+  font-weight: 400;
+  font-size: clamp(26px, 1.9vw, 36px);
+  line-height: 1.08;
+  letter-spacing: -0.022em;
+}
+.eco-card--light h3 { color: var(--black); }
+.eco-card p.body {
+  margin-top: 24px;
+  font-size: 16px;
+  line-height: 1.55;
+}
+.eco-card--light p.body { color: var(--gray-3); }
+.eco-card--dark p.body { color: rgba(255, 255, 255, 0.72); }
+.eco-card__cta {
+  position: absolute;
+  left: 40px;
+  bottom: 40px;
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+/* ============================================================
+   WHY CHOOSE (dark, image bg)
+   ============================================================ */
+.why {
+  position: relative;
+  background: #0c0b0a;
+  color: var(--white);
+  overflow: hidden;
+  padding: var(--sec-y) var(--pad-wide) clamp(300px, 32vw, 520px);
+}
+.why__bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.why__bg img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 0.5; }
+.why__bg::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(95deg, #000 14%, rgba(0,0,0,0) 152%);
+}
+.why__head {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 40px;
+  margin-bottom: 40px;
+}
+.why h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: clamp(48px, 5.4vw, 104px);
+  line-height: 0.96;
+  letter-spacing: -0.035em;
+}
+.why h2 .gold { color: var(--gold); display: block; }
+.why__note { max-width: 317px; font-size: 15px; line-height: 1.65; color: rgba(255,255,255,0.85); }
+
+.why__list { position: relative; border-bottom: 1px solid rgba(255,255,255,0.15); }
+.why-row {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 0.72fr) minmax(0, 1fr);
+  gap: 32px;
+  padding: 56px;
+  border-top: 1px solid var(--line-dark);
+}
+.why-row:first-child { border-top: 0; }
+.why-row__num {
+  font-weight: 400;
+  font-size: clamp(56px, 6.25vw, 120px);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  color: var(--gold);
+}
+.why-row:nth-child(2) .why-row__num,
+.why-row:nth-child(4) .why-row__num { color: var(--white); }
+.why-row__title {
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: clamp(26px, 2.1vw, 40px);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.why-row__title .gold { color: var(--gold); display: block; }
+.why-row__text { border-left: 1px solid var(--line-dark); padding-left: 25px; }
+.why-row__text .lead { font-size: 18px; line-height: 1.45; }
+.why-row__text .sub { margin-top: 13px; font-size: 15.5px; line-height: 1.7; color: rgba(255,255,255,0.82); }
+
+/* ============================================================
+   FEATURE CARDS (Yours / Free Tools / Primary Source)
+   ============================================================ */
+.cards {
+  padding: 0 var(--pad-wide) 100px;
+  margin-top: clamp(-420px, -24vw, -230px);
+  padding-bottom: var(--sec-y);
+  position: relative;
+  z-index: 2;
+}
+.cards__grid {
+  display: grid;
+  grid-template-columns: 1fr 1.12fr 1fr;
+  gap: 28px;
+  align-items: end;
+  padding-top: 70px;
+}
+.fcard {
+  position: relative;
+  border-radius: var(--r-card);
+  padding: 56px 36px 40px;
+  min-height: 460px;
+  box-shadow: 23px 27px 49px rgba(0, 0, 0, 0.22);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.fcard--light { background: var(--white); border: 1px solid rgba(0,0,0,0.07); }
+.fcard--dark { background: var(--black); color: var(--white); min-height: 509px; }
+.fcard__index {
+  position: absolute;
+  top: 18px;
+  right: 28px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  color: var(--gray-1);
+}
+.fcard--dark .fcard__index { color: var(--gold); }
+.fcard__index .dot { width: 6px; height: 6px; border-radius: 3px; background: var(--gold); }
+.fcard .kicker {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  line-height: 1.55;
+}
+.fcard--light .kicker { color: var(--gray-1); }
+.fcard--dark .kicker { color: var(--gold); }
+.fcard__display {
+  margin: 26px 0 0;
+  font-weight: 300;
+  font-family: var(--sans);
+  color: var(--gold);
+  line-height: 0.95;
+  letter-spacing: -0.04em;
+}
+.fcard--big .fcard__display { font-size: clamp(48px, 4.3vw, 70px); }
+.fcard--dark .fcard__display { color: var(--white); font-size: clamp(56px, 4.3vw, 82px); }
+.fcard--sm .fcard__display { font-size: clamp(34px, 2.5vw, 48px); }
+.fcard__lead {
+  margin-top: auto;
+  font-weight: 500;
+  font-size: 22px;
+  line-height: 1.25;
+  letter-spacing: -0.012em;
+  color: var(--black);
+}
+.fcard--dark .fcard__lead { color: var(--white); font-size: 26px; line-height: 1.25; }
+.fcard__foot { margin-top: 16px; font-size: 15.5px; color: rgba(255,255,255,0.72); }
+.fcard .btn { margin-top: 22px; align-self: flex-start; }
+
+/* ============================================================
+   APP DOWNLOAD
+   ============================================================ */
+.app {
+  background: var(--white);
+  padding: clamp(40px,4vw,72px) var(--pad-wide) var(--sec-y);
+}
+.app__grid {
+  display: grid;
+  grid-template-columns: 1fr 0.86fr;
+  gap: 56px;
+  align-items: center;
+}
+.app h2 {
+  margin: 0;
+  font-family: var(--display);
+  font-weight: 200;
+  font-size: clamp(40px, 3.6vw, 64px);
+  line-height: 1.08;
+  letter-spacing: -0.04em;
+  color: var(--ink);
+}
+.app h2 .gold { color: var(--gold); }
+.app__lead { margin-top: 22px; max-width: 666px; font-size: 16px; line-height: 1.7; color: var(--gray-2); }
+.app__stats {
+  margin-top: 36px;
+  display: grid;
+  grid-template-columns: repeat(2, max-content);
+  gap: 0;
+  border-top: 1px solid rgba(10, 10, 10, 0.14);
+}
+.app__stat { padding: 22px 36px 0 0; }
+.app__stat + .app__stat { border-left: 1px solid rgba(10, 10, 10, 0.14); padding-left: 36px; }
+.app__stat .label { font-size: 10.5px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gray-2); }
+.app__stat .value { margin-top: 8px; font-size: 38px; letter-spacing: -0.03em; color: var(--ink); }
+.app__stat .value .gold { color: var(--gold); }
+.app__stat .value .ink { color: var(--ink); }
+.app__badges { margin-top: 34px; display: flex; gap: 16px; flex-wrap: nowrap; }
+.app__visual {
+  background: var(--ink);
+  border-radius: 24px;
+  min-height: 560px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 56px;
+  position: relative;
+}
+.app__visual::before,
+.app__visual::after { content: ""; position: absolute; width: 18px; height: 18px; }
+.app__visual img { height: 100%; max-height: 597px; width: auto; border-radius: 8px; object-fit: cover; }
+
+/* ============================================================
+   CHANNEL PARTNERS (gold band)
+   ============================================================ */
+.partners {
+  position: relative;
+  background: var(--gold);
+  border-bottom: 1px solid var(--line-light);
+  overflow: hidden;
+  padding: var(--sec-y) var(--pad);
+}
+.partners__bg {
+  position: absolute; inset: 0; mix-blend-mode: screen; opacity: 0.5; pointer-events: none;
+}
+.partners__bg img { width: 100%; height: 100%; object-fit: cover; }
+.partners__grid {
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 44px;
+  align-items: center;
+}
+.partners__divider { width: 22px; height: 1px; background: rgba(0,0,0,0.6); margin-bottom: 22px; }
+.partners .eyebrow { color: var(--black); }
+.partners h2 {
+  margin: 18px 0 0;
+  font-weight: 400;
+  font-size: clamp(40px, 3.3vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  color: var(--black);
+}
+.partners h2 .white { color: var(--white); font-weight: 300; }
+.partners__card {
+  background: rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 36px;
+  color: var(--white);
+}
+.partners__card .quote { font-size: clamp(18px, 1.5vw, 24px); line-height: 1.33; }
+.partners__card .meta { margin-top: 26px; font-size: 16.5px; line-height: 1.55; color: var(--white); }
+.partners__card .meta .gold { color: var(--gold); font-weight: 300; }
+.partners__card .row {
+  margin-top: 24px;
+  padding-top: 22px;
+  border-top: 1px solid rgba(255,255,255,0.12);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+.partners__card .row .contact { font-size: 14px; }
+.partners__card .row .contact .gold { color: var(--gold); font-weight: 500; }
+.partners__card .row .pill {
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--r-pill);
+  padding: 11px 16px;
+  color: var(--gold);
+  font-size: 13px;
+  font-weight: 500;
+  display: inline-flex;
+  gap: 10px;
+}
+
+/* ============================================================
+   INVEST / ZAAR
+   ============================================================ */
+.zaar {
+  background: var(--bg-zaar);
+  border-bottom: 1px solid var(--line-light);
+  padding: var(--sec-y) var(--pad);
+}
+.zaar__grid {
+  display: grid;
+  grid-template-columns: 1fr 0.78fr;
+  gap: 60px;
+  align-items: center;
+}
+.zaar__divider { width: 22px; height: 1px; background: var(--gray-3); opacity: 0.6; margin-bottom: 22px; }
+.zaar .eyebrow { color: var(--gray-3); }
+.zaar h2 {
+  margin: 18px 0 0;
+  font-weight: 400;
+  font-size: clamp(40px, 3.3vw, 64px);
+  line-height: 1.05;
+  letter-spacing: -0.028em;
+  color: var(--black);
+}
+.zaar h2 .gold { color: var(--gold); font-weight: 300; display: block; }
+.zaar__body { margin-top: 22px; max-width: 560px; font-size: clamp(17px, 1.15vw, 22px); line-height: 1.2; color: var(--gray-3); }
+.zaar .btn { margin-top: 28px; }
+
+.zaar-card {
+  background: var(--white);
+  border: 1px solid var(--line-light);
+  border-radius: 10px;
+  box-shadow: 0 20px 30px rgba(120, 60, 20, 0.05);
+  padding: 33px 32px;
+}
+.zaar-card__top { display: flex; justify-content: space-between; align-items: flex-start; }
+.zaar-card__top .label { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--gray-1); }
+.zaar-card__top .sub { margin-top: 8px; font-size: 13px; color: var(--gray-3); }
+.zaar-card__live {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(47, 138, 74, 0.12);
+  color: var(--green);
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 4px;
+}
+.zaar-card__amount { margin-top: 34px; display: flex; align-items: baseline; gap: 12px; }
+.zaar-card__amount .big { font-size: clamp(40px, 4vw, 56px); letter-spacing: -0.03em; color: var(--black); }
+.zaar-card__amount .target { font-size: 13px; color: var(--gray-1); }
+.zaar-card__progress-meta {
+  margin-top: 22px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+}
+.zaar-card__progress-meta .committed { font-weight: 500; color: var(--black); }
+.zaar-card__progress-meta .committed span { font-weight: 400; color: var(--gray-3); }
+.zaar-card__progress-meta .pct { color: var(--gray-3); }
+.zaar-card__bar {
+  margin-top: 10px;
+  height: 8px;
+  border-radius: var(--r-pill);
+  background: rgba(20, 15, 10, 0.06);
+  overflow: hidden;
+}
+.zaar-card__bar i {
+  display: block;
+  height: 100%;
+  width: 32%;
+  border-radius: var(--r-pill);
+  background: linear-gradient(90deg, #c90e0a, var(--gold));
+}
+.zaar-card__foot {
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-light);
+  display: flex;
+  justify-content: space-between;
+  font-size: 13px;
+  color: var(--gray-3);
+}
+.zaar-card__foot b { color: var(--black); }
+
+/* ============================================================
+   PRODUCT CALLOUTS
+   ============================================================ */
+.callouts {
+  background: var(--white);
+  padding: var(--sec-y) var(--pad-wide);
+}
+.callouts__grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
+.callout {
+  background: var(--white);
+  border-left: 7px solid var(--gold);
+  border-radius: var(--r-card);
+  box-shadow: 16px 16px 33px rgba(0, 0, 0, 0.12);
+  padding: 38px 36px;
+  min-height: 309px;
+  display: flex;
+  flex-direction: column;
+}
+.callout:nth-child(1) { border-left-color: #7e54f1; }
+.callout:nth-child(2) { border-left-color: var(--gold); }
+.callout:nth-child(3) { border-left-color: var(--black); }
+.callout .kicker { font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.callout h3 {
+  margin: 16px 0 0;
+  font-weight: 200;
+  font-size: clamp(22px, 1.6vw, 28px);
+  line-height: 1.12;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+.callout p { margin-top: 14px; font-size: 15px; line-height: 1.6; color: var(--gray-2); }
+.callout__cta { margin-top: auto; padding-top: 22px; }
+.callout .badges-row { margin-top: auto; padding-top: 22px; display: flex; gap: 12px; flex-wrap: nowrap; }
+.callout .badge { height: 48px; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--bg-footer);
+  padding: 80px var(--pad) 0;
+}
+.footer__top {
+  display: grid;
+  grid-template-columns: 1.7fr 1fr 1fr 1fr;
+  gap: 40px;
+  padding-bottom: 44px;
+  border-bottom: 1px solid var(--line-light);
+}
+.footer__contactinfo { margin-top: 30px; display: grid; gap: 5px; font-size: 13.5px; line-height: 1.6; color: var(--gray-2); }
+.footer__contactinfo a { color: var(--gray-3); text-decoration: none; width: fit-content; }
+.footer__contactinfo a:hover { color: var(--gold); }
+.footer__contactinfo span { margin-top: 4px; }
+.footer__social { display: flex; gap: 12px; margin-top: 24px; }
+.footer__social a { width: 38px; height: 38px; border: 1px solid var(--line-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gray-3); transition: color .2s ease, border-color .2s ease, transform .2s ease; }
+.footer__social a:hover { color: var(--gold); border-color: var(--gold); transform: translateY(-2px); }
+.footer__social iconify-icon { font-size: 18px; }
+.footer__brand .brand { color: var(--ink); }
+.footer__brand .brand .logo { height: 30px; }
+.footer__brand p { margin-top: 22px; max-width: 387px; font-size: 16px; line-height: 1.45; color: var(--gray-3); }
+.footer__brand .badges-row { margin-top: 26px; display: flex; gap: 16px; flex-wrap: wrap; }
+.footer h4 {
+  margin: 0 0 18px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--gray-1);
+}
+.footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: 18px; }
+.footer ul a { font-size: 15px; color: var(--black); }
+.footer ul a:hover { color: var(--gold); }
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 28px 0 40px;
+  font-size: 13px;
+  color: var(--gray-1);
+}
+.footer__legal { display: flex; gap: 26px; flex-wrap: wrap; }
+.footer__legal a:hover { color: var(--gold); }
+
+/* dark closing bar */
+.footbar {
+  background: var(--ink);
+  display: grid;
+  grid-template-columns: 1fr 240px 1fr;
+  align-items: center;
+  border-top: 1px solid var(--ink);
+}
+.footbar__side { display: flex; align-items: center; gap: 16px; padding: 40px 48px; }
+.footbar__side--right { justify-content: flex-start; }
+.footbar__side--left { justify-content: flex-end; }
+.footbar__step { font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase; }
+.footbar__step b { color: var(--gold); font-weight: 500; }
+.footbar__step span { color: rgba(255, 255, 255, 0.55); }
+.footbar__center {
+  display: flex; align-items: center; justify-content: center;
+  align-self: stretch;
+  border-inline: 1px solid rgba(255,255,255,0.08);
+}
+.footbar__center svg { height: 46px; width: auto; display: block; }
+.footbar .btn--gold { color: var(--ink); }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+/* large laptops — shrink the shared grid a touch */
+@media (max-width: 1280px) {
+  :root { --content: 1120px; }
+}
+/* tablets / small laptops */
+@media (max-width: 1024px) {
+  .tiles { grid-template-columns: repeat(2, 1fr); gap: 18px; }
+  .eco__grid, .partners__grid, .zaar__grid, .cards__grid, .callouts__grid { grid-template-columns: 1fr; }
+  .cards { margin-top: 0; }
+  .why { padding-bottom: var(--sec-y); }
+  .app__grid { grid-template-columns: 1fr; }
+  .app__visual { min-height: 420px; order: -1; }
+  .why-row { grid-template-columns: 90px minmax(0, 1fr); }
+  .why-row__text { grid-column: 1 / -1; border-left: 0; padding-left: 0; border-top: 1px solid var(--line-dark); padding-top: 20px; }
+  .footer__top { grid-template-columns: 1fr 1fr; }
+  .footer__brand { grid-column: 1 / -1; }
+}
+/* phones — landscape / large */
+@media (max-width: 820px) {
+  /* logo left · compact Download + burger together on the right */
+  .nav { gap: 12px; }
+  .nav-links { display: none; }
+  .nav-cta { margin-left: auto; padding: 9px 15px; font-size: 12.5px; gap: 6px; }
+  .nav-toggle { display: inline-flex; }
+  .eco-card, .fcard, .callout, .tile { min-height: auto; }
+  .eco-card { padding-bottom: 40px; }
+  .eco-card__cta { position: static; margin-top: 28px; }
+  .tiles { margin-top: 48px; }
+  .footer__top { grid-template-columns: 1fr; }
+  .footbar { grid-template-columns: 1fr; }
+  .footbar__center { display: none; }
+  .footbar__side { justify-content: center !important; padding: 22px 24px; flex-wrap: wrap; }
+  .footbar__side--left { justify-content: center; }
+  .partners__card .row { flex-direction: column; align-items: flex-start; }
+}
+/* phones */
+@media (max-width: 560px) {
+  :root { --sec-y: clamp(56px, 13vw, 88px); --nav-h: 64px; }
+  .tiles { grid-template-columns: 1fr; }
+  .hero { padding: calc(var(--nav-h) + 40px) var(--gutter) 52px; }
+  .hero__badges, .app__badges { gap: 12px; }
+  /* keep the two store badges side by side — share the row width instead of wrapping */
+  .hero__badges .badge, .app__badges .badge, .badges-row .badge { flex: 1 1 0; min-width: 0; padding: 0 12px; }
+  .why { padding-inline: var(--gutter); }
+  .why-row { grid-template-columns: 1fr; gap: 14px; padding: 36px 0; }
+  .why-row__num { font-size: 60px; }
+  .why-row__text { border-top: 0; padding-top: 0; }
+  .app__stats { grid-template-columns: 1fr; }
+  .app__stat { padding-right: 0; }
+  .app__stat + .app__stat { border-left: 0; padding-left: 0; border-top: 1px solid rgba(10,10,10,0.14); padding-top: 18px; }
+  .badge { height: 54px; padding: 0 16px; }
+  .badge .badge-main { font-size: 15px; }
+  /* footer contact details: centred, clearly separated from the store badges */
+  .footer__contactinfo { margin-top: 38px; text-align: center; justify-items: center; }
+  .footer__contactinfo a { width: auto; }
+  .footer__social { justify-content: center; }
+  .footer__bottom { flex-direction: column; align-items: flex-start; gap: 18px; }
+  .zaar-card, .partners__card { padding: 26px 22px; }
+  .eco-card, .fcard { padding-left: 26px; padding-right: 26px; }
+}
+/* tiny phones — keep the "Download on the / Get it on" label visible, just smaller */
+@media (max-width: 430px) {
+  .badge { height: 52px; gap: 8px; }
+  .badge svg { width: 22px; height: 22px; }
+  .badge .badge-top { font-size: 8.5px; letter-spacing: 0.1em; }
+  .badge .badge-main { font-size: 14px; }
+}
+
+/* ============================================================
+   /restaurants  (page-specific sections)
+   ============================================================ */
+.rhero {
+  position: relative; background: var(--black); color: #fff; overflow: hidden;
+  margin-top: calc(-1 * var(--nav-h));
+  padding: calc(var(--nav-h) + 84px) var(--pad-wide) 96px;
+}
+.rhero__bg { position: absolute; inset: 0; pointer-events: none;
+  background: radial-gradient(120% 130% at 85% -10%, #1b1711 0%, #0a0a0a 56%); }
+.rhero__grid { position: relative; display: grid; grid-template-columns: 1.05fr .95fr; gap: 54px; align-items: center; }
+.rhero h1 { margin: 0; font-family: var(--display); font-weight: 200; font-size: clamp(34px,4.4vw,64px); line-height: 1.04; letter-spacing: -.03em; }
+.rhero h1 .gold { color: var(--gold); }
+.rhero p { margin: 24px 0 0; max-width: 560px; font-size: clamp(16px,1.2vw,19px); line-height: 1.6; color: rgba(255,255,255,.8); }
+.rhero__cta { margin-top: 34px; display: flex; gap: 14px; flex-wrap: wrap; }
+.rhero__visual { aspect-ratio: 4/3; border-radius: var(--r-card); border: 1px solid rgba(255,255,255,.1);
+  background: linear-gradient(160deg,#15120d,#000); display: flex; align-items: center; justify-content: center; }
+.rhero__visual svg { width: 72px; opacity: .5; }
+
+.r-sec { padding: var(--sec-y) var(--pad); }
+.r-sec--wide { padding-inline: var(--pad-wide); }
+.r-sec.dark { background: var(--ink); color: #fff; }
+.r-sec.tint { background: var(--bg-eco); }
+.r-head { text-align: center; max-width: 780px; margin: 0 auto 48px; }
+.r-head h2 { margin: 0; font-family: var(--display); font-weight: 200; font-size: clamp(30px,3.3vw,56px); line-height: 1.04; letter-spacing: -.03em; }
+.r-head h2 .gold { color: var(--gold); }
+.r-head p { margin: 16px 0 0; color: var(--gray-2); font-size: 17px; line-height: 1.6; }
+.r-sec.dark .r-head p { color: rgba(255,255,255,.7); }
+
+/* accordion */
+.faq { margin: 0; border-top: 1px solid var(--line-light); counter-reset: faq; }
+.faq summary::before { counter-increment: faq; content: counter(faq, decimal-leading-zero); font-size: 13px; letter-spacing: .12em; color: var(--gold); margin-right: 20px; }
+.faq details { border-bottom: 1px solid var(--line-light); }
+.faq summary { list-style: none; cursor: pointer; padding: 24px 6px; display: flex; justify-content: flex-start; align-items: center; gap: 16px;
+  font-family: var(--display); font-weight: 300; font-size: clamp(18px,1.6vw,24px); letter-spacing: -.01em; color: var(--ink); transition: color .2s ease; }
+.faq summary::-webkit-details-marker { display: none; }
+.faq summary:hover { color: var(--gold); }
+.faq .chev { flex: none; width: 22px; height: 22px; position: relative; margin-left: auto; transition: transform .3s ease; }
+.faq .chev::before, .faq .chev::after { content: ""; position: absolute; top: 10px; width: 12px; height: 2px; background: var(--gold); }
+.faq .chev::before { left: 0; transform: rotate(45deg); }
+.faq .chev::after { right: 0; transform: rotate(-45deg); }
+.faq details[open] .chev { transform: rotate(180deg); }
+.faq .ans { padding: 0 6px 26px; max-width: 700px; color: var(--gray-3); font-size: 16px; line-height: 1.65; }
+.faq__close { text-align: center; margin-top: 46px; font-family: var(--display); font-weight: 300; font-size: clamp(20px,2vw,30px); letter-spacing: -.02em; }
+.faq__close .gold { color: var(--gold); }
+
+/* benefits */
+.benefits { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; max-width: 1000px; margin: 0 auto; }
+.benefit { background: var(--white); border: 1px solid var(--line-light); border-radius: var(--r-card); padding: 34px;
+  box-shadow: 0 18px 50px rgba(20,16,10,.06); transition: transform .4s cubic-bezier(.16,.84,.44,1), box-shadow .4s ease; }
+.benefit:hover { transform: translateY(-4px); box-shadow: 0 26px 60px rgba(20,16,10,.1); }
+.benefit .ic { width: 50px; height: 50px; border-radius: 12px; background: rgba(184,168,106,.14); display: flex; align-items: center; justify-content: center; color: var(--gold); margin-bottom: 18px; }
+.benefit .ic iconify-icon { font-size: 26px; }
+.benefit h3 { margin: 0 0 10px; font-family: var(--display); font-weight: 300; font-size: 22px; letter-spacing: -.01em; }
+.benefit p { margin: 0; color: var(--gray-3); font-size: 15px; line-height: 1.6; }
+
+/* steps — connected process timeline */
+.steps { position: relative; display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; margin: 0 auto; }
+.steps::before { content: ""; position: absolute; top: 29px; left: 9%; right: 9%; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184,168,106,.55) 18%, rgba(184,168,106,.55) 82%, transparent); }
+.step { position: relative; text-align: center; padding: 0 12px; }
+.step__node { position: relative; z-index: 1; width: 58px; height: 58px; margin: 0 auto 26px; border-radius: 50%;
+  background: var(--ink); border: 1px solid var(--gold); color: var(--gold); display: flex; align-items: center; justify-content: center;
+  transition: transform .3s ease, background .3s ease; }
+.step__node iconify-icon { font-size: 28px; }
+.step:hover .step__node { transform: translateY(-3px); background: rgba(184,168,106,.12); }
+.step__num { display: block; font-size: 11px; letter-spacing: .22em; text-transform: uppercase; color: var(--gold); margin-bottom: 10px; }
+.step h3 { margin: 0 0 12px; font-family: var(--display); font-weight: 300; font-size: 26px; letter-spacing: -.01em; }
+.step p { margin: 0 auto; max-width: 320px; color: rgba(255,255,255,.72); font-size: 15px; line-height: 1.6; }
+.steps__foot { text-align: center; margin-top: 50px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.steps__foot p { margin: 0; font-family: var(--display); font-weight: 300; font-size: clamp(20px,2.2vw,32px); letter-spacing: -.02em; max-width: 700px; }
+.steps__foot .gold { color: var(--gold); }
+
+/* club members */
+.club { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 0 0 40px; }
+.member { border: 1px solid var(--line-light); border-radius: var(--r-card); padding: 34px; background: var(--white); text-align: center;
+  transition: transform .4s cubic-bezier(.16,.84,.44,1), border-color .3s ease; }
+.member:hover { transform: translateY(-4px); border-color: var(--gold); }
+.member .nm { font-family: var(--display); font-weight: 300; font-size: 26px; }
+.member .loc { margin-top: 10px; font-size: 11px; letter-spacing: .16em; text-transform: uppercase; color: var(--gray-1); }
+.club__cta { text-align: center; }
+
+/* tools */
+.tools { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; margin: 0 0 36px; }
+.tool { background: var(--white); border: 1px solid var(--line-light); border-radius: var(--r-card); padding: 32px; box-shadow: var(--sh-callout); display: flex; flex-direction: column;
+  transition: transform .4s cubic-bezier(.16,.84,.44,1), box-shadow .4s ease; }
+.tool:hover { transform: translateY(-4px); box-shadow: 16px 20px 44px rgba(0,0,0,.16); }
+.tool .tag { align-self: flex-start; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: var(--gold);
+  border: 1px solid rgba(184,168,106,.45); border-radius: 999px; padding: 5px 12px; margin-bottom: 20px; }
+.tool h3 { margin: 0 0 12px; font-family: var(--display); font-weight: 300; font-size: 24px; letter-spacing: -.01em; }
+.tool p { margin: 0 0 22px; color: var(--gray-3); font-size: 15px; line-height: 1.6; }
+.tool .more { margin-top: auto; color: var(--gold); font-weight: 500; display: inline-flex; gap: 8px; align-items: center; }
+.tool .more span { transition: transform .25s cubic-bezier(.16,.84,.44,1); }
+.tool:hover .more span { transform: translateX(4px); }
+.tools__all { text-align: center; }
+
+/* two paths */
+.paths { display: grid; grid-template-columns: 1fr 1fr; gap: 26px; margin: 0; }
+.path { background: var(--ink); color: #fff; border: 1px solid rgba(255,255,255,.1); border-radius: var(--r-card); padding: 46px; display: flex; flex-direction: column; }
+.path h3 { margin: 16px 0 14px; font-family: var(--display); font-weight: 300; font-size: clamp(24px,2.2vw,32px); letter-spacing: -.02em; }
+.path p { margin: 0 0 28px; color: rgba(255,255,255,.72); font-size: 16px; line-height: 1.6; }
+.path .btn { align-self: flex-start; margin-top: auto; }
+
+/* final gold CTA band */
+.rcta { background: var(--gold); color: var(--black); padding: var(--sec-y) var(--pad); text-align: center; }
+.rcta h2 { margin: 0 auto; max-width: 920px; font-family: var(--display); font-weight: 300; font-size: clamp(30px,3.4vw,56px); line-height: 1.05; letter-spacing: -.03em; }
+.rcta p { margin: 20px auto 0; max-width: 700px; color: rgba(0,0,0,.72); font-size: 17px; line-height: 1.6; }
+.rcta__cta { margin-top: 34px; display: flex; flex-direction: column; align-items: center; gap: 22px; }
+.rcta__links { display: inline-flex; align-items: center; gap: 28px; flex-wrap: wrap; justify-content: center; }
+.rcta__links a { color: rgba(0,0,0,.72); font-weight: 500; font-size: 15px; display: inline-flex; align-items: center; gap: 8px; border-bottom: 1px solid rgba(0,0,0,.28); padding-bottom: 3px; transition: color .2s ease, border-color .2s ease; }
+.rcta__links a span { transition: transform .25s cubic-bezier(.16,.84,.44,1); }
+.rcta__links a:hover { color: var(--ink); border-color: var(--ink); }
+.rcta__links a:hover span { transform: translateX(4px); }
+.rcta__links .dot { width: 4px; height: 4px; border-radius: 50%; background: rgba(0,0,0,.3); }
+.rcta .btn--dark { background: var(--ink); color: #fff; }
+.rcta .btn--dark:hover { background: #000; }
+.rcta .btn--ghost { background: transparent; color: var(--black); border-color: rgba(0,0,0,.35); }
+.rcta .btn--ghost:hover { background: rgba(0,0,0,.06); border-color: var(--black); }
+
+@media (max-width: 1024px) {
+  .rhero__grid, .benefits, .steps, .club, .tools, .paths { grid-template-columns: 1fr; }
+  .rhero__visual { order: -1; }
+  .steps { gap: 30px; }
+  .steps::before { display: none; }
+}
+
+/* ============================================================
+   MEGA MENU (site-wide nav)
+   ============================================================ */
+.nav-mega { margin-left: auto; display: flex; align-items: center; gap: 30px; }
+.navitem { position: relative; }
+.navlink { background: none; border: 0; font: inherit; color: #fff; opacity: .92; font-size: 16px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 7px; padding: 10px 0; transition: color .2s ease, opacity .2s ease; }
+.navlink:hover, .navitem:focus-within .navlink { color: var(--gold); opacity: 1; }
+.navlink .car { width: 7px; height: 7px; border-right: 1.6px solid currentColor; border-bottom: 1.6px solid currentColor;
+  transform: rotate(45deg); margin: -3px 0 0 1px; transition: transform .25s ease; }
+.navitem:hover .navlink .car, .navitem:focus-within .navlink .car { transform: rotate(225deg); }
+
+.mega, .dropdown {
+  position: absolute; top: calc(100% + 14px); z-index: 70;
+  background: rgba(12,11,10,.98); backdrop-filter: blur(14px); -webkit-backdrop-filter: blur(14px);
+  border: 1px solid var(--line-dark); border-radius: 14px; box-shadow: 0 30px 60px rgba(0,0,0,.45);
+  padding: 20px; opacity: 0; visibility: hidden; transform: translateY(8px); transition: opacity .25s ease, transform .25s ease, visibility .25s;
+}
+.mega::before, .dropdown::before { content: ""; position: absolute; top: -14px; left: 0; right: 0; height: 14px; }
+.navitem:hover .mega, .navitem:focus-within .mega,
+.navitem:hover .dropdown, .navitem:focus-within .dropdown { opacity: 1; visibility: visible; transform: none; }
+.mega--tools { width: min(760px, 90vw); left: 50%; transform: translateX(-50%) translateY(8px); }
+.navitem:hover .mega--tools, .navitem:focus-within .mega--tools { transform: translateX(-50%); }
+.mega-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; }
+.mega-item { display: flex; align-items: center; gap: 14px; padding: 13px; border-radius: 10px; transition: background .2s ease; }
+.mega-item:hover { background: rgba(255,255,255,.05); }
+.mega-item .mi-ic { width: 40px; height: 40px; flex: none; border-radius: 10px; background: rgba(184,168,106,.14); color: var(--gold); display: flex; align-items: center; justify-content: center; }
+.mega-item .mi-ic iconify-icon { font-size: 22px; }
+.mega-item .mi-t { color: #fff; font-size: 15px; font-weight: 500; display: flex; align-items: center; gap: 8px; }
+.mega-item .mi-d { color: rgba(255,255,255,.55); font-size: 12.5px; margin-top: 3px; line-height: 1.4; }
+.mega-tag { font-size: 9px; letter-spacing: .1em; text-transform: uppercase; color: var(--gold); border: 1px solid rgba(184,168,106,.4); border-radius: 999px; padding: 2px 7px; }
+.mega-foot { margin-top: 12px; padding-top: 14px; border-top: 1px solid var(--line-dark); display: flex; justify-content: space-between; align-items: center; }
+.mega-foot a { color: var(--gold); font-weight: 500; display: inline-flex; gap: 8px; align-items: center; font-size: 14px; }
+.mega-foot .muted { color: rgba(255,255,255,.4); font-size: 12.5px; }
+.dropdown { min-width: 220px; padding: 10px; }
+.dropdown a { display: block; color: rgba(255,255,255,.85); padding: 11px 14px; border-radius: 8px; font-size: 15px; transition: background .2s ease, color .2s ease; }
+.dropdown a:hover { background: rgba(255,255,255,.05); color: var(--gold); }
+
+/* mobile accordion inside the burger menu */
+.m-acc { border-bottom: 1px solid rgba(255,255,255,.08); }
+.m-acc > summary { list-style: none; cursor: pointer; color: #fff; font-size: 18px; padding: 16px 2px;
+  display: flex; justify-content: space-between; align-items: center; }
+.m-acc > summary::-webkit-details-marker { display: none; }
+.m-acc > summary .chev { width: 18px; height: 18px; position: relative; flex: none; transition: transform .3s ease; }
+.m-acc > summary .chev::before, .m-acc > summary .chev::after { content: ""; position: absolute; top: 8px; width: 10px; height: 2px; background: var(--gold); }
+.m-acc > summary .chev::before { left: 0; transform: rotate(45deg); }
+.m-acc > summary .chev::after { right: 0; transform: rotate(-45deg); }
+.m-acc[open] > summary .chev { transform: rotate(180deg); }
+.m-acc .m-sub { padding: 4px 2px 16px; display: flex; flex-direction: column; }
+.m-acc .m-sub a { color: rgba(255,255,255,.7); font-size: 15px; padding: 10px 12px; border-radius: 8px; }
+.m-acc .m-sub a:hover { color: var(--gold); background: rgba(255,255,255,.05); }
+
+/* collapse the mega nav to the burger on tablets/phones */
+@media (max-width: 1024px) {
+  .nav-mega { display: none; }
+  .nav-cta { margin-left: auto; padding: 9px 15px; font-size: 12.5px; gap: 6px; }
+  .nav-toggle { display: inline-flex; }
+}
+
+/* ============================================================
+   IMAGE PLACEHOLDERS (named assets w/ Unsplash fallback)
+   ============================================================ */
+.imgph { display: block; width: 100%; height: 100%; object-fit: cover; background: linear-gradient(160deg,#1b1711,#000); }
+.figure { position: relative; border-radius: var(--r-card); overflow: hidden; border: 1px solid rgba(255,255,255,.08); }
+
+/* "what changes" split (image + benefits) */
+.changes-grid { display: grid; grid-template-columns: .9fr 1.1fr; gap: 48px; align-items: center; max-width: 1100px; margin: 0 auto; }
+.changes-grid .figure { aspect-ratio: 3/4; }
+@media (max-width: 1024px) { .changes-grid { grid-template-columns: 1fr; } .changes-grid .figure { aspect-ratio: 16/10; } }
+
+/* ============================================================
+   HERO variants — image ALWAYS background, text ALWAYS centred
+   ============================================================ */
+.hero--page { text-align: center; }
+.hero--page .hero__inner { max-width: 940px; }
+.hero--page h1 { font-size: clamp(30px, 3.8vw, 58px); line-height: 1.05; }
+.hero--page .eyebrow { display: block; margin-bottom: 18px; }
+/* full-cover background image + legibility overlay */
+.hero__bg--cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; }
+.hero__bg--cover::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(8,8,8,.62) 0%, rgba(8,8,8,.74) 100%); }
+
+/* ============================================================
+   Section background image (editorial, like Home)
+   ============================================================ */
+.r-sec.has-bg { position: relative; overflow: hidden; }
+.r-bg { position: absolute; inset: 0; pointer-events: none; }
+.r-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .26; }
+.r-bg::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,10,10,.72), rgba(10,10,10,.88)); }
+.r-sec.has-bg .r-inner { position: relative; }
+
+/* ============================================================
+   Editorial feature list (matches Home's bordered rows)
+   ============================================================ */
+.feat-list { margin: 0; border-bottom: 1px solid var(--line-dark); }
+.feat-row { display: grid; grid-template-columns: 70px minmax(0,.8fr) minmax(0,1fr); gap: 32px; padding: 44px 0; border-top: 1px solid var(--line-dark); align-items: start; }
+.feat-row .fic { color: var(--gold); line-height: 0; }
+.feat-row .fic iconify-icon { font-size: 44px; }
+.feat-row h3 { margin: 0; font-family: var(--display); font-weight: 200; font-size: clamp(22px,2vw,32px); letter-spacing: -.02em; }
+.feat-row p { margin: 0; color: rgba(255,255,255,.72); font-size: 16px; line-height: 1.6; border-left: 1px solid var(--line-dark); padding-left: 28px; }
+@media (max-width: 860px) {
+  .feat-row { grid-template-columns: 48px 1fr; gap: 18px; padding: 32px 0; }
+  .feat-row .fic iconify-icon { font-size: 34px; }
+  .feat-row p { grid-column: 1 / -1; border-left: 0; padding-left: 0; border-top: 1px solid var(--line-dark); padding-top: 16px; }
+}
+
+/* ============================================================
+   PRELOADER — Entwine monogram, plays on every page load
+   ============================================================ */
+#preloader {
+  position: fixed; inset: 0; z-index: 99999; background: #0a0a0a;
+  display: flex; align-items: center; justify-content: center;
+  transition: opacity .6s ease;
+}
+#preloader .pl-mark { width: 86px; height: 86px; color: var(--gold); animation: pl-pulse 1.5s ease-in-out infinite; }
+@keyframes pl-pulse { 0%,100% { opacity: .32; transform: scale(.9); } 50% { opacity: 1; transform: scale(1); } }
+#preloader.done { opacity: 0; pointer-events: none; }
+@media (prefers-reduced-motion: reduce) { #preloader .pl-mark { animation: none; } }
+
+/* ============================================================
+   REUSABLE PAGE COMPONENTS (all marketing pages)
+   ============================================================ */
+.r-sub { text-align:center; max-width:760px; margin:-28px auto 44px; color:var(--gray-2); font-size:17px; line-height:1.6; }
+.r-sec.dark .r-sub { color:rgba(255,255,255,.7); }
+
+/* generic cards */
+.cardgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(270px,1fr)); gap:24px; }
+.cardgrid--2 { grid-template-columns:repeat(2,1fr); }
+.cardgrid--3 { grid-template-columns:repeat(3,1fr); }
+.card { background:var(--white); border:1px solid var(--line-light); border-radius:var(--r-card); padding:34px; box-shadow:0 18px 50px rgba(20,16,10,.05); transition:transform .4s cubic-bezier(.16,.84,.44,1), box-shadow .4s ease, border-color .3s ease; display:flex; flex-direction:column; }
+.card:hover { transform:translateY(-4px); box-shadow:0 26px 60px rgba(20,16,10,.1); }
+.card .k { font-size:11px; letter-spacing:.18em; text-transform:uppercase; color:var(--gold); font-weight:500; margin-bottom:14px; }
+.card .ic { width:52px; height:52px; border-radius:14px; background:rgba(184,168,106,.14); color:var(--gold); display:flex; align-items:center; justify-content:center; margin-bottom:20px; }
+.card .ic iconify-icon { font-size:28px; }
+.card h3 { margin:0 0 12px; font-family:var(--display); font-weight:300; font-size:23px; letter-spacing:-.01em; }
+.card p { margin:0; color:var(--gray-3); font-size:15px; line-height:1.6; }
+.card .more { margin-top:auto; padding-top:18px; color:var(--gold); font-weight:500; display:inline-flex; gap:8px; align-items:center; }
+.card .more span { transition:transform .25s cubic-bezier(.16,.84,.44,1); }
+.card:hover .more span { transform:translateX(4px); }
+.card .tag { align-self:flex-start; font-size:10px; letter-spacing:.14em; text-transform:uppercase; color:var(--gold); border:1px solid rgba(184,168,106,.45); border-radius:999px; padding:5px 12px; margin-bottom:18px; }
+.r-sec.dark .card { background:rgba(255,255,255,.03); border-color:var(--line-dark); box-shadow:none; }
+.r-sec.dark .card:hover { border-color:var(--gold); }
+.r-sec.dark .card h3 { color:#fff; }
+.r-sec.dark .card p { color:rgba(255,255,255,.7); }
+
+/* stats (dark) */
+.statgrid { display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:0 36px; border-top:1px solid var(--line-dark); }
+.stat { padding:34px 0; border-bottom:1px solid var(--line-dark); }
+.stat .big { font-family:var(--display); font-weight:200; font-size:clamp(38px,4vw,60px); color:var(--gold); letter-spacing:-.03em; line-height:1; }
+.stat .lbl { margin-top:10px; font-size:16px; font-weight:500; color:#fff; }
+.stat .d { margin-top:8px; font-size:14px; color:rgba(255,255,255,.6); line-height:1.55; }
+
+/* team */
+.team { display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:26px; }
+.teammate .ph2 { aspect-ratio:1/1; border-radius:var(--r-card); overflow:hidden; margin-bottom:18px; background:linear-gradient(160deg,#1b1711,#000); border:1px solid var(--line-light); }
+.teammate .nm { font-family:var(--display); font-weight:300; font-size:21px; }
+.teammate .ro { font-size:12px; letter-spacing:.05em; color:var(--gold); margin-top:5px; }
+.teammate .bio { margin-top:12px; font-size:13.5px; line-height:1.6; color:var(--gray-3); }
+.r-sec.dark .teammate .nm { color:#fff; }
+.r-sec.dark .teammate .bio { color:rgba(255,255,255,.62); }
+.r-sec.dark .teammate .ph2 { border-color:var(--line-dark); }
+
+/* vertical timeline */
+.timeline { position:relative; max-width:720px; margin:0 auto; }
+.timeline::before { content:""; position:absolute; left:5px; top:6px; bottom:6px; width:1px; background:var(--line-dark); }
+.tl { position:relative; padding:0 0 34px 34px; }
+.tl:last-child { padding-bottom:0; }
+.tl::before { content:""; position:absolute; left:0; top:5px; width:11px; height:11px; border-radius:50%; background:var(--ink); border:1px solid var(--gold); }
+.tl .date { font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+.tl h4 { margin:6px 0 0; font-family:var(--display); font-weight:300; font-size:20px; color:#fff; }
+
+/* prose (story) */
+.prose { max-width:760px; margin:0 auto; }
+.prose p { color:rgba(255,255,255,.78); font-size:18px; line-height:1.75; margin:0 0 20px; }
+.r-sec:not(.dark) .prose p { color:var(--gray-3); }
+
+/* pricing */
+.ptable { display:grid; grid-template-columns:repeat(4,1fr); gap:18px; align-items:stretch; }
+/* below desktop the plans become a swipeable snap slider (next card peeks in) */
+@media (max-width: 1024px) {
+  .ptable { display:flex; overflow-x:auto; scroll-snap-type:x mandatory; gap:16px;
+    margin-inline:calc(-1 * var(--pad)); padding:6px var(--pad) 22px;
+    -webkit-overflow-scrolling:touch; scrollbar-width:none; }
+  .ptable::-webkit-scrollbar { display:none; }
+  .ptable .plan { flex:0 0 min(78vw, 320px); scroll-snap-align:center; }
+}
+.plan { background:var(--white); border:1px solid var(--line-light); border-radius:var(--r-card); padding:30px; display:flex; flex-direction:column; box-shadow:0 18px 50px rgba(20,16,10,.05); }
+.plan--featured { border-color:var(--gold); box-shadow:0 24px 60px rgba(184,168,106,.2); position:relative; }
+.plan--featured::before { content:"Most popular"; position:absolute; top:-11px; left:30px; background:var(--gold); color:#fff; font-size:10px; letter-spacing:.14em; text-transform:uppercase; padding:4px 12px; border-radius:999px; }
+.plan .pn { font-family:var(--display); font-weight:300; font-size:22px; }
+.plan .pr { margin:14px 0 2px; font-family:var(--display); font-weight:200; font-size:32px; color:var(--ink); letter-spacing:-.02em; }
+.plan .pr small { font-size:13px; color:var(--gray-2); font-family:var(--sans); }
+.plan .pa { font-size:13px; color:var(--gold); }
+.plan .pd { font-size:14px; color:var(--gray-3); line-height:1.55; margin:14px 0 18px; }
+.plan ul { list-style:none; margin:0 0 22px; padding:0; display:grid; gap:11px; }
+.plan li { font-size:14px; color:var(--gray-3); display:flex; gap:9px; align-items:flex-start; }
+.plan li iconify-icon { color:var(--gold); font-size:18px; flex:none; margin-top:1px; }
+.plan .btn { margin-top:auto; justify-content:center; }
+.billing { position:relative; display:inline-flex; gap:6px; background:var(--white); border:1px solid var(--line-light); border-radius:999px; padding:5px; margin:0 auto 36px; }
+.billing button { position:relative; z-index:1; border:0; background:transparent; padding:9px 20px; border-radius:999px; font-family:inherit; font-size:13px; font-weight:500; color:var(--gray-2); cursor:pointer; transition:color .25s ease; }
+.billing button.on { color:#fff; }
+.billing .thumb { position:absolute; top:5px; bottom:5px; left:5px; width:0; border-radius:999px; background:var(--ink); transition:left .35s cubic-bezier(.16,.84,.44,1), width .35s cubic-bezier(.16,.84,.44,1); }
+.plan .pr.flip, .plan .pa.flip { animation:pr-flip .35s ease; }
+@keyframes pr-flip { 0% { opacity:0; transform:translateY(7px); } 100% { opacity:1; transform:none; } }
+@media (prefers-reduced-motion: reduce) { .billing .thumb { transition:none; } .plan .pr.flip, .plan .pa.flip { animation:none; } }
+
+/* filter pills */
+.pills { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; margin-bottom:44px; }
+.pills button, .pills a { border:1px solid var(--line-light); background:var(--white); color:var(--gray-3); border-radius:999px; padding:9px 18px; font-size:13px; font-weight:500; cursor:pointer; transition:.2s; }
+.pills .on, .pills button:hover, .pills a:hover { background:var(--ink); color:#fff; border-color:var(--ink); }
+
+/* blog cards */
+.blogcard .ph2 { aspect-ratio:16/10; border-radius:var(--r-card); overflow:hidden; margin-bottom:20px; background:linear-gradient(160deg,#1b1711,#000); }
+.blogcard .meta { display:flex; gap:12px; align-items:center; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-bottom:12px; }
+.blogcard .meta .read { color:var(--gray-1); }
+.blogcard h3 { margin:0 0 10px; font-family:var(--display); font-weight:300; font-size:22px; line-height:1.2; letter-spacing:-.01em; }
+.blogcard p { color:var(--gray-3); font-size:14px; line-height:1.6; }
+
+/* job listing */
+.job { display:grid; grid-template-columns:1fr auto; gap:18px 24px; align-items:start; padding:30px 0; border-top:1px solid var(--line-light); }
+.job:last-child { border-bottom:1px solid var(--line-light); }
+.job .dept { font-size:11px; letter-spacing:.16em; text-transform:uppercase; color:var(--gold); }
+.job h3 { margin:8px 0 6px; font-family:var(--display); font-weight:300; font-size:24px; }
+.job .loc { font-size:13px; color:var(--gray-2); }
+.job p { margin:12px 0 0; color:var(--gray-3); font-size:15px; line-height:1.6; max-width:760px; }
+.job .av { font-size:11px; letter-spacing:.1em; text-transform:uppercase; padding:6px 14px; border-radius:999px; white-space:nowrap; }
+.job .av.open { background:rgba(47,138,74,.12); color:#2f8a4a; }
+.job .av.closed { background:rgba(0,0,0,.05); color:var(--gray-1); }
+
+/* tier explainer */
+.tiers { display:grid; grid-template-columns:repeat(3,1fr); gap:20px; }
+.tier { border:1px solid var(--line-light); border-radius:var(--r-card); padding:28px; background:var(--white); }
+.tier .nm { font-family:var(--display); font-weight:300; font-size:22px; }
+.tier .ct { font-size:12px; letter-spacing:.1em; text-transform:uppercase; color:var(--gold); margin-top:6px; }
+.tier p { margin-top:12px; color:var(--gray-3); font-size:14px; line-height:1.6; }
+
+/* newsletter */
+.newsletter { max-width:520px; margin:0 auto; text-align:center; }
+.newsletter form { display:flex; gap:10px; margin-top:24px; }
+.newsletter input { flex:1; border:1px solid var(--line-light); border-radius:999px; padding:14px 20px; font-family:inherit; font-size:15px; background:var(--white); }
+.newsletter input:focus { outline:2px solid var(--gold); outline-offset:2px; }
+.newsletter .note { margin-top:12px; font-size:13px; color:var(--gray-1); }
+
+@media (max-width:1024px) {
+  .cardgrid--2, .cardgrid--3, .tiers { grid-template-columns:1fr; }
+  .team { grid-template-columns:repeat(2,1fr); }
+}
+@media (max-width:600px) {
+  .team { grid-template-columns:1fr; }
+  .job { grid-template-columns:1fr; }
+  .newsletter form { flex-direction:column; }
+  .newsletter input { border-radius:14px; }
+}
+
+/* ============================================================
+   SECTION VARIETY + WOW  (skins, watermark, accents)
+   ============================================================ */
+.r-sec { position: relative; overflow: clip; }
+.r-sec.tint  { background: #f3eee4; }                                   /* warm linen */
+.r-sec.cream { background: #ece1cf; }                                   /* deeper cream */
+.r-sec.ink   { background: var(--ink); color: #fff; }
+.r-sec.noir  { background: radial-gradient(120% 130% at 80% -12%, #1d1812 0%, #0a0a0a 62%); color: #fff; }
+
+/* light/dark heading + sub adapt */
+.r-sec.ink .r-head h2, .r-sec.noir .r-head h2 { color: #fff; }
+.r-sec.ink .r-sub, .r-sec.noir .r-sub, .r-sec.dark .r-sub { color: rgba(255,255,255,.7); }
+
+/* gold tick above every section heading */
+.r-head::before { content: ""; display: block; width: 42px; height: 2px; background: var(--gold); border-radius: 2px; margin: 0 auto 22px; }
+
+/* faint Entwine watermark (dark/light) */
+.wmark { position: absolute; top: -46px; right: -36px; width: clamp(170px, 20vw, 320px); height: auto; color: var(--gold); opacity: .07; pointer-events: none; z-index: 0; }
+.r-sec.wm > *:not(.wmark) { position: relative; z-index: 1; }
+
+/* card gold top-accent on hover */
+.card { position: relative; }
+.card::after { content: ""; position: absolute; left: 0; top: 0; height: 3px; width: 0; background: var(--gold); border-radius: var(--r-card) var(--r-card) 0 0; transition: width .4s cubic-bezier(.16,.84,.44,1); }
+.card:hover::after { width: 100%; }
+
+/* component variants on ink / noir (in addition to .dark) */
+.r-sec.ink .card, .r-sec.noir .card { background: rgba(255,255,255,.03); border-color: var(--line-dark); box-shadow: none; }
+.r-sec.ink .card:hover, .r-sec.noir .card:hover { border-color: var(--gold); }
+.r-sec.ink .card h3, .r-sec.noir .card h3 { color: #fff; }
+.r-sec.ink .card p, .r-sec.noir .card p { color: rgba(255,255,255,.7); }
+.r-sec.ink .teammate .nm, .r-sec.noir .teammate .nm { color: #fff; }
+.r-sec.ink .teammate .bio, .r-sec.noir .teammate .bio { color: rgba(255,255,255,.62); }
+.r-sec.ink .prose p, .r-sec.noir .prose p { color: rgba(255,255,255,.78); }
+
+/* steps adapt to light OR dark sections */
+.step p { color: var(--gray-3); }
+.step h3 { color: var(--ink); }
+.r-sec.dark .step p, .r-sec.ink .step p, .r-sec.noir .step p { color: rgba(255,255,255,.72); }
+.r-sec.dark .step h3, .r-sec.ink .step h3, .r-sec.noir .step h3 { color: #fff; }
+
+/* CTA band drama */
+.rcta { position: relative; overflow: clip; }
+.rcta > *:not(.wmark) { position: relative; z-index: 1; }
+.rcta .wmark { opacity: .07; top: -50px; right: -30px; }
+
+</style><script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script><style>
+    #preloader{position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
+    #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
+    @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
+    #preloader.done{opacity:0;pointer-events:none}
+  </style></head> <body> <div class="preloader" id="preloader" aria-hidden="true"> <svg class="pl-mark" viewBox="0 0 394 394" fill="currentColor"><path d="M300.508 130.309C300.508 130.725 300.313 131.142 299.988 131.43C299.696 131.718 299.242 131.943 298.852 131.943H285.153C283.887 131.943 283.562 131.142 283.498 130.629C283.303 129.22 276.064 86.2966 252.594 86.2966C227.663 86.2966 195.331 134.825 177.769 156.543C164.2 173.328 151.605 189.633 145.632 210.165C145.242 211.543 144.853 212.92 144.528 214.329C143.814 217.212 143.327 220.223 143.003 223.33C142.938 223.779 142.905 224.227 142.873 224.676C142.548 228.263 142.451 231.947 142.451 235.631C142.451 250.366 145.242 266.158 151.897 279.515C152.774 281.277 153.715 282.975 154.721 284.608C155.533 285.954 156.377 287.235 157.286 288.484C157.708 289.093 158.162 289.701 158.617 290.278C159.558 291.527 160.564 292.712 161.603 293.865C162.447 294.826 163.324 295.755 164.233 296.588C166.635 298.927 169.134 300.945 171.764 302.642C172.413 303.059 173.095 303.475 173.776 303.86C174.783 304.436 175.822 304.981 176.893 305.461C177.575 305.781 178.321 306.102 179.003 306.39C184.034 308.408 189.456 309.401 195.266 309.401C200.006 309.401 204.518 308.6 208.835 306.967C209.517 306.71 210.166 306.454 210.815 306.166C216.431 303.731 221.723 299.888 226.819 294.666C227.176 294.314 227.566 293.93 227.89 293.513C228.247 293.129 228.605 292.744 228.929 292.328C229.286 291.944 229.611 291.527 229.968 291.111C230.325 290.694 230.65 290.278 230.974 289.861C231.331 289.445 231.656 289.029 231.948 288.58C232.273 288.164 232.597 287.715 232.89 287.235C233.214 286.786 233.506 286.338 233.831 285.857C234.123 285.409 234.448 284.928 234.74 284.448C235.324 283.519 235.908 282.558 236.46 281.597C236.752 281.085 237.045 280.572 237.304 280.028C237.597 279.515 237.856 279.002 238.116 278.49C239.447 275.895 240.713 273.173 241.881 270.29C242.303 269.201 242.758 268.112 243.18 267.022C244.706 262.954 246.069 258.694 247.27 254.242C247.4 253.729 247.562 253.217 247.692 252.672C248.634 249.084 249.478 245.369 250.257 241.589C250.484 240.5 250.679 239.411 250.906 238.322C251.003 237.809 251.101 237.297 251.198 236.784C251.393 235.695 251.588 234.606 251.75 233.517C251.75 233.389 251.815 233.228 251.815 233.1C251.977 232.171 252.139 231.21 252.269 230.249C252.724 227.238 253.146 224.195 253.503 221.088C253.633 220.255 253.698 219.391 253.795 218.558C254.152 215.419 254.477 212.215 254.736 209.012C254.801 208.115 254.899 207.186 254.964 206.289C255.191 203.15 255.418 199.979 255.58 196.808C255.613 196.167 255.645 195.527 255.678 194.886L286.581 184.764C286.581 185.853 286.581 186.942 286.581 188.031C286.581 233.933 271.195 283.551 250.029 304.052C233.831 319.619 219.288 325.353 196.013 325.353C168.583 325.353 145.307 315.103 129.109 296.236C114.988 279.835 107.489 257.701 107.489 235.15C107.489 226.95 108.333 218.333 110.8 210.133C118.981 182.457 134.822 159.843 160.045 134.825C161.701 133.16 163.454 131.462 165.207 129.764C165.369 129.636 165.499 129.476 165.693 129.316C166.148 128.899 166.57 128.451 166.992 127.971C171.764 122.781 177.185 113.364 177.412 108.303C177.932 95.8102 169.102 86.1685 155.825 86.1685H155.403C118.656 86.1685 110.703 130.597 110.703 130.597C110.703 130.918 110.573 131.142 110.411 131.334C110.119 131.654 109.697 131.814 109.437 131.814H95.3161C95.1538 131.814 94.9915 131.782 94.8292 131.718C94.6669 131.654 94.5046 131.59 94.4072 131.462C94.1475 131.238 93.9527 130.885 93.9852 130.533C93.9852 130.405 94.0176 130.309 94.0825 130.181L101.971 68.6789H292.165L300.475 130.181L300.508 130.309Z"></path></svg> </div> <div class="stage"> <!-- ============ NAV ============ --> <header class="nav"> <a href="/entwine/" class="brand" aria-label="Entwine — home"> <svg class="logo" viewBox="0 0 842 142" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Entwine"> <path d="M18.6257 79.3654H82.6392V62.9004H18.6257V17.0145H87.0756V0.567139H0V142H88.1892V125.517H18.6257V79.3654Z"></path> <path d="M207.613 110.754H207.325L129.949 0.868437L129.733 0.567139H112.006V142H130.631V32.0616H130.919L208.008 141.681L208.223 142H225.969V0.567139H207.613V110.754Z"></path> <path d="M496.212 114.582H495.943L465.75 0.549438H445.221L415.028 114.582H414.758L385.105 0.549438H366.138L405.185 141.468L405.329 142H424.17L455.476 30.4311L486.801 142H505.642L544.582 1.45333L544.833 0.549438H525.866L496.212 114.582Z"></path> <path d="M583.126 0.549438H564.5V141.982H583.126V0.549438Z"></path> <path d="M711.638 110.754H711.369L633.992 0.86846L633.759 0.549438H616.031V142H634.675V32.0617H634.962L712.051 141.681L712.267 142H729.994V0.549438H711.638V110.754Z"></path> <path d="M772.437 125.517V79.3655H836.45V62.9004H772.437V17.0145H840.886V0.549438H753.793V142H842V125.517H772.437Z"></path> <path d="M356.313 34.029C356.313 34.2594 356.205 34.4898 356.026 34.6493C355.864 34.8088 355.613 34.9329 355.397 34.9329H347.817C347.117 34.9329 346.937 34.4898 346.901 34.2062C346.794 33.4264 342.788 9.67699 329.802 9.67699C316.008 9.67699 298.119 36.528 288.402 48.5444C280.894 57.8315 273.925 66.8527 270.62 78.2134C270.405 78.9755 270.189 79.7376 270.01 80.5175C269.615 82.1126 269.345 83.7786 269.166 85.4978C269.13 85.7459 269.112 85.994 269.094 86.2421C268.914 88.2272 268.86 90.2654 268.86 92.3036C268.86 100.456 270.405 109.194 274.087 116.585C274.572 117.559 275.093 118.499 275.65 119.403C276.099 120.147 276.566 120.856 277.068 121.547C277.302 121.884 277.553 122.221 277.805 122.54C278.326 123.231 278.883 123.887 279.457 124.525C279.924 125.056 280.409 125.57 280.912 126.031C282.241 127.325 283.624 128.442 285.079 129.381C285.438 129.611 285.816 129.842 286.193 130.054C286.75 130.373 287.324 130.675 287.917 130.941C288.294 131.118 288.707 131.295 289.084 131.455C291.868 132.571 294.868 133.121 298.083 133.121C300.705 133.121 303.202 132.677 305.591 131.774C305.968 131.632 306.327 131.49 306.686 131.331C309.794 129.984 312.721 127.857 315.541 124.968C315.739 124.773 315.954 124.56 316.134 124.33C316.332 124.117 316.529 123.904 316.709 123.674C316.906 123.461 317.086 123.231 317.283 123.001C317.481 122.77 317.661 122.54 317.84 122.309C318.038 122.079 318.217 121.848 318.379 121.6C318.559 121.37 318.738 121.122 318.9 120.856C319.08 120.608 319.241 120.36 319.421 120.094C319.582 119.846 319.762 119.58 319.924 119.314C320.247 118.8 320.57 118.268 320.876 117.737C321.037 117.453 321.199 117.17 321.343 116.868C321.504 116.585 321.648 116.301 321.792 116.017C322.528 114.582 323.229 113.075 323.875 111.48C324.109 110.878 324.36 110.275 324.594 109.672C325.438 107.422 326.192 105.064 326.857 102.601C326.929 102.317 327.018 102.034 327.09 101.732C327.611 99.7474 328.078 97.6915 328.509 95.6001C328.635 94.9975 328.743 94.3949 328.868 93.7923C328.922 93.5087 328.976 93.2252 329.03 92.9416C329.138 92.339 329.246 91.7364 329.335 91.1338C329.335 91.0629 329.371 90.9743 329.371 90.9034C329.461 90.3894 329.551 89.8577 329.623 89.326C329.874 87.66 330.108 85.9763 330.305 84.2571C330.377 83.7963 330.413 83.3178 330.467 82.857C330.665 81.1201 330.844 79.3477 330.988 77.5754C331.024 77.0791 331.078 76.5652 331.114 76.0689C331.239 74.332 331.365 72.5774 331.455 70.8228C331.473 70.4683 331.491 70.1138 331.509 69.7594L348.608 64.1588C348.608 64.7614 348.608 65.364 348.608 65.9666C348.608 91.3642 340.094 118.818 328.383 130.161C319.421 138.774 311.374 141.947 298.496 141.947C283.319 141.947 270.441 136.275 261.478 125.836C253.665 116.762 249.516 104.515 249.516 92.0377C249.516 87.5005 249.983 82.7329 251.348 78.1957C255.874 62.8827 264.639 50.3699 278.595 36.528C279.511 35.6063 280.481 34.667 281.451 33.7277C281.541 33.6568 281.613 33.5681 281.72 33.4795C281.972 33.2491 282.205 33.001 282.439 32.7351C285.079 29.864 288.079 24.6533 288.204 21.853C288.492 14.9408 283.606 9.60609 276.26 9.60609H276.027C255.695 9.60609 251.294 34.1885 251.294 34.1885C251.294 34.3657 251.222 34.4898 251.133 34.5961C250.971 34.7733 250.737 34.862 250.594 34.862H242.781C242.691 34.862 242.601 34.8442 242.511 34.8088C242.421 34.7733 242.332 34.7379 242.278 34.667C242.134 34.5429 242.026 34.348 242.044 34.153C242.044 34.0821 242.062 34.029 242.098 33.9581L246.463 -0.0708923H351.697L356.295 33.9581L356.313 34.029Z"></path> </svg> </a> <nav class="nav-mega"> <div class="navitem"><a class="navlink" href="https://ipassas.github.io/entwine/wine-lovers">For Wine Lovers</a></div> <div class="navitem"><a class="navlink" href="https://ipassas.github.io/entwine/restaurants">For Restaurants</a></div> <div class="navitem"> <button class="navlink" aria-haspopup="true">Tools <span class="car"></span></button> <div class="mega mega--tools" role="menu"> <div class="mega-grid"> <a class="mega-item" href="https://ipassas.github.io/entwine/tools/gap-finder"><span class="mi-ic"><iconify-icon icon="ph:magnifying-glass-thin"></iconify-icon></span><span><span class="mi-t">Wine List Gap Finder <span class="mega-tag">Free</span></span><span class="mi-d">Spot style, region &amp; price gaps.</span></span></a> <a class="mega-item" href="https://ipassas.github.io/entwine/tools/wine-list-audit"><span class="mi-ic"><iconify-icon icon="ph:clipboard-text-thin"></iconify-icon></span><span><span class="mi-t">Wine List Audit <span class="mega-tag">Free</span></span><span class="mi-d">A scored audit in minutes.</span></span></a> <a class="mega-item" href="https://ipassas.github.io/entwine/tools/menu-builder"><span class="mi-ic"><iconify-icon icon="ph:fork-knife-thin"></iconify-icon></span><span><span class="mi-t">Digital Menu Builder <span class="mega-tag">Free</span></span><span class="mi-d">Build a digital menu.</span></span></a> <a class="mega-item" href="https://ipassas.github.io/entwine/tools/btg-optimiser"><span class="mi-ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></span><span><span class="mi-t">BTG Optimiser <span class="mega-tag">Free</span></span><span class="mi-d">Optimise by-the-glass.</span></span></a> <a class="mega-item" href="https://ipassas.github.io/entwine/tools/wine-list-creator"><span class="mi-ic"><iconify-icon icon="ph:scroll-thin"></iconify-icon></span><span><span class="mi-t">Wine List Creator <span class="mega-tag">Freemium</span></span><span class="mi-d">Build a balanced list.</span></span></a> <a class="mega-item" href="https://ipassas.github.io/entwine/tools/team-trainer"><span class="mi-ic"><iconify-icon icon="ph:graduation-cap-thin"></iconify-icon></span><span><span class="mi-t">Team Wine Trainer <span class="mega-tag">Freemium</span></span><span class="mi-d">Train your team.</span></span></a> <a class="mega-item" href="https://ipassas.github.io/entwine/tools/sommelier-pairing"><span class="mi-ic"><iconify-icon icon="ph:brandy-thin"></iconify-icon></span><span><span class="mi-t">Sommelier Pairing <span class="mega-tag">One-time</span></span><span class="mi-d">Expert pairing on demand.</span></span></a> <a class="mega-item" href="https://ipassas.github.io/entwine/tools"><span class="mi-ic"><iconify-icon icon="ph:squares-four-thin"></iconify-icon></span><span><span class="mi-t">All Tools</span><span class="mi-d">Browse the full toolkit.</span></span></a> </div> <div class="mega-foot"><a href="https://ipassas.github.io/entwine/tools">View all tools <span>→</span></a><span class="muted">Most are free. All worth your time.</span></div> </div> </div> <div class="navitem"> <button class="navlink" aria-haspopup="true">Company <span class="car"></span></button> <div class="dropdown" role="menu"> <a href="https://ipassas.github.io/entwine/about">About</a> <a href="https://ipassas.github.io/entwine/partners">Partners</a> <a href="https://ipassas.github.io/entwine/invest">Invest</a> <a href="https://ipassas.github.io/entwine/insights">Insights</a> <a href="https://ipassas.github.io/entwine/careers">Careers</a> </div> </div> <div class="navitem"><a class="navlink" href="https://ipassas.github.io/entwine/pricing">Pricing</a></div> <div class="navitem"><a class="navlink" href="#">Sign in</a></div> </nav> <a href="https://ipassas.github.io/entwine/download" class="btn btn--white nav-cta">Download&nbsp; <span class="arrow">→</span></a> <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"> <span class="bars"><span></span><span></span><span></span></span> </button> <div class="mobile-menu" id="mobileMenu"> <a href="https://ipassas.github.io/entwine/wine-lovers">For Wine Lovers</a> <a href="https://ipassas.github.io/entwine/restaurants">For Restaurants</a> <details class="m-acc"><summary>Tools <span class="chev"></span></summary> <div class="m-sub"> <a href="https://ipassas.github.io/entwine/tools/gap-finder">Wine List Gap Finder</a> <a href="https://ipassas.github.io/entwine/tools/wine-list-audit">Wine List Audit</a> <a href="https://ipassas.github.io/entwine/tools/menu-builder">Digital Menu Builder</a> <a href="https://ipassas.github.io/entwine/tools/btg-optimiser">BTG Optimiser</a> <a href="https://ipassas.github.io/entwine/tools/wine-list-creator">Wine List Creator</a> <a href="https://ipassas.github.io/entwine/tools/team-trainer">Team Wine Trainer</a> <a href="https://ipassas.github.io/entwine/tools/sommelier-pairing">Sommelier Pairing</a> <a href="https://ipassas.github.io/entwine/tools">View all tools →</a> </div> </details> <details class="m-acc"><summary>Company <span class="chev"></span></summary> <div class="m-sub"> <a href="https://ipassas.github.io/entwine/about">About</a><a href="https://ipassas.github.io/entwine/partners">Partners</a><a href="https://ipassas.github.io/entwine/invest">Invest</a><a href="https://ipassas.github.io/entwine/insights">Insights</a><a href="https://ipassas.github.io/entwine/careers">Careers</a> </div> </details> <a href="https://ipassas.github.io/entwine/pricing">Pricing</a> <a href="#">Sign in</a> </div> </header> <!-- ============ HERO ============ --> <section class="hero"> <div class="hero__bg"> <img src="https://www.figma.com/api/mcp/asset/06c55e5e-af70-49a0-a1dd-258edb9ae2b6" alt=""> </div> <div class="hero__inner"> <h1>Your own sommelier.<span class="gold">At every table.</span></h1> <p class="hero__sub">Entwine is a single intelligence layer that sits between the menu, the cellar and the diner — pairing what's on the list to what's on the plate, at every table where wine is taken seriously.</p> <div class="hero__badges"> <a href="https://ipassas.github.io/entwine/download" class="badge" data-icon="apple"></a> <a href="https://ipassas.github.io/entwine/download" class="badge" data-icon="google"></a> </div> </div> <!-- Audience tiles --> <div class="tiles"> <article class="tile"> <h3>I'm a Diner</h3> <p>Wine recommendations built around the menu you're actually ordering from.</p> <a href="https://ipassas.github.io/entwine/wine-lovers">Continue as Consumer <span>→</span></a> </article> <article class="tile"> <h3>I'm a Restaurant</h3> <p>The intelligence to build a wine programme your guests will remember.</p> <a href="https://ipassas.github.io/entwine/restaurants">Continue as Restaurant <span>→</span></a> </article> <article class="tile"> <h3>I'd like to Invest</h3> <p>Be part of Entwine's journey as we redefine hospitality through intelligent food and wine pairing technology.</p> <a href="https://ipassas.github.io/entwine/invest">Continue to Invest Page <span>→</span></a> </article> <article class="tile"> <h3>Become a Channel Partner</h3> <p>Partner with Entwine to deliver innovative hospitality solutions and grow together.</p> <a href="https://ipassas.github.io/entwine/partners">Continue to Partner Page <span>→</span></a> </article> </div> </section> <!-- ============ ONE ECOSYSTEM ============ --> <section class="eco"> <h2>One ecosystem.<span class="ink">One satisfying outcome.</span></h2> <p class="eco__lead">Whether you're choosing a bottle for dinner or managing a wine list for your restaurant — Entwine was designed with you in mind.</p> <div class="eco__grid"> <article class="eco-card eco-card--light"> <p class="eyebrow">For Wine Lovers</p> <h3>Wine recommendations built around your meal, not just your mood.</h3> <p class="body">Entwine connects to your restaurant's actual menu and matches every dish to a wine worth ordering. 8,000 wines. Your table. Your perfect pairing.</p> <div class="eco-card__cta"> <a href="https://ipassas.github.io/entwine/download" class="btn btn--gold">Download Free <span class="arrow">→</span></a> <a href="https://ipassas.github.io/entwine/wine-lovers" class="btn btn--outline-dark">Learn More</a> </div> </article> <article class="eco-card eco-card--dark"> <p class="eyebrow">For Restaurants</p> <h3>Add a sommelier to your team — without the cost.</h3> <p class="body">Entwine gives your wine management the intelligence it deserves. Manage your inventory, optimise your list, train your staff, and let your guests discover the perfect pairing — all from one platform.</p> <div class="eco-card__cta"> <a href="https://ipassas.github.io/entwine/restaurants" class="btn btn--white">See the platform <span class="arrow">→</span></a> <a href="mailto:info@entwine.club?subject=Book%20a%20demo" class="btn btn--outline-light">Book a Demo</a> </div> </article> </div> </section> <!-- ============ WHY CHOOSE ============ --> <section class="why"> <div class="why__bg"> <img src="https://www.figma.com/api/mcp/asset/99e3d010-1606-4368-9488-c3fb26079e2b" alt=""> </div> <div class="why__head"> <h2>Why choose<span class="gold">Entwine?</span></h2> <p class="why__note">Four reasons, set in the order we believe them.</p> </div> <div class="why__list"> <div class="why-row"> <div class="why-row__num">01</div> <div class="why-row__title">Your menu.<span class="gold">Your pairings.</span></div> <div class="why-row__text"> <p class="lead">Entwine pairs your specific wine list with the dishes on your menu — not a lookup table of food types.</p> <p class="sub">Every restaurant is different. Every pairing should be too. We work from your list and your menu, no shortcuts.</p> </div> </div> <div class="why-row"> <div class="why-row__num">02</div> <div class="why-row__title">8,000 wines and growing.<span class="gold">Built from the source.</span></div> <div class="why-row__text"> <p class="lead">Our database is built from producer technical sheets — not scraped reviews, not crowd-sourced ratings.</p> <p class="sub">Accurate, structured, and growing every week. The data your sommelier wishes they had on hand.</p> </div> </div> <div class="why-row"> <div class="why-row__num">03</div> <div class="why-row__title">Built by people who<span class="gold">actually love wine.</span></div> <div class="why-row__text"> <p class="lead">Entwine didn't start in a boardroom. It started at the table — with a frustration that wine and food tech had never been properly connected.</p> <p class="sub">We built the platform we wished existed.</p> </div> </div> <div class="why-row"> <div class="why-row__num">04</div> <div class="why-row__title">One intelligence layer.<span class="gold">Two sides of the table.</span></div> <div class="why-row__text"> <p class="lead">The same engine that recommends wine to diners helps restaurants manage their cellar, optimise their list, and train their staff.</p> <p class="sub">Connected by design — because the table is, too.</p> </div> </div> </div> </section> <!-- ============ FEATURE CARDS ============ --> <section class="cards"> <div class="cards__grid"> <article class="fcard fcard--light fcard--big"> <div class="fcard__index"><span class="dot"></span>01</div> <p class="kicker">Restaurant-specific pairing, not generic</p> <h3 class="fcard__display">Yours.</h3> <p class="fcard__lead">Not grape types. Not food categories. Your wine list paired to the exact dishes on your restaurant's menu.</p> </article> <article class="fcard fcard--dark"> <div class="fcard__index"><span class="dot"></span>02</div> <p class="kicker">Powerful enough for professionals, simple enough for everyone</p> <h3 class="fcard__display">Free Tools</h3> <p class="fcard__lead">Seven professional tools designed to ease your working day.</p> <p class="fcard__foot">Free to start, with affordable options to go further.</p> <a href="https://ipassas.github.io/entwine/tools" class="btn btn--gold btn--upper">Start Now <span class="arrow">→</span></a> </article> <article class="fcard fcard--light fcard--sm"> <div class="fcard__index"><span class="dot"></span>03</div> <p class="kicker">Built from producer technical sheets</p> <h3 class="fcard__display">Primary Source</h3> <p class="fcard__lead">Our wine data comes straight from the producer — not scraped reviews or crowd-sourced ratings.</p> </article> </div> </section> <!-- ============ APP DOWNLOAD ============ --> <section class="app"> <div class="app__grid"> <div class="app__copy"> <h2>Download the pairing app <span class="gold">free</span> on the App Store and Google Play.</h2> <p class="app__lead">Bring a sommelier to every table. Search any menu. Match any dish. Order any bottle with confidence — wherever wine is taken seriously.</p> <div class="app__stats"> <div class="app__stat"> <div class="label">Wines gallery</div> <div class="value"><span class="gold">8,000</span><span class="ink">+</span></div> </div> <div class="app__stat"> <div class="label">Average rating</div> <div class="value"><span class="ink">4.8</span><span class="gold">/5</span></div> </div> </div> <div class="app__badges"> <a href="https://ipassas.github.io/entwine/download" class="badge" data-icon="apple"></a> <a href="https://ipassas.github.io/entwine/download" class="badge" data-icon="google"></a> </div> </div> <div class="app__visual"> <img src="https://www.figma.com/api/mcp/asset/99ac5ea6-9576-45f4-abd5-ee30de790347" alt="Entwine app — wine paired to your dish"> </div> </div> </section> <!-- ============ CHANNEL PARTNERS ============ --> <section class="partners"> <div class="partners__bg"> <img src="https://www.figma.com/api/mcp/asset/5b0b0786-68bb-432b-89f1-283c774fb831" alt=""> </div> <div class="partners__grid"> <div class="partners__intro"> <div class="partners__divider"></div> <p class="eyebrow">And wherever wine is taken seriously</p> <h2>Bring <span class="white">Entwine</span> to your market.</h2> </div> <div class="partners__card"> <p class="quote">We're building a network of channel partners across Europe and beyond — wine consultants, restaurant consultants, hospitality groups, and agencies who know their markets the way we know wine.</p> <p class="meta">Partners earn a revenue share on every restaurant they onboard and retain. We reward both <span class="gold">the hunt</span> and <span class="gold">the farm.</span></p> <div class="row"> <span class="contact">Get in touch — <span class="gold">partner@entwine.club</span></span> <a href="https://ipassas.github.io/entwine/partners" class="pill">Find out more <span>→</span></a> </div> </div> </div> </section> <!-- ============ INVEST / ZAAR ============ --> <section class="zaar"> <div class="zaar__grid"> <div class="zaar__intro"> <div class="zaar__divider"></div> <p class="eyebrow">Be part of what comes next</p> <h2>Entwine is raising on <span class="gold">Zaar.</span></h2> <p class="zaar__body">Entwine is raising on Zaar — Malta's crowdfunding platform. Join our early supporters and help bring wine intelligence to restaurants across Europe.</p> <a href="https://ipassas.github.io/entwine/invest" class="btn btn--gold">Find out more <span class="arrow">→</span></a> </div> <div class="zaar-card"> <div class="zaar-card__top"> <div> <div class="label">Zaar · Malta</div> <div class="sub">Crowdfunding campaign</div> </div> <span class="zaar-card__live">● Live</span> </div> <div class="zaar-card__amount"> <span class="big">€50,000</span> <span class="target">target raise</span> </div> <div class="zaar-card__progress-meta"> <span class="committed">€16,200 <span>committed</span></span> <span class="pct">32% of target</span> </div> <div class="zaar-card__bar"><i></i></div> <div class="zaar-card__foot"> <span>Campaign window</span> <b>May 2026 — Jun 2027</b> </div> </div> </div> </section> <!-- ============ PRODUCT CALLOUTS ============ --> <section class="callouts"> <div class="callouts__grid"> <article class="callout"> <p class="kicker">Not wine lovers</p> <h3>Your own sommelier is waiting at the table.</h3> <p>Discover wine pairings built around the menu you're actually ordering from — not a generic list. Free on iOS and Android.</p> <div class="badges-row"> <a href="https://ipassas.github.io/entwine/download" class="badge badge--dark" data-icon="apple"></a> <a href="https://ipassas.github.io/entwine/download" class="badge badge--dark" data-icon="google"></a> </div> </article> <article class="callout"> <p class="kicker">For Restaurants</p> <h3>Your restaurant belongs in the founding club.</h3> <p>Give your wine programme the intelligence it deserves. Let's start with a conversation — and a glass.</p> <div class="callout__cta"><a href="https://ipassas.github.io/entwine/restaurants" class="btn btn--outline-dark btn--upper">Start Now <span class="arrow">→</span></a></div> </article> <article class="callout"> <p class="kicker">Not sure yet?</p> <h3>Try the free tools first — no account needed.</h3> <p>Stress-test your list, build a programme, generate a staff quiz. Seven tools, no commitment.</p> <div class="callout__cta"><a href="https://ipassas.github.io/entwine/tools" class="btn btn--outline-dark btn--upper">Try free tools <span class="arrow">→</span></a></div> </article> </div> </section> <!-- ============ FOOTER ============ --> <footer class="footer"> <div class="footer__top"> <div class="footer__brand"> <div class="brand"> <svg class="logo" viewBox="0 0 842 142" fill="currentColor" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Entwine"> <path d="M18.6257 79.3654H82.6392V62.9004H18.6257V17.0145H87.0756V0.567139H0V142H88.1892V125.517H18.6257V79.3654Z"></path> <path d="M207.613 110.754H207.325L129.949 0.868437L129.733 0.567139H112.006V142H130.631V32.0616H130.919L208.008 141.681L208.223 142H225.969V0.567139H207.613V110.754Z"></path> <path d="M496.212 114.582H495.943L465.75 0.549438H445.221L415.028 114.582H414.758L385.105 0.549438H366.138L405.185 141.468L405.329 142H424.17L455.476 30.4311L486.801 142H505.642L544.582 1.45333L544.833 0.549438H525.866L496.212 114.582Z"></path> <path d="M583.126 0.549438H564.5V141.982H583.126V0.549438Z"></path> <path d="M711.638 110.754H711.369L633.992 0.86846L633.759 0.549438H616.031V142H634.675V32.0617H634.962L712.051 141.681L712.267 142H729.994V0.549438H711.638V110.754Z"></path> <path d="M772.437 125.517V79.3655H836.45V62.9004H772.437V17.0145H840.886V0.549438H753.793V142H842V125.517H772.437Z"></path> <path d="M356.313 34.029C356.313 34.2594 356.205 34.4898 356.026 34.6493C355.864 34.8088 355.613 34.9329 355.397 34.9329H347.817C347.117 34.9329 346.937 34.4898 346.901 34.2062C346.794 33.4264 342.788 9.67699 329.802 9.67699C316.008 9.67699 298.119 36.528 288.402 48.5444C280.894 57.8315 273.925 66.8527 270.62 78.2134C270.405 78.9755 270.189 79.7376 270.01 80.5175C269.615 82.1126 269.345 83.7786 269.166 85.4978C269.13 85.7459 269.112 85.994 269.094 86.2421C268.914 88.2272 268.86 90.2654 268.86 92.3036C268.86 100.456 270.405 109.194 274.087 116.585C274.572 117.559 275.093 118.499 275.65 119.403C276.099 120.147 276.566 120.856 277.068 121.547C277.302 121.884 277.553 122.221 277.805 122.54C278.326 123.231 278.883 123.887 279.457 124.525C279.924 125.056 280.409 125.57 280.912 126.031C282.241 127.325 283.624 128.442 285.079 129.381C285.438 129.611 285.816 129.842 286.193 130.054C286.75 130.373 287.324 130.675 287.917 130.941C288.294 131.118 288.707 131.295 289.084 131.455C291.868 132.571 294.868 133.121 298.083 133.121C300.705 133.121 303.202 132.677 305.591 131.774C305.968 131.632 306.327 131.49 306.686 131.331C309.794 129.984 312.721 127.857 315.541 124.968C315.739 124.773 315.954 124.56 316.134 124.33C316.332 124.117 316.529 123.904 316.709 123.674C316.906 123.461 317.086 123.231 317.283 123.001C317.481 122.77 317.661 122.54 317.84 122.309C318.038 122.079 318.217 121.848 318.379 121.6C318.559 121.37 318.738 121.122 318.9 120.856C319.08 120.608 319.241 120.36 319.421 120.094C319.582 119.846 319.762 119.58 319.924 119.314C320.247 118.8 320.57 118.268 320.876 117.737C321.037 117.453 321.199 117.17 321.343 116.868C321.504 116.585 321.648 116.301 321.792 116.017C322.528 114.582 323.229 113.075 323.875 111.48C324.109 110.878 324.36 110.275 324.594 109.672C325.438 107.422 326.192 105.064 326.857 102.601C326.929 102.317 327.018 102.034 327.09 101.732C327.611 99.7474 328.078 97.6915 328.509 95.6001C328.635 94.9975 328.743 94.3949 328.868 93.7923C328.922 93.5087 328.976 93.2252 329.03 92.9416C329.138 92.339 329.246 91.7364 329.335 91.1338C329.335 91.0629 329.371 90.9743 329.371 90.9034C329.461 90.3894 329.551 89.8577 329.623 89.326C329.874 87.66 330.108 85.9763 330.305 84.2571C330.377 83.7963 330.413 83.3178 330.467 82.857C330.665 81.1201 330.844 79.3477 330.988 77.5754C331.024 77.0791 331.078 76.5652 331.114 76.0689C331.239 74.332 331.365 72.5774 331.455 70.8228C331.473 70.4683 331.491 70.1138 331.509 69.7594L348.608 64.1588C348.608 64.7614 348.608 65.364 348.608 65.9666C348.608 91.3642 340.094 118.818 328.383 130.161C319.421 138.774 311.374 141.947 298.496 141.947C283.319 141.947 270.441 136.275 261.478 125.836C253.665 116.762 249.516 104.515 249.516 92.0377C249.516 87.5005 249.983 82.7329 251.348 78.1957C255.874 62.8827 264.639 50.3699 278.595 36.528C279.511 35.6063 280.481 34.667 281.451 33.7277C281.541 33.6568 281.613 33.5681 281.72 33.4795C281.972 33.2491 282.205 33.001 282.439 32.7351C285.079 29.864 288.079 24.6533 288.204 21.853C288.492 14.9408 283.606 9.60609 276.26 9.60609H276.027C255.695 9.60609 251.294 34.1885 251.294 34.1885C251.294 34.3657 251.222 34.4898 251.133 34.5961C250.971 34.7733 250.737 34.862 250.594 34.862H242.781C242.691 34.862 242.601 34.8442 242.511 34.8088C242.421 34.7733 242.332 34.7379 242.278 34.667C242.134 34.5429 242.026 34.348 242.044 34.153C242.044 34.0821 242.062 34.029 242.098 33.9581L246.463 -0.0708923H351.697L356.295 33.9581L356.313 34.029Z"></path> </svg> </div> <p>Connecting consumers with local favourites, and empowering restaurants with the tools they need to thrive in the digital age.</p> <div class="badges-row" style="display:flex;gap:16px;flex-wrap:nowrap;margin-top:26px;"> <a href="https://ipassas.github.io/entwine/download" class="badge" data-icon="apple"></a> <a href="https://ipassas.github.io/entwine/download" class="badge" data-icon="google"></a> </div> <div class="footer__contactinfo"> <a href="mailto:info@entwine.club">info@entwine.club</a> <a href="tel:+35699266665">+356 9926 6665</a> <span>Cork &amp; Code Limited<br>Suite B, Cornerstone Business Centre,<br>16th September Square,<br>Mosta MST 1180, Malta</span> </div> <div class="footer__social"> <a href="#" aria-label="Instagram"><iconify-icon icon="ph:instagram-logo-thin"></iconify-icon></a> <a href="#" aria-label="Facebook"><iconify-icon icon="ph:facebook-logo-thin"></iconify-icon></a> <a href="https://www.linkedin.com/company/entwine-club/" target="_blank" rel="noopener" aria-label="LinkedIn"><iconify-icon icon="ph:linkedin-logo-thin"></iconify-icon></a> <a href="#" aria-label="TikTok"><iconify-icon icon="ph:tiktok-logo-thin"></iconify-icon></a> </div> </div> <div class="footer__col"> <h4>Product</h4> <ul> <li><a href="https://ipassas.github.io/entwine/wine-lovers">For Wine Lovers</a></li> <li><a href="https://ipassas.github.io/entwine/restaurants">For Restaurants</a></li> <li><a href="https://ipassas.github.io/entwine/pricing">Pricing</a></li> <li><a href="https://ipassas.github.io/entwine/download">Download App</a></li> </ul> </div> <div class="footer__col"> <h4>Free Tools</h4> <ul> <li><a href="https://ipassas.github.io/entwine/tools/gap-finder">Wine List Gap Finder</a></li> <li><a href="https://ipassas.github.io/entwine/tools/wine-list-audit">Wine List Audit</a></li> <li><a href="https://ipassas.github.io/entwine/tools/btg-optimiser">BTG Optimiser</a></li> <li><a href="https://ipassas.github.io/entwine/tools">All Tools</a></li> </ul> </div> <div class="footer__col"> <h4>Company</h4> <ul> <li><a href="https://ipassas.github.io/entwine/about">About Us</a></li> <li><a href="https://ipassas.github.io/entwine/partners">Partners</a></li> <li><a href="https://ipassas.github.io/entwine/invest">Invest</a></li> <li><a href="https://ipassas.github.io/entwine/insights">Insights</a></li> <li><a href="https://ipassas.github.io/entwine/careers">Careers</a></li> </ul> </div> </div> <div class="footer__bottom"> <span>© 2026 Design Redorange · Entwine. All rights reserved.</span> <nav class="footer__legal"> <a href="https://ipassas.github.io/entwine/privacy">Privacy Policy</a> <a href="https://ipassas.github.io/entwine/terms">Terms of Service</a> <a href="https://ipassas.github.io/entwine/cookies">Cookie Policy</a> <a href="https://ipassas.github.io/entwine/accessibility">Accessibility</a> <a href="https://ipassas.github.io/entwine/sitemap">Sitemap</a> </nav> </div> </footer> <!-- ============ CLOSING BAR ============ --> <div class="footbar"> <div class="footbar__side footbar__side--left"> <span class="footbar__step"><b>I.</b><span>&nbsp;&nbsp; Take it to dinner</span></span> <a href="https://ipassas.github.io/entwine/download" class="btn btn--gold btn--upper">Download free <span class="arrow">→</span></a> </div> <div class="footbar__center"> <svg viewBox="0 0 42 52" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Entwine mark"> <path d="M42 12.4857C42 12.5701 41.9604 12.6544 41.8944 12.7128C41.835 12.7712 41.7425 12.8167 41.6633 12.8167H38.8774C38.62 12.8167 38.554 12.6544 38.5408 12.5506C38.5012 12.2651 37.029 3.5692 32.2561 3.5692C27.186 3.5692 20.6109 13.4007 17.0394 17.8006C14.28 21.201 11.7185 24.5042 10.5038 28.6639C10.4246 28.943 10.3454 29.222 10.2794 29.5076C10.1342 30.0916 10.0351 30.7016 9.96911 31.3311C9.95591 31.4219 9.94931 31.5128 9.94271 31.6036C9.8767 32.3305 9.85689 33.0768 9.85689 33.823C9.85689 36.8082 10.4246 40.0075 11.778 42.7136C11.9562 43.0705 12.1476 43.4145 12.3523 43.7454C12.5173 44.018 12.689 44.2776 12.8738 44.5306C12.9596 44.6539 13.0521 44.7772 13.1445 44.8941C13.3359 45.1471 13.5406 45.3873 13.7518 45.6209C13.9235 45.8156 14.1017 46.0037 14.2865 46.1725C14.7751 46.6462 15.2834 47.055 15.8181 47.399C15.9502 47.4833 16.0888 47.5677 16.2274 47.6456C16.4321 47.7624 16.6433 47.8727 16.8612 47.9701C16.9998 48.0349 17.1516 48.0998 17.2903 48.1582C18.3135 48.5671 19.416 48.7683 20.5977 48.7683C21.5615 48.7683 22.4791 48.606 23.3571 48.2751C23.4958 48.2231 23.6278 48.1712 23.7598 48.1128C24.9019 47.6196 25.9779 46.8409 27.0144 45.7831C27.087 45.7117 27.1662 45.6339 27.2323 45.5495C27.3049 45.4716 27.3775 45.3937 27.4435 45.3094C27.5161 45.2315 27.5821 45.1471 27.6548 45.0628C27.7274 44.9784 27.7934 44.8941 27.8594 44.8097C27.932 44.7253 27.998 44.641 28.0574 44.5501C28.1235 44.4657 28.1895 44.3749 28.2489 44.2776C28.3149 44.1867 28.3743 44.0958 28.4403 43.9985C28.4998 43.9077 28.5658 43.8103 28.6252 43.713C28.744 43.5248 28.8628 43.3301 28.9751 43.1354C29.0345 43.0316 29.0939 42.9277 29.1467 42.8174C29.2061 42.7136 29.2589 42.6098 29.3118 42.5059C29.5824 41.9803 29.8399 41.4287 30.0775 40.8446C30.1634 40.624 30.2558 40.4033 30.3416 40.1827C30.6519 39.3585 30.9291 38.4954 31.1734 37.5934C31.1998 37.4896 31.2328 37.3858 31.2592 37.2754C31.4507 36.5486 31.6223 35.7958 31.7807 35.0301C31.827 34.8094 31.8666 34.5888 31.9128 34.3682C31.9326 34.2643 31.9524 34.1605 31.9722 34.0567C32.0118 33.836 32.0514 33.6154 32.0844 33.3947C32.0844 33.3688 32.0976 33.3363 32.0976 33.3104C32.1306 33.1222 32.1636 32.9275 32.19 32.7328C32.2825 32.1228 32.3683 31.5063 32.4409 30.8768C32.4673 30.7081 32.4805 30.5329 32.5003 30.3642C32.5729 29.7282 32.639 29.0792 32.6918 28.4303C32.705 28.2486 32.7248 28.0604 32.738 27.8787C32.7842 27.2427 32.8304 26.6003 32.8634 25.9578C32.87 25.828 32.8766 25.6982 32.8832 25.5685L39.1679 23.5178C39.1679 23.7384 39.1679 23.9591 39.1679 24.1797C39.1679 33.4791 36.0388 43.5313 31.7345 47.6845C28.4403 50.8384 25.4828 52 20.7495 52C15.1712 52 10.4378 49.9234 7.14364 46.1011C4.27195 42.7785 2.74698 38.2943 2.74698 33.7257C2.74698 32.0644 2.91863 30.3187 3.42035 28.6574C5.08394 23.0505 8.30552 18.469 13.4349 13.4007C13.7716 13.0633 14.1281 12.7193 14.4846 12.3754C14.5176 12.3494 14.544 12.317 14.5836 12.2845C14.676 12.2002 14.7619 12.1093 14.8477 12.012C15.8181 10.9607 16.9206 9.05279 16.9668 8.02746C17.0724 5.49657 15.2768 3.54324 12.5767 3.54324H12.4909C5.01792 3.54324 3.40054 12.5441 3.40054 12.5441C3.40054 12.609 3.37414 12.6544 3.34113 12.6934C3.28172 12.7583 3.19589 12.7907 3.14308 12.7907H0.271387C0.238379 12.7907 0.205375 12.7842 0.172367 12.7712C0.139359 12.7583 0.106348 12.7453 0.0865436 12.7193C0.0337309 12.6739 -0.00588181 12.6025 0.000719777 12.5311C0.000719777 12.5052 0.00732056 12.4857 0.0205237 12.4598L1.62471 0H40.3034L41.9934 12.4598L42 12.4857Z" fill="#B8A86A"></path> </svg> </div> <div class="footbar__side footbar__side--right"> <a href="https://ipassas.github.io/entwine/pricing#demo" class="btn btn--outline-light btn--upper">Book a demo <span class="arrow">→</span></a> <span class="footbar__step"><b>II.</b><span>&nbsp;&nbsp; Build the programme</span></span> </div> </div> </div> <!-- inject store badge icons + labels --> <script>
+  (function () {
+    var apple = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M16.36 12.78c-.02-2.13 1.74-3.15 1.82-3.2-.99-1.45-2.54-1.65-3.09-1.67-1.32-.13-2.57.77-3.24.77-.66 0-1.69-.75-2.78-.73-1.43.02-2.75.83-3.49 2.11-1.49 2.58-.38 6.4 1.07 8.49.71 1.02 1.56 2.17 2.67 2.13 1.07-.04 1.48-.69 2.77-.69 1.29 0 1.66.69 2.79.67 1.15-.02 1.88-1.04 2.58-2.07.81-1.19 1.15-2.34 1.16-2.4-.03-.01-2.23-.86-2.25-3.41zM14.3 6.6c.59-.72.99-1.71.88-2.7-.85.03-1.88.57-2.49 1.28-.55.63-1.03 1.64-.9 2.61.95.07 1.92-.48 2.51-1.19z"/></svg>';
+    var google = '<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z"/></svg>';
+    document.querySelectorAll('.badge').forEach(function (b) {
+      var kind = b.getAttribute('data-icon');
+      var icon = kind === 'apple' ? apple : google;
+      var top = kind === 'apple' ? 'Download on the' : 'Get it on';
+      var main = kind === 'apple' ? 'App Store' : 'Google Play';
+      b.innerHTML = icon + '<span><span class="badge-top">' + top + '</span><br><span class="badge-main">' + main + '</span></span>';
+    });
+  })();
+</script> <!-- mobile menu toggle --> <script>
+  (function () {
+    var t = document.getElementById('navToggle'), m = document.getElementById('mobileMenu');
+    if (!t || !m) return;
+    function close() { m.classList.remove('open'); t.setAttribute('aria-expanded', 'false'); t.setAttribute('aria-label', 'Open menu'); }
+    function toggle() { var open = m.classList.toggle('open'); t.setAttribute('aria-expanded', open ? 'true' : 'false'); t.setAttribute('aria-label', open ? 'Close menu' : 'Open menu'); }
+    t.addEventListener('click', toggle);
+    m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 1024) close(); });
+    document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  })();
+</script> <!-- scroll reveal: sections fade/rise in as they enter the viewport --> <script>
+  (function () {
+    var blocks = document.querySelectorAll('.eco,.why,.cards,.app,.partners,.zaar,.callouts,.footer,.footbar');
+    var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (!('IntersectionObserver' in window) || reduce) return; // leave fully visible
+    blocks.forEach(function (el) { el.classList.add('reveal'); });
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    blocks.forEach(function (el) { io.observe(el); });
+  })();
+</script> <!-- preloader --> <script>
+  (function () {
+    function done(){ var p=document.getElementById('preloader'); if(p){ p.classList.add('done'); setTimeout(function(){ p.style.display='none'; },650); } }
+    if (document.readyState === 'complete') done(); else window.addEventListener('load', done);
+    setTimeout(done, 4000);
+  })();
+</script> <script src="https://ipassas.github.io/entwine/store-link.js" defer></script> </body> </html>
