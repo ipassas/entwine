@@ -24,7 +24,7 @@
   .tt-back:hover{color:var(--gold)}
   .tt-back iconify-icon{font-size:15px}
   /* ink split hero w/ study cards */
-  .tt-hero{position:relative;isolation:isolate;background:var(--ink);color:#fff;overflow:hidden;padding:clamp(120px,13vw,180px) var(--gutter) clamp(64px,8vw,110px)}
+  .tt-hero{position:relative;isolation:isolate;background:var(--ink);color:#fff;overflow:hidden;margin-top:calc(-1 * var(--nav-h));padding:calc(var(--nav-h) + clamp(44px,7vw,100px)) var(--gutter) clamp(64px,8vw,110px)}
   .tt-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(46% 56% at 84% 18%,rgba(126,84,241,.16),transparent 62%)}
   .tt-hero__grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,80px);align-items:center}
   .tt-hero .tag{display:inline-flex;margin-top:26px;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:#a888f5;border:1px solid rgba(126,84,241,.5);border-radius:999px;padding:7px 14px}

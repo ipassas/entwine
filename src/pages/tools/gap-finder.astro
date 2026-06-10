@@ -21,7 +21,7 @@
   /* ===== GAP FINDER — page-scoped (gf-*) ===== */
   .gf-gold{color:var(--gold)}
   /* noir centered hero w/ gap motif */
-  .gf-hero{position:relative;isolation:isolate;background:#0b0a08;color:#fff;overflow:hidden;text-align:center;padding:clamp(120px,13vw,180px) var(--gutter) clamp(56px,7vw,96px)}
+  .gf-hero{position:relative;isolation:isolate;background:#0b0a08;color:#fff;overflow:hidden;text-align:center;margin-top:calc(-1 * var(--nav-h));padding:calc(var(--nav-h) + clamp(44px,7vw,100px)) var(--gutter) clamp(56px,7vw,96px)}
   .gf-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(64% 60% at 50% -8%,rgba(184,168,106,.22),transparent 62%)}
   .gf-hero .tag{display:inline-flex;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,168,106,.5);border-radius:999px;padding:7px 14px}
   .gf-hero h1{margin:22px auto 0;max-width:14ch;font-family:var(--display);font-weight:200;font-size:clamp(38px,5vw,80px);line-height:1;letter-spacing:-.035em}

@@ -33,7 +33,7 @@
 
   /* ---- HERO ---- */
   .tl-hero{position:relative;isolation:isolate;background:#070707;color:#fff;overflow:hidden;
-    padding:clamp(74px,8vw,120px) var(--gutter) clamp(48px,6vw,84px);text-align:center}
+    margin-top:calc(-1 * var(--nav-h));padding:calc(var(--nav-h) + clamp(60px,7vw,110px)) var(--gutter) clamp(48px,6vw,84px);text-align:center}
   .tl-hero__bg{position:absolute;inset:0;z-index:-3;overflow:hidden}
   .tl-hero__bg img{width:100%;height:100%;object-fit:cover;opacity:.5;transform:scale(1.05);animation:tl-kb 26s ease-in-out infinite alternate}
   @keyframes tl-kb{from{transform:scale(1.05) translateY(0)}to{transform:scale(1.13) translateY(-2%)}}
