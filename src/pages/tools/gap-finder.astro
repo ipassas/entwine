@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careers at Entwine — Wine. Technology. Hospitality.</title>
-  <meta name="description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
-  <meta property="og:title" content="Careers at Entwine — Wine. Technology. Hospitality." />
-  <meta property="og:description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
+  <title>Wine List Gap Finder — Entwine Free Tools</title>
+  <meta name="description" content="The Wine List Gap Finder analyses your food menu and wine list together — and shows you the styles, regions, and price points that would make your wine programme even stronger." />
+  <meta property="og:title" content="Wine List Gap Finder — Entwine Free Tools" />
+  <meta property="og:description" content="The Wine List Gap Finder analyses your food menu and wine list together — and shows you the styles, regions, and price points that would make your wine programme even stronger." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <link rel="stylesheet" href="/styles.css" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -15,6 +15,62 @@
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
+  </style>
+  <style is:inline id="gf-style">
+
+  /* ===== GAP FINDER — page-scoped (gf-*) ===== */
+  .gf-gold{color:var(--gold)}
+  /* noir centered hero w/ gap motif */
+  .gf-hero{position:relative;isolation:isolate;background:#0b0a08;color:#fff;overflow:hidden;text-align:center;padding:clamp(120px,13vw,180px) var(--gutter) clamp(56px,7vw,96px)}
+  .gf-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:radial-gradient(64% 60% at 50% -8%,rgba(184,168,106,.22),transparent 62%)}
+  .gf-hero .tag{display:inline-flex;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,168,106,.5);border-radius:999px;padding:7px 14px}
+  .gf-hero h1{margin:22px auto 0;max-width:14ch;font-family:var(--display);font-weight:200;font-size:clamp(38px,5vw,80px);line-height:1;letter-spacing:-.035em}
+  .gf-hero p{margin:24px auto 0;max-width:64ch;font-size:clamp(16px,1.15vw,18px);line-height:1.65;color:rgba(255,255,255,.72)}
+  .gf-hero__cta{margin-top:30px}
+  .gf-hero .micro{display:block;margin-top:16px;font-size:13px;color:rgba(255,255,255,.5)}
+  .gf-slots{margin:clamp(44px,5vw,72px) auto 0;display:grid;grid-template-columns:repeat(7,1fr);gap:12px;max-width:720px}
+  .gf-slot{aspect-ratio:3/4;border:1px solid rgba(255,255,255,.12);border-radius:10px;background:rgba(255,255,255,.03);display:flex;align-items:center;justify-content:center}
+  .gf-slot iconify-icon{font-size:30px;color:rgba(255,255,255,.4)}
+  .gf-slot--gap{border:1px dashed rgba(184,168,106,.8);background:rgba(184,168,106,.07);position:relative;animation:gf-pulse 2.6s ease-in-out infinite}
+  .gf-slot--gap iconify-icon{color:var(--gold)}
+  @keyframes gf-pulse{0%,100%{box-shadow:0 0 0 0 rgba(184,168,106,.25)}50%{box-shadow:0 0 0 12px rgba(184,168,106,0)}}
+  @media(prefers-reduced-motion:reduce){.gf-slot--gap{animation:none}}
+  @media(max-width:640px){.gf-slots{grid-template-columns:repeat(7,1fr);gap:7px;max-width:420px}.gf-slot iconify-icon{font-size:20px}}
+  /* features split w/ toast */
+  .gf-feat{background:#fff;border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .gf-feat__grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:clamp(36px,5vw,80px);align-items:center}
+  .gf-feat h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.3vw,52px);line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
+  .gf-feat .lead{margin:16px 0 0;max-width:54ch;font-size:16px;line-height:1.62;color:var(--gray-2)}
+  .gf-checks{margin-top:34px;display:grid;gap:24px}
+  .gf-check{display:grid;grid-template-columns:30px 1fr;gap:16px}
+  .gf-check iconify-icon{font-size:24px;color:var(--gold);margin-top:2px}
+  .gf-check h3{margin:0;font-family:var(--display);font-weight:400;font-size:18px;color:var(--ink)}
+  .gf-check p{margin:7px 0 0;font-size:14.5px;line-height:1.6;color:var(--gray-2)}
+  .gf-panel{position:relative}
+  .gf-panel__img{border-radius:18px;overflow:hidden;aspect-ratio:4/5;background:#101010;box-shadow:0 40px 80px rgba(0,0,0,.22)}
+  .gf-panel__img img{width:100%;height:100%;object-fit:cover;display:block}
+  .gf-toast{position:absolute;left:-8%;bottom:9%;display:flex;align-items:center;gap:14px;background:rgba(12,12,12,.92);color:#fff;border:1px solid rgba(184,168,106,.4);border-radius:14px;padding:16px 22px;box-shadow:0 24px 50px rgba(0,0,0,.35);backdrop-filter:blur(6px)}
+  .gf-toast iconify-icon{font-size:26px;color:var(--gold)}
+  .gf-toast .t{font-size:15px;font-weight:500}
+  .gf-toast .d{margin-top:3px;font-size:12.5px;color:rgba(255,255,255,.6)}
+  /* steps w/ ghost numerals */
+  .gf-how{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .gf-head{max-width:760px;margin:0 auto clamp(36px,4.5vw,60px);text-align:center}
+  .gf-head h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.3vw,54px);line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
+  .gf-head p{margin:14px auto 0;max-width:580px;font-size:16px;line-height:1.6;color:var(--gray-2)}
+  .gf-steps{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .gf-step{position:relative;overflow:hidden;background:#fff;border:1px solid var(--line-light);border-radius:var(--r-card);padding:38px 30px 34px;box-shadow:var(--sh-soft,0 18px 50px rgba(20,16,10,.08))}
+  .gf-step .ghost{position:absolute;right:6px;top:-26px;font-family:var(--display);font-weight:200;font-size:120px;letter-spacing:-.05em;color:rgba(184,168,106,.16);line-height:1}
+  .gf-step h3{position:relative;margin:0;font-family:var(--display);font-weight:300;font-size:22px;letter-spacing:-.01em;color:var(--ink)}
+  .gf-step p{position:relative;margin:12px 0 0;font-size:14.5px;line-height:1.62;color:var(--gray-2)}
+  /* big type CTA */
+  .gf-cta{background:var(--ink);color:#fff;text-align:center;padding:calc(var(--sec-y) * 1.1) var(--gutter)}
+  .gf-cta h2{margin:0 auto;max-width:16ch;font-family:var(--display);font-weight:200;font-size:clamp(34px,4.4vw,72px);line-height:1;letter-spacing:-.035em}
+  .gf-cta p{margin:20px auto 0;max-width:56ch;font-size:16.5px;line-height:1.6;color:rgba(255,255,255,.7)}
+  .gf-cta .btn{margin-top:30px}
+  .gf-cta .micro{display:block;margin-top:16px;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.5)}
+  @media(max-width:980px){.gf-feat__grid{grid-template-columns:1fr}.gf-steps{grid-template-columns:1fr}.gf-toast{left:4%}}
+
   </style>
 </head>
 <body>
@@ -88,40 +144,62 @@
     </div>
   </header>
 
-  <section class="hero hero--page">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-img="careers-hero" data-kw="team,restaurant,wine,people,dark" data-w="1920" data-h="1080"></div>
-    <div class="hero__inner">
-      <span class="eyebrow">Careers</span>
-      <h1>Small team. Big ambition. <span class="gold">Help us build the future of wine technology.</span></h1>
-      <p class="hero__sub">Entwine is a wine technology company at an exciting stage of growth. We're looking for people who care about wine, hospitality, and technology — and who are eager to help build something genuinely new.</p>
-      <div class="hero__badges"><a class="btn btn--gold" href="#roles">See open roles <span class="arrow">→</span></a></div>
+  <!-- ============ HERO (noir, gap motif) ============ -->
+  <section class="gf-hero js-reveal">
+    <span class="tag">100% Free Tool</span>
+    <h1>Wine List <span class="gf-gold">Gap Finder</span></h1>
+    <p>The Wine List Gap Finder analyses your food menu and wine list together — and shows you the styles, regions, and price points that would make your wine programme even stronger.</p>
+    <div class="gf-hero__cta"><a class="btn btn--gold" href="#">Start Building for Free <span class="arrow">→</span></a></div>
+    <span class="micro">No credit card required.</span>
+    <div class="gf-slots" aria-hidden="true">
+      <div class="gf-slot"><iconify-icon icon="ph:wine-thin"></iconify-icon></div>
+      <div class="gf-slot"><iconify-icon icon="ph:beer-bottle-thin"></iconify-icon></div>
+      <div class="gf-slot"><iconify-icon icon="ph:wine-thin"></iconify-icon></div>
+      <div class="gf-slot gf-slot--gap"><iconify-icon icon="ph:magnifying-glass-thin"></iconify-icon></div>
+      <div class="gf-slot"><iconify-icon icon="ph:champagne-thin"></iconify-icon></div>
+      <div class="gf-slot"><iconify-icon icon="ph:wine-thin"></iconify-icon></div>
+      <div class="gf-slot"><iconify-icon icon="ph:brandy-thin"></iconify-icon></div>
     </div>
   </section>
-  <section class="r-sec tint js-reveal">
-    <div class="r-head"><h2>What it's like to be part of the Entwine team.</h2></div>
-    <div class="cardgrid cardgrid--3">
-      <div class="card"><div class="ic"><iconify-icon icon="ph:trend-up-thin"></iconify-icon></div><h3>Growing with the company</h3><p>Early team members grow with the business. The opportunity to shape how we scale — with employee share ownership for the right candidates.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div><h3>Wine + tech + hospitality</h3><p>A rare intersection of three genuinely interesting industries. Work with restaurants, sommeliers, and wine professionals on a product people love.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:users-three-thin"></iconify-icon></div><h3>Small team, big ambition</h3><p>Everyone has real ownership over their work. No layers — direct access to founders. Your contribution is visible from day one.</p></div>
+
+  <!-- ============ FEATURES (split + toast) ============ -->
+  <section class="gf-feat js-reveal">
+    <div class="gf-feat__grid">
+      <div>
+        <h2>Everything you need, <span class="gf-gold">completely free.</span></h2>
+        <p class="lead">Our Free Digital Menu Builder is packed with features designed to improve your guest experience and streamline operations.</p>
+        <div class="gf-checks">
+          <div class="gf-check"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>Unlimited Menu Items &amp; Categories</h3><p>Add as many dishes, drinks, and modifiers as you need. Organize them beautifully without any artificial limits.</p></div></div>
+          <div class="gf-check"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>Real-Time Instant Updates</h3><p>86 a dish? Change a price? Update your digital menu instantly without ever reprinting a physical copy.</p></div></div>
+          <div class="gf-check"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>Mobile-Optimized Experience</h3><p>Provide a lightning-fast, highly readable menu experience perfectly formatted for any smartphone screen.</p></div></div>
+          <div class="gf-check"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><h3>Basic Scan Analytics</h3><p>Gain insights into how many times your menu is viewed daily to understand peak dining times and engagement.</p></div></div>
+        </div>
+      </div>
+      <div class="gf-panel">
+        <div class="gf-panel__img"><img class="imgph" alt="" data-img="tool-gap-panel" data-kw="wine,menu,tablet,restaurant" data-w="960" data-h="1200" /></div>
+        <div class="gf-toast"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><div><div class="t">Menu Updated</div><div class="d">Instantly synced across all tables</div></div></div>
+      </div>
     </div>
   </section>
-  <section class="r-sec cream js-reveal" id="roles">
-    <div class="r-head"><h2>We're building our team.</h2></div><p class="r-sub">These are the roles we're looking to fill.</p>
-    <div>
-      <div class="job"><div><div class="dept">Restaurant Operations</div><h3>Customer Success Specialist</h3><div class="loc">Malta · Full-time or part-time</div><p>You'll be the first point of contact for Entwine's restaurant clients — supporting onboarding, managing relationships, and making sure every restaurant gets the most out of the platform. Organised, personable, and comfortable with hospitality professionals.</p></div><span class="av open">Open</span></div>
-      <div class="job"><div><div class="dept">Sales &amp; Growth</div><h3>Club Growth Manager</h3><div class="loc">Malta-based · European travel · Full-time</div><p>You'll grow the Entwine club — bringing new restaurants onto the platform across Malta and into European markets. A relationship-led role for someone who knows hospitality and thrives in business development.</p></div><span class="av closed">Filled</span></div>
-      <div class="job"><div><div class="dept">Technology</div><h3>Full-Stack Developer</h3><div class="loc">Remote-friendly · Full-time</div><p>You'll work alongside our CTO to build and improve the full Entwine platform — the consumer app, the restaurant IMS, and our suite of professional wine tools. Comfortable across the full stack; AI/ML experience a bonus.</p></div><span class="av open">Open</span></div>
+
+  <!-- ============ HOW (ghost numerals) ============ -->
+  <section class="gf-how js-reveal">
+    <div class="gf-head"><h2>How it <span class="gf-gold">works</span></h2><p>Launch your contactless dining experience in three simple steps. No technical skills required.</p></div>
+    <div class="gf-steps">
+      <div class="gf-step"><span class="ghost">01</span><h3>Upload Your Menu</h3><p>Import your existing menu items, prices, and mouth-watering photos directly into our intuitive dashboard.</p></div>
+      <div class="gf-step"><span class="ghost">02</span><h3>Customize Design</h3><p>Match your restaurant's branding. Choose colors, fonts, and layouts that reflect your unique culinary identity.</p></div>
+      <div class="gf-step"><span class="ghost">03</span><h3>Generate &amp; Print QR</h3><p>Instantly generate high-resolution QR codes. Print them on table tents, stickers, or display them digitally.</p></div>
     </div>
   </section>
-  <section class="rcta js-reveal">
-    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor" style="color:#0a0a0a"><use href="#ew-mark"/></svg>
-    <h2>Don't see your role here? <span class="gold">We'd still love to hear from you.</span></h2>
-    <p>Wine. Technology. Hospitality. If that intersection excites you and you think you have something to contribute — get in touch and tell us about yourself.</p>
-    <div class="rcta__cta">
-      <a class="btn btn--dark" href="mailto:taste@entwine.club">Send us a note <span class="arrow">→</span></a>
-      <div class="rcta__links"><a href="/about">Learn about Entwine <span>→</span></a></div>
-    </div>
+
+  <!-- ============ CTA (big type) ============ -->
+  <section class="gf-cta js-reveal">
+    <h2>Ready to <span class="gf-gold">digitize your menu?</span></h2>
+    <p>Join thousands of modern restaurants providing a safer, more dynamic dining experience. Takes less than 10 minutes to set up.</p>
+    <a class="btn btn--gold" href="#">Get Started for Free <span class="arrow">→</span></a>
+    <span class="micro">No Hidden Fees. No Credit Card Required.</span>
   </section>
+
 
 <footer class="footer">
     <div class="footer__top">
@@ -255,6 +333,7 @@
     blocks.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
 
 <!-- preloader -->
 <script is:inline>

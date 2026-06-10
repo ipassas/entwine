@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careers at Entwine — Wine. Technology. Hospitality.</title>
-  <meta name="description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
-  <meta property="og:title" content="Careers at Entwine — Wine. Technology. Hospitality." />
-  <meta property="og:description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
+  <title>Wine List Creator — Entwine Tools</title>
+  <meta name="description" content="Upload your food menu — our algorithm suggests which types of wines belong on your list based on what you're serving. Build a list your food deserves." />
+  <meta property="og:title" content="Wine List Creator — Entwine Tools" />
+  <meta property="og:description" content="Upload your food menu — our algorithm suggests which types of wines belong on your list based on what you're serving. Build a list your food deserves." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <link rel="stylesheet" href="/styles.css" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -15,6 +15,60 @@
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
+  </style>
+  <style is:inline id="wc-style">
+
+  /* ===== WINE LIST CREATOR — page-scoped (wc-*) — freemium / purple accent ===== */
+  .wc-gold{color:var(--gold)}
+  /* airy light hero */
+  .wc-hero{background:#fff;border-bottom:1px solid var(--line-light);text-align:center;padding:clamp(120px,13vw,180px) var(--gutter) clamp(64px,8vw,110px);position:relative;overflow:hidden}
+  .wc-hero::before{content:"";position:absolute;inset:0;background:radial-gradient(46% 42% at 50% 0,rgba(126,84,241,.08),transparent 64%)}
+  .wc-hero .tag{position:relative;display:inline-flex;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--purple,#7e54f1);border:1px solid rgba(126,84,241,.4);border-radius:999px;padding:7px 14px}
+  .wc-hero h1{position:relative;margin:22px auto 0;max-width:14ch;font-family:var(--display);font-weight:200;font-size:clamp(38px,5vw,82px);line-height:1;letter-spacing:-.035em;color:var(--ink)}
+  .wc-hero p{position:relative;margin:24px auto 0;max-width:60ch;font-size:clamp(16px,1.15vw,18px);line-height:1.65;color:var(--gray-2)}
+  .wc-hero__cta{position:relative;margin-top:30px;display:flex;justify-content:center;flex-wrap:wrap;gap:14px}
+  /* steps strip */
+  .wc-how{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .wc-head{max-width:760px;margin:0 auto clamp(36px,4.5vw,60px);text-align:center}
+  .wc-head h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.3vw,54px);line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
+  .wc-head p{margin:14px auto 0;max-width:580px;font-size:16px;line-height:1.6;color:var(--gray-2)}
+  .wc-steps{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(24px,3vw,44px)}
+  .wc-step{text-align:center}
+  .wc-step .ic{width:74px;height:74px;margin:0 auto;border-radius:50%;border:1px solid rgba(126,84,241,.45);display:flex;align-items:center;justify-content:center;background:#fff}
+  .wc-step .ic iconify-icon{font-size:32px;color:var(--purple,#7e54f1)}
+  .wc-step .k{display:block;margin-top:18px;font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gray-1)}
+  .wc-step h3{margin:10px 0 0;font-family:var(--display);font-weight:300;font-size:22px;letter-spacing:-.01em;color:var(--ink)}
+  .wc-step p{margin:11px auto 0;max-width:34ch;font-size:14.5px;line-height:1.6;color:var(--gray-2)}
+  /* features dark */
+  .wc-feat{background:var(--ink);color:#fff;padding:var(--sec-y) var(--gutter)}
+  .wc-feat .wc-head h2{color:#fff}
+  .wc-feat .wc-head p{color:rgba(255,255,255,.66)}
+  .wc-grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
+  .wc-card{border:1px solid rgba(255,255,255,.13);border-radius:var(--r-card);padding:30px 26px;background:rgba(255,255,255,.02);transition:transform .35s cubic-bezier(.16,.84,.44,1),border-color .35s}
+  .wc-card:hover{transform:translateY(-4px);border-color:rgba(126,84,241,.55)}
+  .wc-card iconify-icon{font-size:30px;color:#a888f5}
+  .wc-card h3{margin:18px 0 0;font-family:var(--display);font-weight:300;font-size:19px;letter-spacing:-.01em}
+  .wc-card p{margin:10px 0 0;font-size:14px;line-height:1.6;color:rgba(255,255,255,.62)}
+  /* pricing compare */
+  .wc-pricing{background:var(--paper,#faf8f4);padding:var(--sec-y) var(--gutter)}
+  .wc-plans{max-width:1000px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:26px;align-items:start}
+  .wc-plan{position:relative;background:#fff;border:1px solid var(--line-light);border-radius:var(--r-card);padding:38px 34px;box-shadow:var(--sh-soft,0 18px 50px rgba(20,16,10,.08))}
+  .wc-plan--pro{border-color:rgba(126,84,241,.5);border-top:3px solid var(--purple,#7e54f1)}
+  .wc-plan .ptag{position:absolute;top:-13px;right:24px;background:var(--purple,#7e54f1);color:#fff;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;padding:6px 14px}
+  .wc-plan h3{margin:0;font-family:var(--display);font-weight:300;font-size:24px;letter-spacing:-.01em;color:var(--ink)}
+  .wc-plan .pd{margin:8px 0 0;font-size:14px;color:var(--gray-2)}
+  .wc-plan .pr{margin:22px 0 0;font-family:var(--display);font-weight:200;font-size:38px;letter-spacing:-.02em;color:var(--ink)}
+  .wc-plan ul{list-style:none;margin:24px 0 0;padding:24px 0 0;border-top:1px solid var(--line-light);display:grid;gap:13px}
+  .wc-plan li{display:flex;align-items:flex-start;gap:11px;font-size:14.5px;color:var(--gray-3)}
+  .wc-plan li iconify-icon{flex:none;font-size:19px;color:var(--gold);margin-top:1px}
+  .wc-plan li.off{color:var(--gray-1)}
+  .wc-plan li.off iconify-icon{color:#c9c4b8}
+  .wc-plan .btn{margin-top:28px;width:100%;justify-content:center}
+  .wc-plan--pro .btn{background:var(--purple,#7e54f1);color:#fff;border-color:transparent}
+  .wc-plan--pro .btn:hover{background:#6a42e0;box-shadow:0 10px 24px rgba(126,84,241,.35)}
+  @media(max-width:980px){.wc-steps{grid-template-columns:1fr}.wc-grid{grid-template-columns:1fr 1fr}.wc-plans{grid-template-columns:1fr}}
+  @media(max-width:640px){.wc-grid{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body>
@@ -88,40 +142,79 @@
     </div>
   </header>
 
-  <section class="hero hero--page">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-img="careers-hero" data-kw="team,restaurant,wine,people,dark" data-w="1920" data-h="1080"></div>
-    <div class="hero__inner">
-      <span class="eyebrow">Careers</span>
-      <h1>Small team. Big ambition. <span class="gold">Help us build the future of wine technology.</span></h1>
-      <p class="hero__sub">Entwine is a wine technology company at an exciting stage of growth. We're looking for people who care about wine, hospitality, and technology — and who are eager to help build something genuinely new.</p>
-      <div class="hero__badges"><a class="btn btn--gold" href="#roles">See open roles <span class="arrow">→</span></a></div>
+  <!-- ============ HERO (airy light, purple) ============ -->
+  <section class="wc-hero js-reveal">
+    <span class="tag">Freemium Tool</span>
+    <h1>Wine List <span class="wc-gold">Creator</span></h1>
+    <p>Upload your food menu — our algorithm suggests which types of wines belong on your list based on what you're serving. Build a list your food deserves.</p>
+    <div class="wc-hero__cta">
+      <a class="btn btn--gold" href="#">Start for free <span class="arrow">→</span></a>
+      <a class="btn btn--outline-dark" href="#pricing">View Pro Features</a>
     </div>
   </section>
-  <section class="r-sec tint js-reveal">
-    <div class="r-head"><h2>What it's like to be part of the Entwine team.</h2></div>
-    <div class="cardgrid cardgrid--3">
-      <div class="card"><div class="ic"><iconify-icon icon="ph:trend-up-thin"></iconify-icon></div><h3>Growing with the company</h3><p>Early team members grow with the business. The opportunity to shape how we scale — with employee share ownership for the right candidates.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div><h3>Wine + tech + hospitality</h3><p>A rare intersection of three genuinely interesting industries. Work with restaurants, sommeliers, and wine professionals on a product people love.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:users-three-thin"></iconify-icon></div><h3>Small team, big ambition</h3><p>Everyone has real ownership over their work. No layers — direct access to founders. Your contribution is visible from day one.</p></div>
+
+  <!-- ============ HOW ============ -->
+  <section class="wc-how js-reveal">
+    <div class="wc-head"><h2>How Advanced Analytics <span class="wc-gold">Pro Works</span></h2><p>Get started with our powerful analytics platform in three simple steps.</p></div>
+    <div class="wc-steps">
+      <div class="wc-step"><div class="ic"><iconify-icon icon="ph:flask-thin"></iconify-icon></div><span class="k">Step 1</span><h3>Connect Your Data</h3><p>Seamlessly integrate with your existing POS systems and online ordering platforms.</p></div>
+      <div class="wc-step"><div class="ic"><iconify-icon icon="ph:trend-up-thin"></iconify-icon></div><span class="k">Step 2</span><h3>Visualize Insights</h3><p>Intuitive dashboards show your key metrics, sales trends, and customer behavior.</p></div>
+      <div class="wc-step"><div class="ic"><iconify-icon icon="ph:scales-thin"></iconify-icon></div><span class="k">Step 3</span><h3>Make Smarter Decisions</h3><p>Use actionable data to optimize menus, staff, and marketing strategies.</p></div>
     </div>
   </section>
-  <section class="r-sec cream js-reveal" id="roles">
-    <div class="r-head"><h2>We're building our team.</h2></div><p class="r-sub">These are the roles we're looking to fill.</p>
-    <div>
-      <div class="job"><div><div class="dept">Restaurant Operations</div><h3>Customer Success Specialist</h3><div class="loc">Malta · Full-time or part-time</div><p>You'll be the first point of contact for Entwine's restaurant clients — supporting onboarding, managing relationships, and making sure every restaurant gets the most out of the platform. Organised, personable, and comfortable with hospitality professionals.</p></div><span class="av open">Open</span></div>
-      <div class="job"><div><div class="dept">Sales &amp; Growth</div><h3>Club Growth Manager</h3><div class="loc">Malta-based · European travel · Full-time</div><p>You'll grow the Entwine club — bringing new restaurants onto the platform across Malta and into European markets. A relationship-led role for someone who knows hospitality and thrives in business development.</p></div><span class="av closed">Filled</span></div>
-      <div class="job"><div><div class="dept">Technology</div><h3>Full-Stack Developer</h3><div class="loc">Remote-friendly · Full-time</div><p>You'll work alongside our CTO to build and improve the full Entwine platform — the consumer app, the restaurant IMS, and our suite of professional wine tools. Comfortable across the full stack; AI/ML experience a bonus.</p></div><span class="av open">Open</span></div>
+
+  <!-- ============ FEATURES (dark 4-up) ============ -->
+  <section class="wc-feat js-reveal">
+    <div class="wc-head"><h2>What You Get with <span class="wc-gold">Analytics Pro</span></h2><p>Comprehensive features designed to give you a competitive edge.</p></div>
+    <div class="wc-grid">
+      <div class="wc-card"><iconify-icon icon="ph:trend-up-thin"></iconify-icon><h3>Real-time Sales Tracking</h3><p>Monitor your sales performance as it happens, identify peak hours, and measure promotional impact.</p></div>
+      <div class="wc-card"><iconify-icon icon="ph:scales-thin"></iconify-icon><h3>Menu Item Performance</h3><p>Analyze which dishes are top sellers and which might need adjustment based on profitability and popularity.</p></div>
+      <div class="wc-card"><iconify-icon icon="ph:flask-thin"></iconify-icon><h3>Customer Behavior Insights</h3><p>Understand repeat customers, average spend, and preferences to personalize experiences.</p></div>
+      <div class="wc-card"><iconify-icon icon="ph:check-circle-thin"></iconify-icon><h3>Operational Efficiency Reports</h3><p>Gain insights into staffing levels, order accuracy, and service speed to streamline operations.</p></div>
     </div>
   </section>
-  <section class="rcta js-reveal">
-    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor" style="color:#0a0a0a"><use href="#ew-mark"/></svg>
-    <h2>Don't see your role here? <span class="gold">We'd still love to hear from you.</span></h2>
-    <p>Wine. Technology. Hospitality. If that intersection excites you and you think you have something to contribute — get in touch and tell us about yourself.</p>
-    <div class="rcta__cta">
-      <a class="btn btn--dark" href="mailto:taste@entwine.club">Send us a note <span class="arrow">→</span></a>
-      <div class="rcta__links"><a href="/about">Learn about Entwine <span>→</span></a></div>
+
+  <!-- ============ PRICING ============ -->
+  <section class="wc-pricing js-reveal" id="pricing">
+    <div class="wc-head"><h2>Pricing: <span class="wc-gold">Free vs. Pro Analytics</span></h2><p>Start with powerful free tools and upgrade for advanced capabilities.</p></div>
+    <div class="wc-plans">
+      <div class="wc-plan">
+        <h3>Free Basic</h3>
+        <p class="pd">Essential insights to get started.</p>
+        <div class="pr">$0 / month</div>
+        <ul>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Basic Sales Reports</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Daily Summaries</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Limited Menu Performance</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Email Support</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Historical Data (30 days)</li>
+          <li class="off"><iconify-icon icon="ph:x-circle-thin"></iconify-icon>Real-time Sales Tracking</li>
+          <li class="off"><iconify-icon icon="ph:x-circle-thin"></iconify-icon>Advanced Customer Segmentation</li>
+          <li class="off"><iconify-icon icon="ph:x-circle-thin"></iconify-icon>Predictive Analytics</li>
+          <li class="off"><iconify-icon icon="ph:x-circle-thin"></iconify-icon>Dedicated Account Manager</li>
+        </ul>
+        <a class="btn btn--outline-dark" href="#">Start for Free</a>
+      </div>
+      <div class="wc-plan wc-plan--pro">
+        <span class="ptag">Pro Upgrade</span>
+        <h3>Pro Analytics</h3>
+        <p class="pd">Unleash full potential with advanced features.</p>
+        <div class="pr">$49 / month</div>
+        <ul>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>All Basic Features</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Real-time Sales Tracking</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Advanced Customer Segmentation</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Predictive Analytics</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Unlimited Historical Data</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Dedicated Account Manager</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Custom Report Builder</li>
+          <li><iconify-icon icon="ph:check-circle-thin"></iconify-icon>Multi-location Dashboard</li>
+        </ul>
+        <a class="btn" href="#">Upgrade Now <span class="arrow">→</span></a>
+      </div>
     </div>
   </section>
+
 
 <footer class="footer">
     <div class="footer__top">
@@ -255,6 +348,7 @@
     blocks.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
 
 <!-- preloader -->
 <script is:inline>

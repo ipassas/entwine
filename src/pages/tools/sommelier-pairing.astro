@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Careers at Entwine — Wine. Technology. Hospitality.</title>
-  <meta name="description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
-  <meta property="og:title" content="Careers at Entwine — Wine. Technology. Hospitality." />
-  <meta property="og:description" content="Entwine is a wine technology company at an exciting stage of growth. Explore open roles and help us build the future of wine technology." />
+  <title>Sommelier Pairing Service — Entwine Tools</title>
+  <meta name="description" content="Upload your food menu — Entwine's sommelier team curates a bespoke wine list matched to your specific dishes. Human expertise, not just an algorithm." />
+  <meta property="og:title" content="Sommelier Pairing Service — Entwine Tools" />
+  <meta property="og:description" content="Upload your food menu — Entwine's sommelier team curates a bespoke wine list matched to your specific dishes. Human expertise, not just an algorithm." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
   <link rel="stylesheet" href="/styles.css" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
@@ -15,6 +15,66 @@
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
     #preloader.done{opacity:0;pointer-events:none}
+  </style>
+  <style is:inline id="sp-style">
+
+  /* ===== SOMMELIER PAIRING — page-scoped (sp-*) ===== */
+  .sp-gold{color:var(--gold)}
+  .sp-back{display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+  .sp-back:hover{color:var(--gold)}
+  .sp-back iconify-icon{font-size:15px}
+  /* full-bleed image hero */
+  .sp-hero{position:relative;isolation:isolate;background:#080807;color:#fff;overflow:hidden;text-align:center;padding:clamp(130px,15vw,210px) var(--gutter) clamp(80px,10vw,140px)}
+  .sp-hero__bg{position:absolute;inset:0;z-index:-2}
+  .sp-hero__bg img{width:100%;height:100%;object-fit:cover;opacity:.42}
+  .sp-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(8,8,7,.65) 0%,rgba(8,8,7,.35) 45%,#080807 100%)}
+  .sp-hero .tag{display:inline-flex;margin-top:28px;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,168,106,.55);border-radius:999px;padding:8px 18px}
+  .sp-hero h1{margin:24px auto 0;max-width:14ch;font-family:var(--display);font-weight:100;font-size:clamp(40px,5.6vw,92px);line-height:.98;letter-spacing:-.035em}
+  .sp-hero p{margin:26px auto 0;max-width:66ch;font-size:clamp(16px,1.2vw,19px);line-height:1.7;color:rgba(255,255,255,.78)}
+  .sp-hero .btn{margin-top:34px}
+  /* value split + price card */
+  .sp-value{background:var(--paper,#faf8f4);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .sp-value__grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(36px,5vw,88px);align-items:center}
+  .sp-value h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.4vw,54px);line-height:1.05;letter-spacing:-.03em;color:var(--ink)}
+  .sp-value .lead{margin:18px 0 0;max-width:56ch;font-size:16.5px;line-height:1.66;color:var(--gray-2)}
+  .sp-price{position:relative;background:linear-gradient(168deg,#16140e,#0a0a0a);border:1px solid rgba(184,168,106,.45);border-radius:20px;padding:clamp(30px,3vw,44px);color:#fff;text-align:center;box-shadow:0 40px 80px rgba(0,0,0,.25);overflow:hidden}
+  .sp-price::before{content:"";position:absolute;inset:0;background:radial-gradient(70% 50% at 50% -10%,rgba(184,168,106,.22),transparent 62%)}
+  .sp-price .l{position:relative;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold)}
+  .sp-price .amt{position:relative;margin-top:18px;font-family:var(--display);font-weight:200;font-size:clamp(44px,4vw,64px);letter-spacing:-.03em;line-height:1}
+  .sp-price .amt small{font-size:.35em;letter-spacing:.06em;color:rgba(255,255,255,.6)}
+  .sp-price .btn{position:relative;margin-top:28px;width:100%;justify-content:center}
+  .sp-price .micro{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:13px;color:rgba(255,255,255,.6)}
+  .sp-price .micro iconify-icon{font-size:17px;color:var(--gold)}
+  /* features noir list */
+  .sp-feat{background:#0d0c0a;color:#fff;padding:var(--sec-y) var(--gutter)}
+  .sp-head{max-width:820px;margin:0 auto clamp(36px,4.5vw,60px);text-align:center}
+  .sp-head h2{margin:0;font-family:var(--display);font-weight:200;font-size:clamp(30px,3.3vw,54px);line-height:1.06;letter-spacing:-.03em}
+  .sp-head p{margin:14px auto 0;max-width:640px;font-size:16px;line-height:1.6;color:rgba(255,255,255,.66)}
+  .sp-grid{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:0 clamp(36px,4vw,80px);border-top:1px solid rgba(255,255,255,.13)}
+  .sp-row{display:grid;grid-template-columns:44px 1fr;gap:20px;padding:30px 4px;border-bottom:1px solid rgba(255,255,255,.13)}
+  .sp-row iconify-icon{font-size:32px;color:var(--gold)}
+  .sp-row h3{margin:0;font-family:var(--display);font-weight:300;font-size:20px;letter-spacing:-.01em}
+  .sp-row p{margin:9px 0 0;font-size:14.5px;line-height:1.62;color:rgba(255,255,255,.62)}
+  /* deployment steps */
+  .sp-how{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
+  .sp-how .sp-head h2{color:var(--ink)}
+  .sp-how .sp-head p{color:var(--gray-2)}
+  .sp-steps{max-width:var(--content);margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+  .sp-step{background:#fff;border:1px solid var(--line-light);border-radius:var(--r-card);padding:36px 30px;text-align:center;box-shadow:var(--sh-soft,0 18px 50px rgba(20,16,10,.08))}
+  .sp-step .k{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--gold)}
+  .sp-step iconify-icon{display:block;margin:20px auto 0;font-size:34px;color:var(--ink)}
+  .sp-step h3{margin:16px 0 0;font-family:var(--display);font-weight:300;font-size:22px;letter-spacing:-.01em;color:var(--ink)}
+  .sp-step p{margin:12px 0 0;font-size:14.5px;line-height:1.62;color:var(--gray-2)}
+  /* final CTA */
+  .sp-cta{background:var(--ink);color:#fff;text-align:center;padding:calc(var(--sec-y) * 1.1) var(--gutter);position:relative;overflow:hidden}
+  .sp-cta .mark{position:absolute;left:-3%;bottom:-28%;width:min(38vw,360px);color:rgba(184,168,106,.07)}
+  .sp-cta h2{position:relative;margin:0 auto;max-width:18ch;font-family:var(--display);font-weight:200;font-size:clamp(32px,4vw,64px);line-height:1.04;letter-spacing:-.03em}
+  .sp-cta p{position:relative;margin:20px auto 0;max-width:56ch;font-size:16.5px;line-height:1.6;color:rgba(255,255,255,.7)}
+  .sp-cta .btn{position:relative;margin-top:30px}
+  .sp-cta .micro{position:relative;display:flex;align-items:center;justify-content:center;gap:8px;margin-top:18px;font-size:13px;color:rgba(255,255,255,.55)}
+  .sp-cta .micro iconify-icon{font-size:17px;color:var(--gold)}
+  @media(max-width:980px){.sp-value__grid{grid-template-columns:1fr}.sp-grid{grid-template-columns:1fr}.sp-steps{grid-template-columns:1fr}}
+
   </style>
 </head>
 <body>
@@ -88,40 +148,64 @@
     </div>
   </header>
 
-  <section class="hero hero--page">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-img="careers-hero" data-kw="team,restaurant,wine,people,dark" data-w="1920" data-h="1080"></div>
-    <div class="hero__inner">
-      <span class="eyebrow">Careers</span>
-      <h1>Small team. Big ambition. <span class="gold">Help us build the future of wine technology.</span></h1>
-      <p class="hero__sub">Entwine is a wine technology company at an exciting stage of growth. We're looking for people who care about wine, hospitality, and technology — and who are eager to help build something genuinely new.</p>
-      <div class="hero__badges"><a class="btn btn--gold" href="#roles">See open roles <span class="arrow">→</span></a></div>
+  <!-- ============ HERO (full-bleed image) ============ -->
+  <section class="sp-hero js-reveal">
+    <div class="sp-hero__bg"><img class="imgph" alt="" data-img="tool-somm-hero" data-kw="sommelier,wine,pouring,restaurant,dark" data-w="2200" data-h="1300" /></div>
+    <a class="sp-back" href="/tools"><iconify-icon icon="ph:caret-left-thin"></iconify-icon> Back to All Tools</a>
+    <br /><span class="tag">Premium One-Time Purchase</span>
+    <h1>Sommelier <span class="sp-gold">Pairing Service</span></h1>
+    <p>Upload your food menu — Entwine's sommelier team curates a bespoke wine list matched to your specific dishes. Human expertise, not just an algorithm. The curated list goes live on the Entwine app for guests dining at your restaurant.</p>
+    <a class="btn btn--gold" href="#license">Purchase Now <span class="arrow">→</span></a>
+  </section>
+
+  <!-- ============ VALUE + PRICE CARD ============ -->
+  <section class="sp-value js-reveal" id="license">
+    <div class="sp-value__grid">
+      <div>
+        <h2>Ditch the monthly <span class="sp-gold">subscription treadmill.</span></h2>
+        <p class="lead">Most POS systems charge you $80-$150 every single month per terminal. Over 5 years, that's nearly $9,000. DinePOS Pro is a single, upfront investment that pays for itself in under a year.</p>
+      </div>
+      <div class="sp-price">
+        <div class="l">Lifetime License</div>
+        <div class="amt">$1,499<small>/flat</small></div>
+        <a class="btn btn--gold" href="#">Get Lifetime Access <span class="arrow">→</span></a>
+        <div class="micro"><iconify-icon icon="ph:shield-check-thin"></iconify-icon> Backed by our 30-day money-back guarantee.</div>
+      </div>
     </div>
   </section>
-  <section class="r-sec tint js-reveal">
-    <div class="r-head"><h2>What it's like to be part of the Entwine team.</h2></div>
-    <div class="cardgrid cardgrid--3">
-      <div class="card"><div class="ic"><iconify-icon icon="ph:trend-up-thin"></iconify-icon></div><h3>Growing with the company</h3><p>Early team members grow with the business. The opportunity to shape how we scale — with employee share ownership for the right candidates.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div><h3>Wine + tech + hospitality</h3><p>A rare intersection of three genuinely interesting industries. Work with restaurants, sommeliers, and wine professionals on a product people love.</p></div>
-      <div class="card"><div class="ic"><iconify-icon icon="ph:users-three-thin"></iconify-icon></div><h3>Small team, big ambition</h3><p>Everyone has real ownership over their work. No layers — direct access to founders. Your contribution is visible from day one.</p></div>
+
+  <!-- ============ FEATURES (noir list) ============ -->
+  <section class="sp-feat js-reveal">
+    <div class="sp-head"><h2>Everything you need to run the floor, <span class="sp-gold">included permanently.</span></h2><p>No features are locked behind higher monthly tiers. Your one-time purchase grants you full access to our entire suite of professional tools.</p></div>
+    <div class="sp-grid">
+      <div class="sp-row"><iconify-icon icon="ph:shield-check-thin"></iconify-icon><div><h3>Enterprise-Grade Security</h3><p>End-to-end encryption for all transactions and local data storage keeps your business and customer data completely secure.</p></div></div>
+      <div class="sp-row"><iconify-icon icon="ph:wifi-slash-thin"></iconify-icon><div><h3>100% Offline Capable</h3><p>Internet goes down? Your restaurant doesn't. Continue taking orders, printing tickets, and processing cash without a hitch.</p></div></div>
+      <div class="sp-row"><iconify-icon icon="ph:chart-bar-thin"></iconify-icon><div><h3>Advanced Local Analytics</h3><p>Generate detailed sales, labor, and inventory reports directly from the terminal without needing to log into a web dashboard.</p></div></div>
+      <div class="sp-row"><iconify-icon icon="ph:printer-thin"></iconify-icon><div><h3>Smart Kitchen Routing</h3><p>Automatically route specific menu items to designated prep stations (e.g., bar, grill, fry) to streamline kitchen operations.</p></div></div>
+      <div class="sp-row"><iconify-icon icon="ph:users-three-thin"></iconify-icon><div><h3>Unlimited Staff Accounts</h3><p>Create distinct profiles for every employee with granular permission levels, time-clock tracking, and individual drawer management.</p></div></div>
+      <div class="sp-row"><iconify-icon icon="ph:credit-card-thin"></iconify-icon><div><h3>Processor Agnostic</h3><p>We don't lock you into a specific payment processor. Connect your preferred gateway and negotiate your own credit card rates.</p></div></div>
     </div>
   </section>
-  <section class="r-sec cream js-reveal" id="roles">
-    <div class="r-head"><h2>We're building our team.</h2></div><p class="r-sub">These are the roles we're looking to fill.</p>
-    <div>
-      <div class="job"><div><div class="dept">Restaurant Operations</div><h3>Customer Success Specialist</h3><div class="loc">Malta · Full-time or part-time</div><p>You'll be the first point of contact for Entwine's restaurant clients — supporting onboarding, managing relationships, and making sure every restaurant gets the most out of the platform. Organised, personable, and comfortable with hospitality professionals.</p></div><span class="av open">Open</span></div>
-      <div class="job"><div><div class="dept">Sales &amp; Growth</div><h3>Club Growth Manager</h3><div class="loc">Malta-based · European travel · Full-time</div><p>You'll grow the Entwine club — bringing new restaurants onto the platform across Malta and into European markets. A relationship-led role for someone who knows hospitality and thrives in business development.</p></div><span class="av closed">Filled</span></div>
-      <div class="job"><div><div class="dept">Technology</div><h3>Full-Stack Developer</h3><div class="loc">Remote-friendly · Full-time</div><p>You'll work alongside our CTO to build and improve the full Entwine platform — the consumer app, the restaurant IMS, and our suite of professional wine tools. Comfortable across the full stack; AI/ML experience a bonus.</p></div><span class="av open">Open</span></div>
+
+  <!-- ============ DEPLOYMENT ============ -->
+  <section class="sp-how js-reveal">
+    <div class="sp-head"><h2>Deployment in <span class="sp-gold">three simple steps</span></h2><p>We've designed the installation process to be as seamless as possible, minimizing downtime so you can get back to serving guests.</p></div>
+    <div class="sp-steps">
+      <div class="sp-step"><span class="k">Step 1</span><iconify-icon icon="ph:download-simple-thin"></iconify-icon><h3>Purchase &amp; Download</h3><p>Complete your one-time payment and instantly download the DinePOS Pro installer package to your local hardware.</p></div>
+      <div class="sp-step"><span class="k">Step 2</span><iconify-icon icon="ph:gear-thin"></iconify-icon><h3>Configure &amp; Customize</h3><p>Use our intuitive setup wizard to import your menu, set table layouts, and configure tax rates in under an hour.</p></div>
+      <div class="sp-step"><span class="k">Step 3</span><iconify-icon icon="ph:storefront-thin"></iconify-icon><h3>Train &amp; Launch</h3><p>Train your staff in minutes with our user-friendly interface. Go live and start processing orders immediately.</p></div>
     </div>
   </section>
-  <section class="rcta js-reveal">
-    <svg class="wmark" viewBox="0 0 42 52" fill="currentColor" style="color:#0a0a0a"><use href="#ew-mark"/></svg>
-    <h2>Don't see your role here? <span class="gold">We'd still love to hear from you.</span></h2>
-    <p>Wine. Technology. Hospitality. If that intersection excites you and you think you have something to contribute — get in touch and tell us about yourself.</p>
-    <div class="rcta__cta">
-      <a class="btn btn--dark" href="mailto:taste@entwine.club">Send us a note <span class="arrow">→</span></a>
-      <div class="rcta__links"><a href="/about">Learn about Entwine <span>→</span></a></div>
-    </div>
+
+  <!-- ============ FINAL CTA ============ -->
+  <section class="sp-cta js-reveal">
+    <svg class="mark" viewBox="0 0 42 52" fill="currentColor" aria-hidden="true"><use href="#ew-mark"/></svg>
+    <h2>Stop renting your software. <span class="sp-gold">Start owning your success.</span></h2>
+    <p>Join thousands of independent restaurateurs who have taken control of their margins with DinePOS Pro.</p>
+    <a class="btn btn--gold" href="#">Purchase DinePOS Pro Now <span class="arrow">→</span></a>
+    <div class="micro"><iconify-icon icon="ph:shield-check-thin"></iconify-icon> Backed by our 30-day money-back guarantee.</div>
   </section>
+
 
 <footer class="footer">
     <div class="footer__top">
@@ -255,6 +339,7 @@
     blocks.forEach(function (el) { io.observe(el); });
   })();
 </script>
+
 
 <!-- preloader -->
 <script is:inline>

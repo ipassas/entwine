@@ -205,7 +205,7 @@
     <svg class="logo" viewBox="0 0 842 142" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Entwine"><use href="#ew-word"/></svg>
     <div class="links">
       <a href="#logo">Logo</a><a href="#colour">Colour</a><a href="#type">Type</a><a href="#buttons">Buttons</a>
-      <a href="#components">Components</a><a href="#icons">Icons</a><a href="#layout">Layout</a><a href="#elevation">Elevation</a><a href="#motion">Motion</a>
+      <a href="#components">Components</a><a href="#icons">Icons</a><a href="#layout">Layout</a><a href="#elevation">Elevation</a><a href="#motion">Motion</a><a href="#toolpages">Tool pages</a>
     </div>
   </nav>
 
@@ -220,7 +220,7 @@
       <p>The single source of truth for the Entwine website. Colour, type, components, grid, icons and motion — all mirroring the live homepage tokens (<code>styles.css</code>) and self-hosted Outfit. Hand in a wireframe; pages get built from exactly these rules.</p>
       <nav class="toc">
         <a href="#logo">01 Logo</a><a href="#colour">02 Colour</a><a href="#type">03 Type</a><a href="#buttons">04 Buttons</a>
-        <a href="#components">05 Components</a><a href="#icons">06 Icons</a><a href="#layout">07 Layout</a><a href="#elevation">08 Elevation</a><a href="#motion">09 Motion</a><a href="#voice">10 Voice</a>
+        <a href="#components">05 Components</a><a href="#icons">06 Icons</a><a href="#layout">07 Layout</a><a href="#elevation">08 Elevation</a><a href="#motion">09 Motion</a><a href="#voice">10 Voice</a><a href="#toolpages">11 Tool pages</a>
       </nav>
     </div>
   </header>
@@ -434,6 +434,67 @@
     </div>
   </div></section>
 
+  <!-- 11 TOOL PAGES -->
+  <section class="block" id="toolpages"><div class="wrap">
+    <div class="shead"><div class="idx">11</div><div><p class="kick">Tool pages</p><h2>Tool page patterns</h2><p>Patterns introduced by the seven tool detail pages (<code>/tools/…</code>). Each tool page gets a <strong>unique hero treatment</strong> (light split, dark + device frame, noir centered, tablet stage, full-bleed image, airy light, ink split) while sharing these recurring parts. Freemium tools accent with <strong>purple</strong>, one-time with <strong>gold on ink</strong>, free with <strong>gold</strong>. Icons stay Phosphor Thin (~1px stroke).</p></div></div>
+
+    <h3 class="sub">Back link &amp; tier tags</h3>
+    <div class="row" style="gap:22px">
+      <a href="#toolpages" style="display:inline-flex;align-items:center;gap:6px;font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--gray-2);text-decoration:none"><iconify-icon icon="ph:caret-left-thin"></iconify-icon> Back to all tools</a>
+      <span style="display:inline-flex;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,168,106,.5);border-radius:999px;padding:7px 14px">100% Free Tool</span>
+      <span style="display:inline-flex;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--purple);border:1px solid rgba(126,84,241,.4);border-radius:999px;padding:7px 14px">Freemium Tool</span>
+      <span style="display:inline-flex;font-size:11px;letter-spacing:.24em;text-transform:uppercase;color:var(--gold);border:1px solid rgba(184,168,106,.55);border-radius:999px;padding:8px 18px;background:var(--ink)">Premium One-Time Purchase</span>
+    </div>
+
+    <h3 class="sub">Device frames — browser &amp; tablet</h3>
+    <div class="comp-grid">
+      <div style="border:1px solid rgba(0,0,0,.14);border-radius:14px;overflow:hidden;background:#101010;box-shadow:var(--sh-card)">
+        <div style="display:flex;align-items:center;gap:14px;padding:12px 16px;border-bottom:1px solid rgba(255,255,255,.1);background:#161616">
+          <span style="display:flex;gap:6px"><i style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)"></i><i style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)"></i><i style="width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.18)"></i></span>
+          <span style="flex:1;font-size:12px;color:rgba(255,255,255,.55);background:rgba(255,255,255,.06);border-radius:999px;padding:7px 16px">your-restaurant/menu</span>
+        </div>
+        <div style="aspect-ratio:16/9;background:radial-gradient(60% 70% at 50% 0,rgba(184,168,106,.16),#0c0c0c)"></div>
+      </div>
+      <div style="position:relative;border:1px solid rgba(0,0,0,.16);border-radius:22px;padding:16px;background:#161616;box-shadow:var(--sh-card)">
+        <i style="position:absolute;top:7px;left:50%;transform:translateX(-50%);width:38px;height:4px;border-radius:999px;background:rgba(255,255,255,.22)"></i>
+        <div style="aspect-ratio:16/9;border-radius:12px;background:radial-gradient(60% 70% at 50% 100%,rgba(184,168,106,.16),#0c0c0c)"></div>
+      </div>
+    </div>
+    <p class="cap">Browser frame (BTG Optimiser hero) and tablet stage (Digital Menu Builder hero). Dark chrome, 1px hairlines, content area takes an <code>imgph</code> placeholder image.</p>
+
+    <h3 class="sub">Toast / notification chip</h3>
+    <div style="display:inline-flex;align-items:center;gap:14px;background:rgba(12,12,12,.92);color:#fff;border:1px solid rgba(184,168,106,.4);border-radius:14px;padding:16px 22px;box-shadow:0 24px 50px rgba(0,0,0,.35)">
+      <iconify-icon icon="ph:check-circle-thin" style="font-size:26px;color:var(--gold)"></iconify-icon>
+      <span><span style="display:block;font-size:15px;font-weight:500">Menu Updated</span><span style="display:block;margin-top:3px;font-size:12.5px;color:rgba(255,255,255,.6)">Instantly synced across all tables</span></span>
+    </div>
+    <p class="cap">Floats over panel imagery (Gap Finder). Ink glass surface, gold hairline border, 14px radius.</p>
+
+    <h3 class="sub">Plan comparison — free vs upgrade</h3>
+    <div class="comp-grid">
+      <div style="background:#fff;border:1px solid var(--line-light);border-radius:12px;padding:28px;box-shadow:var(--sh-soft)">
+        <div style="font-weight:300;font-family:var(--display);font-size:22px">Free Basic</div>
+        <div style="margin-top:16px;font-family:var(--display);font-weight:200;font-size:32px">$0 / month</div>
+        <ul style="list-style:none;margin:18px 0 0;padding:18px 0 0;border-top:1px solid var(--line-light);display:grid;gap:10px;font-size:14px;color:var(--gray-3)">
+          <li style="display:flex;gap:10px;align-items:center"><iconify-icon icon="ph:check-circle-thin" style="font-size:18px;color:var(--gold)"></iconify-icon>Included feature</li>
+          <li style="display:flex;gap:10px;align-items:center;color:var(--gray-1)"><iconify-icon icon="ph:x-circle-thin" style="font-size:18px;color:#c9c4b8"></iconify-icon>Locked feature</li>
+        </ul>
+      </div>
+      <div style="position:relative;background:#fff;border:1px solid rgba(126,84,241,.5);border-top:3px solid var(--purple);border-radius:12px;padding:28px;box-shadow:var(--sh-soft)">
+        <span style="position:absolute;top:-13px;right:24px;background:var(--purple);color:#fff;font-size:10px;letter-spacing:.16em;text-transform:uppercase;border-radius:999px;padding:6px 14px">Pro Upgrade</span>
+        <div style="font-weight:300;font-family:var(--display);font-size:22px">Pro Analytics</div>
+        <div style="margin-top:16px;font-family:var(--display);font-weight:200;font-size:32px">$49 / month</div>
+        <ul style="list-style:none;margin:18px 0 0;padding:18px 0 0;border-top:1px solid var(--line-light);display:grid;gap:10px;font-size:14px;color:var(--gray-3)">
+          <li style="display:flex;gap:10px;align-items:center"><iconify-icon icon="ph:check-circle-thin" style="font-size:18px;color:var(--gold)"></iconify-icon>Everything in free</li>
+          <li style="display:flex;gap:10px;align-items:center"><iconify-icon icon="ph:check-circle-thin" style="font-size:18px;color:var(--gold)"></iconify-icon>Premium feature</li>
+        </ul>
+      </div>
+    </div>
+    <p class="cap">Check = gold <code>ph:check-circle-thin</code>; locked = muted <code>ph:x-circle-thin</code>. Freemium upgrade card carries the purple top rule + floating tag; on dark sections the recommended card uses a gold ribbon instead (Team Wine Trainer). A disabled "Current Plan" button renders outline at 55% with <code>pointer-events:none</code>.</p>
+
+    <h3 class="sub">Smart download routing</h3>
+    <div class="usehint">Every page loads <code>/store-link.js</code>: store badges (<code>.badge[data-icon]</code>) always deep-link to their named store; generic download buttons (<code>a.btn[href$="/download"]</code>, <code>.nav-cta</code>) route Android → Google Play, iOS → App Store, and keep the <code>/download</code> page on desktop.</div>
+  </div></section>
+
   <footer class="foot"><div class="wrap">
     <svg class="logo" viewBox="0 0 842 142" fill="currentColor" xmlns="http://www.w3.org/2000/svg" aria-label="Entwine"><use href="#ew-word"/></svg>
     <small>© 2026 Design Redorange · Entwine — Web Style Guide. Tokens mirror <code style="background:rgba(255,255,255,.1);color:#d9c9a0">styles.css</code>.</small>
@@ -449,5 +510,6 @@
   </defs></svg>
 
 <script is:inline>(function(){function d(){var p=document.getElementById('preloader');if(p){p.classList.add('done');setTimeout(function(){p.style.display='none';},650);}}if(document.readyState==='complete')d();else window.addEventListener('load',d);setTimeout(d,4000);})();</script>
+<script is:inline src="/store-link.js" defer></script>
 </body>
 </html>
