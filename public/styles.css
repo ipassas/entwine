@@ -825,7 +825,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   padding-bottom: 44px;
   border-bottom: 1px solid var(--line-light);
 }
-.footer__contactinfo { margin-top: 24px; display: grid; gap: 5px; font-size: 13.5px; line-height: 1.6; color: var(--gray-2); }
+.footer__contactinfo { margin-top: 30px; display: grid; gap: 5px; font-size: 13.5px; line-height: 1.6; color: var(--gray-2); }
 .footer__contactinfo a { color: var(--gray-3); text-decoration: none; width: fit-content; }
 .footer__contactinfo a:hover { color: var(--gold); }
 .footer__contactinfo span { margin-top: 4px; }
@@ -938,6 +938,10 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   .app__stat + .app__stat { border-left: 0; padding-left: 0; border-top: 1px solid rgba(10,10,10,0.14); padding-top: 18px; }
   .badge { height: 54px; padding: 0 16px; }
   .badge .badge-main { font-size: 15px; }
+  /* footer contact details: centred, clearly separated from the store badges */
+  .footer__contactinfo { margin-top: 38px; text-align: center; justify-items: center; }
+  .footer__contactinfo a { width: auto; }
+  .footer__social { justify-content: center; }
   .footer__bottom { flex-direction: column; align-items: flex-start; gap: 18px; }
   .zaar-card, .partners__card { padding: 26px 22px; }
   .eco-card, .fcard { padding-left: 26px; padding-right: 26px; }
