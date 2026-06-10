@@ -1378,3 +1378,35 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 .rcta { position: relative; overflow: clip; }
 .rcta > *:not(.wmark) { position: relative; z-index: 1; }
 .rcta .wmark { opacity: .07; top: -50px; right: -30px; }
+
+/* ============================================================
+   Age gate (18+) + cookie consent banner
+   ============================================================ */
+.ag { position: fixed; inset: 0; z-index: 99990; display: flex; align-items: center; justify-content: center;
+  text-align: center; padding: 28px; color: #fff;
+  background: radial-gradient(70% 60% at 50% -10%, rgba(184,168,106,.22), transparent 60%), #0a0a0a;
+  transition: opacity .5s ease; }
+.ag--done { opacity: 0; pointer-events: none; }
+.ag__in { max-width: 560px; }
+.ag__mark { width: 52px; height: auto; color: var(--gold); }
+.ag__kick { margin: 26px 0 0; font-size: 11px; letter-spacing: .24em; text-transform: uppercase; color: var(--gold); font-weight: 500; }
+.ag__title { margin: 16px 0 0; font-family: var(--display); font-weight: 200; font-size: clamp(30px, 5vw, 52px); line-height: 1.04; letter-spacing: -.03em; }
+.ag__title span { color: var(--gold); }
+.ag__sub { margin: 18px auto 0; max-width: 40ch; font-size: 16px; line-height: 1.65; color: rgba(255,255,255,.72); }
+.ag__btns { margin-top: 30px; display: flex; flex-wrap: wrap; gap: 14px; justify-content: center; }
+.ag__note { margin: 26px 0 0; font-size: 12px; letter-spacing: .12em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+@media (prefers-reduced-motion: reduce) { .ag { transition: none; } }
+
+.ck { position: fixed; left: 16px; right: 16px; bottom: 16px; z-index: 99980; display: flex; flex-wrap: wrap;
+  align-items: center; gap: 16px 22px; padding: 18px 22px; border-radius: 14px;
+  background: rgba(12,12,12,.96); color: #fff; border: 1px solid rgba(184,168,106,.4);
+  box-shadow: 0 24px 60px rgba(0,0,0,.45); backdrop-filter: blur(8px); -webkit-backdrop-filter: blur(8px);
+  transition: opacity .4s ease, transform .4s ease; }
+.ck--hide { opacity: 0; transform: translateY(10px); pointer-events: none; }
+.ck__txt { flex: 1 1 320px; font-size: 14px; line-height: 1.6; color: rgba(255,255,255,.78); }
+.ck__txt b { color: #fff; font-weight: 500; }
+.ck__txt a { color: var(--gold); }
+.ck__btns { display: flex; flex-wrap: wrap; gap: 10px; }
+.ck__btns .btn { padding: 11px 18px; font-size: 13.5px; }
+@media (min-width: 720px) { .ck { left: auto; right: 24px; bottom: 24px; max-width: 560px; } }
+@media (prefers-reduced-motion: reduce) { .ck { transition: none; } }
