@@ -167,7 +167,7 @@ wl += f"""
     <div class="club">
       <div class="member"><div class="nm">La Vela</div><div class="loc">Entwine Club Member · Malta</div></div>
       <div class="member"><div class="nm">Scala</div><div class="loc">Entwine Club Member · Malta</div></div>
-      <div class="member"><div class="nm">Bottega Frawli</div><div class="loc">Entwine Club Member · Malta</div></div>
+      <div class="member"><div class="nm">Rani</div><div class="loc">Entwine Club Member · Malta</div></div>
     </div>
     <div class="club__cta"><a class="btn btn--outline-dark" href="#">Find an Entwine restaurant near you <span class="arrow">→</span></a></div>
   </section>

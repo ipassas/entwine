@@ -139,28 +139,50 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   outline-offset: 3px;
 }
 
-/* app store / google play badge */
+/* app store / google play badge — official artwork, rendered at one shared
+   height so the two badges always line up. Swap the SVGs in /assets/badges/. */
 .badge {
   display: inline-flex;
   align-items: center;
-  gap: 12px;
-  padding: 0 20px;
-  height: 61px;
-  border-radius: var(--r-pill);
-  background: var(--gold);
-  border: 1px solid rgba(255, 255, 255, 0.22);
-  color: var(--white);
-  text-align: left;
-  transition: transform .2s cubic-bezier(.16,.84,.44,1), box-shadow .25s ease, background .2s ease;
+  height: 52px;
+  border-radius: 9px;
+  transition: transform .2s cubic-bezier(.16,.84,.44,1), box-shadow .25s ease;
 }
-.badge > span { text-align: left; }
-.badge:hover { transform: translateY(-2px); box-shadow: 0 10px 22px rgba(0,0,0,.25); }
-.badge:not(.badge--dark):hover { background: #c6b77c; }
-.badge--dark { background: var(--black); }
-.badge--dark:hover { background: #161616; }
-.badge svg { width: 26px; height: 26px; flex: none; }
-.badge .badge-top { font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase; opacity: 0.85; white-space: nowrap; }
-.badge .badge-main { font-size: 16px; font-weight: 500; line-height: 1.1; white-space: nowrap; }
+.badge__img { height: 100%; width: auto; display: block; }
+.badge:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,.28); }
+
+/* app-screen — framed slot for a real screenshot (see /screen-slot.js).
+   Shows a captioned placeholder until /assets/screens/<name>.png is added. */
+.app-screen {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background: linear-gradient(165deg, #15140f, #0b0a09);
+}
+.app-screen::after {
+  content: attr(data-label);
+  position: absolute;
+  padding: 0 18px;
+  text-align: center;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.3);
+}
+.app-screen img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity .45s ease;
+}
+.app-screen img.is-loaded { opacity: 1; }
 
 /* ============================================================
    NAV
@@ -808,8 +830,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 }
 .callout p { margin-top: 14px; font-size: 15px; line-height: 1.6; color: var(--gray-2); }
 .callout__cta { margin-top: auto; padding-top: 22px; }
-.callout .badges-row { margin-top: auto; padding-top: 22px; display: flex; gap: 12px; flex-wrap: nowrap; }
-.callout .badge { height: 48px; }
+.callout .badges-row { margin-top: auto; padding-top: 22px; display: flex; align-items: center; gap: 12px; flex-wrap: nowrap; }
 
 /* ============================================================
    FOOTER
@@ -927,8 +948,6 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   .tiles { grid-template-columns: 1fr; }
   .hero { padding: calc(var(--nav-h) + 40px) var(--gutter) 52px; }
   .hero__badges, .app__badges { gap: 12px; }
-  /* keep the two store badges side by side — share the row width instead of wrapping */
-  .hero__badges .badge, .app__badges .badge, .badges-row .badge { flex: 1 1 0; min-width: 0; padding: 0 12px; }
   .why { padding-inline: var(--gutter); }
   .why-row { grid-template-columns: 1fr; gap: 14px; padding: 36px 0; }
   .why-row__num { font-size: 60px; }
@@ -936,8 +955,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   .app__stats { grid-template-columns: 1fr; }
   .app__stat { padding-right: 0; }
   .app__stat + .app__stat { border-left: 0; padding-left: 0; border-top: 1px solid rgba(10,10,10,0.14); padding-top: 18px; }
-  .badge { height: 54px; padding: 0 16px; }
-  .badge .badge-main { font-size: 15px; }
+  .badge { height: 46px; }
   /* footer contact details: centred, clearly separated from the store badges */
   .footer__contactinfo { margin-top: 38px; text-align: center; justify-items: center; }
   .footer__contactinfo a { width: auto; }
@@ -946,12 +964,9 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   .zaar-card, .partners__card { padding: 26px 22px; }
   .eco-card, .fcard { padding-left: 26px; padding-right: 26px; }
 }
-/* tiny phones — keep the "Download on the / Get it on" label visible, just smaller */
+/* tiny phones — shrink the badges a touch so both fit side by side */
 @media (max-width: 430px) {
-  .badge { height: 52px; gap: 8px; }
-  .badge svg { width: 22px; height: 22px; }
-  .badge .badge-top { font-size: 8.5px; letter-spacing: 0.1em; }
-  .badge .badge-main { font-size: 14px; }
+  .badge { height: 42px; }
 }
 
 /* ============================================================
