@@ -26,7 +26,7 @@
     .post-breadcrumb{font-size:12.5px;letter-spacing:.04em;color:rgba(255,255,255,.62);margin-bottom:16px}
     .post-breadcrumb a{color:rgba(255,255,255,.82);text-decoration:none}
     .post-breadcrumb a:hover{color:var(--gold)}
-    .post-meta{display:flex;gap:12px;align-items:center;margin-top:22px;font-size:13.5px;color:rgba(255,255,255,.62);letter-spacing:.02em}
+    .post-meta{display:flex;gap:12px;align-items:center;justify-content:center;text-align:center;margin-top:22px;font-size:13.5px;color:rgba(255,255,255,.62);letter-spacing:.02em}
     .post{max-width:760px;margin:0 auto}
     .post p{font-size:18px;line-height:1.75;color:var(--gray-2);margin:0 0 22px}
     .post h2{font-family:var(--display);font-weight:300;font-size:clamp(26px,2.6vw,36px);line-height:1.14;letter-spacing:-.02em;color:var(--ink);margin:48px 0 18px}
@@ -39,6 +39,13 @@
     .post-cta{margin:56px 0 0;padding:40px;border-radius:18px;background:linear-gradient(165deg,#15140f,#0b0a09);color:#fff;text-align:center}
     .post-cta h3{color:#fff;font-family:var(--display);font-weight:300;font-size:26px;margin:0 0 10px}
     .post-cta p{color:rgba(255,255,255,.72);font-size:16px;margin:0 auto 22px;max-width:500px}
+    .post-share{margin:44px 0 0;padding-top:30px;border-top:1px solid var(--line-light);display:flex;flex-wrap:wrap;align-items:center;gap:16px;justify-content:space-between}
+    .post-share__label{font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--gray-1);font-weight:600}
+    .post-share__links{display:flex;gap:12px;align-items:center}
+    .post-share__btn{width:42px;height:42px;border-radius:50%;border:1px solid var(--line-light);background:var(--white);color:var(--gray-3);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:.2s;text-decoration:none}
+    .post-share__btn:hover{color:#fff;background:var(--ink);border-color:var(--ink);transform:translateY(-2px)}
+    .post-share__btn iconify-icon{font-size:19px}
+    .post-share__btn.copied{color:#fff;background:var(--gold);border-color:var(--gold)}
     @media(max-width:640px){.post p,.post ul,.post ol{font-size:16.5px}.post-cta{padding:30px 22px}}
   </style>
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
@@ -122,7 +129,7 @@
     </div>
   </header>
   <section class="hero hero--page post-hero">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-img="digital-wine-list-and-cellar-connected-hero" data-kw="wine,cellar,restaurant,inventory" data-w="1920" data-h="1080"></div>
+    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-live data-img="digital-wine-list-and-cellar-connected-hero" data-kw="wine,cellar,restaurant,inventory" data-w="1920" data-h="1080"></div>
     <div class="hero__inner">
       <nav class="post-breadcrumb" aria-label="Breadcrumb"><a href="/insights">Insights</a> &nbsp;/&nbsp; <span>Restaurant guides</span></nav>
       <span class="eyebrow">Restaurant guides</span>
@@ -154,14 +161,24 @@
         <p>Pairings, optimisation, inventory and ordering — all in one platform. Let’s start with a conversation.</p>
         <a class="btn btn--gold" href="/restaurants">See the platform <span class="arrow">&rarr;</span></a>
       </div>
+      <div class="post-share">
+        <span class="post-share__label">Share this article</span>
+        <div class="post-share__links">
+          <a class="post-share__btn" data-share="x" target="_blank" rel="noopener" aria-label="Share on X"><iconify-icon icon="ph:x-logo-bold"></iconify-icon></a>
+          <a class="post-share__btn" data-share="facebook" target="_blank" rel="noopener" aria-label="Share on Facebook"><iconify-icon icon="ph:facebook-logo-bold"></iconify-icon></a>
+          <a class="post-share__btn" data-share="linkedin" target="_blank" rel="noopener" aria-label="Share on LinkedIn"><iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon></a>
+          <a class="post-share__btn" data-share="whatsapp" target="_blank" rel="noopener" aria-label="Share on WhatsApp"><iconify-icon icon="ph:whatsapp-logo-bold"></iconify-icon></a>
+          <button class="post-share__btn" data-share="copy" type="button" aria-label="Copy link"><iconify-icon icon="ph:link-bold"></iconify-icon></button>
+        </div>
+      </div>
     </article>
   </section>
   <section class="r-sec tint js-reveal">
     <div class="r-head"><h2>Keep reading</h2></div>
     <div class="cardgrid">
-      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/build-a-wine-list-guests-love"><div class="ph2"><img class="imgph" alt="" data-img="build-a-wine-list-guests-love-card" data-kw="wine,list,restaurant,sommelier" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">7 min read</span></div><h3>How to Build a Wine List Your Guests Will Love</h3><p>Balance your list to your menu, your guests and your margins — and back curation with data, not instinct.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
-      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/second-cheapest-bottle"><div class="ph2"><img class="imgph" alt="" data-img="second-cheapest-bottle-card" data-kw="wine,pricing,restaurant,bottle" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">5 min read</span></div><h3>The Hidden Cost of the Second-Cheapest Bottle</h3><p>Why diners default to the second-cheapest wine, what it costs you, and how the right pairing changes the bill.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
-      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/wine-inventory-management-guide"><div class="ph2"><img class="imgph" alt="" data-img="wine-inventory-management-guide-card" data-kw="wine,inventory,cellar,stock" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">8 min read</span></div><h3>Wine Inventory Management for Restaurants: A Practical Guide</h3><p>Par levels, consistent counts, movement tracking and connected ordering — a practical guide to controlling your cellar.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/build-a-wine-list-guests-love"><div class="ph2"><img class="imgph" alt="" data-live data-img="build-a-wine-list-guests-love-card" data-kw="wine,list,restaurant,sommelier" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">7 min read</span></div><h3>How to Build a Wine List Your Guests Will Love</h3><p>Balance your list to your menu, your guests and your margins — and back curation with data, not instinct.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/second-cheapest-bottle"><div class="ph2"><img class="imgph" alt="" data-live data-img="second-cheapest-bottle-card" data-kw="wine,pricing,restaurant,bottle" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">5 min read</span></div><h3>The Hidden Cost of the Second-Cheapest Bottle</h3><p>Why diners default to the second-cheapest wine, what it costs you, and how the right pairing changes the bill.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/wine-inventory-management-guide"><div class="ph2"><img class="imgph" alt="" data-live data-img="wine-inventory-management-guide-card" data-kw="wine,inventory,cellar,stock" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">8 min read</span></div><h3>Wine Inventory Management for Restaurants: A Practical Guide</h3><p>Par levels, consistent counts, movement tracking and connected ordering — a practical guide to controlling your cellar.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
     </div>
   </section>
   <section class="r-sec cream js-reveal">
@@ -283,13 +300,17 @@
 <!-- image placeholders: named assets, with Unsplash → LoremFlickr fallback -->
 <script is:inline>
   (function () {
+    function hash(s){ var x = 0; for (var i = 0; i < s.length; i++) { x = (x * 31 + s.charCodeAt(i)) | 0; } return Math.abs(x); }
     document.querySelectorAll('img[data-img]').forEach(function (im) {
       var name = im.getAttribute('data-img'), kw = im.getAttribute('data-kw') || 'wine';
-      var w = im.getAttribute('data-w') || 1200, h = im.getAttribute('data-h') || 800, stage = 0;
+      var w = im.getAttribute('data-w') || 1200, h = im.getAttribute('data-h') || 800;
+      var live = im.hasAttribute('data-live'), stage = 0;
+      /* data-live images resolve to a relevant keyword photo (stable per name) with a
+         reliable fallback; everything else stays a clean placeholder (no random stock). */
       im.onerror = function () {
         stage++;
-        if (stage === 1) im.src = 'https://source.unsplash.com/' + w + 'x' + h + '/?' + encodeURIComponent(kw);
-        else if (stage === 2) im.src = 'https://loremflickr.com/' + w + '/' + h + '/' + encodeURIComponent(kw);
+        if (live && stage === 1) im.src = 'https://loremflickr.com/' + w + '/' + h + '/' + encodeURIComponent(kw) + '?lock=' + (hash(name) % 1000);
+        else if (live && stage === 2) im.src = 'https://picsum.photos/seed/' + encodeURIComponent(name) + '/' + w + '/' + h;
         else im.onerror = null;
       };
       var folder = /^team-/.test(name) ? 'team' : 'photos';
@@ -332,6 +353,51 @@
   <g id="ew-monogram"><path d="M300.508 130.309C300.508 130.725 300.313 131.142 299.988 131.43C299.696 131.718 299.242 131.943 298.852 131.943H285.153C283.887 131.943 283.562 131.142 283.498 130.629C283.303 129.22 276.064 86.2966 252.594 86.2966C227.663 86.2966 195.331 134.825 177.769 156.543C164.2 173.328 151.605 189.633 145.632 210.165C145.242 211.543 144.853 212.92 144.528 214.329C143.814 217.212 143.327 220.223 143.003 223.33C142.938 223.779 142.905 224.227 142.873 224.676C142.548 228.263 142.451 231.947 142.451 235.631C142.451 250.366 145.242 266.158 151.897 279.515C152.774 281.277 153.715 282.975 154.721 284.608C155.533 285.954 156.377 287.235 157.286 288.484C157.708 289.093 158.162 289.701 158.617 290.278C159.558 291.527 160.564 292.712 161.603 293.865C162.447 294.826 163.324 295.755 164.233 296.588C166.635 298.927 169.134 300.945 171.764 302.642C172.413 303.059 173.095 303.475 173.776 303.86C174.783 304.436 175.822 304.981 176.893 305.461C177.575 305.781 178.321 306.102 179.003 306.39C184.034 308.408 189.456 309.401 195.266 309.401C200.006 309.401 204.518 308.6 208.835 306.967C209.517 306.71 210.166 306.454 210.815 306.166C216.431 303.731 221.723 299.888 226.819 294.666C227.176 294.314 227.566 293.93 227.89 293.513C228.247 293.129 228.605 292.744 228.929 292.328C229.286 291.944 229.611 291.527 229.968 291.111C230.325 290.694 230.65 290.278 230.974 289.861C231.331 289.445 231.656 289.029 231.948 288.58C232.273 288.164 232.597 287.715 232.89 287.235C233.214 286.786 233.506 286.338 233.831 285.857C234.123 285.409 234.448 284.928 234.74 284.448C235.324 283.519 235.908 282.558 236.46 281.597C236.752 281.085 237.045 280.572 237.304 280.028C237.597 279.515 237.856 279.002 238.116 278.49C239.447 275.895 240.713 273.173 241.881 270.29C242.303 269.201 242.758 268.112 243.18 267.022C244.706 262.954 246.069 258.694 247.27 254.242C247.4 253.729 247.562 253.217 247.692 252.672C248.634 249.084 249.478 245.369 250.257 241.589C250.484 240.5 250.679 239.411 250.906 238.322C251.003 237.809 251.101 237.297 251.198 236.784C251.393 235.695 251.588 234.606 251.75 233.517C251.75 233.389 251.815 233.228 251.815 233.1C251.977 232.171 252.139 231.21 252.269 230.249C252.724 227.238 253.146 224.195 253.503 221.088C253.633 220.255 253.698 219.391 253.795 218.558C254.152 215.419 254.477 212.215 254.736 209.012C254.801 208.115 254.899 207.186 254.964 206.289C255.191 203.15 255.418 199.979 255.58 196.808C255.613 196.167 255.645 195.527 255.678 194.886L286.581 184.764C286.581 185.853 286.581 186.942 286.581 188.031C286.581 233.933 271.195 283.551 250.029 304.052C233.831 319.619 219.288 325.353 196.013 325.353C168.583 325.353 145.307 315.103 129.109 296.236C114.988 279.835 107.489 257.701 107.489 235.15C107.489 226.95 108.333 218.333 110.8 210.133C118.981 182.457 134.822 159.843 160.045 134.825C161.701 133.16 163.454 131.462 165.207 129.764C165.369 129.636 165.499 129.476 165.693 129.316C166.148 128.899 166.57 128.451 166.992 127.971C171.764 122.781 177.185 113.364 177.412 108.303C177.932 95.8102 169.102 86.1685 155.825 86.1685H155.403C118.656 86.1685 110.703 130.597 110.703 130.597C110.703 130.918 110.573 131.142 110.411 131.334C110.119 131.654 109.697 131.814 109.437 131.814H95.3161C95.1538 131.814 94.9915 131.782 94.8292 131.718C94.6669 131.654 94.5046 131.59 94.4072 131.462C94.1475 131.238 93.9527 130.885 93.9852 130.533C93.9852 130.405 94.0176 130.309 94.0825 130.181L101.971 68.6789H292.165L300.475 130.181L300.508 130.309Z"/></g>
 </defs></svg>
 
+<!-- insights category filter -->
+<script is:inline>
+  (function () {
+    var pills = document.querySelectorAll('.pills [data-filter]');
+    var cards = document.querySelectorAll('#articleGrid .blogcard');
+    var empty = document.getElementById('articleEmpty');
+    if (!pills.length || !cards.length) return;
+    pills.forEach(function (p) {
+      p.addEventListener('click', function () {
+        pills.forEach(function (x) { x.classList.remove('on'); });
+        p.classList.add('on');
+        var f = p.getAttribute('data-filter'), shown = 0;
+        cards.forEach(function (c) {
+          var ok = (f === 'all' || c.getAttribute('data-cat') === f);
+          c.classList.toggle('is-hidden', !ok);
+          if (ok) shown++;
+        });
+        if (empty) empty.hidden = shown !== 0;
+      });
+    });
+  })();
+</script>
+<!-- social share wiring (uses the live page URL + title) -->
+<script is:inline>
+  (function () {
+    var url = encodeURIComponent(location.href), title = encodeURIComponent(document.title);
+    var map = {
+      x: 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
+      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
+      linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + url,
+      whatsapp: 'https://wa.me/?text=' + title + '%20' + url
+    };
+    document.querySelectorAll('[data-share]').forEach(function (el) {
+      var t = el.getAttribute('data-share');
+      if (map[t]) { el.href = map[t]; }
+      else if (t === 'copy') {
+        el.addEventListener('click', function () {
+          var done = function () { el.classList.add('copied'); setTimeout(function () { el.classList.remove('copied'); }, 1600); };
+          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(location.href).then(done, function(){});
+          else { try { var i=document.createElement('input'); i.value=location.href; document.body.appendChild(i); i.select(); document.execCommand('copy'); i.remove(); done(); } catch(e){} }
+        });
+      }
+    });
+  })();
+</script>
 <script is:inline src="/consent.js" defer></script>
 <script is:inline src="/store-link.js" defer></script>
 </body>

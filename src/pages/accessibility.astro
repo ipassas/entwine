@@ -249,13 +249,17 @@
 <!-- image placeholders: named assets, with Unsplash → LoremFlickr fallback -->
 <script is:inline>
   (function () {
+    function hash(s){ var x = 0; for (var i = 0; i < s.length; i++) { x = (x * 31 + s.charCodeAt(i)) | 0; } return Math.abs(x); }
     document.querySelectorAll('img[data-img]').forEach(function (im) {
       var name = im.getAttribute('data-img'), kw = im.getAttribute('data-kw') || 'wine';
-      var w = im.getAttribute('data-w') || 1200, h = im.getAttribute('data-h') || 800, stage = 0;
+      var w = im.getAttribute('data-w') || 1200, h = im.getAttribute('data-h') || 800;
+      var live = im.hasAttribute('data-live'), stage = 0;
+      /* data-live images resolve to a relevant keyword photo (stable per name) with a
+         reliable fallback; everything else stays a clean placeholder (no random stock). */
       im.onerror = function () {
         stage++;
-        if (stage === 1) im.src = 'https://source.unsplash.com/' + w + 'x' + h + '/?' + encodeURIComponent(kw);
-        else if (stage === 2) im.src = 'https://loremflickr.com/' + w + '/' + h + '/' + encodeURIComponent(kw);
+        if (live && stage === 1) im.src = 'https://loremflickr.com/' + w + '/' + h + '/' + encodeURIComponent(kw) + '?lock=' + (hash(name) % 1000);
+        else if (live && stage === 2) im.src = 'https://picsum.photos/seed/' + encodeURIComponent(name) + '/' + w + '/' + h;
         else im.onerror = null;
       };
       var folder = /^team-/.test(name) ? 'team' : 'photos';
