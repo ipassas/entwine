@@ -9,7 +9,7 @@
   <meta property="og:description" content="The wine intelligence platform built for the way restaurants actually work." />
   <meta property="og:type" content="website" />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="stylesheet" href="/styles.css?v=11" />
+  <link rel="stylesheet" href="/styles.css?v=12" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <style is:inline>
     /* critical preloader styles so there's no white flash before styles.css loads */
@@ -100,9 +100,14 @@
   .rs-cell--feature h3{font-size:clamp(26px,2.2vw,38px);font-weight:200}
   .rs-cell--feature p{color:rgba(255,255,255,.8)}
   .rs-cell--wide{grid-column:span 2}
-  .rs-cell__shot{margin-top:22px;height:158px;border-radius:11px;border:1px solid rgba(255,255,255,.08)}
-  .rs-cell--feature .rs-cell__shot{height:230px;margin-top:28px}
-  .rs-cell--wide .rs-cell__shot{height:150px}
+  .rs-cell__ic{transition:transform .4s cubic-bezier(.16,.84,.44,1),border-color .3s,background .3s}
+  .rs-cell:hover .rs-cell__ic{transform:scale(1.08) rotate(-4deg);border-color:rgba(184,168,106,.8);background:rgba(184,168,106,.12)}
+  .rs-feature__phone{position:relative;margin:30px auto 6px;width:100%;max-width:248px;animation:rs-float 6.5s ease-in-out infinite}
+  .rs-feature__phone::before{content:"";position:absolute;inset:-18% -22%;z-index:-1;background:radial-gradient(closest-side,rgba(184,168,106,.4),transparent 72%);filter:blur(8px)}
+  .rs-feature__phone .appphone{transition:transform .5s cubic-bezier(.16,.84,.44,1),box-shadow .5s}
+  .rs-cell--feature:hover .rs-feature__phone .appphone{transform:scale(1.03);box-shadow:0 40px 80px rgba(0,0,0,.55),0 0 0 1px rgba(184,168,106,.55)}
+  @keyframes rs-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-13px)}}
+  @media(prefers-reduced-motion:reduce){.rs-feature__phone{animation:none}}
 
   /* ---- STEPS : connected timeline on light ---- */
   .rs-steps-sec{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
@@ -345,25 +350,22 @@
         <div class="rs-cell__ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div>
         <h3>Your guests' sommelier — at every table</h3>
         <p>When your restaurant goes live on Entwine, every diner can discover the perfect pairing for their dish — from your wine list, matched by our algorithm. Not generic. Yours.</p>
-        <div class="rs-cell__shot app-screen" data-label="Guest pairing · in-app"><img data-screen="rs-pairing" alt="Entwine — Guest pairing · in-app"></div>
+        <div class="rs-feature__phone"><div class="appphone"><div class="appphone__screen"><div class="app-screen" data-label="Guest pairing"><img data-screen="rs-pairing" alt="Entwine — guest pairing in the app"></div></div></div></div>
       </article>
       <article class="rs-cell">
         <div class="rs-cell__ic"><iconify-icon icon="ph:lightning-thin"></iconify-icon></div>
         <h3>Lightning-fast wine ordering</h3>
         <p>Order wine directly through the IMS — no more chasing suppliers or cross-referencing spreadsheets. Your order history, par levels, and supplier contacts in one place.</p>
-        <div class="rs-cell__shot app-screen" data-label="Wine ordering · IMS"><img data-screen="rs-ordering" alt="Entwine — Wine ordering · IMS"></div>
       </article>
       <article class="rs-cell">
         <div class="rs-cell__ic"><iconify-icon icon="ph:chart-line-up-thin"></iconify-icon></div>
         <h3>Wine list optimisation</h3>
         <p>Great wine lists aren't built on instinct. Entwine gives you the data to see what's selling, what's being paired, and what's missing — so you can build a list your guests actually want.</p>
-        <div class="rs-cell__shot app-screen" data-label="List analytics · IMS"><img data-screen="rs-optimisation" alt="Entwine — List analytics · IMS"></div>
       </article>
       <article class="rs-cell rs-cell--wide">
         <div class="rs-cell__ic"><iconify-icon icon="ph:package-thin"></iconify-icon></div>
         <h3>Inventory management</h3>
         <p>Track your inventory with complete confidence. Real-time stock levels, automatic low-stock alerts, and full visibility over what's moving and what isn't — all in one place.</p>
-        <div class="rs-cell__shot app-screen" data-label="Inventory · IMS"><img data-screen="rs-inventory" alt="Entwine — Inventory · IMS"></div>
       </article>
     </div>
   </section>

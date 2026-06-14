@@ -1447,10 +1447,14 @@ a.blogcard:hover .blogcard__more span { transform:translateX(4px); }
 /* ============================================================
    DOWNLOAD — desktop widget + QR modal (store-link.js)
    ============================================================ */
-.ew-dl { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.ew-dl { display: flex; flex-direction: row; align-items: center; gap: 16px; flex-wrap: wrap; }
 .ew-dl__avail { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: .02em; color: inherit; opacity: .82; }
 .ew-dl__ics { display: inline-flex; gap: 8px; align-items: center; font-size: 19px; }
-.ew-dl__btn { align-self: flex-start; }
+.ew-dl__btn { flex: none; }
+@media (max-width: 600px) {
+  .ew-dl { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+  .ew-dl__avail { justify-content: center; }
+}
 
 .ew-qr { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s; }
 .ew-qr.open { opacity: 1; visibility: visible; }
@@ -1475,10 +1479,17 @@ a.blogcard:hover .blogcard__more span { transform:translateX(4px); }
 /* ============================================================
    iPHONE MOCKUP (home app section — holds the app demo video)
    ============================================================ */
-.iphone { position: relative; height: clamp(420px, 58vh, 580px); aspect-ratio: 1179 / 2556; background: #060606; border-radius: 20px; padding: 8px; box-shadow: 0 26px 60px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.08); }
-.iphone__screen { position: relative; width: 100%; height: 100%; border-radius: 14px; overflow: hidden; background: #000; }
+.iphone { position: relative; height: clamp(480px, 66vh, 640px); aspect-ratio: 1290 / 2796; border-radius: 22px; overflow: hidden; box-shadow: 0 30px 72px rgba(0,0,0,.5); }
+.iphone__screen { position: relative; width: 100%; height: 100%; border-radius: 22px; overflow: hidden; background: #000; }
 .iphone__media { width: 100%; height: 100%; object-fit: cover; display: block; }
-@media (max-width: 560px) { .iphone { height: clamp(440px, 72vw, 560px); } }
+@media (max-width: 560px) { .iphone { height: clamp(460px, 86vw, 600px); } }
+
+/* reusable phone frame — no notch/island, full screenshot (9:19.5), used in
+   the wine-lovers steps and the restaurants feature. */
+.appphone { position: relative; width: 100%; background: #0b0b0b; border-radius: 30px; padding: 7px;
+  box-shadow: 0 26px 55px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.09); }
+.appphone__screen { position: relative; width: 100%; height: auto; aspect-ratio: 1290 / 2796; border-radius: 24px; overflow: hidden; background: #000; }
+.appphone__screen .app-screen { position: absolute; inset: 0; width: 100%; height: 100%; }
 
 /* Insights index: fixed 4-column grid (stays 4 regardless of how many
    articles a filter leaves — a single card never stretches full width). */

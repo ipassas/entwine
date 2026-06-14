@@ -8,7 +8,7 @@
   <meta property="og:title" content="About Entwine — Technology in service of the table" />
   <meta property="og:description" content="Entwine is a wine technology company built by people who sit on both sides of the table. Meet the team, the founding story, and what we believe." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="stylesheet" href="/styles.css?v=11" />
+  <link rel="stylesheet" href="/styles.css?v=12" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <script is:inline src="/image-slot.js"></script>
   <style is:inline>
@@ -160,6 +160,10 @@
   .ab-mate__nm{font-family:var(--display);font-weight:300;font-size:22px;letter-spacing:-.01em}
   .ab-mate__ro{margin-top:6px;font-size:11px;letter-spacing:.16em;text-transform:uppercase;color:var(--gold)}
   .ab-mate__bio{margin-top:16px;font-size:14px;line-height:1.6;color:rgba(255,255,255,.66)}
+  .ab-mate{position:relative}
+  .ab-mate__li{position:absolute;top:16px;right:16px;z-index:2;width:34px;height:34px;border-radius:50%;border:1px solid rgba(184,168,106,.42);color:var(--gold);display:flex;align-items:center;justify-content:center;transition:background .2s,color .2s,border-color .2s,transform .2s}
+  .ab-mate__li:hover{background:var(--gold);color:#0a0a0a;border-color:var(--gold);transform:translateY(-2px)}
+  .ab-mate__li iconify-icon{font-size:18px}
 
   /* ---- FINAL (light close) ---- */
   .ab-final{position:relative;isolation:isolate;background:var(--bg-eco);color:var(--ink);overflow:hidden;padding:var(--sec-y) var(--gutter);text-align:center}
@@ -335,24 +339,28 @@
     <div class="ab-head"><h2>The people behind Entwine.</h2></div>
     <div class="ab-team ab-stagger">
       <article class="ab-mate">
+        <a class="ab-mate__li" href="https://mt.linkedin.com/in/danielabela" target="_blank" rel="noopener" aria-label="Daniel Abela on LinkedIn"><iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon></a>
         <image-slot class="ab-photo" id="team-daniel" src="/assets/team/team-daniel.png" shape="circle" style="width:104px;height:104px" placeholder="DA"></image-slot>
         <div class="ab-mate__nm">Daniel Abela</div>
         <div class="ab-mate__ro">Co-founder · Vision &amp; Strategy</div>
         <p class="ab-mate__bio">30+ years in brand strategy. Founder of Redorange, co-founder of Moving Ads, Cowfish, D4n6 and Rani — one of Entwine's founding club restaurants.</p>
       </article>
       <article class="ab-mate">
+        <a class="ab-mate__li" href="https://mt.linkedin.com/in/clairecassar" target="_blank" rel="noopener" aria-label="Claire Cassar on LinkedIn"><iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon></a>
         <image-slot class="ab-photo" id="team-claire" src="/assets/team/team-claire.png" shape="circle" style="width:104px;height:104px" placeholder="CC"></image-slot>
         <div class="ab-mate__nm">Claire Cassar</div>
         <div class="ab-mate__ro">Co-founder · Revenue &amp; Growth</div>
         <p class="ab-mate__bio">Tech lawyer, former CEO of HAUD, serial entrepreneur. A decade at Vodafone across Malta and Qatar. LL.D and Master's in Competition Law. Board member of MICAS.</p>
       </article>
       <article class="ab-mate">
+        <a class="ab-mate__li" href="https://mt.linkedin.com/in/andcachia" target="_blank" rel="noopener" aria-label="Andrew Cachia on LinkedIn"><iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon></a>
         <image-slot class="ab-photo" id="team-andrew" src="/assets/team/team-andrew.png" shape="circle" style="width:104px;height:104px" placeholder="AC"></image-slot>
         <div class="ab-mate__nm">Andrew Cachia</div>
         <div class="ab-mate__ro">Co-founder · Technology</div>
         <p class="ab-mate__bio">MSc in AI, Microsoft Accelerator alumni. Previously built an AI trading platform shown at the Davos World Economic Forum. The intelligence behind the pairing engine.</p>
       </article>
       <article class="ab-mate">
+        <a class="ab-mate__li" href="https://hu.linkedin.com/in/kristina-osman-754720127" target="_blank" rel="noopener" aria-label="Krisztina Osman on LinkedIn"><iconify-icon icon="ph:linkedin-logo-bold"></iconify-icon></a>
         <image-slot class="ab-photo" id="team-krisztina" src="/assets/team/team-krisztina.jpg" shape="circle" style="width:104px;height:104px" placeholder="KO"></image-slot>
         <div class="ab-mate__nm">Krisztina Osman</div>
         <div class="ab-mate__ro">Business Development &amp; Sommelier</div>
