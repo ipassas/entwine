@@ -1475,8 +1475,13 @@ a.blogcard:hover .blogcard__more span { transform:translateX(4px); }
 /* ============================================================
    iPHONE MOCKUP (home app section — holds the app demo video)
    ============================================================ */
-.iphone { position: relative; height: clamp(420px, 58vh, 580px); aspect-ratio: 1179 / 2556; background: #060606; border-radius: 46px; padding: 10px; box-shadow: 0 26px 60px rgba(0,0,0,.5), inset 0 0 0 2px rgba(255,255,255,.08); }
-.iphone__screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #000; }
+.iphone { position: relative; height: clamp(420px, 58vh, 580px); aspect-ratio: 1179 / 2556; background: #060606; border-radius: 20px; padding: 8px; box-shadow: 0 26px 60px rgba(0,0,0,.5), inset 0 0 0 1px rgba(255,255,255,.08); }
+.iphone__screen { position: relative; width: 100%; height: 100%; border-radius: 14px; overflow: hidden; background: #000; }
 .iphone__media { width: 100%; height: 100%; object-fit: cover; display: block; }
-.iphone__island { position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #060606; border-radius: 999px; z-index: 3; }
 @media (max-width: 560px) { .iphone { height: clamp(440px, 72vw, 560px); } }
+
+/* Insights index: fixed 4-column grid (stays 4 regardless of how many
+   articles a filter leaves — a single card never stretches full width). */
+#articleGrid { grid-template-columns: repeat(4, 1fr); align-items: start; }
+@media (max-width: 1100px) { #articleGrid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 620px)  { #articleGrid { grid-template-columns: 1fr; } }
