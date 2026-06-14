@@ -6,7 +6,7 @@
   <title>Entwine — Your own sommelier. At every table.</title>
   <meta name="description" content="Entwine is a single intelligence layer that sits between the menu, the cellar and the diner — pairing what's on the list to what's on the plate, at every table where wine is taken seriously." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="stylesheet" href="/styles.css?v=7" />
+  <link rel="stylesheet" href="/styles.css?v=8" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <style is:inline>
     #preloader{position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
@@ -248,14 +248,13 @@
             <div class="label">Wines gallery</div>
             <div class="value"><span class="gold">8,000</span><span class="ink">+</span></div>
           </div>
-          <div class="app__stat">
-            <div class="label">Average rating</div>
-            <div class="value"><span class="ink">4.8</span><span class="gold">/5</span></div>
+          <div class="app__stat app__stat--dl">
+            <div class="label">Get the app</div>
+            <div class="app__badges">
+              <a href="/download" class="badge" data-icon="apple"></a>
+              <a href="/download" class="badge" data-icon="google"></a>
+            </div>
           </div>
-        </div>
-        <div class="app__badges">
-          <a href="/download" class="badge" data-icon="apple"></a>
-          <a href="/download" class="badge" data-icon="google"></a>
         </div>
       </div>
       <div class="app__visual">
@@ -497,8 +496,8 @@
     setTimeout(done, 4000);
   })();
 </script>
-<script is:inline src="/consent.js" defer></script>
-<script is:inline src="/store-link.js" defer></script>
+<script is:inline src="/consent.js?v=2" defer></script>
+<script is:inline src="/store-link.js?v=2" defer></script>
 <script is:inline src="/screen-slot.js" defer></script>
 </body>
 </html>
