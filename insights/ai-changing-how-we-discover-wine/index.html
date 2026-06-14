@@ -24,7 +24,7 @@
     .post-share__btn iconify-icon{font-size:19px}
     .post-share__btn.copied{color:#fff;background:var(--gold);border-color:var(--gold)}
     @media(max-width:640px){.post p,.post ul,.post ol{font-size:16.5px}.post-cta{padding:30px 22px}}
-  </style><link rel="icon" type="image/svg+xml" href="/entwine/assets/favicon.svg"><link rel="stylesheet" href="/entwine/styles.css?v=8"><script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script><style>
+  </style><link rel="icon" type="image/svg+xml" href="/entwine/assets/favicon.svg"><link rel="stylesheet" href="/entwine/styles.css?v=9"><script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script><style>
     #preloader{position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
     #preloader .pl-mark{width:86px;height:86px;color:#b8a86a;animation:pl-pulse 1.5s ease-in-out infinite}
     @keyframes pl-pulse{0%,100%{opacity:.32;transform:scale(.9)}50%{opacity:1;transform:scale(1)}}
@@ -50,7 +50,7 @@
     function toggle() { var o = m.classList.toggle('open'); t.setAttribute('aria-expanded', o ? 'true' : 'false'); t.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); }
     t.addEventListener('click', toggle);
     m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
-    window.addEventListener('resize', function () { if (window.innerWidth > 1024) close(); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 768) close(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   })();
 </script> <!-- image placeholders: named assets, with Unsplash → LoremFlickr fallback --> <script>
