@@ -1187,7 +1187,7 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 /* full-cover background image + legibility overlay */
 .hero__bg--cover img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; opacity: 1; }
 .hero__bg--cover::after { content: ""; position: absolute; inset: 0;
-  background: linear-gradient(180deg, rgba(8,8,8,.62) 0%, rgba(8,8,8,.74) 100%); }
+  background: linear-gradient(180deg, rgba(8,8,8,.72) 0%, rgba(8,8,8,.86) 100%); }
 
 /* ============================================================
    Section background image (editorial, like Home)
@@ -1471,3 +1471,12 @@ a.blogcard:hover .blogcard__more span { transform:translateX(4px); }
 .ew-qr__stores .badge img { height: 100%; width: auto; display: block; }
 .app__stat--dl .label { margin-bottom: 12px; }
 @media (max-width: 480px) { .ew-qr__card { padding: 34px 22px 26px; } }
+
+/* ============================================================
+   iPHONE MOCKUP (home app section — holds the app demo video)
+   ============================================================ */
+.iphone { position: relative; height: clamp(420px, 58vh, 580px); aspect-ratio: 1179 / 2556; background: #060606; border-radius: 46px; padding: 10px; box-shadow: 0 26px 60px rgba(0,0,0,.5), inset 0 0 0 2px rgba(255,255,255,.08); }
+.iphone__screen { position: relative; width: 100%; height: 100%; border-radius: 38px; overflow: hidden; background: #000; }
+.iphone__media { width: 100%; height: 100%; object-fit: cover; display: block; }
+.iphone__island { position: absolute; top: 19px; left: 50%; transform: translateX(-50%); width: 90px; height: 25px; background: #060606; border-radius: 999px; z-index: 3; }
+@media (max-width: 560px) { .iphone { height: clamp(440px, 72vw, 560px); } }
