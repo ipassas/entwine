@@ -1431,3 +1431,31 @@ a.blogcard:hover .blogcard__more span { transform:translateX(4px); }
 .ck__btns .btn { padding: 11px 18px; font-size: 13.5px; }
 @media (min-width: 720px) { .ck { left: auto; right: 24px; bottom: 24px; max-width: 560px; } }
 @media (prefers-reduced-motion: reduce) { .ck { transition: none; } }
+
+/* ============================================================
+   DOWNLOAD — desktop widget + QR modal (store-link.js)
+   ============================================================ */
+.ew-dl { display: flex; flex-direction: column; gap: 14px; align-items: flex-start; }
+.ew-dl__avail { display: inline-flex; align-items: center; gap: 8px; font-size: 13px; letter-spacing: .02em; color: inherit; opacity: .82; }
+.ew-dl__ics { display: inline-flex; gap: 8px; align-items: center; font-size: 19px; }
+.ew-dl__btn { align-self: flex-start; }
+
+.ew-qr { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s; }
+.ew-qr.open { opacity: 1; visibility: visible; }
+.ew-qr__backdrop { position: absolute; inset: 0; background: rgba(8,7,6,.62); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.ew-qr__card { position: relative; z-index: 1; width: min(380px, 100%); background: #fff; border-radius: 22px; padding: 38px 34px 30px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.4); transform: translateY(10px) scale(.98); transition: transform .3s cubic-bezier(.16,.84,.44,1); }
+.ew-qr.open .ew-qr__card { transform: none; }
+.ew-qr__x { position: absolute; top: 14px; right: 16px; width: 34px; height: 34px; border: none; background: transparent; font-size: 26px; line-height: 1; color: var(--gray-1); cursor: pointer; border-radius: 50%; transition: .2s; }
+.ew-qr__x:hover { background: rgba(0,0,0,.06); color: var(--ink); }
+.ew-qr__kick { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); margin: 0 0 6px; font-weight: 600; }
+.ew-qr__title { font-family: var(--display); font-weight: 300; font-size: 24px; letter-spacing: -.01em; color: var(--ink); margin: 0 0 22px; }
+.ew-qr__code { width: 220px; height: 220px; margin: 0 auto; border-radius: 14px; overflow: hidden; border: 1px solid var(--line-light); background: #fff; }
+.ew-qr__code img { width: 100%; height: 100%; display: block; }
+.ew-qr__hint { font-size: 13.5px; line-height: 1.55; color: var(--gray-2); margin: 18px auto 0; max-width: 290px; }
+.ew-qr__or { display: flex; align-items: center; gap: 12px; margin: 22px 4px 18px; color: var(--gray-1); font-size: 11px; letter-spacing: .14em; text-transform: uppercase; }
+.ew-qr__or::before, .ew-qr__or::after { content: ""; flex: 1; height: 1px; background: var(--line-light); }
+.ew-qr__stores { display: flex; gap: 14px; justify-content: center; }
+.ew-qr__stores .badge { height: 46px; display: inline-flex; border-radius: 8px; }
+.ew-qr__stores .badge img { height: 100%; width: auto; display: block; }
+.app__stat--dl .label { margin-bottom: 12px; }
+@media (max-width: 480px) { .ew-qr__card { padding: 34px 22px 26px; } }
