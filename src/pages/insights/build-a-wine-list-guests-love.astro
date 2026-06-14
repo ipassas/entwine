@@ -314,6 +314,9 @@
       entries.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
     }, { threshold: 0.1, rootMargin: '0px 0px -8% 0px' });
     blocks.forEach(function (el) { io.observe(el); });
+    /* safety net: if IntersectionObserver never fires (e.g. inside a full-height
+       iframe embed), reveal everything after a short delay so nothing stays hidden. */
+    setTimeout(function () { blocks.forEach(function (el) { el.classList.add('in'); }); }, 1600);
   })();
 </script>
 
