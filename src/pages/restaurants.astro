@@ -100,6 +100,9 @@
   .rs-cell--feature h3{font-size:clamp(26px,2.2vw,38px);font-weight:200}
   .rs-cell--feature p{color:rgba(255,255,255,.8)}
   .rs-cell--wide{grid-column:span 2}
+  .rs-cell__shot{margin-top:22px;height:158px;border-radius:11px;border:1px solid rgba(255,255,255,.08)}
+  .rs-cell--feature .rs-cell__shot{height:230px;margin-top:28px}
+  .rs-cell--wide .rs-cell__shot{height:150px}
 
   /* ---- STEPS : connected timeline on light ---- */
   .rs-steps-sec{background:var(--bg-eco);border-bottom:1px solid var(--line-light);padding:var(--sec-y) var(--gutter)}
@@ -239,20 +242,19 @@
           <div class="mega-foot"><a href="/tools">View all tools <span>→</span></a><span class="muted">Most are free. All worth your time.</span></div>
         </div>
       </div>
+      <div class="navitem"><a class="navlink" href="/partners">Partners</a></div>
+      <div class="navitem"><a class="navlink" href="/invest">Invest</a></div>
       <div class="navitem">
         <button class="navlink" aria-haspopup="true">Company <span class="car"></span></button>
         <div class="dropdown" role="menu">
           <a href="/about">About</a>
-          <a href="/partners">Partners</a>
-          <a href="/invest">Invest</a>
           <a href="/insights">Insights</a>
           <a href="/careers">Careers</a>
         </div>
       </div>
       <div class="navitem"><a class="navlink" href="/pricing">Pricing</a></div>
-      <div class="navitem"><a class="navlink" href="#">Sign in</a></div>
     </nav>
-    <a href="/download" class="btn btn--white nav-cta">Download&nbsp; <span class="arrow">→</span></a>
+    <a href="/download" class="btn btn--white nav-cta">Download App&nbsp; <span class="arrow">→</span></a>
     <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu"><span class="bars"><span></span><span></span><span></span></span></button>
     <div class="mobile-menu" id="mobileMenu">
       <a href="/wine-lovers">For Wine Lovers</a>
@@ -269,13 +271,14 @@
           <a href="/tools">View all tools →</a>
         </div>
       </details>
+      <a href="/partners">Partners</a>
+      <a href="/invest">Invest</a>
       <details class="m-acc"><summary>Company <span class="chev"></span></summary>
         <div class="m-sub">
-          <a href="/about">About</a><a href="/partners">Partners</a><a href="/invest">Invest</a><a href="/insights">Insights</a><a href="/careers">Careers</a>
+          <a href="/about">About</a><a href="/insights">Insights</a><a href="/careers">Careers</a>
         </div>
       </details>
       <a href="/pricing">Pricing</a>
-      <a href="#">Sign in</a>
     </div>
   </header>
 
@@ -342,21 +345,25 @@
         <div class="rs-cell__ic"><iconify-icon icon="ph:wine-thin"></iconify-icon></div>
         <h3>Your guests' sommelier — at every table</h3>
         <p>When your restaurant goes live on Entwine, every diner can discover the perfect pairing for their dish — from your wine list, matched by our algorithm. Not generic. Yours.</p>
+        <div class="rs-cell__shot app-screen" data-label="Guest pairing · in-app"><img data-screen="rs-pairing" alt="Entwine — Guest pairing · in-app"></div>
       </article>
       <article class="rs-cell">
         <div class="rs-cell__ic"><iconify-icon icon="ph:lightning-thin"></iconify-icon></div>
         <h3>Lightning-fast wine ordering</h3>
         <p>Order wine directly through the IMS — no more chasing suppliers or cross-referencing spreadsheets. Your order history, par levels, and supplier contacts in one place.</p>
+        <div class="rs-cell__shot app-screen" data-label="Wine ordering · IMS"><img data-screen="rs-ordering" alt="Entwine — Wine ordering · IMS"></div>
       </article>
       <article class="rs-cell">
         <div class="rs-cell__ic"><iconify-icon icon="ph:chart-line-up-thin"></iconify-icon></div>
         <h3>Wine list optimisation</h3>
         <p>Great wine lists aren't built on instinct. Entwine gives you the data to see what's selling, what's being paired, and what's missing — so you can build a list your guests actually want.</p>
+        <div class="rs-cell__shot app-screen" data-label="List analytics · IMS"><img data-screen="rs-optimisation" alt="Entwine — List analytics · IMS"></div>
       </article>
       <article class="rs-cell rs-cell--wide">
         <div class="rs-cell__ic"><iconify-icon icon="ph:package-thin"></iconify-icon></div>
         <h3>Inventory management</h3>
         <p>Track your inventory with complete confidence. Real-time stock levels, automatic low-stock alerts, and full visibility over what's moving and what isn't — all in one place.</p>
+        <div class="rs-cell__shot app-screen" data-label="Inventory · IMS"><img data-screen="rs-inventory" alt="Entwine — Inventory · IMS"></div>
       </article>
     </div>
   </section>
@@ -496,7 +503,7 @@
         </div>
         <div class="footer__contactinfo">
           <a href="mailto:info@entwine.club">info@entwine.club</a>
-          <a href="tel:+35699266665">+356 9926 6665</a>
+          <a href="tel:+35679770765">+356 7977 0765</a>
           <span>Cork &amp; Code Limited<br />Suite B, Cornerstone Business Centre,<br />16th September Square,<br />Mosta MST 1180, Malta</span>
         </div>
         <div class="footer__social">
@@ -644,5 +651,6 @@
 
 <script is:inline src="/consent.js" defer></script>
 <script is:inline src="/store-link.js" defer></script>
+<script is:inline src="/screen-slot.js" defer></script>
 </body>
 </html>
