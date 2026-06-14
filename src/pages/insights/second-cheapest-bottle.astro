@@ -49,7 +49,7 @@
     @media(max-width:640px){.post p,.post ul,.post ol{font-size:16.5px}.post-cta{padding:30px 22px}}
   </style>
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="stylesheet" href="/styles.css?v=9" />
+  <link rel="stylesheet" href="/styles.css?v=10" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <style is:inline>
     #preloader{position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
@@ -129,7 +129,7 @@
     </div>
   </header>
   <section class="hero hero--page post-hero">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-live data-img="second-cheapest-bottle-hero" data-kw="wine,pricing,restaurant,bottle" data-w="1920" data-h="1080"></div>
+    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="The Hidden Cost of the Second-Cheapest Bottle" src="/assets/photos/second-cheapest-bottle.png" loading="eager"></div>
     <div class="hero__inner">
       <nav class="post-breadcrumb" aria-label="Breadcrumb"><a href="/insights">Insights</a> &nbsp;/&nbsp; <span>Restaurant guides</span></nav>
       <span class="eyebrow">Restaurant guides</span>
@@ -177,9 +177,9 @@
   <section class="r-sec tint js-reveal">
     <div class="r-head"><h2>Keep reading</h2></div>
     <div class="cardgrid">
-      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/wine-inventory-management-guide"><div class="ph2"><img class="imgph" alt="" data-live data-img="wine-inventory-management-guide-card" data-kw="wine,inventory,cellar,stock" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">8 min read</span></div><h3>Wine Inventory Management for Restaurants: A Practical Guide</h3><p>Par levels, consistent counts, movement tracking and connected ordering — a practical guide to controlling your cellar.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
-      <a class="card blogcard" data-cat="Entwine news" href="/insights/the-story-behind-entwine"><div class="ph2"><img class="imgph" alt="" data-live data-img="the-story-behind-entwine-card" data-kw="wine,dinner,story,startup" data-w="800" data-h="500"></div><div class="meta"><span>Entwine news</span><span class="read">4 min read</span></div><h3>The Story Behind Entwine — From a Frustrating Dinner to a Live Platform</h3><p>Three out-of-stock wines at a Michelin-starred restaurant, a shower-moment name, and the platform it became.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
-      <a class="card blogcard" data-cat="Wine education" href="/insights/wine-pairing-101"><div class="ph2"><img class="imgph" alt="" data-live data-img="wine-pairing-101-card" data-kw="wine,food,pairing,dinner" data-w="800" data-h="500"></div><div class="meta"><span>Wine education</span><span class="read">6 min read</span></div><h3>Wine Pairing 101: A Beginner&#x27;s Guide to Pairing Wine with Food</h3><p>The simple principles behind every great pairing — acidity, tannin, sweetness, body and intensity — explained for beginners.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/wine-inventory-management-guide"><div class="ph2"><img class="imgph" alt="" src="/assets/photos/wine-inventory-management-guide.png" loading="lazy"></div><div class="meta"><span>Restaurant guides</span><span class="read">8 min read</span></div><h3>Wine Inventory Management for Restaurants: A Practical Guide</h3><p>Par levels, consistent counts, movement tracking and connected ordering — a practical guide to controlling your cellar.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Entwine news" href="/insights/the-story-behind-entwine"><div class="ph2"><img class="imgph" alt="" src="/assets/photos/the-story-behind-entwine.png" loading="lazy"></div><div class="meta"><span>Entwine news</span><span class="read">4 min read</span></div><h3>The Story Behind Entwine — From a Frustrating Dinner to a Live Platform</h3><p>Three out-of-stock wines at a Michelin-starred restaurant, a shower-moment name, and the platform it became.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Wine education" href="/insights/wine-pairing-101"><div class="ph2"><img class="imgph" alt="" src="/assets/photos/wine-pairing-101.png" loading="lazy"></div><div class="meta"><span>Wine education</span><span class="read">6 min read</span></div><h3>Wine Pairing 101: A Beginner&#x27;s Guide to Pairing Wine with Food</h3><p>The simple principles behind every great pairing — acidity, tannin, sweetness, body and intensity — explained for beginners.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
     </div>
   </section>
   <section class="r-sec cream js-reveal">
@@ -373,29 +373,6 @@
         });
         if (empty) empty.hidden = shown !== 0;
       });
-    });
-  })();
-</script>
-<!-- social share wiring (uses the live page URL + title) -->
-<script is:inline>
-  (function () {
-    var url = encodeURIComponent(location.href), title = encodeURIComponent(document.title);
-    var map = {
-      x: 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
-      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
-      linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + url,
-      whatsapp: 'https://wa.me/?text=' + title + '%20' + url
-    };
-    document.querySelectorAll('[data-share]').forEach(function (el) {
-      var t = el.getAttribute('data-share');
-      if (map[t]) { el.href = map[t]; }
-      else if (t === 'copy') {
-        el.addEventListener('click', function () {
-          var done = function () { el.classList.add('copied'); setTimeout(function () { el.classList.remove('copied'); }, 1600); };
-          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(location.href).then(done, function(){});
-          else { try { var i=document.createElement('input'); i.value=location.href; document.body.appendChild(i); i.select(); document.execCommand('copy'); i.remove(); done(); } catch(e){} }
-        });
-      }
     });
   })();
 </script>

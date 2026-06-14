@@ -49,7 +49,7 @@
     @media(max-width:640px){.post p,.post ul,.post ol{font-size:16.5px}.post-cta{padding:30px 22px}}
   </style>
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="stylesheet" href="/styles.css?v=9" />
+  <link rel="stylesheet" href="/styles.css?v=10" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <style is:inline>
     #preloader{position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
@@ -129,7 +129,7 @@
     </div>
   </header>
   <section class="hero hero--page post-hero">
-    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="" data-live data-img="ai-changing-how-we-discover-wine-hero" data-kw="wine,technology,ai,app" data-w="1920" data-h="1080"></div>
+    <div class="hero__bg hero__bg--cover"><img class="imgph" alt="How AI Is Changing the Way We Discover Wine" src="/assets/photos/ai-changing-how-we-discover-wine.png" loading="eager"></div>
     <div class="hero__inner">
       <nav class="post-breadcrumb" aria-label="Breadcrumb"><a href="/insights">Insights</a> &nbsp;/&nbsp; <span>Industry insights</span></nav>
       <span class="eyebrow">Industry insights</span>
@@ -174,9 +174,9 @@
   <section class="r-sec tint js-reveal">
     <div class="r-head"><h2>Keep reading</h2></div>
     <div class="cardgrid">
-      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/digital-wine-list-and-cellar-connected"><div class="ph2"><img class="imgph" alt="" data-live data-img="digital-wine-list-and-cellar-connected-card" data-kw="wine,cellar,restaurant,inventory" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">6 min read</span></div><h3>Why Your Digital Wine List and Your Cellar Need to Be Connected</h3><p>When your menu and your cellar drift apart, guests feel it. Here&#x27;s why connection matters and how to fix it.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
-      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/build-a-wine-list-guests-love"><div class="ph2"><img class="imgph" alt="" data-live data-img="build-a-wine-list-guests-love-card" data-kw="wine,list,restaurant,sommelier" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">7 min read</span></div><h3>How to Build a Wine List Your Guests Will Love</h3><p>Balance your list to your menu, your guests and your margins — and back curation with data, not instinct.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
-      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/second-cheapest-bottle"><div class="ph2"><img class="imgph" alt="" data-live data-img="second-cheapest-bottle-card" data-kw="wine,pricing,restaurant,bottle" data-w="800" data-h="500"></div><div class="meta"><span>Restaurant guides</span><span class="read">5 min read</span></div><h3>The Hidden Cost of the Second-Cheapest Bottle</h3><p>Why diners default to the second-cheapest wine, what it costs you, and how the right pairing changes the bill.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/digital-wine-list-and-cellar-connected"><div class="ph2"><img class="imgph" alt="" src="/assets/photos/digital-wine-list-and-cellar-connected.png" loading="lazy"></div><div class="meta"><span>Restaurant guides</span><span class="read">6 min read</span></div><h3>Why Your Digital Wine List and Your Cellar Need to Be Connected</h3><p>When your menu and your cellar drift apart, guests feel it. Here&#x27;s why connection matters and how to fix it.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/build-a-wine-list-guests-love"><div class="ph2"><img class="imgph" alt="" src="/assets/photos/build-a-wine-list-guests-love.png" loading="lazy"></div><div class="meta"><span>Restaurant guides</span><span class="read">7 min read</span></div><h3>How to Build a Wine List Your Guests Will Love</h3><p>Balance your list to your menu, your guests and your margins — and back curation with data, not instinct.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
+      <a class="card blogcard" data-cat="Restaurant guides" href="/insights/second-cheapest-bottle"><div class="ph2"><img class="imgph" alt="" src="/assets/photos/second-cheapest-bottle.png" loading="lazy"></div><div class="meta"><span>Restaurant guides</span><span class="read">5 min read</span></div><h3>The Hidden Cost of the Second-Cheapest Bottle</h3><p>Why diners default to the second-cheapest wine, what it costs you, and how the right pairing changes the bill.</p><span class="blogcard__more">Read article <span>&rarr;</span></span></a>
     </div>
   </section>
   <section class="r-sec cream js-reveal">
@@ -370,29 +370,6 @@
         });
         if (empty) empty.hidden = shown !== 0;
       });
-    });
-  })();
-</script>
-<!-- social share wiring (uses the live page URL + title) -->
-<script is:inline>
-  (function () {
-    var url = encodeURIComponent(location.href), title = encodeURIComponent(document.title);
-    var map = {
-      x: 'https://twitter.com/intent/tweet?url=' + url + '&text=' + title,
-      facebook: 'https://www.facebook.com/sharer/sharer.php?u=' + url,
-      linkedin: 'https://www.linkedin.com/sharing/share-offsite/?url=' + url,
-      whatsapp: 'https://wa.me/?text=' + title + '%20' + url
-    };
-    document.querySelectorAll('[data-share]').forEach(function (el) {
-      var t = el.getAttribute('data-share');
-      if (map[t]) { el.href = map[t]; }
-      else if (t === 'copy') {
-        el.addEventListener('click', function () {
-          var done = function () { el.classList.add('copied'); setTimeout(function () { el.classList.remove('copied'); }, 1600); };
-          if (navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(location.href).then(done, function(){});
-          else { try { var i=document.createElement('input'); i.value=location.href; document.body.appendChild(i); i.select(); document.execCommand('copy'); i.remove(); done(); } catch(e){} }
-        });
-      }
     });
   })();
 </script>
