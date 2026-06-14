@@ -8,7 +8,7 @@
   <meta property="og:title" content="BTG Optimiser — Entwine Free Tools" />
   <meta property="og:description" content="Find out which wines from your list should be offered by the glass — based on how well they pair with your food menu and consumption popularity." />
   <link rel="icon" type="image/svg+xml" href="/assets/favicon.svg" />
-  <link rel="stylesheet" href="/styles.css?v=8" />
+  <link rel="stylesheet" href="/styles.css?v=9" />
   <script is:inline src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
   <style is:inline>
     #preloader{position:fixed;inset:0;z-index:99999;background:#0a0a0a;display:flex;align-items:center;justify-content:center;transition:opacity .6s ease}
@@ -303,7 +303,7 @@
     function toggle() { var o = m.classList.toggle('open'); t.setAttribute('aria-expanded', o ? 'true' : 'false'); t.setAttribute('aria-label', o ? 'Close menu' : 'Open menu'); }
     t.addEventListener('click', toggle);
     m.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
-    window.addEventListener('resize', function () { if (window.innerWidth > 1024) close(); });
+    window.addEventListener('resize', function () { if (window.innerWidth > 768) close(); });
     document.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   })();
 </script>
