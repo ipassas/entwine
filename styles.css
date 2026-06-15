@@ -1496,3 +1496,40 @@ a.blogcard:hover .blogcard__more span { transform:translateX(4px); }
 #articleGrid { grid-template-columns: repeat(4, 1fr); align-items: start; }
 @media (max-width: 1100px) { #articleGrid { grid-template-columns: repeat(2, 1fr); } }
 @media (max-width: 620px)  { #articleGrid { grid-template-columns: 1fr; } }
+
+/* ============================================================
+   MOBILE STICKY DOWNLOAD BAR (store-link.js)
+   ============================================================ */
+:root { --mdl-h: 54px; }
+.mdl { display: none; }
+@media (max-width: 768px) {
+  .mdl { position: fixed; top: 0; left: 0; right: 0; z-index: 90; height: var(--mdl-h);
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    background: var(--gold); color: #0a0a0a; font-weight: 600; font-size: 15px;
+    letter-spacing: .01em; text-decoration: none; box-shadow: 0 6px 18px rgba(0,0,0,.2);
+    transform: translateY(0); transition: transform .3s cubic-bezier(.16,.84,.44,1); will-change: transform; }
+  .mdl iconify-icon { font-size: 21px; }
+  body.mdl-hidden .mdl { transform: translateY(-100%); }
+  body { padding-top: var(--mdl-h); }
+  .nav { top: var(--mdl-h); transition: top .3s cubic-bezier(.16,.84,.44,1); }
+  body.mdl-hidden .nav { top: 0; }
+}
+
+/* ============================================================
+   TOOL "UNDER DEVELOPMENT" LIGHTBOX (tools-popup.js)
+   ============================================================ */
+.tdev { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s; }
+.tdev.open { opacity: 1; visibility: visible; }
+.tdev__backdrop { position: absolute; inset: 0; background: rgba(8,7,6,.62); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
+.tdev__card { position: relative; z-index: 1; width: min(440px, 100%); background: #fff; border-radius: 20px; padding: 36px 32px 28px; text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.4); transform: translateY(10px) scale(.98); transition: transform .3s cubic-bezier(.16,.84,.44,1); }
+.tdev.open .tdev__card { transform: none; }
+.tdev__x { position: absolute; top: 12px; right: 14px; width: 36px; height: 36px; border: none; background: transparent; font-size: 26px; line-height: 1; color: var(--gray-1); cursor: pointer; border-radius: 50%; transition: .2s; }
+.tdev__x:hover { background: rgba(0,0,0,.06); color: var(--ink); }
+.tdev__kick { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin: 0 0 8px; }
+.tdev__title { font-family: var(--display); font-weight: 300; font-size: 26px; letter-spacing: -.01em; color: var(--ink); margin: 0 0 12px; }
+.tdev__txt { font-size: 15px; line-height: 1.6; color: var(--gray-2); margin: 0 0 22px; }
+.tdev__form { display: flex; gap: 10px; }
+.tdev__form input { flex: 1; border: 1px solid var(--line-light); border-radius: 999px; padding: 12px 18px; font-family: inherit; font-size: 15px; background: #fff; color: var(--ink); }
+.tdev__form input:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
+.tdev__note { margin: 14px 0 0; font-size: 12.5px; color: var(--gray-1); }
+@media (max-width: 480px) { .tdev__form { flex-direction: column; } .tdev__card { padding: 30px 22px 24px; } }
