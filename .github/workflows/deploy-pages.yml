@@ -22,7 +22,12 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
-      - run: npm run build
+      # Build statically (no Wix CLI / WIX_CLIENT_ID needed). The default
+      # astro.config.mjs targets Wix Headless hosting; this workflow only needs
+      # static files for the GitHub Pages → Wix iframe path.
+      - run: npx astro build --config astro.config.static.mjs
+        env:
+          NODE_ENV: production
       - run: node scripts/rebase.mjs /entwine
       - uses: peaceiris/actions-gh-pages@v4
         with:
