@@ -17,37 +17,8 @@
     #preloader.done{opacity:0;pointer-events:none}
   </style>
   <style is:inline>
-    .job--open { cursor: pointer; }
     .job__act { display: flex; flex-direction: column; align-items: flex-end; gap: 14px; }
     .job-apply { padding: 9px 18px; font-size: 13px; white-space: nowrap; }
-    .ap { position: fixed; inset: 0; z-index: 1000; display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility .25s; }
-    .ap.open { opacity: 1; visibility: visible; }
-    .ap__backdrop { position: absolute; inset: 0; background: rgba(8,7,6,.66); -webkit-backdrop-filter: blur(3px); backdrop-filter: blur(3px); }
-    .ap__card { position: relative; z-index: 1; width: min(560px, 100%); max-height: 90vh; overflow-y: auto; background: #fff; border-radius: 20px; padding: 36px 34px 30px; box-shadow: 0 30px 80px rgba(0,0,0,.4); transform: translateY(10px) scale(.985); transition: transform .3s cubic-bezier(.16,.84,.44,1); }
-    .ap.open .ap__card { transform: none; }
-    .ap__x { position: absolute; top: 14px; right: 16px; width: 36px; height: 36px; border: none; background: transparent; font-size: 26px; line-height: 1; color: var(--gray-1); cursor: pointer; border-radius: 50%; transition: .2s; }
-    .ap__x:hover { background: rgba(0,0,0,.06); color: var(--ink); }
-    .ap__kick { font-size: 11px; letter-spacing: .2em; text-transform: uppercase; color: var(--gold); font-weight: 600; margin: 0 0 6px; }
-    .ap__title { font-family: var(--display); font-weight: 300; font-size: 26px; letter-spacing: -.01em; color: var(--ink); margin: 0 0 4px; }
-    .ap__role { font-size: 14px; color: var(--gray-2); margin: 0 0 22px; }
-    .ap__field { margin-bottom: 16px; }
-    .ap__field label { display: block; font-size: 12.5px; font-weight: 600; color: var(--ink); margin-bottom: 6px; }
-    .ap__field label .req { color: var(--gold); }
-    .ap__field input, .ap__field textarea { width: 100%; border: 1px solid var(--line-light); border-radius: 11px; padding: 12px 14px; font-family: inherit; font-size: 15px; background: #fff; color: var(--ink); }
-    .ap__field input:focus, .ap__field textarea:focus { outline: 2px solid var(--gold); outline-offset: 1px; border-color: var(--gold); }
-    .ap__field textarea { min-height: 96px; resize: vertical; }
-    .ap__row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-    .ap__file { display: flex; align-items: center; gap: 12px; border: 1px dashed var(--line-light); border-radius: 11px; padding: 12px 14px; }
-    .ap__file input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
-    .ap__file label.ap__filebtn { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 999px; background: var(--ink); color: #fff; font-size: 13px; font-weight: 500; cursor: pointer; margin: 0; }
-    .ap__filename { font-size: 13px; color: var(--gray-2); }
-    .ap__submit { width: 100%; justify-content: center; margin-top: 6px; }
-    .ap__note { font-size: 12px; color: var(--gray-1); margin: 14px 0 0; text-align: center; line-height: 1.5; }
-    .ap__success { text-align: center; padding: 16px 6px 8px; }
-    .ap__success .ic { width: 64px; height: 64px; border-radius: 50%; background: rgba(184,168,106,.16); color: var(--gold); display: flex; align-items: center; justify-content: center; margin: 0 auto 18px; font-size: 32px; }
-    .ap__success h3 { font-family: var(--display); font-weight: 300; font-size: 24px; color: var(--ink); margin: 0 0 10px; }
-    .ap__success p { font-size: 15px; color: var(--gray-2); line-height: 1.6; margin: 0 auto; max-width: 380px; }
-    @media (max-width: 520px) { .ap__row { grid-template-columns: 1fr; } .ap__card { padding: 30px 20px 24px; } }
   </style>
 </head>
 <body>
@@ -141,9 +112,9 @@
   <section class="r-sec cream js-reveal" id="roles">
     <div class="r-head"><h2>We're building our team.</h2></div><p class="r-sub">These are the roles we're looking to fill.</p>
     <div>
-      <div class="job job--open" role="button" tabindex="0" data-role="Customer Success Specialist"><div><div class="dept">Restaurant Operations</div><h3>Customer Success Specialist</h3><div class="loc">Malta · Full-time or part-time</div><p>You'll be the first point of contact for Entwine's restaurant clients — supporting onboarding, managing relationships, and making sure every restaurant gets the most out of the platform. Organised, personable, and comfortable with hospitality professionals.</p></div><div class="job__act"><span class="av open">Open</span><button class="btn btn--gold job-apply" type="button" data-role="Customer Success Specialist">Apply <span class="arrow">→</span></button></div></div>
+      <div class="job"><div><div class="dept">Restaurant Operations</div><h3>Customer Success Specialist</h3><div class="loc">Malta · Full-time or part-time</div><p>You'll be the first point of contact for Entwine's restaurant clients — supporting onboarding, managing relationships, and making sure every restaurant gets the most out of the platform. Organised, personable, and comfortable with hospitality professionals.</p></div><div class="job__act"><span class="av open">Open</span><a class="btn btn--gold job-apply" href="mailto:info@entwine.club?subject=Application%3A%20Customer%20Success%20Specialist&body=Hi%20Entwine%20team%2C%0A%0AI%27d%20like%20to%20apply%20for%20the%20Customer%20Success%20Specialist%20role%20at%20Entwine.%20My%20CV%20is%20attached.%0A%0AName%3A%0APhone%3A%0ALinkedIn%20/%20portfolio%3A%0AA%20few%20words%20about%20me%3A%0A%0AThanks%21">Apply <span class="arrow">→</span></a></div></div>
       <div class="job"><div><div class="dept">Sales &amp; Growth</div><h3>Club Growth Manager</h3><div class="loc">Malta-based · European travel · Full-time</div><p>You'll grow the Entwine club — bringing new restaurants onto the platform across Malta and into European markets. A relationship-led role for someone who knows hospitality and thrives in business development.</p></div><span class="av closed">Filled</span></div>
-      <div class="job job--open" role="button" tabindex="0" data-role="Full-Stack Developer"><div><div class="dept">Technology</div><h3>Full-Stack Developer</h3><div class="loc">Remote-friendly · Full-time</div><p>You'll work alongside our CTO to build and improve the full Entwine platform — the consumer app, the restaurant IMS, and our suite of professional wine tools. Comfortable across the full stack; AI/ML experience a bonus.</p></div><div class="job__act"><span class="av open">Open</span><button class="btn btn--gold job-apply" type="button" data-role="Full-Stack Developer">Apply <span class="arrow">→</span></button></div></div>
+      <div class="job"><div><div class="dept">Technology</div><h3>Full-Stack Developer</h3><div class="loc">Remote-friendly · Full-time</div><p>You'll work alongside our CTO to build and improve the full Entwine platform — the consumer app, the restaurant IMS, and our suite of professional wine tools. Comfortable across the full stack; AI/ML experience a bonus.</p></div><div class="job__act"><span class="av open">Open</span><a class="btn btn--gold job-apply" href="mailto:info@entwine.club?subject=Application%3A%20Full-Stack%20Developer&body=Hi%20Entwine%20team%2C%0A%0AI%27d%20like%20to%20apply%20for%20the%20Full-Stack%20Developer%20role%20at%20Entwine.%20My%20CV%20is%20attached.%0A%0AName%3A%0APhone%3A%0ALinkedIn%20/%20portfolio%3A%0AA%20few%20words%20about%20me%3A%0A%0AThanks%21">Apply <span class="arrow">→</span></a></div></div>
     </div>
   </section>
   <section class="rcta js-reveal">
@@ -151,67 +122,10 @@
     <h2>Don't see your role here? <span class="gold">We'd still love to hear from you.</span></h2>
     <p>Wine. Technology. Hospitality. If that intersection excites you and you think you have something to contribute — get in touch and tell us about yourself.</p>
     <div class="rcta__cta">
-      <button class="btn btn--dark job-apply" type="button" data-role="General application">Send us your CV <span class="arrow">→</span></button>
+      <a class="btn btn--dark job-apply" href="mailto:info@entwine.club?subject=Application%20%E2%80%94%20Entwine%20%28general%29&body=Hi%20Entwine%20team%2C%0A%0AI%27d%20like%20to%20be%20considered%20for%20a%20role%20at%20Entwine.%20My%20CV%20is%20attached.%0A%0AName%3A%0APhone%3A%0ALinkedIn%20/%20portfolio%3A%0AA%20few%20words%20about%20me%3A%0A%0AThanks%21">Send us your CV <span class="arrow">→</span></a>
       <div class="rcta__links"><a href="/about">Learn about Entwine <span>→</span></a></div>
     </div>
   </section>
-
-<!-- ============ APPLICATION MODAL ============ -->
-<div class="ap" id="applyModal" role="dialog" aria-modal="true" aria-labelledby="apTitle" aria-hidden="true">
-  <div class="ap__backdrop" data-ap-close></div>
-  <div class="ap__card" role="document">
-    <button class="ap__x" type="button" data-ap-close aria-label="Close">×</button>
-    <div class="ap__body">
-      <p class="ap__kick">Join Entwine</p>
-      <h2 class="ap__title" id="apTitle">Apply for this role</h2>
-      <p class="ap__role" id="apRole">Wine. Technology. Hospitality.</p>
-      <!-- Infrastructure note: set data-endpoint to a form backend (e.g. Formspree)
-           to receive submissions directly. Until then, submitting drafts an email
-           to info@entwine.club with the applicant's details. -->
-      <form id="applyForm" data-endpoint="" novalidate>
-        <input type="hidden" name="role" id="apRoleField" value="">
-        <div class="ap__field">
-          <label for="apName">Full name <span class="req">*</span></label>
-          <input type="text" id="apName" name="name" autocomplete="name" required>
-        </div>
-        <div class="ap__row">
-          <div class="ap__field">
-            <label for="apEmail">Email <span class="req">*</span></label>
-            <input type="email" id="apEmail" name="email" autocomplete="email" required>
-          </div>
-          <div class="ap__field">
-            <label for="apPhone">Phone</label>
-            <input type="tel" id="apPhone" name="phone" autocomplete="tel">
-          </div>
-        </div>
-        <div class="ap__field">
-          <label for="apLinks">LinkedIn / portfolio</label>
-          <input type="url" id="apLinks" name="links" placeholder="https://">
-        </div>
-        <div class="ap__field">
-          <label for="apNote">Why Entwine? <span style="font-weight:400;color:var(--gray-1)">(a short note)</span></label>
-          <textarea id="apNote" name="note" placeholder="Tell us a little about yourself…"></textarea>
-        </div>
-        <div class="ap__field">
-          <label>CV / résumé <span class="req">*</span></label>
-          <div class="ap__file">
-            <label class="ap__filebtn" for="apCv"><iconify-icon icon="ph:paperclip-thin"></iconify-icon> Choose file</label>
-            <input type="file" id="apCv" name="cv" accept=".pdf,.doc,.docx,.pages,.rtf" required>
-            <span class="ap__filename" id="apFileName">No file selected</span>
-          </div>
-        </div>
-        <button class="btn btn--gold ap__submit" type="submit">Submit application <span class="arrow">→</span></button>
-        <p class="ap__note">By submitting you agree we may contact you about your application. Your details go to <b>info@entwine.club</b>.</p>
-      </form>
-    </div>
-    <div class="ap__success" id="apSuccess" hidden>
-      <div class="ic"><iconify-icon icon="ph:check-bold"></iconify-icon></div>
-      <h3>Thank you — application ready.</h3>
-      <p id="apSuccessMsg">Your email app is opening with your details addressed to info@entwine.club. Please attach your CV file and hit send — we'll be in touch.</p>
-      <button class="btn btn--outline-dark" type="button" data-ap-close style="margin-top:22px">Close</button>
-    </div>
-  </div>
-</div>
 
 <footer class="footer">
     <div class="footer__top">
@@ -377,121 +291,6 @@
   <g id="ew-monogram"><path d="M300.508 130.309C300.508 130.725 300.313 131.142 299.988 131.43C299.696 131.718 299.242 131.943 298.852 131.943H285.153C283.887 131.943 283.562 131.142 283.498 130.629C283.303 129.22 276.064 86.2966 252.594 86.2966C227.663 86.2966 195.331 134.825 177.769 156.543C164.2 173.328 151.605 189.633 145.632 210.165C145.242 211.543 144.853 212.92 144.528 214.329C143.814 217.212 143.327 220.223 143.003 223.33C142.938 223.779 142.905 224.227 142.873 224.676C142.548 228.263 142.451 231.947 142.451 235.631C142.451 250.366 145.242 266.158 151.897 279.515C152.774 281.277 153.715 282.975 154.721 284.608C155.533 285.954 156.377 287.235 157.286 288.484C157.708 289.093 158.162 289.701 158.617 290.278C159.558 291.527 160.564 292.712 161.603 293.865C162.447 294.826 163.324 295.755 164.233 296.588C166.635 298.927 169.134 300.945 171.764 302.642C172.413 303.059 173.095 303.475 173.776 303.86C174.783 304.436 175.822 304.981 176.893 305.461C177.575 305.781 178.321 306.102 179.003 306.39C184.034 308.408 189.456 309.401 195.266 309.401C200.006 309.401 204.518 308.6 208.835 306.967C209.517 306.71 210.166 306.454 210.815 306.166C216.431 303.731 221.723 299.888 226.819 294.666C227.176 294.314 227.566 293.93 227.89 293.513C228.247 293.129 228.605 292.744 228.929 292.328C229.286 291.944 229.611 291.527 229.968 291.111C230.325 290.694 230.65 290.278 230.974 289.861C231.331 289.445 231.656 289.029 231.948 288.58C232.273 288.164 232.597 287.715 232.89 287.235C233.214 286.786 233.506 286.338 233.831 285.857C234.123 285.409 234.448 284.928 234.74 284.448C235.324 283.519 235.908 282.558 236.46 281.597C236.752 281.085 237.045 280.572 237.304 280.028C237.597 279.515 237.856 279.002 238.116 278.49C239.447 275.895 240.713 273.173 241.881 270.29C242.303 269.201 242.758 268.112 243.18 267.022C244.706 262.954 246.069 258.694 247.27 254.242C247.4 253.729 247.562 253.217 247.692 252.672C248.634 249.084 249.478 245.369 250.257 241.589C250.484 240.5 250.679 239.411 250.906 238.322C251.003 237.809 251.101 237.297 251.198 236.784C251.393 235.695 251.588 234.606 251.75 233.517C251.75 233.389 251.815 233.228 251.815 233.1C251.977 232.171 252.139 231.21 252.269 230.249C252.724 227.238 253.146 224.195 253.503 221.088C253.633 220.255 253.698 219.391 253.795 218.558C254.152 215.419 254.477 212.215 254.736 209.012C254.801 208.115 254.899 207.186 254.964 206.289C255.191 203.15 255.418 199.979 255.58 196.808C255.613 196.167 255.645 195.527 255.678 194.886L286.581 184.764C286.581 185.853 286.581 186.942 286.581 188.031C286.581 233.933 271.195 283.551 250.029 304.052C233.831 319.619 219.288 325.353 196.013 325.353C168.583 325.353 145.307 315.103 129.109 296.236C114.988 279.835 107.489 257.701 107.489 235.15C107.489 226.95 108.333 218.333 110.8 210.133C118.981 182.457 134.822 159.843 160.045 134.825C161.701 133.16 163.454 131.462 165.207 129.764C165.369 129.636 165.499 129.476 165.693 129.316C166.148 128.899 166.57 128.451 166.992 127.971C171.764 122.781 177.185 113.364 177.412 108.303C177.932 95.8102 169.102 86.1685 155.825 86.1685H155.403C118.656 86.1685 110.703 130.597 110.703 130.597C110.703 130.918 110.573 131.142 110.411 131.334C110.119 131.654 109.697 131.814 109.437 131.814H95.3161C95.1538 131.814 94.9915 131.782 94.8292 131.718C94.6669 131.654 94.5046 131.59 94.4072 131.462C94.1475 131.238 93.9527 130.885 93.9852 130.533C93.9852 130.405 94.0176 130.309 94.0825 130.181L101.971 68.6789H292.165L300.475 130.181L300.508 130.309Z"/></g>
 </defs></svg>
 
-<!-- application modal logic -->
-<script is:inline>
-  (function () {
-    var modal = document.getElementById('applyModal');
-    if (!modal) return;
-    var form = document.getElementById('applyForm');
-    var body = modal.querySelector('.ap__body');
-    var success = document.getElementById('apSuccess');
-    var roleField = document.getElementById('apRoleField');
-    var roleLabel = document.getElementById('apRole');
-    var titleEl = document.getElementById('apTitle');
-    var fileInput = document.getElementById('apCv');
-    var fileName = document.getElementById('apFileName');
-    var lastFocus = null;
-
-    function open(role) {
-      lastFocus = document.activeElement;
-      role = role || 'General application';
-      roleField.value = role;
-      if (role === 'General application') {
-        titleEl.textContent = 'Send us your CV';
-        roleLabel.textContent = 'A general application — tell us where you fit.';
-      } else {
-        titleEl.textContent = 'Apply: ' + role;
-        roleLabel.textContent = role;
-      }
-      body.hidden = false; success.hidden = true;
-      modal.classList.add('open'); modal.setAttribute('aria-hidden', 'false');
-      document.body.style.overflow = 'hidden';
-      var first = document.getElementById('apName'); if (first) setTimeout(function(){ first.focus(); }, 60);
-    }
-    function close() {
-      modal.classList.remove('open'); modal.setAttribute('aria-hidden', 'true');
-      document.body.style.overflow = '';
-      if (lastFocus && lastFocus.focus) lastFocus.focus();
-    }
-
-    // open triggers: explicit Apply buttons + clicking an open role row
-    document.querySelectorAll('.job-apply').forEach(function (b) {
-      b.addEventListener('click', function (e) { e.stopPropagation(); open(b.getAttribute('data-role')); });
-    });
-    document.querySelectorAll('.job--open').forEach(function (row) {
-      row.addEventListener('click', function () { open(row.getAttribute('data-role')); });
-      row.addEventListener('keydown', function (e) {
-        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); open(row.getAttribute('data-role')); }
-      });
-    });
-
-    modal.addEventListener('click', function (e) { if (e.target.closest('[data-ap-close]')) close(); });
-    document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && modal.classList.contains('open')) close(); });
-
-    if (fileInput) fileInput.addEventListener('change', function () {
-      fileName.textContent = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : 'No file selected';
-    });
-
-    form.addEventListener('submit', function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      var fd = new FormData(form);
-      var cv = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : '';
-
-      function showSuccess(msg) {
-        if (msg) document.getElementById('apSuccessMsg').textContent = msg;
-        body.hidden = true; success.hidden = false;
-        success.scrollIntoView({ block: 'nearest' });
-      }
-      function emailDraft() {
-        var lines = [
-          'Role: ' + (fd.get('role') || ''),
-          'Name: ' + (fd.get('name') || ''),
-          'Email: ' + (fd.get('email') || ''),
-          'Phone: ' + (fd.get('phone') || ''),
-          'LinkedIn / portfolio: ' + (fd.get('links') || ''),
-          '', (fd.get('note') || ''), '',
-          'CV to attach: ' + (cv || '(please attach your CV)')
-        ];
-        window.location.href = 'mailto:info@entwine.club'
-          + '?subject=' + encodeURIComponent('Application: ' + (fd.get('role') || 'General application'))
-          + '&body=' + encodeURIComponent(lines.join('\r\n'));
-      }
-
-      // When the site runs on Wix Headless, submit into Wix Forms (lands in the
-      // dashboard + triggers the email automation). Otherwise draft an email.
-      if (window.entwineSubmitApplication) {
-        window.entwineSubmitApplication(fd).then(function (ok) {
-          if (!ok) { emailDraft(); showSuccess(); return; }
-          // CV upload moves into the Wix form's file field once it's created;
-          // until then, send the CV by email alongside the logged application.
-          if (cv) emailDraft();
-          showSuccess("Thanks — your application is in. We'll be in touch via info@entwine.club.");
-        }).catch(function () { emailDraft(); showSuccess(); });
-      } else {
-        emailDraft();
-        showSuccess();
-      }
-    });
-  })();
-</script>
-<!-- Wix Forms submit (active only once Headless is linked — see WIX-HEADLESS.md) -->
-<script>
-  import { wixConfigured, submitWixForm } from '../scripts/wix-forms.js';
-  const FORM_ID = import.meta.env.PUBLIC_WIX_CAREERS_FORM_ID || '';
-  if (wixConfigured && FORM_ID) {
-    window.entwineSubmitApplication = function (fd) {
-      return submitWixForm(FORM_ID, {
-        role: fd.get('role') || '',
-        name: fd.get('name') || '',
-        email: fd.get('email') || '',
-        phone: fd.get('phone') || '',
-        links: fd.get('links') || '',
-        note: fd.get('note') || '',
-      });
-    };
-  }
-</script>
 <script is:inline src="/consent.js?v=2" defer></script>
 <script is:inline src="/store-link.js?v=2" defer></script>
 </body>

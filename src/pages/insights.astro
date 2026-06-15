@@ -310,6 +310,7 @@
 <script>
   import { wixConfigured, submitWixForm } from '../scripts/wix-forms.js';
   const FORM_ID = import.meta.env.PUBLIC_WIX_NEWSLETTER_FORM_ID || '';
+  const EMAIL_KEY = import.meta.env.PUBLIC_WIX_NEWSLETTER_EMAIL_KEY || 'email';
   const f = document.getElementById('nlForm');
   if (f) {
     f.addEventListener('submit', function (e) {
@@ -319,7 +320,7 @@
       var note = (f.closest('.newsletter')||document).querySelector('.note');
       function done(msg){ if(note) note.textContent = msg; f.reset(); }
       if (wixConfigured && FORM_ID) {
-        submitWixForm(FORM_ID, { email: email }).then(function(ok){
+        submitWixForm(FORM_ID, { [EMAIL_KEY]: email }).then(function(ok){
           done(ok ? 'Thanks — you\'re on the list.' : 'Hmm, that didn\'t go through. Please try again.');
         }).catch(function(){ done('Hmm, that didn\'t go through. Please try again.'); });
       } else {

@@ -1,6 +1,9 @@
 name: Deploy to GitHub Pages
 
 on:
+  # Static GitHub Pages build (via astro.config.static.mjs) — keeps the
+  # entwine.club iframe live during the Wix Headless migration. The Wix path
+  # (astro.config.mjs + `wix release`) is separate.
   push:
     branches: [claude/happy-babbage-FslEn]
   workflow_dispatch:
