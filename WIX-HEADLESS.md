@@ -34,20 +34,17 @@ git add wix.config.json astro.config.mjs package.json package-lock.json
 git commit -m "Link Wix Headless"
 ```
 
-## 2. Create the two forms in Wix
+## 2. Create the Newsletter form in Wix
 
-In the Wix dashboard for the Headless project → **Forms**, create:
+Careers applications now go straight to your inbox (the Apply button opens the
+visitor's email app addressed to `info@entwine.club` with the job title as the
+subject — no Wix form needed). So the only Wix form to create is:
 
-**Careers application** — add fields and set each field's **Field Key** exactly:
-`role`, `name`, `email`, `phone`, `links`, `note`
-(optionally add a **File upload** field for the CV — see §6).
+**Newsletter Subscribe** — one email field.
 
-**Newsletter** — one field, key `email`.
-
-Copy each form's **Form ID** (Form settings → ⋯ → "Copy ID" / the URL).
-
-> The field keys above must match — they're what the site sends. If you'd
-> rather use different keys, tell me and I'll remap `src/scripts/wix-forms.js`.
+Copy its **Form ID** (Form settings → ⋯ → "Copy ID" / the URL) and the email
+field's **field key**, and send them to me (or set them in `.env` below). If
+the field key isn't `email`, set `PUBLIC_WIX_NEWSLETTER_EMAIL_KEY`.
 
 ## 3. Get the Headless client id
 
@@ -60,8 +57,8 @@ Create `.env` in the repo root (it's already git-ignored):
 
 ```
 PUBLIC_WIX_CLIENT_ID=<your headless client id>
-PUBLIC_WIX_CAREERS_FORM_ID=<Careers application form id>
-PUBLIC_WIX_NEWSLETTER_FORM_ID=<Newsletter form id>
+PUBLIC_WIX_NEWSLETTER_FORM_ID=<Newsletter Subscribe form id>
+PUBLIC_WIX_NEWSLETTER_EMAIL_KEY=email   # only if the field key isn't "email"
 ```
 
 With these set, the careers form and the insights newsletter submit straight
@@ -70,20 +67,17 @@ email), so local/staging builds keep working.
 
 ## 5. Send applications to your inbox (Wix Automation)
 
-Dashboard → **Automations** → New:
-- Trigger: **Form submission** → *Careers application*
-- Action: **Send email** to `info@entwine.club` (include the submitted fields).
-
-Do the same for *Newsletter* if you want a notification, or connect it to
+Careers applications already arrive as a normal email to `info@entwine.club`
+(with the CV attached by the applicant). For the **Newsletter Subscribe** form,
+add an Automation if you want a notification, or connect it to
 **Marketing → Contacts** so subscribers land in your audience.
 
-## 6. CV upload (final wiring)
+## 6. Careers / CV
 
-Add a **File upload** field to the Careers form and send me its field key. I'll
-switch the CV from the email fallback to a real Wix upload (the SDK uploads the
-file and attaches it to the submission), so everything — details **and** CV —
-lands in Wix. Until then, selecting a CV also opens a pre-filled email to
-`info@entwine.club` so the file still reaches you.
+Careers is intentionally email-based: clicking **Apply** on a role (or **Send
+us your CV**) opens the visitor's email client to `info@entwine.club` with the
+job title as the subject and a prefilled body — they attach their CV and send.
+No Wix form or file-upload wiring required.
 
 ## 7. Preview, then publish
 
