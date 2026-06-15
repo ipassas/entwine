@@ -1162,8 +1162,10 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
 /* collapse the mega nav to the burger on phones / small tablets */
 @media (max-width: 768px) {
   .nav-mega { display: none; }
-  .nav-cta { margin-left: auto; padding: 9px 15px; font-size: 12.5px; gap: 6px; }
-  .nav-toggle { display: inline-flex; }
+  /* the full-width sticky download bar (.mdl) covers download on mobile, so
+     hide the header's Download button here; it returns on desktop. */
+  .nav-cta { display: none; }
+  .nav-toggle { display: inline-flex; margin-left: auto; }
 }
 
 /* ============================================================
