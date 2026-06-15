@@ -19,8 +19,8 @@ const CLIENT_ID = import.meta.env.PUBLIC_WIX_CLIENT_ID || '8fe2c57b-cadd-43df-ac
 export const wixConfigured = Boolean(CLIENT_ID);
 
 // Newsletter form (Wix Forms) — overridable via env, with the live defaults baked in.
-export const NEWSLETTER_FORM_ID = import.meta.env.PUBLIC_WIX_NEWSLETTER_FORM_ID || '1e567888-7b60-4f59-ae87-ba53c9ff5ad0';
-export const NEWSLETTER_EMAIL_KEY = import.meta.env.PUBLIC_WIX_NEWSLETTER_EMAIL_KEY || 'email';
+export const NEWSLETTER_FORM_ID = import.meta.env.PUBLIC_WIX_NEWSLETTER_FORM_ID || '0e747fd5-a3ff-41d8-8f8b-8dcfb6a905d1';
+export const NEWSLETTER_EMAIL_KEY = import.meta.env.PUBLIC_WIX_NEWSLETTER_EMAIL_KEY || 'email_0d13';
 
 let _client = null;
 async function getClient() {
@@ -39,8 +39,6 @@ async function getClient() {
 export async function submitWixForm(formId, fields) {
   if (!wixConfigured || !formId) return false;
   const client = await getClient();
-  await client.submissions.createSubmission({
-    submission: { formId, submissions: fields, status: 'CONFIRMED' },
-  });
+  await client.submissions.createSubmission({ formId, status: 'CONFIRMED', submissions: fields });
   return true;
 }
