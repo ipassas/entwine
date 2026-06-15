@@ -436,7 +436,6 @@
       e.preventDefault();
       if (!form.checkValidity()) { form.reportValidity(); return; }
       var fd = new FormData(form);
-      var endpoint = form.getAttribute('data-endpoint');
       var cv = fileInput.files && fileInput.files[0] ? fileInput.files[0].name : '';
 
       function showSuccess(msg) {
@@ -444,34 +443,54 @@
         body.hidden = true; success.hidden = false;
         success.scrollIntoView({ block: 'nearest' });
       }
-
-      if (endpoint) {
-        // Real backend wired in later — submit the multipart form (CV included).
-        fetch(endpoint, { method: 'POST', body: fd, headers: { Accept: 'application/json' } })
-          .then(function (r) { showSuccess(r.ok
-            ? "Thanks — your application has been sent to info@entwine.club. We'll be in touch."
-            : "Your application was prepared. If you don't hear back, email info@entwine.club directly."); })
-          .catch(function () { showSuccess("Couldn't reach the server — please email your CV to info@entwine.club."); });
-        return;
+      function emailDraft() {
+        var lines = [
+          'Role: ' + (fd.get('role') || ''),
+          'Name: ' + (fd.get('name') || ''),
+          'Email: ' + (fd.get('email') || ''),
+          'Phone: ' + (fd.get('phone') || ''),
+          'LinkedIn / portfolio: ' + (fd.get('links') || ''),
+          '', (fd.get('note') || ''), '',
+          'CV to attach: ' + (cv || '(please attach your CV)')
+        ];
+        window.location.href = 'mailto:info@entwine.club'
+          + '?subject=' + encodeURIComponent('Application: ' + (fd.get('role') || 'General application'))
+          + '&body=' + encodeURIComponent(lines.join('\r\n'));
       }
 
-      // No backend yet: draft an email to info@entwine.club with the details.
-      var lines = [
-        'Role: ' + (fd.get('role') || ''),
-        'Name: ' + (fd.get('name') || ''),
-        'Email: ' + (fd.get('email') || ''),
-        'Phone: ' + (fd.get('phone') || ''),
-        'LinkedIn / portfolio: ' + (fd.get('links') || ''),
-        '', (fd.get('note') || ''), '',
-        'CV to attach: ' + (cv || '(please attach your CV)')
-      ];
-      var href = 'mailto:info@entwine.club'
-        + '?subject=' + encodeURIComponent('Application: ' + (fd.get('role') || 'General application'))
-        + '&body=' + encodeURIComponent(lines.join('\r\n'));
-      window.location.href = href;
-      showSuccess();
+      // When the site runs on Wix Headless, submit into Wix Forms (lands in the
+      // dashboard + triggers the email automation). Otherwise draft an email.
+      if (window.entwineSubmitApplication) {
+        window.entwineSubmitApplication(fd).then(function (ok) {
+          if (!ok) { emailDraft(); showSuccess(); return; }
+          // CV upload moves into the Wix form's file field once it's created;
+          // until then, send the CV by email alongside the logged application.
+          if (cv) emailDraft();
+          showSuccess("Thanks — your application is in. We'll be in touch via info@entwine.club.");
+        }).catch(function () { emailDraft(); showSuccess(); });
+      } else {
+        emailDraft();
+        showSuccess();
+      }
     });
   })();
+</script>
+<!-- Wix Forms submit (active only once Headless is linked — see WIX-HEADLESS.md) -->
+<script>
+  import { wixConfigured, submitWixForm } from '../scripts/wix-forms.js';
+  const FORM_ID = import.meta.env.PUBLIC_WIX_CAREERS_FORM_ID || '';
+  if (wixConfigured && FORM_ID) {
+    window.entwineSubmitApplication = function (fd) {
+      return submitWixForm(FORM_ID, {
+        role: fd.get('role') || '',
+        name: fd.get('name') || '',
+        email: fd.get('email') || '',
+        phone: fd.get('phone') || '',
+        links: fd.get('links') || '',
+        note: fd.get('note') || '',
+      });
+    };
+  }
 </script>
 <script is:inline src="/consent.js?v=2" defer></script>
 <script is:inline src="/store-link.js?v=2" defer></script>

@@ -114,7 +114,7 @@
   <section class="r-sec cream js-reveal">
     <div class="newsletter">
       <div class="r-head"><h2>Stay in the loop.</h2></div><p class="r-sub">New articles, product updates, and wine intelligence — straight to your inbox.</p>
-      <form onsubmit="return false"><input type="email" placeholder="Enter your email address" aria-label="Email address"><button class="btn btn--gold" type="submit">Keep me posted</button></form>
+      <form id="nlForm" onsubmit="return false"><input type="email" name="email" placeholder="Enter your email address" aria-label="Email address" required><button class="btn btn--gold" type="submit">Keep me posted</button></form>
       <p class="note">No spam. Unsubscribe any time.</p>
     </div>
   </section>
@@ -305,6 +305,28 @@
       });
     });
   })();
+</script>
+<!-- Newsletter -> Wix Forms (active only once Headless is linked) -->
+<script>
+  import { wixConfigured, submitWixForm } from '../scripts/wix-forms.js';
+  const FORM_ID = import.meta.env.PUBLIC_WIX_NEWSLETTER_FORM_ID || '';
+  const f = document.getElementById('nlForm');
+  if (f) {
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (!f.checkValidity()) { f.reportValidity(); return; }
+      var email = (new FormData(f)).get('email') || '';
+      var note = (f.closest('.newsletter')||document).querySelector('.note');
+      function done(msg){ if(note) note.textContent = msg; f.reset(); }
+      if (wixConfigured && FORM_ID) {
+        submitWixForm(FORM_ID, { email: email }).then(function(ok){
+          done(ok ? 'Thanks — you\'re on the list.' : 'Hmm, that didn\'t go through. Please try again.');
+        }).catch(function(){ done('Hmm, that didn\'t go through. Please try again.'); });
+      } else {
+        done('Thanks — you\'re on the list.');
+      }
+    });
+  }
 </script>
 <script is:inline src="/consent.js?v=2" defer></script>
 <script is:inline src="/store-link.js?v=2" defer></script>

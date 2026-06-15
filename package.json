@@ -9,6 +9,8 @@
     "preview": "astro preview"
   },
   "dependencies": {
+    "@wix/forms": "^1.0.453",
+    "@wix/sdk": "^1.21.12",
     "astro": "^5.0.0"
   }
 }
