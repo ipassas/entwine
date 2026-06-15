@@ -114,4 +114,30 @@
     var t = e.target.closest ? e.target.closest('[data-qr-open]') : null;
     if (t) { e.preventDefault(); openModal(); }
   });
+
+  /* ---------------- mobile sticky download bar ----------------
+     Full-width bar above the menu on phones, with the right store icon.
+     Hides on scroll-down, reappears (pushing the menu down) on scroll-up.
+     Hidden on desktop via CSS. */
+  (function () {
+    var bar = document.createElement('a');
+    bar.className = 'mdl';
+    var icon = isIOS ? 'ph:apple-logo-fill' : isAndroid ? 'ph:google-play-logo-fill' : 'ph:download-simple-bold';
+    bar.innerHTML = '<iconify-icon icon="' + icon + '"></iconify-icon><span>Download the app</span>';
+    if (isMobile) { bar.href = deviceStore; bar.target = '_blank'; bar.rel = 'noopener'; }
+    else { bar.href = '#'; bar.addEventListener('click', function (e) { e.preventDefault(); openModal(); }); }
+    document.body.insertBefore(bar, document.body.firstChild);
+
+    var lastY = window.pageYOffset || 0, ticking = false;
+    function update() {
+      var y = window.pageYOffset || 0;
+      if (y < 60) document.body.classList.remove('mdl-hidden');
+      else if (y > lastY + 4) document.body.classList.add('mdl-hidden');
+      else if (y < lastY - 4) document.body.classList.remove('mdl-hidden');
+      lastY = y; ticking = false;
+    }
+    window.addEventListener('scroll', function () {
+      if (!ticking) { window.requestAnimationFrame(update); ticking = true; }
+    }, { passive: true });
+  })();
 })();

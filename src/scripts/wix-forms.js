@@ -14,9 +14,13 @@
  * SDK is loaded lazily (dynamic import) so it only ships to the browser once a
  * form is actually submitted.
  */
-const CLIENT_ID = import.meta.env.PUBLIC_WIX_CLIENT_ID || '';
+const CLIENT_ID = import.meta.env.PUBLIC_WIX_CLIENT_ID || '8fe2c57b-cadd-43df-ac10-5fca7cc6541c';
 
 export const wixConfigured = Boolean(CLIENT_ID);
+
+// Newsletter form (Wix Forms) — overridable via env, with the live defaults baked in.
+export const NEWSLETTER_FORM_ID = import.meta.env.PUBLIC_WIX_NEWSLETTER_FORM_ID || '1e567888-7b60-4f59-ae87-ba53c9ff5ad0';
+export const NEWSLETTER_EMAIL_KEY = import.meta.env.PUBLIC_WIX_NEWSLETTER_EMAIL_KEY || 'email';
 
 let _client = null;
 async function getClient() {
