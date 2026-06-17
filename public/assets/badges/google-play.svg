@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="40" viewBox="0 0 140 40" role="img" aria-label="Get it on Google Play">
+  <title>Get it on Google Play</title>
+  <!-- Monochrome white-on-black badge to match the App Store badge (no brand colours). -->
+  <rect x="0.5" y="0.5" width="139" height="39" rx="6.5" fill="#000" stroke="#a6a6a6" stroke-opacity="0.35" stroke-width="1"/>
+  <!-- play mark (white) -->
+  <path fill="#fff" d="M14.5 9.3 L14.5 30.7 L30.5 20 Z"/>
+  <text x="41" y="16.6" fill="#fff" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="6.6" letter-spacing="0.9">GET IT ON</text>
+  <text x="40.4" y="31.4" fill="#fff" font-family="'Helvetica Neue',Helvetica,Arial,sans-serif" font-size="15.5" font-weight="500" letter-spacing="0.1">Google Play</text>
+</svg>

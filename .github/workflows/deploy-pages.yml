@@ -1,0 +1,38 @@
+name: Deploy to GitHub Pages
+
+on:
+  # Static GitHub Pages build (via astro.config.static.mjs) — keeps the
+  # entwine.club iframe live during the Wix Headless migration. The Wix path
+  # (astro.config.mjs + `wix release`) is separate.
+  push:
+    branches: [claude/happy-babbage-FslEn]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      # Build statically (no Wix CLI / WIX_CLIENT_ID needed). The default
+      # astro.config.mjs targets Wix Headless hosting; this workflow only needs
+      # static files for the GitHub Pages → Wix iframe path.
+      - run: npx astro build --config astro.config.static.mjs
+        env:
+          NODE_ENV: production
+      - run: node scripts/rebase.mjs /entwine
+      - uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
