@@ -42,19 +42,32 @@ Open a few pages so they register, then they'll appear in the panel (or click
 
 ## Put it online (so you can edit from anywhere)
 
-The backend is a standard Node app — host it anywhere that runs Node 18+
-(Render, Railway, Fly.io, a small VPS, etc.). Example with **Render**:
+### One-click deploy to Render
 
-1. Push this repo to GitHub (already done).
-2. On Render: **New ➜ Web Service**, pick this repo.
-3. Settings:
-   - **Root Directory:** `backend`
-   - **Build Command:** `npm install`
-   - **Start Command:** `npm start`
-   - **Environment ➜ Add:** `ADMIN_PASSWORD = BErlin123!@#`
-   - (Recommended) add a **persistent disk** mounted at `/data` and set
-     `DATA_DIR = /data` so your edits survive restarts/redeploys.
-4. Deploy. You'll get a URL like `https://entwine-editor.onrender.com`.
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy?repo=https://github.com/ipassas/entwine)
+
+1. Click the button above.
+2. Log in to Render with your **GitHub** account (free, no credit card).
+3. Render reads `render.yaml`, creates the service, and clicks Deploy for you.
+4. After ~1–2 minutes you'll get a URL like
+   `https://entwine-text-editor.onrender.com`. That's your editor. Open it,
+   log in with the password, done.
+
+> **Persistence note (important):** the **free** Render instance has a
+> temporary disk, so your saved edits reset whenever the app goes to sleep and
+> wakes up. Fine for trying it out. To keep edits **permanently**, upgrade the
+> service to Render's **Starter** plan (~$7/mo) and add a disk — the exact
+> steps are commented at the bottom of `render.yaml`.
+
+### Any other Node host (Railway, Fly.io, a VPS…)
+
+The backend is a standard Node 18+ app:
+- **Root directory:** `backend`
+- **Build:** `npm install`
+- **Start:** `npm start`
+- **Env:** `ADMIN_PASSWORD=BErlin123!@#` (and `DATA_DIR` pointed at a
+  persistent volume so edits survive restarts).
+- You'll get a URL like `https://entwine-editor.onrender.com`.
 
 Then point the website at that URL:
 
