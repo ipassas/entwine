@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex" />
+    <title>Entwine — Text Editor</title>
+    <link rel="stylesheet" href="/admin.css" />
+  </head>
+  <body>
+    <!-- LOGIN -->
+    <section id="login" class="card login">
+      <h1>Entwine Text Editor</h1>
+      <p class="muted">Enter your password to edit the website text.</p>
+      <form id="loginForm">
+        <input
+          id="password"
+          type="password"
+          placeholder="Password"
+          autocomplete="current-password"
+          required
+        />
+        <button type="submit">Log in</button>
+      </form>
+      <p id="loginError" class="error" hidden></p>
+    </section>
+
+    <!-- APP -->
+    <main id="app" hidden>
+      <header class="topbar">
+        <strong>Entwine Text Editor</strong>
+        <div class="spacer"></div>
+        <button id="syncBtn" class="ghost" title="Visit every page once so new text shows up here">Sync site</button>
+        <button id="logoutBtn" class="ghost">Log out</button>
+      </header>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h2>Pages</h2>
+          <ul id="pageList" class="pages"></ul>
+          <p id="noPages" class="muted small" hidden>
+            No pages yet. Click <b>Sync site</b> above, or open your live website once.
+          </p>
+        </aside>
+
+        <section class="editor">
+          <div id="editorEmpty" class="muted center">Select a page on the left to edit its text.</div>
+          <div id="editorBody" hidden>
+            <div class="editor-head">
+              <div>
+                <h2 id="pageTitle"></h2>
+                <code id="pagePath" class="muted small"></code>
+              </div>
+              <div class="actions">
+                <span id="saveState" class="muted small"></span>
+                <button id="saveBtn">Save changes</button>
+              </div>
+            </div>
+            <div id="fields" class="fields"></div>
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- hidden iframes used by "Sync site" -->
+    <div id="syncFrames" hidden aria-hidden="true"></div>
+
+    <script src="/admin.js"></script>
+  </body>
+</html>

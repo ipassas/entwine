@@ -1,0 +1,34 @@
+# Render Blueprint — deploys the Entwine text-editor backend.
+# https://render.com/docs/blueprint-spec
+#
+# One-click: https://render.com/deploy?repo=https://github.com/ipassas/entwine
+# Render reads this file, creates the service below, and gives you a public URL.
+
+services:
+  - type: web
+    name: entwine-text-editor
+    runtime: node
+    rootDir: backend
+    plan: free # free works for trying it out; see persistence note in backend/README.md
+    buildCommand: npm install
+    startCommand: npm start
+    autoDeploy: true
+    envVars:
+      # The password for the editor panel. Change it here or in the Render
+      # dashboard any time. (It's also the code default.)
+      - key: ADMIN_PASSWORD
+        value: "BErlin123!@#"
+
+    # --- Make edits permanent (optional) -------------------------------------
+    # The free instance has a temporary disk, so saved edits reset when the app
+    # sleeps/restarts. To keep edits forever, upgrade this service to the paid
+    # "Starter" plan, then uncomment the two blocks below and redeploy:
+    #
+    # plan: starter
+    # disk:
+    #   name: data
+    #   mountPath: /var/data
+    #   sizeGB: 1
+    # and add this env var:
+    #   - key: DATA_DIR
+    #     value: /var/data
