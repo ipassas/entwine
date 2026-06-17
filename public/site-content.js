@@ -18,7 +18,7 @@
 
   var API_BASE =
     (window.CONTENT_API_BASE && String(window.CONTENT_API_BASE)) ||
-    "http://localhost:8787";
+    "https://entwine-text-editor.onrender.com";
   API_BASE = API_BASE.replace(/\/+$/, "");
 
   // Tags whose pure-text contents are considered editable copy.
