@@ -15,7 +15,7 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const PAGES_DIR = path.join(__dirname, "..", "src", "pages");
 
 // Where your deployed content backend lives. Leave as-is for local testing.
-const CONTENT_API_BASE = "http://localhost:8787";
+const CONTENT_API_BASE = "https://entwine-text-editor.onrender.com";
 
 const MARKER = "site-content.js";
 const SNIPPET =
