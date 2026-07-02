@@ -1,0 +1,45 @@
+name: Release to Wix (entwine.club)
+
+# Publishes the repo to the Wix Headless project (wix.config.json) — the
+# deployment that serves entwine.club. Requires a WIX_API_KEY repository
+# secret (Wix dashboard → Account Settings → API Keys); until the secret is
+# added every run skips with a notice and someone must run
+# `npx wix build && npx wix release` locally instead.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+concurrency:
+  group: wix-release
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check for WIX_API_KEY
+        id: key
+        run: |
+          if [ -n "${{ secrets.WIX_API_KEY }}" ]; then
+            echo "have=true" >> "$GITHUB_OUTPUT"
+          else
+            echo "have=false" >> "$GITHUB_OUTPUT"
+            echo "::notice::WIX_API_KEY secret not set — skipping Wix release. Run 'npx wix build && npx wix release' locally to update entwine.club."
+          fi
+      - uses: actions/checkout@v4
+        if: steps.key.outputs.have == 'true'
+      - uses: actions/setup-node@v4
+        if: steps.key.outputs.have == 'true'
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+        if: steps.key.outputs.have == 'true'
+      - run: npx wix login --api-key "${{ secrets.WIX_API_KEY }}"
+        if: steps.key.outputs.have == 'true'
+      - run: npx wix build
+        if: steps.key.outputs.have == 'true'
+      - run: npx wix release --comment "CI release ${{ github.sha }}"
+        if: steps.key.outputs.have == 'true'

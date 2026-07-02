@@ -72,6 +72,13 @@ This is the "for now" setup — the proper long-term path is Wix Headless below.
 
 ## Deploying to Wix (proper / long-term)
 
+⚠️ **entwine.club serves the Wix Headless release, not the GitHub Pages build.**
+Merging to `main` does NOT update entwine.club by itself — a Wix release must
+run. Either run it locally (below), or add a `WIX_API_KEY` repository secret
+(Wix dashboard → Account Settings → API Keys, on the account that owns the
+headless project) and the `Release to Wix` workflow releases automatically on
+every push to `main`.
+
 Follow `HEADLESS.md` — short version:
 
 ```bash
