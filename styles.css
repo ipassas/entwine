@@ -307,8 +307,32 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   letter-spacing: -0.01em;
 }
 .hero h1 .gold { color: var(--gold); display: block; }
+.hero__crest {
+  margin: 34px auto 0;
+  max-width: 860px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 26px;
+  color: var(--gold);
+}
+.hero__crest-mark {
+  width: clamp(64px, 6.5vw, 96px);
+  height: auto;
+  flex: none;
+  filter: drop-shadow(0 2px 18px rgba(184, 168, 106, 0.35));
+}
+.hero__crest-line {
+  flex: 1;
+  max-width: 220px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(184, 168, 106, 0.55));
+}
+.hero__crest-line:last-child {
+  background: linear-gradient(90deg, rgba(184, 168, 106, 0.55), transparent);
+}
 .hero__sub {
-  margin: 28px auto 0;
+  margin: 24px auto 0;
   max-width: 860px;
   font-size: clamp(17px, 1.3vw, 22px);
   line-height: 1.55;
