@@ -194,40 +194,42 @@
   });
 
   // ---- sync site (visit every page so new text registers) -----------------
+  // Opens ONE pop-up window and walks it through every route. Each page runs
+  // site-content.js and registers itself with the backend. A pop-up (top-level
+  // window) is used rather than an iframe, because hosts like Wix block being
+  // embedded in an iframe (X-Frame-Options) — but never block normal browsing.
   $("syncBtn").addEventListener("click", function () {
     var base = localStorage.getItem(SITE_KEY) || "";
     base = prompt(
-      "Enter your live website address (so I can read its pages):",
-      base || "https://ipassas.github.io/entwine"
+      "Enter your live website address (so each page can register):",
+      base || "https://www.entwine.club"
     );
     if (!base) return;
     base = base.replace(/\/+$/, "");
     localStorage.setItem(SITE_KEY, base);
 
-    var frames = $("syncFrames");
-    frames.innerHTML = "";
-    var i = 0;
+    var win = window.open(base + ROUTES[0], "entwineSync");
+    if (!win) {
+      alert("Please allow pop-ups for this page, then click Sync site again.");
+      return;
+    }
+    var i = 1;
     $("syncBtn").disabled = true;
-    $("syncBtn").textContent = "Syncing… 0/" + ROUTES.length;
+    $("syncBtn").textContent = "Syncing… 1/" + ROUTES.length;
 
-    function next() {
+    var timer = setInterval(function () {
       if (i >= ROUTES.length) {
+        clearInterval(timer);
         $("syncBtn").textContent = "Sync site";
         $("syncBtn").disabled = false;
-        frames.innerHTML = "";
-        loadPages();
+        setTimeout(function () { try { win.close(); } catch (e) {} }, 1500);
+        setTimeout(loadPages, 1800);
         return;
       }
-      var route = ROUTES[i++];
-      var f = document.createElement("iframe");
-      f.style.cssText = "width:1px;height:1px;border:0;position:absolute;left:-9999px;";
-      f.src = base + route;
-      frames.appendChild(f);
+      try { win.location.href = base + ROUTES[i]; } catch (e) {}
+      i++;
       $("syncBtn").textContent = "Syncing… " + i + "/" + ROUTES.length;
-      // Give each page time to load and self-register, then move on.
-      setTimeout(next, 1400);
-    }
-    next();
+    }, 1700);
   });
 
   // ---- boot ---------------------------------------------------------------
