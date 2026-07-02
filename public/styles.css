@@ -316,11 +316,11 @@ a:focus-visible, button:focus-visible, .btn:focus-visible {
   gap: 26px;
   color: var(--gold);
 }
-.hero__crest-mark {
-  width: clamp(64px, 6.5vw, 96px);
-  height: auto;
+.hero__crest-badge {
+  height: clamp(76px, 8.5vw, 118px);
+  width: auto;
   flex: none;
-  filter: drop-shadow(0 2px 18px rgba(184, 168, 106, 0.35));
+  filter: drop-shadow(0 6px 24px rgba(0, 0, 0, 0.45));
 }
 .hero__crest-line {
   flex: 1;
